@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerHorizontal="true" >
+    android:layout_centerHorizontal="true">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,5 +16,5 @@
         android:textSize="20sp"
         android:background="@color/primaryColor"
         android:textColor="@color/backgroundColor"
-        android:layout_ceterInParent="true"/>
-        </RelativeLayout>
+        android:layout_centerInParent="true"/>
+</RelativeLayout>

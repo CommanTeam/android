@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import org.appjam.comman.R
+import org.appjam.comman.R.id.main_viewpager
 
 /**
  * Created by KSY on 2017-12-31.
@@ -16,8 +17,8 @@ class CardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        main_viewpager.currentItem = 0
+        main_viewpager.addOnPageChangeListener(){
 
-    }
+        }
     }
 }
