@@ -6,13 +6,8 @@
     <color name="statusBarColor">#0033B1</color>
     <color name="pageCountTextColor">#828282</color>
     <color name="primaryColor">#4777D9</color>
-    <color name=""
+    <color name="mainTextColor">#3D3D3D</color>
+    <color name="backgroundColor">#EEEEEE</color>
+    <color name="grayMainTextColor">#9D9B9B</color>
+    <color name="lineColor">#CBCBCB</color>
 </resources>
-
-    #0033B1_statusBarColor
-    #828282 _pageCountTextColor
-    #4777D9_primaryColor
-    #3D3D3D_mainTextColor
-    #EEEEEE_backgroundColor
-    #9D9B9B_grayMainTextColor
-    #CBCBCB_lineColor
