@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="16dp">
+
+    <Button
+        android:id="@+id/quiz_count_btn"
+        android:layout_width="70dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="18dp"
+        android:text="26 /26"
+        android:textSize="18dp"
+        android:textColor="@color/pageCountTextColor"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/frag_card_quiz_countbtn_bg"
+        />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        >
+
+        <TextView
+            android:id="@+id/quiz_submit_lecture_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="1장. 라이노 툴 다루기"
+            android:textSize="18dp"
+            android:textColor="@color/mainTextColor"
+            />
+
+        <TextView
+            android:id="@+id/quiz_submit_limit_tv"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/quiz_submit_lecture_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="통과하려면 20문제 이상 맞추셔야 합니다."
+            android:textSize="16dp"
+            android:textColor="@color/mainTextColor"
+            />
+
+        <Button
+            android:id="@+id/quiz_submit_btn"
+            android:layout_below="@+id/quiz_submit_limit_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
+            android:layout_marginBottom="30dp"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:background="@drawable/frag_quiz_submitbtn_bg"
+            android:text="제출하기"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

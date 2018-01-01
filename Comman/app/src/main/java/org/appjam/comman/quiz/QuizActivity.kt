@@ -1,9 +1,10 @@
-package org.appjam.comman
+package org.appjam.comman.quiz
 
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_quiz.*
+import org.appjam.comman.R
 
 class QuizActivity : AppCompatActivity() {
 
@@ -12,6 +13,10 @@ class QuizActivity : AppCompatActivity() {
         setContentView(R.layout.activity_quiz)
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
+
+        for(i in 1..10) {
+            
+        }
         fragmentTransaction.add(R.id.quiz_view_pager, QuizSubmitFragment())
         fragmentTransaction.commit()
 

@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".QuizActivity"></activity>
+        <activity android:name="org.appjam.comman.quiz.QuizActivity"></activity>
     </application>
 
 </manifest>

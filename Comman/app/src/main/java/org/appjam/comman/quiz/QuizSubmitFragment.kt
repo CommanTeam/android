@@ -1,10 +1,11 @@
-package org.appjam.comman
+package org.appjam.comman.quiz
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import org.appjam.comman.R
 
 /**
  * Created by RyuDongIl on 2017-12-31.
