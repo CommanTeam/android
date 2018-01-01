@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
-        <activity android:name=".ViewPager.CardActivity">
 
+        <activity android:name=".ViewPager.CardActivity">
+            <meta-data
+                android:name="com.kakao.sdk.AppKey"
+                android:value="@string/kakao_app_key" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
