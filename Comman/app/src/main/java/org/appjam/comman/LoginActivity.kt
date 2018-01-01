@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.MotionEvent
@@ -17,15 +18,16 @@ import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.network.ErrorResult
 import com.kakao.usermgmt.UserManagement
-import com.kakao.usermgmt.callback.LogoutResponseCallback
 import com.kakao.usermgmt.callback.MeResponseCallback
 import com.kakao.usermgmt.response.model.UserProfile
 import com.kakao.util.exception.KakaoException
 import com.kakao.util.helper.log.Logger
 import kotlinx.android.synthetic.main.activity_login.*
 
+
 class LoginActivity : AppCompatActivity() {
     private var callback: SessionCallback? = null
+    private val token : String? = null
 
     //인터넷 연결상태 확인
     val isConnected: Boolean
@@ -41,6 +43,16 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        //토큰 shardpreference 사용해서 서버에 보내기
+        Session.getCurrentSession().tokenInfo.accessToken
+
+        login_kakaoLogin_btn.visibility = View.GONE
+
+        val handler = Handler()
+        handler.postDelayed({
+            login_kakaoLogin_btn.visibility = View.VISIBLE
+        }, 2000)
 
         callback = SessionCallback()
         Session.getCurrentSession().addCallback(callback)
@@ -61,22 +73,9 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
-        // 로그인 성공 시 사용할 뷰
-        login_logout_btn.setOnClickListener {
-            if (Session.getCurrentSession().isOpened) {
-                requestLogout()
-            }
-        }
-
-        if (Session.getCurrentSession().isOpened) {
-            requestMe()
-        } else {
-            login_success_layout.visibility = View.GONE
-            login_kakaoLogin_btn.visibility = View.VISIBLE
-        }
     }
 
-
+    //간편 로그인시 호출되는 부분
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
             return
@@ -89,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
             //access token을 성공적으로 발급 받아 valid access token을 가지고 있는 상태. 일반적으로 로그인 후의 다음 activity로 이동한다.
             if (Session.getCurrentSession().isOpened) { // 한 번더 세션을 체크해주었습니다.
                 requestMe()
+
             }
         }
 
@@ -99,19 +99,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun requestLogout() {
-        login_success_layout.visibility = View.GONE
-        login_kakaoLogin_btn.visibility = View.VISIBLE
-        UserManagement.requestLogout(object : LogoutResponseCallback() {
-            override fun onCompleteLogout() {
-                runOnUiThread { Toast.makeText(this@LoginActivity, "로그아웃 성공", Toast.LENGTH_SHORT).show() }
-            }
-        })
-    }
-
     private fun requestMe() {
-        login_success_layout.visibility = View.VISIBLE
-        login_kakaoLogin_btn.visibility = View.GONE
 
         UserManagement.requestMe(object : MeResponseCallback() {
             override fun onFailure(errorResult: ErrorResult?) {
@@ -124,6 +112,9 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onSuccess(userProfile: UserProfile) {
                 Log.e("onSuccess", userProfile.toString())
+                val intent = Intent(baseContext, QuizResultActivity::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent)
             }
 
             override fun onNotSignedUp() {
@@ -132,6 +123,7 @@ class LoginActivity : AppCompatActivity() {
         })
     }
 
+    //이 부분이 없는 경우 누적 로그인이 될 수 있음
     override fun onDestroy() {
         super.onDestroy()
         Session.getCurrentSession().removeCallback(callback)
