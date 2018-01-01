@@ -17,7 +17,7 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:text="<"
+            android:text="뒤"
             android:textSize="30sp"
             android:textColor="#ffffff"
             />
