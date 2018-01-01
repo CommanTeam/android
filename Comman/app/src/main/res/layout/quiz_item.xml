@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Q. 13"
+        />
+
+    <Button
+        android:id="@+id/quiz_quizItemNow_btn"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="13/26"
+        />
+
+    <TextView
+        android:layout_below="@id/quiz_quizItemNow_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="현재 퀴즈 번호, 쪽 페이지, 문제 텍스트 등이 위치, 필요에 따라서 이미지 뷰까지 들어갈 수 있다.
+"
+        />
+
+</RelativeLayout>
