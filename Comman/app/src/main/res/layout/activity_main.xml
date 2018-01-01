@@ -5,59 +5,123 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/backgroundColor"
     tools:context="org.appjam.comman.ViewPager.CardActivity">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/card_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/main_top_relative"
-        android:background="#3F51B5"
+        android:layout_height="47dp"
+        android:orientation="horizontal"
+        android:background="@color/primaryColor"
         >
+
         <Button
-            android:layout_width="25dp"
-            android:layout_height="28dp"
-            android:id="@+id/main_back_btn"
-            android:layout_marginLeft="16dp"
+            android:id="@+id/quiz_back_btn"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/title_back_btn"
+            android:layout_width="11dp"
+            android:layout_height="16dp"
             />
+
         <TextView
-            android:id="@+id/lecture_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="#ffffff"
-            android:text="01.라이노 툴 다루기"
-            android:textSize="20sp"
-            android:layout_toRightOf="@id/main_back_btn"
-            android:layout_marginLeft="20dp"/>
-    </RelativeLayout>
+            android:id="@+id/quiz_lecture_name_tv"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01. 라이노 툴 다루기"
+            android:textSize="18dp"
+            android:textColor="#ffffff "
+            />
+    </LinearLayout>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/card_top_layout">
+    <Button
+        android:id="@+id/card_count_btn"
+        android:layout_width="70dp"
+        android:layout_height="22dp"
+        android:textSize="18sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/frag_card_quiz_countbtn_bg"
+        />
+</RelativeLayout>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/main_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"
-            android:layout_marginTop="50dp"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/main_bottom_relative"
-        android:background="#9e9e9e"
-        android:layout_alignParentBottom="true"
-        >
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이전"
-            android:background="#9e9e9e"
-            android:textColor="#494949"
-            />
+            android:layout_width="328dp"
+            android:layout_height="456dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="99dp"
+            android:layout_marginBottom="63dp"/>
 
-        <Button
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:orientation="horizontal"
+        android:background="@color/lineColor"
+        >
+
+        <LinearLayout
+            android:id="@+id/quiz_prev_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="다음"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="8dp"
+                android:layout_width="11dp"
+                android:layout_height="16dp"
+                android:background="@drawable/view_pager_prev_btn"
+                />
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이전"
+                android:textSize="16dp"
+                android:textColor="@color/mainTextColor"
+                />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_alignParentRight="true"
-            android:background="#9e9e9e"
-            android:textColor="#494949"
-            />
+            android:id="@+id/quiz_next_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="다음"
+                android:textSize="16dp"
+                android:textColor="@color/mainTextColor"
+                />
+            <Button
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="11dp"
+                android:layout_height="16dp"
+                android:background="@drawable/view_pager_next_btn"
+                />
+        </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
