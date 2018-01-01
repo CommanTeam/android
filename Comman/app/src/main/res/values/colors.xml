@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="statusBarColor">#0033B1</color>
+    <color name="pageCountTextColor">#828282</color>
+    <color name="primaryColor">#4777D9</color>
+    <color name="mainTextColor">#3D3D3D</color>
+    <color name="backgroundColor">#EEEEEE</color>
+    <color name="grayMainTextColor">#9D9B9B</color>
+    <color name="lineColor">#CBCBCB</color>
 </resources>
