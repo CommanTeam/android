@@ -1,7 +1,7 @@
 package org.appjam.comman.ui.search
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import org.appjam.comman.R
 
 class DummyActivity : AppCompatActivity() {

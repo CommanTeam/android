@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Comman</string>
+    <string name="kakao_app_key">887b586501394caa60fa4e4b308cde36</string>
 </resources>
