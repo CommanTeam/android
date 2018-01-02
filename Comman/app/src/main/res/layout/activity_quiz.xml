@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".quiz.QuizActivity">
+    tools:context=".ui.quiz.QuizActivity">
 
     <LinearLayout
         android:id="@+id/quiz_title_bar_layout"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="01. 라이노 툴 다루기"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textColor="#ffffff"
             android:fontFamily="@font/nanum_square_bold"
             />
@@ -40,6 +40,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/quiz_view_pager"
         android:layout_below="@+id/quiz_title_bar_layout"
+        android:layout_above="@+id/quiz_prev_next_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/backgroundColor"
@@ -64,22 +65,24 @@
             >
 
             <Button
+                android:id="@+id/quiz_prev_btn"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="8dp"
                 android:layout_width="11dp"
                 android:layout_height="16dp"
-                android:background="@drawable/view_pager_prev_btn"
+                android:background="@drawable/unclickable_view_pager_prev_btn"
                 />
 
             <TextView
+                android:id="@+id/quiz_prev_tv"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이전"
-                android:textSize="16dp"
-                android:textColor="@color/mainTextColor"
+                android:textSize="16sp"
+                android:textColor="@color/grayMainTextColor"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 />
 
@@ -95,17 +98,19 @@
             >
 
             <TextView
+                android:id="@+id/quiz_next_tv"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="다음"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textColor="@color/mainTextColor"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 />
 
             <Button
+                android:id="@+id/quiz_next_btn"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"

@@ -1,4 +1,4 @@
-package org.appjam.comman.quiz
+package org.appjam.comman.ui.quiz
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
