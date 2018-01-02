@@ -1,20 +1,22 @@
-package org.appjam.comman
+package org.appjam.comman.ui.quiz
 
 /**
  * Created by yeahen on 2017-12-31.
  */
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import org.appjam.comman.R
 
 class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -30,11 +32,11 @@ class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
         quizResultList!!.layoutManager = LinearLayoutManager(this)
 
         quizResultDatas = ArrayList<QuizResultData>()
-        quizResultDatas!!.add(QuizResultData(R.drawable.kakaotalk_icon, "Q.Q1"))
-        quizResultDatas!!.add(QuizResultData(R.drawable.kakaotalk_icon, "Q.Q2"))
-        quizResultDatas!!.add(QuizResultData(R.drawable.kakaotalk_icon, "Q.Q3"))
-        quizResultDatas!!.add(QuizResultData(R.drawable.kakaotalk_icon, "Q.Q4"))
-        quizResultDatas!!.add(QuizResultData(R.drawable.kakaotalk_icon, "Q.Q5"))
+        quizResultDatas!!.add(QuizResultData(R.drawable.quiz_correct_mark, "Q.Q1"))
+        quizResultDatas!!.add(QuizResultData(R.drawable.quiz_correct_mark, "Q.Q2"))
+        quizResultDatas!!.add(QuizResultData(R.drawable.quiz_wrong_mark, "Q.Q3"))
+        quizResultDatas!!.add(QuizResultData(R.drawable.quiz_correct_mark, "Q.Q4"))
+        quizResultDatas!!.add(QuizResultData(R.drawable.quiz_wrong_mark, "Q.Q5"))
 
         quizResultAdapter = QuizResultAdapter(quizResultDatas)
         quizResultAdapter!!.setOnItemClickListener(this)
@@ -42,12 +44,31 @@ class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
         quizResultList!!.adapter = quizResultAdapter
     }
 
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        //바깥 레이어 클릭시 안닫히게 한다.
+        if (MotionEvent.ACTION_OUTSIDE == event!!.action) {
+            return false
+        }
+        return true
+    }
+
+
+
+
+    //팝업 띄우기
     override fun onClick(v: View?) {
         val idx : Int = quizResultList!!.getChildAdapterPosition(v)
 
-        //기능 확인용으로 구현함 - 나중에 삭제 예정
-        val name : String? = quizResultDatas!!.get(idx).answer
-        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
+//        //기능 확인용으로 구현함 - 나중에 삭제 예정
+//        val name : String? = quizResultDatas!!.get(idx).answer
+//        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(this, PopupExplainActivity::class.java)
+        intent.putExtra("quiz_num", "Q.13")
+        intent.putExtra("quiz_text", "다음 중, 문서의 여백을 설정할 수 있는 방법으로 옳은 것을 고르시오.")
+        intent.putExtra("quiz_answer_num", "정답: 3번")
+        intent.putExtra("quiz_answer_text", "문서의 디자인 편집을 클릭하여 레이아웃 편집을 누른다. 양 옆의 여백의 사이즈를 입력하여 문서의 여백을 설정해야하므로 정답은................")
+        startActivity(intent)
     }
 
     /**ViewHolder는 각 리스트에 어떤 뷰가 들어가는지 설정해주는 부분입니다. 한 번 설정해주면 몇번이고 재사용이 가능합니다
@@ -83,6 +104,7 @@ class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
         fun setOnItemClickListener(l:View.OnClickListener){
             onItemClick = l
         }
+
     }
 }
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/com_kakao_cancel_button_background"
     android:orientation="vertical"
-    tools:context="org.appjam.comman.QuizResultActivity">
+    tools:context="org.appjam.comman.ui.quiz.QuizResultActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,21 +30,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="채점 결과"
-                    android:textSize="20dp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/mainTextColor"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="축하합니다. 통과하셨습니다~!"
-                    android:textSize="18dp" />
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:textSize="18sp"
+                    android:textColor="@color/mainTextColor"/>
 
             </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/quizResult_result_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#696969" />
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

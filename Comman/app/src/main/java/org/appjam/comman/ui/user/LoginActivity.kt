@@ -1,4 +1,4 @@
-package org.appjam.comman
+package org.appjam.comman.ui.user
 
 /**
  * Created by yeahen on 2017-12-31.
@@ -25,13 +25,14 @@ import com.kakao.util.exception.KakaoException
 import com.kakao.util.helper.log.Logger
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_login.*
-import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.R
 
 
 class LoginActivity : AppCompatActivity() {
     private var callback: SessionCallback? = null
-    private val token : String? = null
-    var profileImg : CircleImageView? = null
+    var user_img : CircleImageView? = null
+
+    //카카오톡 프로필 사진은 이미지 url 형태로 제공하는데 해당 라이브러리를 사용하면 url 을 ImageView id만 매핑시켜 주면 한줄의 코드로 매우 편리하게 적용가능합니다.
     var aQuery : AQuery? = null
 
 
@@ -51,10 +52,8 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         aQuery = AQuery(this)
 
-        //토큰 shardpreference 사용해서 서버에 보내기
-        PrefUtils.putUserToken(this, Session.getCurrentSession().tokenInfo.accessToken)
-
         login_kakaoLogin_btn.visibility = View.GONE
+//        login_splashTitle_layout.visibility = View.GONE
 
         val handler = Handler()
         handler.postDelayed({
@@ -107,6 +106,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun requestMe() {
+//        login_splashTitle_layout.visibility = View.VISIBLE
 
         UserManagement.requestMe(object : MeResponseCallback() {
             override fun onFailure(errorResult: ErrorResult?) {
@@ -119,11 +119,11 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onSuccess(userProfile: UserProfile) {
                 Log.e("onSuccess", userProfile.toString())
-                aQuery!!.id(profileImg).image(userProfile.thumbnailImagePath) //프로필 이미지
+                aQuery!!.id(user_img).image(userProfile.thumbnailImagePath) //프로필 이미지
                //성공하면 MainActivity로 이동
-                val intent = Intent(baseContext, QuizResultActivity::class.java)
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent)
+//                val intent = Intent(baseContext, MainActivity::class.java)
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                startActivity(intent)
             }
 
             override fun onNotSignedUp() {

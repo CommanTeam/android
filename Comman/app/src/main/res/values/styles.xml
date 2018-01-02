@@ -13,4 +13,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.PopUp" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+
+
 </resources>

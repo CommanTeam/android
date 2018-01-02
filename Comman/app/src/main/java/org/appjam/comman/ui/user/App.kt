@@ -1,4 +1,4 @@
-package org.appjam.comman
+package org.appjam.comman.ui.user
 
 /**
  * Created by yeahen on 2017-12-31.
