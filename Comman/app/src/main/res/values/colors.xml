@@ -10,4 +10,8 @@
     <color name="backgroundColor">#EEEEEE</color>
     <color name="grayMainTextColor">#9D9B9B</color>
     <color name="lineColor">#CBCBCB</color>
+    <color name="menuBarColor">#191919</color>
+    <color name="divideLineColor">#CBCBCB</color>
+    <color name="viewPagerColor">#D4D4D4</color>
+    <color name="explanationColor">#595959</color>
 </resources>
