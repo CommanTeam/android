@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import org.appjam.comman.R
+import org.appjam.comman.util.ListUtils
 import java.util.*
 
 /**
@@ -21,11 +22,17 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
     private var lectureList : RecyclerView? = null
     private var lectureData : ArrayList<LectureData>? = null
     private var lectureAdapter : LectureAdapter? = null
+    private var chapterexpdata : ArrayList<ChapterExpData>? =null
+    private var chapterAdapter : ChapterExpAdapter? = null
 
     data class LectureData(
             var lectureimage:Int,
             var lecturenum:String,
             var lecturename:String
+    )
+    data class ChapterExpData(
+            var chaptertitle:String,
+            var chaptercont:String
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,11 +43,14 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
         lectureList!!.layoutManager = LinearLayoutManager(this)
 
         lectureData = ArrayList<LectureData>()
+        chapterexpdata = ArrayList<ChapterExpData>()
+        chapterexpdata!!.add(ChapterExpData("1장. 라이노 툴 다루기","티 스플라인을 사용하여 자연스"))
         lectureData!!.add(LectureData(R.drawable.picture_icon,"28 페이지","01 필렛 넣기"))
         lectureData!!.add(LectureData(R.drawable.video_icon,"10: 18","02 리볼브 하기"))
         lectureData!!.add(LectureData(R.drawable.quiz_icon,"20 문제","03 챔퍼 넣기"))
         lectureData!!.add(LectureData(R.drawable.picture_icon,"15 페이지","04 면만들기"))
 
+        chapterAdapter = ChapterExpAdapter(chapterexpdata)
         lectureAdapter = LectureAdapter(lectureData)
         lectureAdapter!!.setOnItemClickListener(this)
         lectureList!!.adapter = lectureAdapter
@@ -57,6 +67,10 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
         var lecturenum: TextView = itemView!!.findViewById(R.id.lecture_list_num_tv) as TextView
         var lecturename: TextView = itemView!!.findViewById(R.id.lecture_list_name_tv) as TextView
     }
+    inner class ChapterExpViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView){
+        var chaptertitle : TextView = itemView!!.findViewById(R.id.chapter_title_tv) as TextView
+        var chaptercont : TextView = itemView!!.findViewById(R.id.chapter_content_tv) as TextView
+    }
     inner class LectureAdapter(var datalist : ArrayList<LectureData>?) : RecyclerView.Adapter<LectureViewHolder>(){
 
         private var onItemClick : View.OnClickListener? = null
@@ -64,6 +78,12 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
             val mainView : View = LayoutInflater.from(parent!!.context).inflate(R.layout.lecture_list_item, parent, false)
             mainView.setOnClickListener(onItemClick)
             return LectureViewHolder(mainView)
+
+            return if (viewType == ListUtils.TYPE_HEADER) {
+                ChapterExpViewHolder(LayoutInflater.from(parent!!.context).inflate(R.layout.chapter_explanation_item, parent, false))
+            } else {
+                LectureViewHolder(layoutInflater.inflate(R.layout.category_information_item, parent, false))
+            }
         }
 
         override fun getItemCount(): Int = datalist!!.size
