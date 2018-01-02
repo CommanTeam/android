@@ -17,17 +17,20 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity android:name=".SplashActivity">
-
-        </activity>
+        <activity android:name=".SplashActivity"></activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".ui.search.DummyActivity">
+
+        </activity>
+        <activity android:name=".ui.lecture.LectureVideoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".ui.lecture.LectureVideoService"/>
     </application>
 
 </manifest>
