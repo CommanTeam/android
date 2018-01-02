@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#eeeeee"
+    android:orientation="vertical"
+    android:layout_width="330dp"
+    android:layout_height="480dp">
+
+    <!-- Notice -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="21dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+        <TextView
+            android:id="@+id/popup_num_tv"
+            android:textSize="20dp"
+            android:text="Q.13"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/popup_quiz_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="다음 중, 문서의 여백을 설정할 수 있는 방법으로 옳은 것을 고르시오."
+            android:layout_marginBottom="18dp"/>
+
+        <ImageView
+            android:id="@+id/popup_img"
+            android:layout_width="278dp"
+            android:layout_height="136dp"
+            android:src="@drawable/ic_launcher_background"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/popup_answer_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="정답: 3번"
+            android:textSize="16dp"
+            android:layout_marginBottom="11dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="해설 : 문서의 디자인 편집을 클릭하여...."/>
+
+
+
+
+    </LinearLayout>
+
+    <!-- 닫기 버튼 -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="82dp">
+
+    <Button
+        android:layout_width="82dp"
+        android:layout_height="32dp"
+        android:background="@color/colorPrimary"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="222dp"
+        android:paddingRight="25dp"
+        android:onClick="OnClose"
+        android:padding="16dp"
+        android:text="닫기"
+        android:textColor="@android:color/white"
+        android:textSize="16dp" />
+    </LinearLayout>
+
+</LinearLayout>

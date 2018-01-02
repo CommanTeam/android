@@ -14,6 +14,7 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
+import com.androidquery.AQuery
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.network.ErrorResult
@@ -22,12 +23,17 @@ import com.kakao.usermgmt.callback.MeResponseCallback
 import com.kakao.usermgmt.response.model.UserProfile
 import com.kakao.util.exception.KakaoException
 import com.kakao.util.helper.log.Logger
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_login.*
+import org.appjam.comman.util.PrefUtils
 
 
 class LoginActivity : AppCompatActivity() {
     private var callback: SessionCallback? = null
     private val token : String? = null
+    var profileImg : CircleImageView? = null
+    var aQuery : AQuery? = null
+
 
     //인터넷 연결상태 확인
     val isConnected: Boolean
@@ -43,9 +49,10 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        aQuery = AQuery(this)
 
         //토큰 shardpreference 사용해서 서버에 보내기
-        Session.getCurrentSession().tokenInfo.accessToken
+        PrefUtils.putUserToken(this, Session.getCurrentSession().tokenInfo.accessToken)
 
         login_kakaoLogin_btn.visibility = View.GONE
 
@@ -58,7 +65,7 @@ class LoginActivity : AppCompatActivity() {
         Session.getCurrentSession().addCallback(callback)
 
         // 카카오톡 로그인 버튼
-        login_kakaoLogin_btn.setOnTouchListener { v, event ->
+        login_kakaoLogin_btn.setOnTouchListener { v : View, event : MotionEvent ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 if (!isConnected) {
                     Toast.makeText(this@LoginActivity, "인터넷 연결을 확인해주세요", Toast.LENGTH_SHORT).show()
@@ -112,6 +119,8 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onSuccess(userProfile: UserProfile) {
                 Log.e("onSuccess", userProfile.toString())
+                aQuery!!.id(profileImg).image(userProfile.thumbnailImagePath) //프로필 이미지
+               //성공하면 MainActivity로 이동
                 val intent = Intent(baseContext, QuizResultActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent)

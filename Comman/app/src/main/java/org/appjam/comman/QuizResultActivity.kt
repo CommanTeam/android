@@ -1,5 +1,10 @@
 package org.appjam.comman
 
+/**
+ * Created by yeahen on 2017-12-31.
+ */
+
+
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -9,8 +14,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 
-class QuizResultActivity : AppCompatActivity() {
+class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
 
     private var quizResultList : RecyclerView? = null
     private var quizResultDatas : ArrayList<QuizResultData>? = null
@@ -31,7 +37,17 @@ class QuizResultActivity : AppCompatActivity() {
         quizResultDatas!!.add(QuizResultData(R.drawable.kakaotalk_icon, "Q.Q5"))
 
         quizResultAdapter = QuizResultAdapter(quizResultDatas)
+        quizResultAdapter!!.setOnItemClickListener(this)
+
         quizResultList!!.adapter = quizResultAdapter
+    }
+
+    override fun onClick(v: View?) {
+        val idx : Int = quizResultList!!.getChildAdapterPosition(v)
+
+        //기능 확인용으로 구현함 - 나중에 삭제 예정
+        val name : String? = quizResultDatas!!.get(idx).answer
+        Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
     }
 
     /**ViewHolder는 각 리스트에 어떤 뷰가 들어가는지 설정해주는 부분입니다. 한 번 설정해주면 몇번이고 재사용이 가능합니다
@@ -49,6 +65,8 @@ class QuizResultActivity : AppCompatActivity() {
     /***
      * 어댑터는 데이터와 화면 출력을 이어주는 객체입니다 여기서는 QuizResultData에 넣은 데이터들을 ViewHolder로 연결하기 위해 쓰였습니다 **/
     private inner class QuizResultAdapter(var dataList : ArrayList<QuizResultData>?) : RecyclerView.Adapter<QuizResultViewHolder>() {
+        private var onItemClick : View.OnClickListener? = null
+
         override fun onBindViewHolder(holder: QuizResultViewHolder?, position: Int) {
             holder!!.resultImg.setImageResource(dataList!!.get(position).resultImg)
             holder!!.answer.text = dataList!!.get(position).answer
@@ -56,16 +74,16 @@ class QuizResultActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): QuizResultViewHolder {
             val mainView : View = LayoutInflater.from(parent!!.context).inflate(R.layout.quiz_result_items, parent, false)
+            mainView.setOnClickListener(onItemClick)
             return QuizResultViewHolder(mainView)
         }
 
         override fun getItemCount(): Int = dataList!!.size
 
+        fun setOnItemClickListener(l:View.OnClickListener){
+            onItemClick = l
+        }
     }
-
-
-
-
 }
 
 

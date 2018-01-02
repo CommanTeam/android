@@ -17,17 +17,24 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuizResultActivity"></activity>
+        <activity android:name=".ui.search.DummyActivity" />
+
+        <!-- 퀴즈 채점 결과 Activity -->
+        <activity android:name=".QuizResultActivity" />
+        <!-- 퀴즈 해설 팝업 Activity -->
+        <activity android:name=".PopupExplainActivity" android:theme="@android:style/Theme.Dialog" />
+
+
     </application>
 
 </manifest>
