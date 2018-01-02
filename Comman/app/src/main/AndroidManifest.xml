@@ -20,12 +20,12 @@
         <activity android:name=".SplashActivity"></activity>
         <activity android:name=".LoginActivity" />
 
-        <activity android:name=".ui.search.DummyActivity">
+        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity">
 
         </activity>
         <activity android:name=".ui.lecture.LectureVideoActivity" />
 
-        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

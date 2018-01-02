@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.appjam.comman.ui.main.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/main_title_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/primaryColor"
+        >
+
+        <TextView
+            android:id="@+id/main_lecture_name_tv"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="컴만"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            />
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/main_tab_layout"
+        android:layout_above="@id/main_title_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:background="@color/white"
+        app:tabIndicatorColor="@color/primaryColor"
+        app:tabTextAppearance="@font/nanum_square_bold"
+        app:tabTextColor="@color/divideLineColor"
+        app:tabSelectedTextColor="#000000"
+        app:tabPaddingTop="5dp"
+        app:tabPaddingBottom="5dp"
+        >
+
+    </android.support.design.widget.TabLayout>
+
+    <LinearLayout
+        android:id="@+id/main_content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/backgroundColor">
+        
+    </LinearLayout>
+
+</LinearLayout>
