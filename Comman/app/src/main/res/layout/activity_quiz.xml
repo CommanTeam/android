@@ -33,6 +33,7 @@
             android:text="01. 라이노 툴 다루기"
             android:textSize="18dp"
             android:textColor="#ffffff"
+            android:fontFamily="@font/nanum_square_bold"
             />
     </LinearLayout>
     
@@ -40,11 +41,14 @@
         android:id="@+id/quiz_view_pager"
         android:layout_below="@+id/quiz_title_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/backgroundColor"
+        >
 
     </android.support.v4.view.ViewPager>
 
     <RelativeLayout
+        android:id="@+id/quiz_prev_next_layout"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="46dp"
@@ -76,6 +80,7 @@
                 android:text="이전"
                 android:textSize="16dp"
                 android:textColor="@color/mainTextColor"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 />
 
 
@@ -97,6 +102,7 @@
                 android:text="다음"
                 android:textSize="16dp"
                 android:textColor="@color/mainTextColor"
+                android:fontFamily="@font/nanum_square_extra_bold"
                 />
 
             <Button

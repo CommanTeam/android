@@ -15,6 +15,7 @@
         android:textColor="@color/pageCountTextColor"
         android:layout_alignParentRight="true"
         android:background="@drawable/frag_card_quiz_countbtn_bg"
+        android:fontFamily="@font/nanum_square_bold"
         />
 
     <RelativeLayout
@@ -31,6 +32,7 @@
             android:text="1장. 라이노 툴 다루기"
             android:textSize="18dp"
             android:textColor="@color/mainTextColor"
+            android:fontFamily="@font/nanum_square_extra_bold"
             />
 
         <TextView
@@ -43,6 +45,7 @@
             android:text="통과하려면 20문제 이상 맞추셔야 합니다."
             android:textSize="16dp"
             android:textColor="@color/mainTextColor"
+            android:fontFamily="@font/nanum_square_bold"
             />
 
         <Button
@@ -57,6 +60,7 @@
             android:text="제출하기"
             android:textSize="20dp"
             android:textColor="#ffffff"
+            android:fontFamily="@font/nanum_square_bold"
             />
 
 

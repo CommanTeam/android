@@ -21,7 +21,7 @@
 
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ui.search.DummyActivity">
+        <activity android:name=".quiz.QuizActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="org.appjam.comman.quiz.QuizActivity"></activity>
+        <activity android:name=".ui.search.DummyActivity"></activity>
     </application>
 
 </manifest>
