@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="18dp"
+    android:layout_marginBottom="20dp"
+    android:background="@color/backgroundColor"
+    >
+
+    <TextView
+        android:id="@+id/quiz_number_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Q. 13"
+        android:textSize="20sp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        />
+
+    <Button
+        android:id="@+id/quiz_count_btn"
+        android:layout_width="70dp"
+        android:layout_height="22dp"
+        android:text="13 /26"
+        android:textSize="18sp"
+        android:textColor="@color/pageCountTextColor"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/frag_card_quiz_countbtn_bg"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+
+    <TextView
+        android:id="@+id/quiz_question_tv"
+        android:layout_below="@id/quiz_number_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:text="현재 퀴즈 번호, 쪽 페이지, 문제 텍스트 등이 위치, 필요에 따라서 이미지 뷰까지 들어갈 수 있다."
+        android:textSize="18sp"
+        android:textColor="@color/mainTextColor"
+        android:lineSpacingMultiplier="1.2"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+
+    <ImageView
+        android:id="@+id/quiz_question_img"
+        android:layout_below="@id/quiz_question_tv"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        />
+
+</RelativeLayout>

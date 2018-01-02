@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/quiz_footer_choice_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="112dp"
+    android:orientation="horizontal"
+    android:layout_marginVertical="5dp"
+    >
+    <!-- border는 xml로 나중에-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="#ffffff"
+        android:elevation="2dp"
+        >
+
+    <TextView
+        android:id="@+id/quiz_footer_choice_number_tv"
+        android:layout_gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="21dp"
+        android:text="1번"
+        android:textSize="16sp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_extra_bold"
+        />
+
+    <TextView
+        android:id="@+id/quiz_footer_choice_content_tv"
+        android:gravity="right"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="13dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="보기 > 디자인 설정 > 여백 바꾸기"
+        android:textSize="16sp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+    </LinearLayout>
+
+</LinearLayout>
