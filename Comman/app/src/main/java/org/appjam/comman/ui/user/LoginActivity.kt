@@ -23,14 +23,12 @@ import com.kakao.usermgmt.callback.MeResponseCallback
 import com.kakao.usermgmt.response.model.UserProfile
 import com.kakao.util.exception.KakaoException
 import com.kakao.util.helper.log.Logger
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
 
 
 class LoginActivity : AppCompatActivity() {
     private var callback: SessionCallback? = null
-    var user_img : CircleImageView? = null
 
     //카카오톡 프로필 사진은 이미지 url 형태로 제공하는데 해당 라이브러리를 사용하면 url 을 ImageView id만 매핑시켜 주면 한줄의 코드로 매우 편리하게 적용가능합니다.
     var aQuery : AQuery? = null
@@ -53,7 +51,7 @@ class LoginActivity : AppCompatActivity() {
         aQuery = AQuery(this)
 
         login_kakaoLogin_btn.visibility = View.GONE
-//        login_splashTitle_layout.visibility = View.GONE
+        login_splashTitle_layout.visibility = View.GONE
 
         val handler = Handler()
         handler.postDelayed({
@@ -79,6 +77,13 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        if(Session.getCurrentSession().isOpened){
+            requestMe()
+        }
+        else {
+            login_splashTitle_layout.visibility = View.GONE
+            login_kakaoLogin_btn.visibility = View.VISIBLE
+        }
     }
 
     //간편 로그인시 호출되는 부분
@@ -106,7 +111,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun requestMe() {
-//        login_splashTitle_layout.visibility = View.VISIBLE
+        login_splashTitle_layout.visibility = View.VISIBLE
+        login_kakaoLogin_btn.visibility = View.GONE
 
         UserManagement.requestMe(object : MeResponseCallback() {
             override fun onFailure(errorResult: ErrorResult?) {
@@ -119,11 +125,14 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onSuccess(userProfile: UserProfile) {
                 Log.e("onSuccess", userProfile.toString())
-                aQuery!!.id(user_img).image(userProfile.thumbnailImagePath) //프로필 이미지
-               //성공하면 MainActivity로 이동
+                var prifile_img_url = userProfile.thumbnailImagePath
+                //성공하면 MainActivity로 이동
+                //프로필 이미지 url과 이메일 값 디비에 삽입하기
 //                val intent = Intent(baseContext, MainActivity::class.java)
 //                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                intent.putExtra("profile_img_url", prifile_img_url)
 //                startActivity(intent)
+
             }
 
             override fun onNotSignedUp() {

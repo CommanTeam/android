@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="332dp"
+    android:layout_height="480dp"
+    android:orientation="vertical"
+    tools:context="org.appjam.comman.ui.lecture.LecturePopupActivity">
+    
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="23dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/lecturePopup_img"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lecturePopup_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="[Rhino] 반지 모델링하기"
+                android:textColor="@color/mainTextColor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/lecturePopup_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="14dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:text="강사명"
+                android:textColor="@color/grayMainTextColor"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="332dp"
+        android:layout_height="272dp"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/lecturePopup_lecName_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1장. 라이노 툴 다루기"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:textColor="@color/mainTextColor"/>
+            </LinearLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
