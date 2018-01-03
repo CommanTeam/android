@@ -61,6 +61,10 @@
             android:layout_height="wrap_content"
             android:text="43 %"
             />
+        
+        <ProgressBar
+            android:layout_width=""
+            android:layout_height="" />
 
 
     </RelativeLayout>
