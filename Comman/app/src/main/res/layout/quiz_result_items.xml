@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp">
+
+    <RelativeLayout
+        android:id="@+id/quizResult_result_layout"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white"
+        android:elevation="2dp">
+
+        <TextView
+            android:id="@+id/quizResult_list_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="27dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="27dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textColor="@color/mainTextColor"
+            android:text="Q.Q1"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/backgroundColor">
+
+            <ImageView
+                android:id="@+id/quizResult_list_img"
+                android:layout_width="38dp"
+                android:layout_height="29dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="17dp"
+                android:layout_marginStart="17dp"
+                android:layout_weight="1"
+                android:src="@drawable/quiz_correct_mark" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

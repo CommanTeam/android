@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".App"
+        android:name=".ui.user.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,26 +17,30 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity android:name=".SplashActivity"></activity>
-        <activity android:name=".LoginActivity" />
-
-        <activity android:name=".ui.search.DummyActivity">
-
-        </activity>
-        <activity android:name=".ui.lecture.LectureVideoActivity" />
-
-       <activity android:name="org.appjam.comman.ui.quiz.QuizActivity">
-        </activity>
-
-        <activity android:name="org.appjam.comman.ui.card.CardActivity">
+        <activity
+            android:name=".ui.user.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.search.DummyActivity" />
+        <activity android:name=".ui.lecture.LectureVideoActivity" />
+        <activity android:name=".ui.quiz.QuizActivity" />
+        <activity android:name=".ui.card.CardActivity" />
 
-        <service android:name=".ui.lecture.LectureVideoService"/>
+        <!-- 퀴즈 채점 결과 Activity -->
+        <activity android:name=".ui.quiz.QuizResultActivity" />
+        <!-- 퀴즈 해설 팝업 Activity -->
+        <activity
+            android:name=".ui.quiz.PopupExplainActivity"
+            android:theme="@style/Theme.PopUp" />
+
+        <service android:name=".ui.lecture.LectureVideoService" />
+        
     </application>
 
 </manifest>
