@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:orientation="horizontal"
+    android:background="@drawable/frag_notice_textview_bg">
+
+    <ImageView
+        android:id="@+id/main_lecture_active_img"
+        android:layout_width="114dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/frag_quiz_submitbtn_bg"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="12dp"
+        >
+
+        <TextView
+            android:id="@+id/main_lecture_active_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[Rhino] 반지 모델링하기"
+            android:textSize="16sp"
+            android:textColor="@color/mainTextColor"
+            android:fontFamily="@font/nanum_square_bold"
+            />
+
+        <TextView
+            android:id="@+id/main_lecture_active_chapters_tv"
+            android:layout_below="@+id/main_lecture_active_course_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="총 16단원"
+            android:textSize="15sp"
+            android:textColor="@color/mainTextColor"
+            android:fontFamily="@font/nanum_square_regular"
+            />
+
+        <TextView
+            android:id="@+id/main_lecture_active_prog_tv"
+            android:layout_below="@id/main_lecture_active_chapters_tv"
+            android:layout_marginTop="9dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="진도율"
+            android:textSize="15sp"
+            android:textColor="@color/secondaryColor"
+            android:fontFamily="@font/nanum_square_regular"
+            />
+
+        <TextView
+            android:id="@+id/main_lecture_active_progress_tv"
+            android:layout_alignParentRight="true"
+            android:layout_alignBaseline="@+id/main_lecture_active_prog_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="43 %"
+            android:textSize="15sp"
+            android:textColor="@color/secondaryColor"
+            android:fontFamily="@font/nanum_square_bold"
+            />
+        
+        <ProgressBar
+            android:id="@+id/main_lecture_active_progress_bar"
+            android:layout_below="@id/main_lecture_active_progress_tv"
+            android:layout_marginTop="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:progress="43"
+            android:progressTint="@color/secondaryColor"
+            android:background="@drawable/main_active_item_progress_bar_bg"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>
