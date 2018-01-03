@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:background="@color/backgroundColor">
+
+    <TextView
+        android:id="@+id/main_lecture_wathing_tv"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="시청하던 강의"
+        android:textSize="18dp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+
+    <LinearLayout
+        android:id="@+id/main_lecture_wathing_layout"
+        android:layout_below="@id/main_lecture_wathing_tv"
+        android:layout_width="match_parent"
+        android:layout_height="191dp"
+        android:orientation="vertical"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/main_lecture_watching_bg">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="116dp"
+            android:background="@drawable/main_lecture_image_bg">
+
+            <ImageView
+                android:id="@+id/main_lecture_wathing_img"
+                android:layout_centerInParent="true"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
+                android:background="@drawable/home_quiz_icon"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="7dp"
+                android:layout_marginRight="7dp"
+                android:text="50 /100"
+                android:textColor="@color/divideLineColor"
+                android:textSize="13sp"
+                android:fontFamily="@font/nanum_square_regular"
+                />
+
+            <android.support.v4.widget.ContentLoadingProgressBar
+                android:id="@+id/main_lecture_watching_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_alignParentBottom="true"
+                android:progress="50"
+                android:progressTint="@color/primaryColor"
+                android:background="@color/progressBackgroundColor"
+                android:visibility="gone"
+                />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:id="@+id/main_lecture_wathing_chapter_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="무슨 강좌 > 01 챕터"
+            android:textSize="14sp"
+            android:textColor="@color/grayMainTextColor"
+            android:fontFamily="@font/nanum_square_regular"
+            />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:id="@+id/main_lecture_wathing_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="[Rhino] 반지 모델링하기"
+            android:textSize="18sp"
+            android:textColor="@color/mainTextColor"
+            android:fontFamily="@font/nanum_square_bold"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_below="@id/main_lecture_wathing_layout"
+        android:layout_marginTop="36dp"
+        android:layout_marginBottom="7dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="수강중인 강좌"
+        android:textSize="18dp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+
+
+</RelativeLayout>

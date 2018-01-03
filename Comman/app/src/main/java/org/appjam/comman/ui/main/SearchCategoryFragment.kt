@@ -1,4 +1,4 @@
-package org.appjam.comman.ui.search
+package org.appjam.comman.ui.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -38,6 +38,7 @@ class SearchCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.main_searchCategory_rv
         recyclerView.adapter = CategoryAdapter()
+<<<<<<< HEAD:Comman/app/src/main/java/org/appjam/comman/ui/search/SearchCategoryFragment.kt
         recyclerView.layoutManager = GridLayoutManager(context,2)
         recyclerView.addItemDecoration(SpaceItemDecoration(context, 7))
         (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -46,6 +47,13 @@ class SearchCategoryFragment : Fragment() {
                                 (recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_FOOTER)) 2 else 1
                     }
 
+=======
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int
+                    = if (recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_HEADER) 2 else 1
+        }
+>>>>>>> master:Comman/app/src/main/java/org/appjam/comman/ui/main/SearchCategoryFragment.kt
     }
 
     inner class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

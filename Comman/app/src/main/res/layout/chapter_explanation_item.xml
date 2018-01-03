@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     xmlns:app="http://schemas.android.com/apk/res-auto"
+=======
+>>>>>>> master
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,7 +25,11 @@
         android:text="개요"
         />
     <RelativeLayout
+<<<<<<< HEAD
         android:background="#ffffff"
+=======
+        android:background="@color/white"
+>>>>>>> master
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="13dp"
@@ -83,4 +90,9 @@
         android:textColor="@color/mainTextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+<<<<<<< HEAD
 </LinearLayout>
+=======
+
+</LinearLayout>
+>>>>>>> master
