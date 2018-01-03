@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="16dp"
     android:orientation="horizontal"
     android:background="@drawable/main_lecture_watching_bg">
 
@@ -17,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="13dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         >
 
         <TextView
@@ -35,7 +36,7 @@
             android:layout_below="@+id/main_lecture_active_course_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:text="총 16단원"
             android:textSize="15sp"
             android:textColor="@color/mainTextColor"
@@ -45,12 +46,13 @@
         <TextView
             android:id="@+id/main_lecture_active_prog_tv"
             android:layout_below="@id/main_lecture_active_chapters_tv"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="진도율"
             android:textSize="15sp"
-
+            android:textColor="@color/secondaryColor"
+            android:fontFamily="@font/nanum_square_regular"
             />
 
         <TextView
@@ -60,11 +62,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="43 %"
+            android:textSize="15sp"
+            android:textColor="@color/secondaryColor"
+            android:fontFamily="@font/nanum_square_bold"
             />
         
         <ProgressBar
-            android:layout_width=""
-            android:layout_height="" />
+            android:id="@+id/main_lecture_active_progress_bar"
+            android:layout_below="@id/main_lecture_active_progress_tv"
+            android:layout_marginTop="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:progress="50"
+            android:progressTint="@color/primaryColor"
+            android:background="@color/progressBackgroundColor"
+            />
+
 
 
     </RelativeLayout>

@@ -2,7 +2,7 @@ package org.appjam.comman.ui.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +34,11 @@ class SearchCategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.main_searchCategory_rv
         recyclerView.adapter = CategoryAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int
+                    = if (recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_HEADER) 2 else 1
+        }
     }
 
     inner class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
