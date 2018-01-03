@@ -1,26 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <TextView
+        android:id="@+id/course_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="강의 검색하기"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textSize="18sp"
+        android:text="강좌 검색하기"
+        />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_below="@id/course_search"
+        android:layout_width="328dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/frag_mainsearch_roundcorner"
+        android:layout_height="32dp">
         
         <EditText
+            android:hint="검색어를 입력해주세요"
             android:id="@+id/main_search_et"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
         
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

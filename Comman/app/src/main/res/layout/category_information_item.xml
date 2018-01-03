@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="150dp">
-
-    <TextView
-        android:id="@+id/main_searchCategoryItem_tv"
-        android:text="하이"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    <RelativeLayout
+        android:layout_width="156dp"
+        android:layout_height="56dp"
+        android:background="@drawable/frag_categoryheader_roundcorner_bg"
+        >
+        <TextView
+            android:id="@+id/categoryTitle_tv"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="코딩"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/frag_categorybottom_roundcorner_bg"
+        >
+        <TextView
+            android:id="@+id/categoryContent_tv"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="자바, C++..."
+            android:layout_marginHorizontal="13dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textSize="15sp"
+            android:textColor="@color/pageCountTextColor"
+            />
+    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>
