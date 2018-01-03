@@ -82,16 +82,17 @@
             >
 
             <Button
+                android:id="@+id/card_prev_btn"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="8dp"
                 android:layout_width="11dp"
                 android:layout_height="16dp"
-                android:background="@drawable/view_pager_prev_btn"
-                android:textColorHint="@color/mainTextColor"
+                android:background="@drawable/unclickable_view_pager_prev_btn"
                 />
 
             <TextView
+                android:id="@+id/card_prev_tv"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_width="wrap_content"
@@ -99,12 +100,12 @@
                 android:text="이전"
                 android:fontFamily="@font/font_nanum_square_extra_bold"
                 android:textSize="16dp"
-                android:textColor="@color/mainTextColor"
+                android:textColor="@color/grayMainTextColor"
                 />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/quiz_next_layout"
+            android:id="@+id/card_next_layout"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -112,7 +113,7 @@
             >
 
             <TextView
-                android:id="@+id/next"
+                android:id="@+id/card_next_tv"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
@@ -122,7 +123,9 @@
                 android:textSize="16dp"
                 android:textColor="@color/mainTextColor"
                 />
+
             <Button
+                android:id="@+id/card_next_btn"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="16dp"
