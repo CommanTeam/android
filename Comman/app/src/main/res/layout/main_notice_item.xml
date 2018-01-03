@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="98dp"
+    android:background="@color/dividedBackgroundColor">
+
+    <ImageView
+        android:id="@+id/main_profile_img"
+        android:layout_centerVertical="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="16dp"
+        android:background="@color/colorAccent"
+        />
+
+    <TextView
+        android:id="@+id/main_notice_tv"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_width="260dp"
+        android:layout_height="58dp"
+        android:background="@drawable/frag_notice_textview_bg"
+        android:padding="10dp"
+        android:text="[Rhino] 반지 모델링하기 강좌의 답변이 도착했어요."
+        android:textSize="15sp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+
+</RelativeLayout>
