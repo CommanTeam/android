@@ -36,7 +36,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
-        chapterList=lecture_subsection_list_view
+       chapterList=lecture_subsection_list_view
         chapterList!!.layoutManager=LinearLayoutManager(this)
 
         chapterListData?.add(ChapterListData("1장","반지 모델링 하기","총 16강"))
