@@ -32,15 +32,15 @@ class MyCourseFragment : Fragment() {
 
     init {
         // TODO: Implement network data class
-        lectureWatchingData = MyCourseFragment.LectureWatchingItem("무슨 강좌 01 챕터", "")
+        lectureWatchingData = MyCourseFragment.LectureWatchingItem("무슨 강좌 01 챕터", "[Rhino] 반지 모델링")
         lectureItemList.add(MyCourseFragment.LectureActiveItem
-        (R.drawable.quiz_icon, "[Rhino] 지우형", 15, 43))
+        (R.drawable.ic_launcher_background, "[Rhino] 지우형", 15, 43))
         lectureItemList.add(MyCourseFragment.LectureActiveItem
-        (R.drawable.home_video_icon, "[Rhino] 김준회", 17, 43))
+        (R.drawable.quiz_correct_mark, "[Rhino] 김준회", 17, 10))
         lectureItemList.add(MyCourseFragment.LectureActiveItem
-        (R.drawable.quiz_icon, "[Rhino] 서연이", 20, 43))
+        (R.drawable.quiz_icon, "[Rhino] 서연이", 20, 100))
         lectureItemList.add(MyCourseFragment.LectureActiveItem
-        (R.drawable.picture_icon, "[Rhino] 규진이형", 8, 43))
+        (R.drawable.picture_icon, "[Rhino] 규진이형", 8, 80))
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -60,12 +60,14 @@ class MyCourseFragment : Fragment() {
                 HeaderViewHolder(layoutInflater.inflate(R.layout.main_notice_item, parent, false))
             } else if (viewType == ListUtils.TYPE_SECOND_HEADER) {
                 SecondHeaderViewHolder(layoutInflater.inflate(R.layout.lecture_watching_item, parent, false))
+            } else if(viewType == ListUtils.TYPE_FOOTER) {
+                FooterViewHolder(layoutInflater.inflate(R.layout.lecture_item_footer, parent, false))
             } else {
                 ElemViewHolder(layoutInflater.inflate(R.layout.lecture_active_item, parent, false))
             }
         }
 
-        override fun getItemCount() = lectureItemList.size + 2
+        override fun getItemCount() = lectureItemList.size + 3
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
@@ -79,6 +81,7 @@ class MyCourseFragment : Fragment() {
                 = when (position) {
                     0 -> ListUtils.TYPE_HEADER
                     1 -> ListUtils.TYPE_SECOND_HEADER
+                    itemCount - 1 -> ListUtils.TYPE_FOOTER
                     else -> ListUtils.TYPE_ELEM
                 }
     }
@@ -86,7 +89,7 @@ class MyCourseFragment : Fragment() {
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
         fun bind(position: Int) {
-            itemView.main_lecture_active_img.setBackgroundResource(lectureItemList[position].lectureImg)
+            itemView.main_lecture_active_img.setImageResource(lectureItemList[position].lectureImg)
             itemView.main_lecture_active_course_tv.text = lectureItemList[position].lectureName
             val courseCount : Int = lectureItemList[position].courseCount
             itemView.main_lecture_active_chapters_tv.text = "총 $courseCount 단원"
@@ -106,5 +109,7 @@ class MyCourseFragment : Fragment() {
     }
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 }

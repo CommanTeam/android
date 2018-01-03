@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
     android:background="@color/backgroundColor">
 
     <TextView
         android:id="@+id/main_lecture_wathing_tv"
-        android:layout_marginTop="26dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="시청하던 강의"
@@ -23,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="191dp"
         android:orientation="vertical"
-        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/main_lecture_watching_bg">
 
@@ -69,7 +69,8 @@
 
         <TextView
             android:layout_marginTop="14dp"
-            android:layout_marginHorizontal="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
             android:id="@+id/main_lecture_wathing_chapter_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +82,8 @@
 
         <TextView
             android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="13dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
             android:id="@+id/main_lecture_wathing_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,7 +98,6 @@
     <TextView
         android:layout_below="@id/main_lecture_wathing_layout"
         android:layout_marginTop="36dp"
-        android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="7dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
