@@ -54,34 +54,53 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_width="281dp"
+        android:layout_height="1dp"
+        android:background="@color/divideLineColor"/>
+
     <LinearLayout
         android:layout_width="332dp"
         android:layout_height="272dp"
         android:orientation="vertical">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="16dp">
 
-                <TextView
-                    android:id="@+id/lecturePopup_lecName_tv"
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/lecture_popup_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1장. 라이노 툴 다루기"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/nanum_square_bold"
-                    android:textColor="@color/mainTextColor"/>
+                    android:layout_height="match_parent" />
+
             </LinearLayout>
-        </ScrollView>
 
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/lecture_popup_btn"
+            android:layout_width="82dp"
+            android:layout_height="31dp"
+            android:background="@color/primaryColor"
+            android:layout_marginLeft="223dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="26dp"
+            android:text="닫기"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
 
