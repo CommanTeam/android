@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp">
+        android:layout_centerHorizontal="true">
     <TextView
         android:id="@+id/lecture_subsection_video_title_tv"
         android:layout_width="wrap_content"

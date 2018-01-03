@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/lecture_subsection_course_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundColor">
+    <RelativeLayout
+        android:layout_width="328dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
     <TextView
         android:id="@+id/lecture_subsection_course_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="강좌 설명"
         android:textSize="18dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/font_nanum_square_bold"
         android:textColor="@color/mainTextColor"
@@ -18,8 +22,8 @@
     <RelativeLayout
         android:layout_width="328dp"
         android:layout_height="138dp"
-        android:layout_below="@id/lecture_subsection_course_title_tv"
         android:layout_marginTop="12dp"
+        android:layout_below="@+id/lecture_subsection_course_title_tv"
         android:layout_marginBottom="12dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/lecture_subsection_course_item_bg">
@@ -121,10 +125,12 @@
                 android:background="@drawable/additional_explanation_btn"/>
     </RelativeLayout>
     <ImageView
-        android:layout_width="match_parent"
+        android:id="@+id/lecture_subsection_bar3_iv"
+        android:layout_width="334dp"
         android:layout_height="1dp"
         android:background="@color/divideLineColor"
         android:layout_marginTop="210dp"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"/>
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
+
 </RelativeLayout>

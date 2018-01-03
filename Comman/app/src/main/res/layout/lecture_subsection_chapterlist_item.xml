@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="328dp"
-    android:layout_height="72dp"
-    android:background="@color/pageCountTextColor"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_width="match_parent"
+    android:layout_height="82dp"
+    android:layout_centerHorizontal="true">
+  <RelativeLayout
+      android:layout_width="328dp"
+      android:layout_height="72dp"
+      android:background="@color/pageCountTextColor"
+      android:layout_marginTop="5dp"
+      android:layout_marginBottom="5dp"
+      android:layout_centerHorizontal="true">
     <TextView
         android:id="@+id/lecture_subsection_chapterlist_chapnum_tv"
         android:layout_width="wrap_content"
@@ -41,4 +45,5 @@
         android:layout_marginLeft="13dp"
         android:layout_marginTop="5dp"
         />
-</RelativeLayout>
+  </RelativeLayout>
+    </RelativeLayout>
