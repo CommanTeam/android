@@ -24,7 +24,12 @@
 
         <activity android:name=".ui.lecture.LectureVideoActivity" />
 
-            <activity android:name=".ui.lecture.LectureListActivity">
+            <activity android:name="org.appjam.comman.ui.card.CardActivity">
+         </activity>
+
+
+        <activity android:name=".ui.lecture.LectureListActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
