@@ -42,7 +42,7 @@ dependencies {
     compile group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION // KaKaoSDK
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile 'de.hdodenhof:circleimageview:1.2.1' // CircleImageView
-    compile 'com.android.support:recyclerview-v7:26.+'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.googlecode.android-query:android-query:0.25.9' //AQuery
 
 
