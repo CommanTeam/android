@@ -13,10 +13,8 @@ class SpaceItemDecoration : RecyclerView.ItemDecoration {
     private val rightMargin: Int
     private val topMargin: Int
     private val bottomMargin: Int
-    private val columnSize: Int
 
     constructor(colSize: Int, space: Int){
-        columnSize = colSize
         leftMargin = space
         rightMargin = space
         topMargin = space
@@ -24,7 +22,6 @@ class SpaceItemDecoration : RecyclerView.ItemDecoration {
     }
 
     constructor(colSize: Int, left: Int, right: Int, top: Int, bottom: Int) {
-        columnSize = colSize
         leftMargin = left
         rightMargin = right
         topMargin = top
@@ -35,10 +32,6 @@ class SpaceItemDecoration : RecyclerView.ItemDecoration {
         outRect.left = leftMargin
         outRect.right = rightMargin
         outRect.bottom = bottomMargin
-        if (parent.getChildAdapterPosition(view) < columnSize) {
-            outRect.top = 0
-        } else {
-            outRect.top = topMargin
-        }
+        outRect.top = topMargin
     }
 }
