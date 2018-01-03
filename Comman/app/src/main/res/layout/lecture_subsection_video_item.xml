@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/lecture_subsection_video_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundColor">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp">
+    <TextView
+        android:id="@+id/lecture_subsection_video_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/font_nanum_square_bold"
+        android:text="시청하던 강의"
+        android:textColor="@color/mainTextColor"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/lecture_subsection_video_play_layout"
+        android:layout_width="328dp"
+        android:layout_height="154dp"
+        android:layout_below="@+id/lecture_subsection_video_title_tv"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/lecture_subsection_video_item_bg"
+        android:alpha="0.6">
+
+        <Button
+            android:id="@+id/lecture_subsection_video_play_btn"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_above="@+id/lecture_subsection_video_time_tv"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/now_playing_video_icon" />
+        <TextView
+            android:id="@+id/lecture_subsection_video_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10 : 56"
+            android:textSize="13sp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="67dp"
+            android:textColor="@color/divideLineColor" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/lecture_subsection_video_item_exp_bg"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lecture_subsection_video_chaporder_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:text="[Rhino] 반지 모델링하기 > 1장"
+                android:textColor="@color/grayMainTextColor"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/lecture_subsection_video_lecturename_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="02. 리볼브 하기"
+                android:textColor="@color/mainTextColor"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <android.support.v4.widget.ContentLoadingProgressBar
+            android:id="@+id/lecture_subsection_watching_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="93dp"
+            android:progress="50"
+            android:progressTint="@color/primaryColor"
+            android:background="@color/grayMainTextColor"/>
+        //android:visibility="" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/lecture_subsection_chapterlist_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="단원 목록"
+        android:layout_below="@+id/lecture_subsection_video_play_layout"
+        android:textSize="18sp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/font_nanum_square_bold"
+        android:textColor="@color/mainTextColor"/>
+    </RelativeLayout>
+</RelativeLayout>

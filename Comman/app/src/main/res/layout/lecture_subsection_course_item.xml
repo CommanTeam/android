@@ -2,29 +2,29 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
     android:background="@color/backgroundColor">
     <TextView
-        android:id="@+id/lecture_subsection_course_exp_tv"
+        android:id="@+id/lecture_subsection_course_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="강좌 설명"
         android:textSize="18dp"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="12dp"
         android:fontFamily="@font/font_nanum_square_bold"
         android:textColor="@color/mainTextColor"
          />
     <RelativeLayout
         android:layout_width="328dp"
         android:layout_height="138dp"
-        android:layout_below="@id/lecture_subsection_course_exp_tv"
-        android:layout_marginTop="52dp"
+        android:layout_below="@id/lecture_subsection_course_title_tv"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:layout_centerHorizontal="true"
-        android:background="@color/white">
+        android:background="@drawable/lecture_subsection_course_item_bg">
         <ImageView
+            android:id="@+id/lecture_subsection_course_profile_iv"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
         <LinearLayout
-            android:id="@+id/lecture_subsection_course_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -50,6 +49,7 @@
             android:fontFamily="@font/nanum_square_bold"
             />
             <TextView
+                android:id="@+id/lecture_subsection_course_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="[Rhino] 반지 모델링하기"
@@ -61,7 +61,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/lecture_subsection_instructor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -78,6 +77,7 @@
                 android:fontFamily="@font/nanum_square_bold"
                 />
             <TextView
+                android:id="@+id/lecture_subsection_instructor_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="박명선"
@@ -89,7 +89,7 @@
         </LinearLayout>
         </LinearLayout>
             <ImageView
-                android:id="@+id/lecture_subsection_bar"
+                android:id="@+id/lecture_subsection_bar_iv"
                 android:layout_width="302dp"
                 android:layout_height="1dp"
                 android:background="@color/divideLineColor"
@@ -97,27 +97,34 @@
                 android:layout_centerHorizontal="true"/>
 
             <TextView
+                android:id="@+id/lecture_subsection_course_exp_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="96dp"
+                android:layout_marginTop="92dp"
                 android:text="라이노 위주의 툴 수업이며..블라블라블라블블....."
+                android:fontFamily="@font/font_nanum_sqaure_regular"
+                android:textColor="@color/mainTextColor"
                 android:textSize="15dp" />
             <ImageView
-                android:id="@+id/lecture_subsection_bar2"
+                android:id="@+id/lecture_subsection_bar2_iv"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/divideLineColor"
-                />
-
+                android:layout_marginTop="119dp"
+                android:background="@color/divideLineColor"/>
             <Button
-                android:layout_width="20dp"
+                android:id="@+id/lecture_subsection_course_popup_btn"
+                android:layout_width="15dp"
                 android:layout_height="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="155dp"
+                android:layout_marginTop="124dp"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/additional_explanation_btn"/>
-        </LinearLayout>
-        </LinearLayout>
-   </RelativeLayout>
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divideLineColor"
+        android:layout_marginTop="210dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"/>
 </RelativeLayout>
