@@ -5,9 +5,9 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_searchCategory_rv"
-        android:background="#000000"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:background="@color/backgroundColor"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

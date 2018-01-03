@@ -15,4 +15,5 @@
     <color name="viewPagerColor">#D4D4D4</color>
     <color name="explanationColor">#595959</color>
     <color name="white">#ffffff</color>
+    <color name = "dividedBackgroundColor">#CCCCCC</color>
 </resources>

@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.category_information_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_search_category.view.*
 import org.appjam.comman.R
 import org.appjam.comman.util.ListUtils
+import org.appjam.comman.util.SpaceItemDecoration
 
 /**
  * Created by junhoe on 2017. 12. 31..
@@ -38,6 +39,7 @@ class SearchCategoryFragment : Fragment() {
         val recyclerView = view.main_searchCategory_rv
         recyclerView.adapter = CategoryAdapter()
         recyclerView.layoutManager = GridLayoutManager(context,2)
+        recyclerView.addItemDecoration(SpaceItemDecoration(context, 7))
         (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                         override fun getSpanSize(position: Int): Int
                                 = if ((recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_HEADER) or
