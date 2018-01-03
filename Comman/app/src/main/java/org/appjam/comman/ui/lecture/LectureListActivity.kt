@@ -76,6 +76,8 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
             itemView.chapter_content_tv.text = chapterExpData!!.chapterCont
         }
     }
+    inner class FootViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+
     inner class LectureAdapter(var datalist : ArrayList<LectureData>?, var chapterExpData : ChapterExpData?) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
         private var onItemClick : View.OnClickListener? = null
@@ -88,20 +90,31 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
                 val mainView : View = layoutInflater.inflate(R.layout.chapter_explanation_item, parent, false)
                 mainView.setOnClickListener(onItemClick)
                 ChapterExpViewHolder(mainView)
-            } else {
+            }
+            else if (viewType == ListUtils.TYPE_FOOTER){
+                val footView : View = layoutInflater.inflate(R.layout.lecture_item_footer, parent, false)
+                footView.setOnClickListener(onItemClick)
+                FootViewHolder(footView)
+            }
+
+            else {
                 val elemView : View = layoutInflater.inflate(R.layout.lecture_list_item, parent, false)
                 elemView.setOnClickListener(onItemClick)
                 LectureViewHolder(elemView)
             }
         }
 
-        override fun getItemCount()= lectureData.size + 1
+
+        override fun getItemCount()= lectureData.size + 2
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
                 (holder as LectureViewHolder).bind(position - 1)
             } else if(holder?.itemViewType == ListUtils.TYPE_HEADER) {
                 (holder as ChapterExpViewHolder).bind()
+            }
+            else if(holder?.itemViewType == ListUtils.TYPE_FOOTER){
+                holder as FootViewHolder
             }
 
 //            holder!!.lectureimage.setImageResource(datalist!!.get(position).lectureimage)
@@ -110,7 +123,9 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
         }
 
         override fun getItemViewType(position: Int): Int {
-            return if (position == 0) ListUtils.TYPE_HEADER else ListUtils.TYPE_ELEM
+            return if (position == 0) ListUtils.TYPE_HEADER
+            else if (position == itemCount - 1) ListUtils.TYPE_FOOTER
+            else ListUtils.TYPE_ELEM
         }
 
     }
