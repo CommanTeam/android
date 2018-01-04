@@ -16,8 +16,9 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-   <activity android:name=".ui.lecture.LectureListActivity"></activity>
+        <activity android:name=".ui.lecture.LectureListActivity"></activity>
         <activity android:name="org.appjam.comman.ui.quiz.QuizActivity"/>
+
 
 
             <activity android:name="org.appjam.comman.ui.card.CardActivity">
@@ -29,7 +30,9 @@
             android:theme="@style/AppBar"/>
 
 
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity"/>
+
+        <activity android:name=".ui.lecture.LectureVideoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
