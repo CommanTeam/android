@@ -7,11 +7,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.androidquery.AQuery
 import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
 import kotlinx.android.synthetic.main.lecture_active_item.view.*
 import kotlinx.android.synthetic.main.lecture_watching_item.view.*
+import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.util.ListUtils
+import org.appjam.comman.util.PrefUtils
 
 /**
  * Created by RyuDongIl on 2018-01-02.
@@ -19,6 +22,7 @@ import org.appjam.comman.util.ListUtils
 class MyCourseFragment : Fragment() {
     private val lectureItemList = arrayListOf<LectureActiveItem>()
     private var lectureWatchingData : LectureWatchingItem? = null
+
     data class LectureWatchingItem (
             val chapterName: String,
             val lectureTitle: String
@@ -74,6 +78,8 @@ class MyCourseFragment : Fragment() {
                 (holder as MyCourseFragment.ElemViewHolder).bind(position - 2)
             } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
                 (holder as MyCourseFragment.SecondHeaderViewHolder).bind()
+            } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
+                (holder as MyCourseFragment.HeaderViewHolder).bind()
             }
         }
 
@@ -108,7 +114,13 @@ class MyCourseFragment : Fragment() {
         }
     }
 
-    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            var aQuery = AQuery(context)
+            val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_THUMBNAIL)
+            aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+        }
+    }
 
     inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
