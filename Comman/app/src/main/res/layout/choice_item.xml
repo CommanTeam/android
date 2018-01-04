@@ -9,7 +9,6 @@
     android:background="#ffffff"
     android:elevation="2dp"
     >
-    <!-- border는 xml로 나중에-->
 
     <TextView
         android:id="@+id/quiz_choice_number_tv"
