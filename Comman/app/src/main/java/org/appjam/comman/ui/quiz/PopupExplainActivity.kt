@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.popup_quiz_explain.*
 import org.appjam.comman.R
 
+
+
 class PopupExplainActivity : AppCompatActivity(){
 
     var quiz_num : String? = null
@@ -30,6 +32,7 @@ class PopupExplainActivity : AppCompatActivity(){
         popup_quiz_tv.text = quiz_text
         popup_answerNum_tv.text = quiz_answer_num
         popup_answer_tv.text =  quiz_answer_text
+
         //닫기 버튼 클릭시 팝업 종료
         popup_close_btn.setOnClickListener{
             finish()

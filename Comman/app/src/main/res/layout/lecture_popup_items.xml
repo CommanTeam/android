@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/lecturePopup_lecName_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="단원"
+        android:textSize="16sp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textColor="@color/mainTextColor"/>
+
+    <TextView
+        android:id="@+id/lecturePopup_lecContent_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/nanum_square_regular"
+        android:textColor="@color/pageCountTextColor"
+        android:textSize="15sp"
+        android:text="내용" />
+
+</LinearLayout>
