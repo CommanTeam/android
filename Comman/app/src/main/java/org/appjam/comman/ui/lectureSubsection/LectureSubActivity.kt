@@ -56,8 +56,8 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
         // TODO: Implement more detail view binding
         fun bind(position: Int) {
             itemView.lecture_subsection_chapterlist_chapnum_tv.text = chapterListData!![position].number
-            itemView.lecture_subsection_chapterlist_totalnum_tv.text = chapterListData!![position].content
-            itemView.lecture_subsection_chapterlist_chapname_tv.text = chapterListData!![position].totalNumber
+            itemView.lecture_subsection_chapterlist_totalnum_tv.text = chapterListData!![position].totalNumber
+            itemView.lecture_subsection_chapterlist_chapname_tv.text = chapterListData!![position].content
 
         }
     }
@@ -85,7 +85,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
-                (holder as ElemViewHolder).bind(position - 1)
+                (holder as ElemViewHolder).bind(position - 2)
             }else if(holder?.itemViewType == ListUtils.TYPE_HEADER) {
                 (holder as HeaderViewHolder)
             }
