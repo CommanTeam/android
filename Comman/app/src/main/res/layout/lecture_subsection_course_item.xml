@@ -111,11 +111,14 @@
                 android:id="@+id/lecture_subsection_course_exp_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
                 android:layout_marginHorizontal="13dp"
                 android:layout_marginTop="12dp"
-                android:text="라이노 위주의 툴 수업이며..블라블라블라블블....."
+                android:text="라이노 위주의 툴 수업이며블라블sfdfdfaslklluluㅁㄴㅇㄻㄴㅇㄻㄴㅇㄹfd"
                 android:fontFamily="@font/nanum_square_regular"
-                android:gravity="center"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/mainTextColor"
                 android:textSize="15dp" />
             <ImageView
