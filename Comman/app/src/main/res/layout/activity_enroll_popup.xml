@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="org.appjam.comman.EnrollPopupActivity">
+
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="54dp"
+        android:layout_marginRight="140dp"
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/enrollment_charge_check_icon"/>
+
+    <TextView
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="등록 하시겠습니까?"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textSize="18sp"
+        android:textColor="@color/mainTextColor"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="27dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/enroll_ok_btn"
+            android:layout_width="99dp"
+            android:layout_height="31dp"
+            android:text="등록하기"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@color/primaryColor"
+            android:layout_marginLeft="61dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="28dp"/>
+
+        <Button
+            android:id="@+id/enroll_close_btn"
+            android:layout_width="99dp"
+            android:layout_height="31dp"
+            android:text="닫기"
+            android:layout_marginRight="61dp"
+            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@color/primaryColor"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
