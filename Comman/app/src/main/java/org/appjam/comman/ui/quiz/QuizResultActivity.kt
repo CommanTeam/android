@@ -31,7 +31,7 @@ class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
         quizResultList = findViewById<View>(R.id.quizResult_result_list) as RecyclerView
         quizResultList!!.layoutManager = LinearLayoutManager(this)
 
-        quizResultDatas = ArrayList<QuizResultData>()
+        quizResultDatas = ArrayList()
         quizResultDatas!!.add(QuizResultData(R.drawable.quiz_correct_mark, "Q.Q1"))
         quizResultDatas!!.add(QuizResultData(R.drawable.quiz_correct_mark, "Q.Q2"))
         quizResultDatas!!.add(QuizResultData(R.drawable.quiz_wrong_mark, "Q.Q3"))
@@ -51,9 +51,6 @@ class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
         }
         return true
     }
-
-
-
 
     //팝업 띄우기
     override fun onClick(v: View?) {

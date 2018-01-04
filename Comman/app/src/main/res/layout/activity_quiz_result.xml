@@ -11,8 +11,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,17 +22,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="29dp"
+                android:layout_marginTop="28dp"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="14dp"
                     android:fontFamily="@font/nanum_square_extra_bold"
                     android:text="채점 결과"
-                    android:textSize="20sp"
+                    android:textSize="23sp"
                     android:textColor="@color/mainTextColor"/>
 
                 <TextView
@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:text="축하합니다. 통과하셨습니다~!"
                     android:fontFamily="@font/nanum_square_bold"
-                    android:textSize="18sp"
+                    android:textSize="21sp"
                     android:textColor="@color/mainTextColor"/>
 
             </LinearLayout>
