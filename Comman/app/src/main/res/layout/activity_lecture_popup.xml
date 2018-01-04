@@ -79,7 +79,9 @@
                     android:id="@+id/lecture_popup_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbarSize="5dp"/>
             </LinearLayout>
 
     </LinearLayout>
