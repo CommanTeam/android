@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.lectureSubsection
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.activity_lecture_subsection.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
+import kotlinx.android.synthetic.main.lecture_subsection_course_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.util.ListUtils
 
@@ -22,7 +24,6 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
     private var chapterList : RecyclerView?=null
     private var chapterListData : ArrayList<ChapterListData>?=arrayListOf()
     private var lectureSubAdapter : LectureSubAdapter? = null
-
 
     data class ChapterListData(
             val number: String,
@@ -46,11 +47,22 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
         lectureSubAdapter=LectureSubAdapter(chapterListData)
 
         chapterList!!.adapter=lectureSubAdapter
+
+
     }
-    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            itemView.lecture_subsection_course_popup_layout.setOnClickListener {
+                val intent = Intent(applicationContext, LectureSubPopupActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
 
 
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
 
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
@@ -61,6 +73,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
 
         }
     }
+
     inner class LectureSubAdapter(var datalist: ArrayList<ChapterListData>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private var onItemClick : View.OnClickListener? = null
@@ -87,7 +100,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
                 (holder as ElemViewHolder).bind(position - 2)
             }else if(holder?.itemViewType == ListUtils.TYPE_HEADER) {
-                (holder as HeaderViewHolder)
+                (holder as HeaderViewHolder).bind()
             }
             else if(holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER){
                 holder as SecondHeaderViewHolder

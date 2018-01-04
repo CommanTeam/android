@@ -22,7 +22,7 @@
          />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="138dp"
+        android:layout_height="152dp"
         android:layout_marginTop="12dp"
         android:layout_below="@+id/lecture_subsection_course_title_tv"
         android:layout_marginBottom="12dp"
@@ -94,7 +94,12 @@
                 />
         </LinearLayout>
         </LinearLayout>
-            <ImageView
+        <LinearLayout
+            android:id="@+id/lecture_subsection_course_popup_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <ImageView
                 android:id="@+id/lecture_subsection_bar_iv"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -102,38 +107,39 @@
                 android:background="@color/divideLineColor"
                 android:layout_marginTop="84dp"
                 android:layout_centerHorizontal="true" />
-
             <TextView
                 android:id="@+id/lecture_subsection_course_exp_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="13dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="92dp"
+                android:layout_marginTop="12dp"
                 android:text="라이노 위주의 툴 수업이며..블라블라블라블블....."
                 android:fontFamily="@font/nanum_square_regular"
+                android:gravity="center"
                 android:textColor="@color/mainTextColor"
                 android:textSize="15dp" />
             <ImageView
                 android:id="@+id/lecture_subsection_bar2_iv"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="119dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/divideLineColor"/>
-            <Button
-                android:id="@+id/lecture_subsection_course_popup_btn"
-                android:layout_width="15dp"
-                android:layout_height="10dp"
-                android:layout_marginTop="124dp"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/additional_explanation_btn"/>
+            <TextView
+                android:id="@+id/lecture_subsection_course_popup_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:text="더 보기"
+                android:fontFamily="@font/nanum_square_bold"
+                android:layout_gravity="center" />
+        </LinearLayout>
     </RelativeLayout>
     <ImageView
         android:id="@+id/lecture_subsection_bar3_iv"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/divideLineColor"
-        android:layout_marginTop="210dp"
+        android:layout_marginTop="218dp"
         android:layout_centerHorizontal="true"/>
 </RelativeLayout>
 </RelativeLayout>

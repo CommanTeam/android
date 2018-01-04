@@ -4,7 +4,7 @@
     android:layout_width="332dp"
     android:layout_height="480dp"
     android:orientation="vertical"
-    tools:context="org.appjam.comman.ui.lecture.LecturePopupActivity">
+    tools:context="org.appjam.comman.ui.lectureSubsection.LectureSubPopupActivity">
     
 
     <LinearLayout

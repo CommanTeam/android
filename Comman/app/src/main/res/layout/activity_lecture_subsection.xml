@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Rhino] 반지 모델링 하기"
-            android:fontFamily="@font/font_nanum_square_bold"
+            android:fontFamily="@font/nanum_square_bold"
             android:textSize="18sp"
             android:textColor="#ffffff"
             />
