@@ -25,6 +25,7 @@
         android:layout_height="191dp"
         android:orientation="vertical"
         android:layout_marginTop="14dp"
+        android:elevation="2dp"
         android:background="@drawable/main_lecture_watching_bg">
 
         <RelativeLayout

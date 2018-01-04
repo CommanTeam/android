@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import com.androidquery.AQuery
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
-import kotlinx.android.synthetic.main.lecture_active_item.view.*
+import kotlinx.android.synthetic.main.course_active_item.view.*
 import kotlinx.android.synthetic.main.course_watching_item.view.*
 import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
@@ -68,7 +68,7 @@ class MyCourseFragment : Fragment() {
                 ListUtils.TYPE_HEADER -> HeaderViewHolder(layoutInflater.inflate(R.layout.main_notice_item, parent, false))
                 ListUtils.TYPE_SECOND_HEADER -> SecondHeaderViewHolder(layoutInflater.inflate(R.layout.course_watching_item, parent, false))
                 ListUtils.TYPE_FOOTER -> FooterViewHolder(layoutInflater.inflate(R.layout.course_item_footer, parent, false))
-                else -> ElemViewHolder(layoutInflater.inflate(R.layout.lecture_active_item, parent, false))
+                else -> ElemViewHolder(layoutInflater.inflate(R.layout.course_active_item, parent, false))
             }
         }
 
@@ -98,13 +98,11 @@ class MyCourseFragment : Fragment() {
             itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
             itemView.main_course_active_course_tv.text = courseInfo.courseTitle
 
-            itemView.main_course_active_chapters_tv.text =
-                    String.format(resources.getString(R.string.msg_format_chapter_count), courseInfo.chapterCnt)
+            itemView.main_course_active_chapters_tv.text = resources.getString(R.string.msg_format_chapter_count, courseInfo.chapterCnt)
 
             val progressPercentage = courseInfo.progressPercentage
             itemView.main_course_active_progress_bar.progress = progressPercentage
-            itemView.main_course_active_progress_tv.text =
-                    String.format(resources.getString(R.string.msg_format_progress_percentage), progressPercentage)
+            itemView.main_course_active_progress_tv.text = resources.getString(R.string.msg_format_progress_percentage, progressPercentage)
         }
     }
 
