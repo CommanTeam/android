@@ -57,7 +57,7 @@ class SearchCategoryFragment : Fragment() {
                 HeaderViewHolder(layoutInflater.inflate(R.layout.category_header_item, parent, false))
             }
             else if (viewType == ListUtils.TYPE_FOOTER){
-                FootViewHolder((layoutInflater.inflate(R.layout.lecture_item_footer,parent,false)))
+                FootViewHolder((layoutInflater.inflate(R.layout.course_item_footer,parent,false)))
             }
             else {
                 ElemViewHolder(layoutInflater.inflate(R.layout.category_information_item, parent, false))
