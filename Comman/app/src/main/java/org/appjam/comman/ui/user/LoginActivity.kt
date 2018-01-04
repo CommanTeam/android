@@ -51,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
         aQuery = AQuery(this)
 
         login_kakaoLogin_btn.visibility = View.GONE
-        login_splashTitle_layout.visibility = View.GONE
 
         val handler = Handler()
         handler.postDelayed({
@@ -80,10 +79,7 @@ class LoginActivity : AppCompatActivity() {
         if(Session.getCurrentSession().isOpened){
             requestMe()
         }
-        else {
-            login_splashTitle_layout.visibility = View.GONE
-            login_kakaoLogin_btn.visibility = View.VISIBLE
-        }
+
     }
 
     //간편 로그인시 호출되는 부분
@@ -112,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun requestMe() {
         login_splashTitle_layout.visibility = View.VISIBLE
-        login_kakaoLogin_btn.visibility = View.GONE
+
 
         UserManagement.requestMe(object : MeResponseCallback() {
             override fun onFailure(errorResult: ErrorResult?) {
