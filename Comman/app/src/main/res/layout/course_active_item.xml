@@ -8,6 +8,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:orientation="horizontal"
+    android:elevation="2dp"
     android:background="@drawable/frag_notice_textview_bg">
 
     <ImageView

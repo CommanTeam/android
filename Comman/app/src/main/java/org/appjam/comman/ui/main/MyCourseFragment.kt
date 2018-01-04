@@ -8,14 +8,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.androidquery.AQuery
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
 import kotlinx.android.synthetic.main.course_active_item.view.*
 import kotlinx.android.synthetic.main.course_watching_item.view.*
+import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.util.ListUtils
+import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 
 /**
@@ -27,6 +30,7 @@ class MyCourseFragment : Fragment() {
         const val TAG = "MyCourseFragment"
     }
     private var lectureWatchingData : LectureWatchingItem? = null
+
     data class LectureWatchingItem (
             val chapterName: String,
             val lectureTitle: String
@@ -75,6 +79,8 @@ class MyCourseFragment : Fragment() {
                 (holder as MyCourseFragment.ElemViewHolder).bind(courseInfoList[position - 2])
             } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
                 (holder as MyCourseFragment.SecondHeaderViewHolder).bind()
+            } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
+                (holder as MyCourseFragment.HeaderViewHolder).bind()
             }
         }
 
@@ -109,7 +115,13 @@ class MyCourseFragment : Fragment() {
         }
     }
 
-    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            var aQuery = AQuery(context)
+            val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_THUMBNAIL)
+            aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+        }
+    }
 
     inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
