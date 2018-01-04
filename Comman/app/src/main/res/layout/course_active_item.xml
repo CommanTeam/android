@@ -82,10 +82,6 @@
             android:background="@drawable/main_active_item_progress_bar_bg"
             />
 
-
-
     </RelativeLayout>
-
-
 
 </LinearLayout>
