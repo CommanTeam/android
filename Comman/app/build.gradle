@@ -29,23 +29,20 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
     //Fragment사용에 필요
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:support-v4:26.1.0'
-
     //RecyclerView 사용
     compile 'com.android.support:recyclerview-v7:26.1.0'
-
     //카카오 로그인 sdk를 사용하기 위해 필요
-
-    compile group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION // KaKaoSDK
+    compile group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+    // KaKaoSDK
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    compile 'de.hdodenhof:circleimageview:1.2.1' // CircleImageView
+    compile 'de.hdodenhof:circleimageview:1.2.1'
+    // CircleImageView
     compile 'com.android.support:recyclerview-v7:26.+'
-    compile 'com.googlecode.android-query:android-query:0.25.9' //AQuery
-
-
+    compile 'com.googlecode.android-query:android-query:0.25.9'
+    //AQuery
     compile group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION
     // KaKaoSDK
     compile 'com.googlecode.android-query:android-query:0.25.9'
@@ -54,9 +51,12 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     compile 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
     compile 'com.facebook.network.connectionclass:connectionclass:1.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     // CircleImageView
-    implementation project(':YouTubeAndroidPlayerApi')
-
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
 }
 repositories {
     mavenCentral()

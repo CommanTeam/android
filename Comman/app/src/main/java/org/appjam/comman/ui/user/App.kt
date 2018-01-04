@@ -58,7 +58,7 @@ class App : Application() {
         val packageInfo = getPackageInfo(context, PackageManager.GET_SIGNATURES) ?: return null
 
         for (signature in packageInfo.signatures) {
-            try {
+            val i: Int = try {
                 val md = MessageDigest.getInstance("SHA")
                 md.update(signature.toByteArray())
                 return Base64.encodeToString(md.digest(), Base64.NO_WRAP)

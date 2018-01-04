@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.appjam.comman.LastLectureVideoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/lastLec_title_tv"
+            android:layout_width="242dp"
+            android:layout_height="19dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="01. 필렛 넣기"
+            android:textColor="@color/mainTextColor"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right">
+        <Button
+            android:id="@+id/lastLec_big_btn"
+            android:layout_width="68dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="14dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/primaryColor"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="크게보기"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:background="@color/primaryColor"/>
+
+    <TextView
+        android:id="@+id/lastLec_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="라이노 위주의 툴 수업이며..블라블라블라블라블라블라블.."
+        android:textSize="16sp"
+        android:fontFamily="@font/nanum_square_regular"
+        android:textColor="@color/pageCountTextColor"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="26dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:background="@color/divideLineColor" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginLeft="16dp"
+        android:layout_width="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="강의 목록"
+        android:textSize="16sp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textColor="@color/mainTextColor"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="자동 재생"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:textColor="@color/mainTextColor"
+            android:textSize="16sp"
+            android:layout_marginLeft="169dp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <android.support.v7.app.AlertController.RecycleListView
+        android:id="@+id/lastLec_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+    </android.support.v7.app.AlertController.RecycleListView>
+
+</LinearLayout>

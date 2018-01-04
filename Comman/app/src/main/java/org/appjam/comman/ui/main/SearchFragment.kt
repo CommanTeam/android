@@ -1,4 +1,4 @@
-package org.appjam.comman.ui.search
+package org.appjam.comman.ui.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

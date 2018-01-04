@@ -25,6 +25,7 @@ import com.kakao.util.exception.KakaoException
 import com.kakao.util.helper.log.Logger
 import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
+import org.appjam.comman.ui.main.MainActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -124,10 +125,10 @@ class LoginActivity : AppCompatActivity() {
                 var prifile_img_url = userProfile.thumbnailImagePath
                 //성공하면 MainActivity로 이동
                 //프로필 이미지 url과 이메일 값 디비에 삽입하기
-//                val intent = Intent(baseContext, MainActivity::class.java)
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-//                intent.putExtra("profile_img_url", prifile_img_url)
-//                startActivity(intent)
+                val intent = Intent(baseContext, MainActivity::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.putExtra("profile_img_url", prifile_img_url)
+                startActivity(intent)
 
             }
 
