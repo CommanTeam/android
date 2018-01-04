@@ -2,6 +2,6 @@
     <string name="app_name">Comman</string>
     <string name="kakao_app_key">887b586501394caa60fa4e4b308cde36</string>
 
-    <string name="msg_format_chapter_count">총 %d 단원</string>
-    <string name="msg_format_progress_percentage">%d \%</string>
+    <string name="msg_format_chapter_count">총 %1$d 단원</string>
+    <string name="msg_format_progress_percentage">%1$d %%</string>
 </resources>

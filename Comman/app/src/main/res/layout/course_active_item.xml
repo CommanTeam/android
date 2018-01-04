@@ -47,7 +47,7 @@
             />
 
         <TextView
-            android:id="@+id/main_lecture_active_prog_tv"
+            android:id="@+id/main_course_active_prog_tv"
             android:layout_below="@id/main_course_active_chapters_tv"
             android:layout_marginTop="9dp"
             android:layout_width="wrap_content"
@@ -60,16 +60,16 @@
 
         <TextView
             android:id="@+id/main_course_active_progress_tv"
-            android:layout_alignParentRight="true"
-            android:layout_alignBaseline="@+id/main_lecture_active_prog_tv"
+            android:layout_alignBaseline="@+id/main_course_active_prog_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="43 %"
+            android:text="0 %"
+            android:layout_alignParentRight="true"
             android:textSize="15sp"
             android:textColor="@color/secondaryColor"
             android:fontFamily="@font/nanum_square_bold"
             />
-        
+
         <ProgressBar
             android:id="@+id/main_course_active_progress_bar"
             android:layout_below="@id/main_course_active_progress_tv"
@@ -82,10 +82,6 @@
             android:background="@drawable/main_active_item_progress_bar_bg"
             />
 
-
-
     </RelativeLayout>
-
-
 
 </LinearLayout>
