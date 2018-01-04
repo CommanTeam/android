@@ -4,47 +4,43 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.androidquery.AQuery
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
 import kotlinx.android.synthetic.main.lecture_active_item.view.*
-import kotlinx.android.synthetic.main.lecture_watching_item.view.*
+import kotlinx.android.synthetic.main.course_watching_item.view.*
 import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
+import org.appjam.comman.network.APIClient
+import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.setDefaultThreads
 
 /**
  * Created by RyuDongIl on 2018-01-02.
  */
 class MyCourseFragment : Fragment() {
-    private val lectureItemList = arrayListOf<LectureActiveItem>()
+
+    companion object {
+        const val TAG = "MyCourseFragment"
+    }
     private var lectureWatchingData : LectureWatchingItem? = null
 
     data class LectureWatchingItem (
             val chapterName: String,
             val lectureTitle: String
     )
-    data class LectureActiveItem(
-            val lectureImg: Int,
-            val lectureName: String,
-            val courseCount: Int,
-            val lectureProgress: Int
-    )
+
+    private val disposables = CompositeDisposable()
 
     init {
         // TODO: Implement network data class
         lectureWatchingData = MyCourseFragment.LectureWatchingItem("무슨 강좌 01 챕터", "[Rhino] 반지 모델링")
-        lectureItemList.add(MyCourseFragment.LectureActiveItem
-        (R.drawable.ic_launcher_background, "[Rhino] 지우형", 15, 43))
-        lectureItemList.add(MyCourseFragment.LectureActiveItem
-        (R.drawable.quiz_correct_mark, "[Rhino] 김준회", 17, 10))
-        lectureItemList.add(MyCourseFragment.LectureActiveItem
-        (R.drawable.quiz_icon, "[Rhino] 서연이", 20, 100))
-        lectureItemList.add(MyCourseFragment.LectureActiveItem
-        (R.drawable.picture_icon, "[Rhino] 규진이형", 8, 80))
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -53,29 +49,34 @@ class MyCourseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.main_my_lecture_rv
-        recyclerView.adapter = MyLectureAdapter()
         recyclerView.layoutManager = LinearLayoutManager(context)
+        disposables.add(APIClient.apiService.getRegisteredCourses(1)
+                .setDefaultThreads()
+                .subscribe ({
+                    response ->
+                        recyclerView.adapter = MyLectureAdapter(response.result)
+                }, {
+                    failure -> Log.i(TAG, "on Failure ${failure.message}")
+                })
+        )
     }
 
-    inner class MyLectureAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    inner class MyLectureAdapter(private val courseInfoList: List<CoursesData.CourseInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-            return if (viewType == ListUtils.TYPE_HEADER) {
-                HeaderViewHolder(layoutInflater.inflate(R.layout.main_notice_item, parent, false))
-            } else if (viewType == ListUtils.TYPE_SECOND_HEADER) {
-                SecondHeaderViewHolder(layoutInflater.inflate(R.layout.lecture_watching_item, parent, false))
-            } else if(viewType == ListUtils.TYPE_FOOTER) {
-                FooterViewHolder(layoutInflater.inflate(R.layout.lecture_item_footer, parent, false))
-            } else {
-                ElemViewHolder(layoutInflater.inflate(R.layout.lecture_active_item, parent, false))
+            return when (viewType) {
+                ListUtils.TYPE_HEADER -> HeaderViewHolder(layoutInflater.inflate(R.layout.main_notice_item, parent, false))
+                ListUtils.TYPE_SECOND_HEADER -> SecondHeaderViewHolder(layoutInflater.inflate(R.layout.course_watching_item, parent, false))
+                ListUtils.TYPE_FOOTER -> FooterViewHolder(layoutInflater.inflate(R.layout.course_item_footer, parent, false))
+                else -> ElemViewHolder(layoutInflater.inflate(R.layout.lecture_active_item, parent, false))
             }
         }
 
-        override fun getItemCount() = lectureItemList.size + 3
+        override fun getItemCount() = courseInfoList.size + 3
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
-                (holder as MyCourseFragment.ElemViewHolder).bind(position - 2)
+                (holder as MyCourseFragment.ElemViewHolder).bind(courseInfoList[position - 2])
             } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
                 (holder as MyCourseFragment.SecondHeaderViewHolder).bind()
             } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
@@ -93,23 +94,25 @@ class MyCourseFragment : Fragment() {
     }
 
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // TODO: Implement more detail view binding
-        fun bind(position: Int) {
-            itemView.main_lecture_active_img.setImageResource(lectureItemList[position].lectureImg)
-            itemView.main_lecture_active_course_tv.text = lectureItemList[position].lectureName
-            val courseCount : Int = lectureItemList[position].courseCount
-            itemView.main_lecture_active_chapters_tv.text = "총 $courseCount 단원"
-            val lectureProgress : Int = lectureItemList[position].lectureProgress
-            itemView.main_lecture_active_progress_bar.progress = lectureProgress
-            itemView.main_lecture_active_progress_tv.text = "$lectureProgress %"
+        fun bind(courseInfo: CoursesData.CourseInfo) {
+            itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
+            itemView.main_course_active_course_tv.text = courseInfo.courseTitle
+
+            itemView.main_course_active_chapters_tv.text =
+                    String.format(resources.getString(R.string.msg_format_chapter_count), courseInfo.chapterCnt)
+
+            val progressPercentage = courseInfo.progressPercentage
+            itemView.main_course_active_progress_bar.progress = progressPercentage
+            itemView.main_course_active_progress_tv.text =
+                    String.format(resources.getString(R.string.msg_format_progress_percentage), progressPercentage)
         }
     }
 
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
         fun bind() {
-            itemView.main_lecture_wathing_chapter_tv.text = lectureWatchingData!!.chapterName
-            itemView.main_lecture_wathing_title_tv.text = lectureWatchingData!!.lectureTitle
+            itemView.main_course_wathing_chapter_tv.text = lectureWatchingData!!.chapterName
+            itemView.main_course_wathing_title_tv.text = lectureWatchingData!!.lectureTitle
 
         }
     }
@@ -123,5 +126,10 @@ class MyCourseFragment : Fragment() {
     }
 
     inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    override fun onDestroyView() {
+        disposables.clear()
+        super.onDestroyView()
+    }
 
 }
