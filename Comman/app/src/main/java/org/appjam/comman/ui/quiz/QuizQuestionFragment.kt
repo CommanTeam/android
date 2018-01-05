@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_quiz_choice.view.*
 import org.appjam.comman.R
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.SetColorUtils
+import org.appjam.comman.util.SpaceItemDecoration
 
 /**
  * Created by RyuDongIl on 2018-01-01.
@@ -38,6 +39,7 @@ class QuizQuestionFragment : Fragment() {
         val recyclerView = view.quiz_quizChoice_rv
         adapter = QuizAdapter()
         recyclerView.adapter = adapter
+        recyclerView.addItemDecoration(SpaceItemDecoration(context, 0, 0, 6, 6))
         recyclerView.layoutManager = LinearLayoutManager(context)
 
     }

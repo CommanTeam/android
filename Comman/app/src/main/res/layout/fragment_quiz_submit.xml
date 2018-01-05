@@ -8,17 +8,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="16dp">
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp">
 
-        <Button
+        <TextView
             android:id="@+id/quiz_count_btn"
-            android:layout_width="70dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="18dp"
-            android:text="26 /26"
-            android:textSize="18sp"
-            android:textColor="@color/pageCountTextColor"
+            android:layout_width="81dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="21dp"
             android:layout_alignParentRight="true"
+            android:text="26 /26"
+            android:textSize="21sp"
+            android:textAlignment="center"
+            android:textColor="@color/pageCountTextColor"
             android:background="@drawable/frag_card_quiz_countbtn_bg"
             android:fontFamily="@font/nanum_square_bold"
             />
@@ -35,20 +37,20 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="1장. 라이노 툴 다루기"
-                android:textSize="18sp"
+                android:textSize="21sp"
                 android:textColor="@color/mainTextColor"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 />
 
             <TextView
                 android:id="@+id/quiz_submit_limit_tv"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="35dp"
                 android:layout_below="@id/quiz_submit_lecture_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="통과하려면 20문제 이상 맞추셔야 합니다."
-                android:textSize="16dp"
+                android:textSize="19dp"
                 android:textColor="@color/mainTextColor"
                 android:fontFamily="@font/nanum_square_bold"
                 />
@@ -57,23 +59,19 @@
                 android:id="@+id/quiz_submit_btn"
                 android:layout_below="@+id/quiz_submit_limit_tv"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="31dp"
-                android:layout_marginBottom="30dp"
-                android:layout_width="170dp"
-                android:layout_height="50dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginBottom="35dp"
+                android:layout_width="200dp"
+                android:layout_height="58dp"
                 android:background="@drawable/frag_quiz_submitbtn_bg"
                 android:text="제출하기"
-                android:textSize="20sp"
+                android:textSize="23sp"
                 android:textColor="#ffffff"
                 android:fontFamily="@font/nanum_square_bold"
                 />
 
-
         </RelativeLayout>
 
     </RelativeLayout>
-
-
-
 
 </RelativeLayout>

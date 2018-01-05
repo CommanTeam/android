@@ -10,10 +10,11 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/quiz_quizChoice_rv"
         android:layout_below="@+id/quiz_question_tv"
-        android:layout_marginHorizontal="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/backgroundColor"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
         >
 
     </android.support.v7.widget.RecyclerView>
