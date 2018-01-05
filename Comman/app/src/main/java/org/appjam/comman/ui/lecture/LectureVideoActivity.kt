@@ -16,12 +16,14 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_video)
-        lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this)
+        lectureVideo_youtube_playerView.
+                initialize(YouTubeConfigs.API_KEY, this)
     }
 
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider, player: YouTubePlayer, wasRestored: Boolean) {
         if (!wasRestored) {
             this.player = player
+            player.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS)
             player.cueVideo(videoId)
         }
     }
@@ -38,3 +40,5 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
         startService(intent)
     }
 }
+
+
