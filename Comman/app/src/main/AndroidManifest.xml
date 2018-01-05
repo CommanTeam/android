@@ -16,10 +16,14 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-        <activity android:name=".ui.lecture.LectureListActivity"></activity>
-        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity"/>
 
+        <activity android:name=".ui.lecture.LectureVideoActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
             <activity android:name="org.appjam.comman.ui.card.CardActivity">
          </activity>
@@ -44,18 +48,16 @@
             android:name=".EnrollPopupActivity"
             android:theme="@style/Theme.PopUp"/>
 
-        <activity android:name=".ui.lecture.LectureVideoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
 
+        <activity android:name=".ui.lecture.LectureListActivity"></activity>
+
+        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
 
         <!-- 퀴즈 채점 결과 Activity -->
-        <activity android:name=".ui.quiz.QuizResultActivity" />
+        <activity android:name=".ui.quiz.QuizResultActivity">
+
+        </activity>
 
         <!-- 퀴즈 해설 팝업 Activity -->
         <activity
