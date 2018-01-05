@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/course_name_list_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="[한글] 한글 입문"
+        android:fontFamily="@font/nanum_square_regular"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:textSize="@dimen/sp_change18_21"
+        android:textColor="@color/mainTextColor"
+        />
+    <Button
+        android:layout_width="@dimen/dp_change16_19"
+        android:layout_height="@dimen/dp_change16_19"
+        android:background="@drawable/search_result_arrow"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        />
+    </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divideLineColor"
+        />
+
+</LinearLayout>
