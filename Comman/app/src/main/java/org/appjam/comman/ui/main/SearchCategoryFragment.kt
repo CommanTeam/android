@@ -46,8 +46,6 @@ class SearchCategoryFragment : Fragment() {
                                 = if ((recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_HEADER) or
                                 (recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_FOOTER)) 2 else 1
                     }
-
-
     }
 
     inner class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
