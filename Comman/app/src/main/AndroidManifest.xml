@@ -18,19 +18,18 @@
             android:value="@string/kakao_app_key" />
 
         <activity android:name=".ui.lecture.LectureListActivity"/>
-
-
-        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
-
-        <activity android:name=".ui.main.MainActivity"
-                android:theme="@style/NoActionBar"
-                >
-        <intent-filter>
+        <activity android:name=".ui.lectureSubsection.LectureSubActivity">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
 
+        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
+
+        <activity android:name=".ui.main.MainActivity"
+                android:theme="@style/NoActionBar">
         </activity>
 
         <activity android:name="org.appjam.comman.ui.card.CardActivity">
@@ -45,10 +44,6 @@
 
 
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
-
-        <activity android:name=".ui.lectureSubsection.LectureSubActivity" >
-
-        </activity>
 
         <activity
             android:name=".EnrollPopupActivity"

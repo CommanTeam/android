@@ -72,6 +72,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
 
         }
     }
+    inner class FooterViewHolder(itemView:View):RecyclerView.ViewHolder(itemView)
 
     inner class LectureSubAdapter(var datalist: ArrayList<ChapterListData>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -86,31 +87,40 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
                 val view : View = layoutInflater.inflate(R.layout.lecture_subsection_video_item, parent, false)
                 view.setOnClickListener(onItemClick)
                 SecondHeaderViewHolder(view)
-            } else {
+            } else if  (viewType == ListUtils.TYPE_ELEM)  {
                 val view : View = layoutInflater.inflate(R.layout.lecture_subsection_chapterlist_item, parent, false)
                 view.setOnClickListener(onItemClick)
                 ElemViewHolder(view)
             }
+            else {
+                val view : View = layoutInflater.inflate(R.layout.lecture_list_footer, parent, false)
+                view.setOnClickListener(onItemClick)
+                FooterViewHolder(view)
+            }
         }
 
-        override fun getItemCount() = chapterListData!!.size + 2
+        override fun getItemCount() = chapterListData!!.size + 3
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
-                (holder as ElemViewHolder).bind(position - 2)
+                (holder as ElemViewHolder).bind(position - 2 )
             }else if(holder?.itemViewType == ListUtils.TYPE_HEADER) {
                 (holder as HeaderViewHolder).bind()
             }
             else if(holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER){
                 holder as SecondHeaderViewHolder
             }
+            else
+                holder as FooterViewHolder
         }
 
         override fun getItemViewType(position: Int): Int
                 = when (position) {
             0 -> ListUtils.TYPE_HEADER
             1 -> ListUtils.TYPE_SECOND_HEADER
+            (itemCount - 1)->ListUtils.TYPE_FOOTER
             else -> ListUtils.TYPE_ELEM
+
         }
 
 
