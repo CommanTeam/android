@@ -19,7 +19,8 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         val fragmentTransaction = childFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.main_searchHeader_layout, SearchHeaderFragment())
-        fragmentTransaction.add(R.id.main_searchCategory_layout, SearchCategoryFragment())
+        fragmentTransaction.add(R.id.main_searchCategory_layout, SearchCourseListFragment())
         fragmentTransaction.commit()
     }
 }
+
