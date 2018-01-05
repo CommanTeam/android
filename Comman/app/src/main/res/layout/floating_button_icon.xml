@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="44dp"
+        android:layout_marginRight="40dp"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/floating_back_btn"
+            android:layout_width="86dp"
+            android:layout_height="68dp"
+            android:background="@drawable/floating_back_btn"
+            />
+        <Button
+            android:id="@+id/floating_pause_btn"
+            android:layout_width="56dp"
+            android:layout_height="68dp"
+            android:background="@drawable/floating_pause__btn"
+            />
+        <Button
+            android:id="@+id/floating_next_btn"
+            android:layout_width="56dp"
+            android:layout_height="68dp"
+            android:background="@drawable/floating_next_btn"
+            />
+        <Button
+            android:id="@+id/floating_wide_screnn_btn"
+            android:layout_width="88dp"
+            android:layout_height="68dp"
+            android:background="@drawable/floating_wide_screen_btn"
+            />
+
+    </LinearLayout>
+</RelativeLayout>

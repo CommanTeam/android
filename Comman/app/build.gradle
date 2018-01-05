@@ -34,16 +34,22 @@ dependencies {
     compile 'com.android.support:support-v4:26.1.0'
     //RecyclerView 사용
     compile 'com.android.support:recyclerview-v7:26.1.0'
+
     //카카오 로그인 sdk를 사용하기 위해 필요
     compile group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION
     // KaKaoSDK
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // CircleImageView
     compile 'com.googlecode.android-query:android-query:0.25.9'
+
     //AQuery
     compile 'de.hdodenhof:circleimageview:1.2.1'
     compile 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
     compile 'com.facebook.network.connectionclass:connectionclass:1.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     // CircleImageView
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
 }

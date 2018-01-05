@@ -92,7 +92,7 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
                 ChapterExpViewHolder(mainView)
             }
             else if (viewType == ListUtils.TYPE_FOOTER){
-                val footView : View = layoutInflater.inflate(R.layout.lecture_item_footer, parent, false)
+                val footView : View = layoutInflater.inflate(R.layout.course_item_footer, parent, false)
                 footView.setOnClickListener(onItemClick)
                 FootViewHolder(footView)
             }

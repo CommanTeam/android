@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    
+    <dimen name="dp_change16_19">19dp</dimen>
+    <dimen name="dp_change21_24">24dp</dimen>
+
+    <dimen name="sp_change16_19">19sp</dimen>
+    <dimen name="sp_change18_21">21sp</dimen>
+
+
+
+</resources>

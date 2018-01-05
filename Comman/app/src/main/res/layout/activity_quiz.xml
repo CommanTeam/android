@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".ui.quiz.QuizActivity">
 
     <LinearLayout
         android:id="@+id/quiz_title_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_height="55dp"
         android:orientation="horizontal"
         android:background="@color/primaryColor"
         >
@@ -17,21 +18,21 @@
         <Button
             android:id="@+id/quiz_back_btn"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="18dp"
             android:background="@drawable/title_back_btn"
-            android:layout_width="11dp"
-            android:layout_height="16dp"
+            android:layout_width="13dp"
+            android:layout_height="19dp"
             />
 
         <TextView
             android:id="@+id/quiz_lecture_name_tv"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="19dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="01. 라이노 툴 다루기"
-            android:textSize="18sp"
+            android:textSize="21sp"
             android:textColor="#ffffff"
             android:fontFamily="@font/nanum_square_bold"
             />
@@ -52,7 +53,7 @@
         android:id="@+id/quiz_prev_next_layout"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="54dp"
         android:orientation="horizontal"
         android:background="@color/lineColor"
         >
@@ -69,19 +70,19 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="8dp"
-                android:layout_width="11dp"
-                android:layout_height="16dp"
+                android:layout_width="13dp"
+                android:layout_height="19dp"
                 android:background="@drawable/unclickable_view_pager_prev_btn"
                 />
 
             <TextView
                 android:id="@+id/quiz_prev_tv"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="이전"
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:textColor="@color/grayMainTextColor"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 />
@@ -100,11 +101,11 @@
             <TextView
                 android:id="@+id/quiz_next_tv"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="다음"
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:textColor="@color/mainTextColor"
                 android:fontFamily="@font/nanum_square_extra_bold"
                 />
@@ -112,14 +113,12 @@
             <Button
                 android:id="@+id/quiz_next_btn"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="11dp"
-                android:layout_height="16dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="19dp"
+                android:layout_width="13dp"
+                android:layout_height="19dp"
                 android:background="@drawable/view_pager_next_btn"
                 />
-
-
 
 
         </LinearLayout>
