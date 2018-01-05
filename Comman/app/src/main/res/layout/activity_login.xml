@@ -25,6 +25,10 @@
             android:textColor="@android:color/background_light"
             android:textSize="20sp" />
 
+
+
+
+
     </LinearLayout>
 
     <com.kakao.usermgmt.LoginButton

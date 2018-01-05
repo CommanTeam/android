@@ -31,7 +31,7 @@ class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
         quizResultList = findViewById<View>(R.id.quizResult_result_list) as RecyclerView
         quizResultList!!.layoutManager = LinearLayoutManager(this)
 
-        quizResultDatas = ArrayList<QuizResultData>()
+        quizResultDatas = ArrayList()
         quizResultDatas!!.add(QuizResultData(R.drawable.quiz_correct_mark, "Q.Q1"))
         quizResultDatas!!.add(QuizResultData(R.drawable.quiz_correct_mark, "Q.Q2"))
         quizResultDatas!!.add(QuizResultData(R.drawable.quiz_wrong_mark, "Q.Q3"))
@@ -52,9 +52,6 @@ class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
 
-
-
-
     //팝업 띄우기
     override fun onClick(v: View?) {
         val idx : Int = quizResultList!!.getChildAdapterPosition(v)
@@ -67,7 +64,9 @@ class QuizResultActivity : AppCompatActivity(), View.OnClickListener {
         intent.putExtra("quiz_num", "Q.13")
         intent.putExtra("quiz_text", "다음 중, 문서의 여백을 설정할 수 있는 방법으로 옳은 것을 고르시오.")
         intent.putExtra("quiz_answer_num", "정답: 3번")
-        intent.putExtra("quiz_answer_text", "문서의 디자인 편집을 클릭하여 레이아웃 편집을 누른다. 양 옆의 여백의 사이즈를 입력하여 문서의 여백을 설정해야하므로 정답은................")
+        intent.putExtra("quiz_answer_text", "문서의 디자인 편집을 클릭하여 레이아웃 편집을 누른다. 양 옆의 여백의 사이즈를 입력하여 문서의 여백을 설정해야하므로 정답은..........." +
+                "......................................................................................................................................................" +
+                "....................................................................................................................")
         startActivity(intent)
     }
 

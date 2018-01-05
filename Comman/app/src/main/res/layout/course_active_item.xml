@@ -8,10 +8,11 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:orientation="horizontal"
+    android:elevation="2dp"
     android:background="@drawable/frag_notice_textview_bg">
 
     <ImageView
-        android:id="@+id/main_lecture_active_img"
+        android:id="@+id/main_course_active_img"
         android:layout_width="114dp"
         android:layout_height="match_parent"
         android:background="@drawable/frag_quiz_submitbtn_bg"/>
@@ -25,7 +26,7 @@
         >
 
         <TextView
-            android:id="@+id/main_lecture_active_course_tv"
+            android:id="@+id/main_course_active_course_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Rhino] 반지 모델링하기"
@@ -35,8 +36,8 @@
             />
 
         <TextView
-            android:id="@+id/main_lecture_active_chapters_tv"
-            android:layout_below="@+id/main_lecture_active_course_tv"
+            android:id="@+id/main_course_active_chapters_tv"
+            android:layout_below="@+id/main_course_active_course_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -47,8 +48,8 @@
             />
 
         <TextView
-            android:id="@+id/main_lecture_active_prog_tv"
-            android:layout_below="@id/main_lecture_active_chapters_tv"
+            android:id="@+id/main_course_active_prog_tv"
+            android:layout_below="@id/main_course_active_chapters_tv"
             android:layout_marginTop="9dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,20 +60,20 @@
             />
 
         <TextView
-            android:id="@+id/main_lecture_active_progress_tv"
-            android:layout_alignParentRight="true"
-            android:layout_alignBaseline="@+id/main_lecture_active_prog_tv"
+            android:id="@+id/main_course_active_progress_tv"
+            android:layout_alignBaseline="@+id/main_course_active_prog_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="43 %"
+            android:text="0 %"
+            android:layout_alignParentRight="true"
             android:textSize="15sp"
             android:textColor="@color/secondaryColor"
             android:fontFamily="@font/nanum_square_bold"
             />
-        
+
         <ProgressBar
-            android:id="@+id/main_lecture_active_progress_bar"
-            android:layout_below="@id/main_lecture_active_progress_tv"
+            android:id="@+id/main_course_active_progress_bar"
+            android:layout_below="@id/main_course_active_progress_tv"
             android:layout_marginTop="3dp"
             android:layout_width="match_parent"
             android:layout_height="5dp"
@@ -82,10 +83,6 @@
             android:background="@drawable/main_active_item_progress_bar_bg"
             />
 
-
-
     </RelativeLayout>
-
-
 
 </LinearLayout>

@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
         val view2 = layoutInflater.inflate(R.layout.custom_search_text_view, null)
         main_tab_layout.addTab(main_tab_layout.newTab().setCustomView((view2)))
 
+        val profile_img_url = intent.getStringExtra("profile_img_url")
+
         var mainTabAdapter = MainTabAdapter(supportFragmentManager, main_tab_layout.tabCount)
 
         main_content_view_pager.adapter = mainTabAdapter
