@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="151dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:background="@drawable/frag_course_roundcorner_bg"
+    >
+
+     <ImageView
+         android:id="@+id/course_result_img"
+         android:layout_width="129dp"
+         android:layout_height="match_parent"
+         android:background="@drawable/course_search_result_bg"
+         />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="13dp"
+        android:layout_toRightOf="@+id/course_result_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="16dp"
+        >
+        <TextView
+            android:id="@+id/course_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="모바일 결제 기초"
+            android:layout_marginBottom="8dp"
+            android:textSize="@dimen/sp_change16_19"
+            />
+        <TextView
+            android:id="@+id/course_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="69dp"
+            android:text="오십자제한오십자제한오십자제한오십자제한오십자제한"
+            android:fontFamily="@font/nanum_square_regular"
+            android:lineSpacingMultiplier="1.2"
+            android:textColor="@color/mainTextColor"
+            android:layout_marginBottom="8dp"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/course_peaple_tv"
+            android:textColor="@color/pageCountTextColor"
+            android:text="13.2 천 명이 수강 중입니다."
+            android:textSize="14sp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>

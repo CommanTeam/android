@@ -3,31 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_centerHorizontal="true"
     android:layout_gravity="center_horizontal"
-    android:layout_marginHorizontal="13dp"
+    android:layout_marginHorizontal="15dp"
     android:layout_width="match_parent"
-    android:layout_height="74dp"
+    android:layout_height="86dp"
     android:orientation="horizontal"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
     android:background="#ffffff"
     >
 
     <ImageView
         android:id="@+id/lecture_list_img"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="16dp"
-        android:layout_width="40dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="@dimen/dp_change16_19"
+        android:layout_width="47dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="@dimen/dp_change16_19"
         />
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginRight="13dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="17dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginRight="15dp"
         android:layout_alignParentRight="true"
         >
         <TextView
@@ -37,7 +36,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:text="123"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:fontFamily="@font/nanum_square_regular"
             android:textColor="@color/pageCountTextColor"
             />
@@ -45,13 +44,13 @@
             android:id="@+id/lecture_list_name_tv"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/lecture_list_num_tv"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="7dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="dfasdfasdf"
             android:textColor="@color/mainTextColor"
             android:fontFamily="@font/font_nanum_square_bold"
-            android:textSize="18sp"
+            android:textSize="@dimen/sp_change18_21"
             />
     </RelativeLayout>
 </RelativeLayout>
