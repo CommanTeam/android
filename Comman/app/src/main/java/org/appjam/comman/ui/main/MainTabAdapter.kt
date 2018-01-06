@@ -10,17 +10,18 @@ import android.support.v4.app.FragmentStatePagerAdapter
 class MainTabAdapter(fm : FragmentManager?) : FragmentStatePagerAdapter(fm) {
     var tabCount : Int = 0
     var firstTab : MyCourseFragment? = null
+    var firstTab2 : SearchNewCourseFragment? = null
     var secondTab : SearchFragment? = null
 
     constructor(fm : FragmentManager?, tabCount : Int) : this(fm) {
         this.tabCount = tabCount
-        this.firstTab = MyCourseFragment()
+        this.firstTab2 = SearchNewCourseFragment()
         this.secondTab = SearchFragment()
     }
 
     override fun getItem(position: Int): Fragment? {
         when(position) {
-            0 -> return firstTab
+            0 -> return firstTab2
             1 -> return secondTab
         }
         return null
