@@ -11,30 +11,28 @@
     <LinearLayout
         android:id="@+id/lecture_subsection_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_height="55dp"
         android:orientation="horizontal"
         android:background="@color/primaryColor">
         <Button
             android:id="@+id/card_back_btn"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="19dp"
             android:background="@drawable/title_back_btn"
-            android:layout_width="11dp"
-            android:layout_height="16dp"
-            android:backgroundTint="#ffffff"
-            />
+            android:layout_width="13dp"
+            android:layout_height="19dp"
+            android:backgroundTint="#ffffff"/>
         <TextView
             android:id="@+id/card_lecture_name_tv"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="19dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Rhino] 반지 모델링 하기"
             android:fontFamily="@font/nanum_square_bold"
-            android:textSize="18sp"
-            android:textColor="#ffffff"
-            />
+            android:textSize="21sp"
+            android:textColor="#ffffff"/>
     </LinearLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lecture_subsection_list_view"

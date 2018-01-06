@@ -19,12 +19,6 @@
 
         <activity android:name=".ui.lecture.LectureListActivity"/>
         <activity android:name=".ui.lectureSubsection.LectureSubActivity">
-        </activity>
-
-        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
-
-        <activity android:name=".ui.lectureRegist.LectureRegistActivity"
-            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,11 +26,19 @@
             </intent-filter>
         </activity>
 
+        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
+
+        <activity android:name=".ui.lectureRegist.LectureRegistActivity"
+            android:theme="@style/NoActionBar">
+
+        </activity>
+
         <activity android:name=".ui.main.MainActivity"
                 android:theme="@style/NoActionBar">
         </activity>
 
         <activity android:name="org.appjam.comman.ui.card.CardActivity">
+
          </activity>
 
         <!-- <activity -->
@@ -49,9 +51,7 @@
 
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
 
-        <activity
-            android:name=".ui.lectureRegist.EnrollPopupActivity"
-            android:theme="@style/Theme.PopUp"/>
+
 
         <activity
             android:name=".ui.user.LoginActivity"
@@ -80,8 +80,8 @@
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
-        <!--&lt;!&ndash; 등록 팝업 Activity &ndash;&gt;-->
-        <!--<activity android:name=".EnrollPopupActivity"-->
-                   <!--android:theme="@style/Theme.PopUp"></activity>-->
+        <!-- 등록 팝업 Activity -->
+        <activity android:name=".ui.lectureRegist.EnrollPopupActivity"
+                   android:theme="@style/Theme.PopUp"></activity>
     </application>
 </manifest>
