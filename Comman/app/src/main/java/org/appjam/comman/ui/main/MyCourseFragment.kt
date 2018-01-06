@@ -10,11 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.androidquery.AQuery
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.course_watching_item.view.*
-import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
-
 import kotlinx.android.synthetic.main.course_active_item.view.*
 import kotlinx.android.synthetic.main.course_watching_item.view.*
+import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
 import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
