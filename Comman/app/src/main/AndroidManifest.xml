@@ -16,21 +16,23 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"></activity>
+
         <activity android:name=".ui.lecture.LectureListActivity"/>
-
-
-        <activity android:name=".ui.main.MainActivity"
-                android:theme="@style/NoActionBar"
-                >
-        <intent-filter>
+        <activity android:name=".ui.lectureSubsection.LectureSubActivity">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-            <activity android:name="org.appjam.comman.ui.card.CardActivity">
+        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
+
+        <activity android:name=".ui.main.MainActivity"
+                android:theme="@style/NoActionBar">
+        </activity>
+
+        <activity android:name="org.appjam.comman.ui.card.CardActivity">
          </activity>
 
         <!-- <activity -->
@@ -65,11 +67,12 @@
             android:theme="@style/Theme.PopUp" />
         <!-- 강의 설명 팝업 Activity -->
         <activity
-            android:name=".ui.lecture.LecturePopupActivity"
-            android:theme="@style/Theme.PopUp" />
+            android:name=".ui.lectureSubsection.LectureSubPopupActivity"
+            android:theme="@style/Theme.PopUp" >
+             </activity>
 
          <!-- 강의 결제 팝업 Activity -->
-         <activity android:name="org.appjam.comman.ChargePopupActivity"></activity>
+         <activity android:name="org.appjam.comman.ChargePopupActivity"/>
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
@@ -77,5 +80,4 @@
         <!--<activity android:name=".EnrollPopupActivity"-->
                    <!--android:theme="@style/Theme.PopUp"></activity>-->
     </application>
-
 </manifest>
