@@ -27,19 +27,22 @@
                 android:theme="@style/NoActionBar">
         </activity>
 
-        <activity android:name="org.appjam.comman.ui.card.CardActivity">
-         </activity>
-
-        <!-- <activity -->
-        <!-- android:name=".ui.user.LoginActivity" -->
-        <!-- android:label="@string/app_name" -->
-        <!-- android:theme="@style/AppBar"> -->
-
-
-
-
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
-        
+
+             <actvity
+             android:name=".ui.user.LoginActivity"
+             android:label="@string/app_name"
+             android:theme="@style/AppBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+             </actvity>
+
+        <activity
+            android:name="LectureVideo1Activity"/>
+
         <activity
             android:name=".ui.user.LoginActivity"
             android:label="@string/app_name"
@@ -51,10 +54,6 @@
         <!-- 퀴즈 채점 결과 Activity -->
         <activity android:name=".ui.quiz.QuizResultActivity"></activity>
 
-        <!-- 퀴즈 해설 팝업 Activity -->
-        <activity
-            android:name=".ui.quiz.PopupExplainActivity"
-            android:theme="@style/Theme.PopUp" />
         <!-- 강의 설명 팝업 Activity -->
         <activity
             android:name=".ui.lectureSubsection.LectureSubPopupActivity"
