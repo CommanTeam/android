@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_lecture_popup.*
 import org.appjam.comman.R
@@ -26,9 +27,9 @@ class LectureSubPopupActivity : AppCompatActivity() {
         lecturePopupList!!.layoutManager = LinearLayoutManager(this)
 
         lecturePopupDatas = ArrayList<LecturePopupData>()
-        lecturePopupDatas!!.add(LecturePopupData("1장. 라이노 툴 다루기", "가장 기본적인 라이노의 기능과 활용방법을 배워볼 수 있다. 점 선, 면, 덩어리의 개념을 이해하면서 기초적인 모델링을 해볼 수 있다."))
-        lecturePopupDatas!!.add(LecturePopupData("2장. 필렛 넣기", "가장 기본적인 라이노의 기능과 활용방법을 배워볼 수 있다. 점 선, 면, 덩어리의 개념을 이해하면서 기초적인 모델링을 해볼 수 있다."))
-        lecturePopupDatas!!.add(LecturePopupData("2장. 필렛 넣기", "가장 기본적인 라이노의 기능과 활용방법을 배워볼 수 있다. 점 선, 면, 덩어리의 개념을 이해하면서 기초적인 모델링을 해볼 수 있다."))
+        lecturePopupDatas!!.add(LecturePopupData(R.drawable.kakao_default_profile_image,"1장. 라이노 툴 다루기", "가장 기본적인 라이노의 기능과 활용방법을 배워볼 수 있다. 점 선, 면, 덩어리의 개념을 이해하면서 기초적인 모델링을 해볼 수 있다."))
+        lecturePopupDatas!!.add(LecturePopupData(R.drawable.kakao_default_profile_image,"2장. 필렛 넣기", "가장 기본적인 라이노의 기능과 활용방법을 배워볼 수 있다. 점 선, 면, 덩어리의 개념을 이해하면서 기초적인 모델링을 해볼 수 있다."))
+        lecturePopupDatas!!.add(LecturePopupData(R.drawable.kakao_default_profile_image,"2장. 필렛 넣기", "가장 기본적인 라이노의 기능과 활용방법을 배워볼 수 있다. 점 선, 면, 덩어리의 개념을 이해하면서 기초적인 모델링을 해볼 수 있다."))
         lecturePopupAdapter = LecturePopupAdapter(lecturePopupDatas)
 
 
@@ -54,11 +55,13 @@ class LectureSubPopupActivity : AppCompatActivity() {
     /**ViewHolder는 각 리스트에 어떤 뷰가 들어가는지 설정해주는 부분입니다. 한 번 설정해주면 몇번이고 재사용이 가능합니다
      * */
     private inner class LecturePopupViewHolder(itemView : View?) : RecyclerView.ViewHolder(itemView) {
+        var img : ImageView = itemView!!.findViewById(R.id.lecturePopup_img)
         var title : TextView = itemView!!.findViewById(R.id.lecturePopup_lecName_tv)
         var content : TextView = itemView!!.findViewById(R.id.lecturePopup_lecContent_tv)
     }
 
     data class LecturePopupData (
+            var img : Int,
             var title : String,
             var content : String
     )
@@ -68,6 +71,7 @@ class LectureSubPopupActivity : AppCompatActivity() {
     private inner class LecturePopupAdapter(var dataList : ArrayList<LecturePopupData>?) : RecyclerView.Adapter<LecturePopupViewHolder>() {
 
         override fun onBindViewHolder(holder: LecturePopupViewHolder?, position: Int) {
+            holder!!.img.setImageResource(dataList!!.get(position).img)
             holder!!.title.text = dataList!!.get(position).title
             holder!!.content.text = dataList!!.get(position).content
         }
