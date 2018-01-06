@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 class MainTabAdapter(fm : FragmentManager?) : FragmentStatePagerAdapter(fm) {
     var tabCount : Int = 0
     var firstTab : MyCourseFragment? = null
+    var firstTab2 : SearchNewCourseFragment? = null
     var secondTab : SearchFragment? = null
 
     constructor(fm : FragmentManager?, tabCount : Int) : this(fm) {

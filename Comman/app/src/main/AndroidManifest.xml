@@ -16,15 +16,13 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
-        
+
         <activity android:name=".ui.lecture.LectureListActivity" />
         <activity android:name=".ui.card.CardActivity" />
 
-        <activity android:name=".ui.lectureSubsection.LectureSubActivity">
+        <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
 
-        </activity>
-
-        <activity android:name=".ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
+        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
 
         <activity android:name=".ui.main.MainActivity"
                 android:theme="@style/NoActionBar">
@@ -32,19 +30,22 @@
 
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
 
-
-            <!-- <activity -->
-            <!-- android:name=".ui.user.LoginActivity" -->
-            <!-- android:label="@string/app_name" -->
-            <!-- android:theme="@style/AppBar"> -->
+             <actvity
+             android:name=".ui.user.LoginActivity"
+             android:label="@string/app_name"
+             android:theme="@style/AppBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+             </actvity>
+
+        <activity
+            android:name="LectureVideo1Activity"/>
 
 
-             <activity
+        <activity
              android:name=".ui.user.LoginActivity"
              android:label="@string/app_name"
              android:theme="@style/AppBar">

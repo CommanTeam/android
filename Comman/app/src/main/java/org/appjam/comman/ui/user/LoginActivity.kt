@@ -42,14 +42,12 @@ class LoginActivity : AppCompatActivity() {
     //카카오톡 프로필 사진은 이미지 url 형태로 제공하는데 해당 라이브러리를 사용하면 url 을 ImageView id만 매핑시켜 주면 한줄의 코드로 매우 편리하게 적용가능합니다.
     var aQuery : AQuery? = null
 
-
     //인터넷 연결상태 확인
     val isConnected: Boolean
         get() {
             val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val netInfo = cm.activeNetworkInfo
             return netInfo != null && netInfo.isConnectedOrConnecting
-
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
