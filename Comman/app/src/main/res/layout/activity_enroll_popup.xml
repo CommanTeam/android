@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="org.appjam.comman.ui.lectureRegist.EnrollPopupActivity">
 
     <ImageView
-        android:layout_width="54dp"
-        android:layout_height="54dp"
-        android:layout_marginRight="140dp"
-        android:layout_marginLeft="140dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_marginRight="163dp"
+        android:layout_marginLeft="163dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginBottom="23dp"
         android:src="@drawable/enrollment_charge_check_icon"/>
 
     <TextView
@@ -22,11 +22,11 @@
         android:layout_height="wrap_content"
         android:text="등록 하시겠습니까?"
         android:fontFamily="@font/nanum_square_bold"
-        android:textSize="18sp"
+        android:textSize="21sp"
         android:textColor="@color/mainTextColor"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="27dp"/>
+        android:layout_marginLeft="29dp"
+        android:layout_marginRight="29dp"
+        android:layout_marginBottom="32dp"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -34,25 +34,29 @@
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/enroll_ok_btn"
-            android:layout_width="99dp"
-            android:layout_height="31dp"
+            android:layout_width="116dp"
+            android:layout_height="36dp"
             android:text="등록하기"
             android:fontFamily="@font/nanum_square_bold"
-            android:textSize="16sp"
+            android:textSize="19sp"
             android:textColor="@color/white"
             android:background="@color/primaryColor"
-            android:layout_marginLeft="61dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="28dp"/>
+
+            android:layout_marginTop="26dp"
+            android:layout_marginLeft="71dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="33dp"/>
+
         <Button
             android:id="@+id/enroll_close_btn"
-            android:layout_width="99dp"
-            android:layout_height="31dp"
+            android:layout_width="116dp"
+            android:layout_height="36dp"
             android:text="닫기"
-            android:layout_marginRight="61dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="71dp"
+            android:layout_marginBottom="33dp"
             android:fontFamily="@font/nanum_square_bold"
-            android:textSize="16sp"
+            android:textSize="19sp"
             android:textColor="@color/white"
             android:background="@color/primaryColor"/>
     </LinearLayout>

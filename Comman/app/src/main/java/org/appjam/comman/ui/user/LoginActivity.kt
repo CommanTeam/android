@@ -34,6 +34,7 @@ import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 
+
 class LoginActivity : AppCompatActivity() {
     private var callback: SessionCallback? = null
     private var shared : SharedPreferences? = null
@@ -41,14 +42,12 @@ class LoginActivity : AppCompatActivity() {
     //카카오톡 프로필 사진은 이미지 url 형태로 제공하는데 해당 라이브러리를 사용하면 url 을 ImageView id만 매핑시켜 주면 한줄의 코드로 매우 편리하게 적용가능합니다.
     var aQuery : AQuery? = null
 
-
     //인터넷 연결상태 확인
     val isConnected: Boolean
         get() {
             val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val netInfo = cm.activeNetworkInfo
             return netInfo != null && netInfo.isConnectedOrConnecting
-
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
         aQuery = AQuery(this)
 
         login_kakaoLogin_btn.visibility = View.GONE
-        login_splashTitle_layout.visibility = View.GONE
 
         val handler = Handler()
         handler.postDelayed({
@@ -97,10 +95,7 @@ class LoginActivity : AppCompatActivity() {
         if(Session.getCurrentSession().isOpened){
             requestMe()
         }
-        else {
-            login_splashTitle_layout.visibility = View.GONE
-            login_kakaoLogin_btn.visibility = View.VISIBLE
-        }
+
     }
 
     //간편 로그인시 호출되는 부분
@@ -129,7 +124,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun requestMe() {
         login_splashTitle_layout.visibility = View.VISIBLE
-        login_kakaoLogin_btn.visibility = View.GONE
+
 
         UserManagement.requestMe(object : MeResponseCallback() {
             override fun onFailure(errorResult: ErrorResult?) {
@@ -152,6 +147,7 @@ class LoginActivity : AppCompatActivity() {
                 //성공하면 MainActivity로 이동
                 //프로필 이미지 url과 이메일 값 디비에 삽입하기
                 val intent = Intent(baseContext, MainActivity::class.java)
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
                 intent.putExtra("user_profile_img", user_profile_img)
                 intent.putExtra("user_email", user_email)

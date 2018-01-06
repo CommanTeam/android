@@ -2,18 +2,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_height="117dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:layout_marginLeft="19dp"
+    android:layout_marginRight="19dp"
     android:orientation="horizontal"
     android:elevation="2dp"
     android:background="@drawable/frag_notice_textview_bg">
 
     <ImageView
         android:id="@+id/main_course_active_img"
-        android:layout_width="114dp"
+        android:layout_width="133dp"
         android:layout_height="match_parent"
         android:background="@drawable/frag_quiz_submitbtn_bg"/>
 
@@ -22,7 +22,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="13dp"
         android:layout_marginRight="13dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         >
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="[Rhino] 반지 모델링하기"
-            android:textSize="16sp"
+            android:textSize="19sp"
             android:textColor="@color/mainTextColor"
             android:fontFamily="@font/nanum_square_bold"
             />
@@ -40,9 +40,9 @@
             android:layout_below="@+id/main_course_active_course_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="5dp"
             android:text="총 16단원"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textColor="@color/mainTextColor"
             android:fontFamily="@font/nanum_square_regular"
             />
@@ -50,11 +50,11 @@
         <TextView
             android:id="@+id/main_course_active_prog_tv"
             android:layout_below="@id/main_course_active_chapters_tv"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="11dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="진도율"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textColor="@color/secondaryColor"
             android:fontFamily="@font/nanum_square_regular"
             />
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:text="0 %"
             android:layout_alignParentRight="true"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textColor="@color/secondaryColor"
             android:fontFamily="@font/nanum_square_bold"
             />
@@ -74,9 +74,9 @@
         <ProgressBar
             android:id="@+id/main_course_active_progress_bar"
             android:layout_below="@id/main_course_active_progress_tv"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="4dp"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="6dp"
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:progress="43"
             android:progressTint="@color/secondaryColor"
