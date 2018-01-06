@@ -17,6 +17,8 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_video)
         lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this)
+
+
     }
 
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider, player: YouTubePlayer, wasRestored: Boolean) {
