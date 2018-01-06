@@ -1,4 +1,4 @@
-package org.appjam.comman.ui.lecture
+package org.appjam.comman.ui.lectureSubsection
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -12,7 +12,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_lecture_popup.*
 import org.appjam.comman.R
 
-class LecturePopupActivity : AppCompatActivity() {
+class LectureSubPopupActivity : AppCompatActivity() {
 
     private var lecturePopupList : RecyclerView? = null
     private var lecturePopupDatas: ArrayList<LecturePopupData>? = null
