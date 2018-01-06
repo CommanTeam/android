@@ -1,60 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="322dp"
-    android:layout_height="320dp"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:layout_height="373dp"
     android:background="@color/white"
     android:orientation="vertical"
     tools:context="org.appjam.comman.ChargePopupActivity">
 
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginRight="140dp"
-            android:layout_marginTop="32dp"
-            android:src="@drawable/enrollment_charge_check_icon" />
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center"
-            android:fontFamily="@font/nanum_square_bold"
-            android:textColor="@color/mainTextColor"
-            android:text="결제 하시겠습니까?"
-            android:textSize="18sp" />
-    </LinearLayout>
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_gravity="center_horizontal"
+                android:layout_width="63dp"
+                android:layout_height="63dp"
+                android:layout_marginBottom="23dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/enrollment_charge_check_icon" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="14dp"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="결제 하시겠습니까?"
+                android:textColor="@color/mainTextColor"
+                android:textSize="21sp" />
+        </LinearLayout>
 
     <View
-        android:layout_width="281dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginRight="29dp"
         android:background="@color/divideLineColor"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"/>
+        android:layout_gravity="center_horizontal"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:layout_marginBottom="31dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="23dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:layout_marginRight="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="27dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -68,34 +62,33 @@
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="강좌명"
                 android:textColor="@color/mainTextColor"
-                android:textSize="16sp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/charge_title_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="56dp"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="[Rhino] 반지 모델링하기"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/mainTextColor"
-                android:textSize="16sp" />
+                android:textSize="19sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="56dp"
+                android:layout_marginRight="65dp"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="결제금액"
                 android:textColor="@color/mainTextColor"
-                android:textSize="16sp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:id="@+id/charge_price_tv"
@@ -104,45 +97,44 @@
                 android:text="8,8000원"
                 android:textAlignment="viewEnd"
                 android:textColor="@color/mainTextColor"
-                android:textSize="16sp" />
+                android:textSize="19sp" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    </LinearLayout>
-    </ScrollView>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="84dp"
+        android:layout_height="98dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
-    <Button
-        android:id="@+id/charge_ok_btn"
-        android:layout_width="95dp"
-        android:layout_height="31dp"
-        android:background="@color/primaryColor"
-        android:textColor="@color/white"
-        android:fontFamily="@font/nanum_square_bold"
-        android:textSize="16sp"
-        android:text="결제하기"
-        android:layout_marginLeft="116dp"
-        android:layout_marginRight="10dp"
-        />
+        <Button
+            android:id="@+id/charge_ok_btn"
+            android:layout_width="111dp"
+            android:layout_height="37dp"
+            android:layout_toLeftOf="@+id/charge_close_btn"
+            android:layout_marginRight="12dp"
+            android:background="@color/primaryColor"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textSize="19sp"
+            android:text="결제하기"
+            />
 
-    <Button
-        android:id="@+id/charge_close_btn"
-        android:layout_width="82dp"
-        android:layout_height="31dp"
-        android:textColor="@color/white"
-        android:text="닫기"
-        android:fontFamily="@font/nanum_square_bold"
-        android:textSize="16sp"
-        android:background="@color/primaryColor"
-        android:layout_marginRight="25dp"/>
-    </LinearLayout>
+        <Button
+            android:id="@+id/charge_close_btn"
+            android:layout_width="96dp"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:text="닫기"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textSize="19sp"
+            android:background="@color/primaryColor"
+            android:layout_marginRight="29dp"/>
+    </RelativeLayout>
 
 </LinearLayout>
 

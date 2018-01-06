@@ -24,8 +24,8 @@
 
         <!-- <activity android:name=".LastLectureVideoActivity"> -->
         <activity
-            android:name="LectureVideo1Activity"
-            android:theme="@style/Theme.PopUp">
+            android:name=".EnrollPopupActivity"
+            android:theme="@style/Theme.PopUp" >
 
             <!-- <activity -->
             <!-- android:name=".ui.user.LoginActivity" -->
@@ -39,21 +39,20 @@
         </activity>
         <activity android:name=".ui.lecture.LectureVideoActivity" />
 
-        <!-- 퀴즈 채점 결과 Activity -->
+         <!-- 퀴즈 채점 결과 Activity -->
         <activity android:name=".ui.quiz.QuizResultActivity" />
 
         <!-- 퀴즈 해설 팝업 Activity -->
-        <activity
-            android:name=".ui.quiz.PopupExplainActivity"
+        <activity android:name=".ui.quiz.PopupExplainActivity"
             android:theme="@style/Theme.PopUp" />
-        <!-- &lt;!&ndash; 강의 설명 팝업 Activity &ndash;&gt; -->
-        <!-- <activity -->
-        <!-- android:name=".ui.lecture.LecturePopupActivity" -->
-        <!-- android:theme="@style/Theme.PopUp" /> -->
+         <!-- 강의 설명 팝업 Activity -->
+         <activity
+         android:name=".ui.lecture.LecturePopupActivity"
+         android:theme="@style/Theme.PopUp" />
 
 
-        <!-- &lt;!&ndash; 강의 결제 팝업 Activity &ndash;&gt; -->
-        <!-- <activity android:name=".ChargePopupActivity" /> -->
+         <!-- 강의 결제 팝업 Activity -->
+         <activity android:name=".ChargePopupActivity" />
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
