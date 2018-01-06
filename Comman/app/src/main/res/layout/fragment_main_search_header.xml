@@ -11,47 +11,63 @@
         android:id="@+id/course_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginLeft="@dimen/dp_change16_19"
+        android:layout_marginTop="27dp"
         android:textColor="@color/mainTextColor"
         android:fontFamily="@font/nanum_square_bold"
-        android:textSize="18sp"
+        android:textSize="@dimen/sp_change18_21"
         android:text="강좌 검색하기"
         />
 
     <RelativeLayout
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="14dp"
         android:layout_width="match_parent"
         android:layout_below="@id/course_search"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="@dimen/dp_change16_19"
+        android:layout_marginRight="@dimen/dp_change16_19"
         android:layout_centerHorizontal="true"
         android:orientation="horizontal"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="22dp"
         android:background="@drawable/frag_mainsearch_roundcorner"
-        android:layout_height="38dp">
+        android:layout_height="44dp">
 
         <ImageView
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="13dp"
-            android:layout_gravity="center_vertical"
             android:id="@+id/search_img"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:background="@drawable/search_icon"
             />
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_centerVertical="true"
+            android:text="취소"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textColor="@color/white"
+            android:background="@drawable/frag_main_search_cancel_btn"
+            android:layout_alignParentRight="true"
+            android:layout_width="51dp"
+            android:layout_height="27dp"
+            android:layout_marginRight="15dp"/>
+
         <EditText
             android:layout_gravity="center_vertical"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/search_img"
+            android:layout_toLeftOf="@+id/cancel_btn"
+            android:layout_toRightOf="@+id/search_img"
             android:backgroundTint="@color/white"
             android:hint="검색어를 입력해주세요"
-            android:textSize="15sp"
-            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:layout_marginLeft="12dp"
             android:fontFamily="@font/nanum_square_bold"
             android:id="@+id/main_search_et"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            />
     </RelativeLayout>
 
 

@@ -19,8 +19,9 @@
         <Button
             android:id="@+id/card_back_btn"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="16dp"
             android:background="@drawable/title_back_btn"
+            android:backgroundTint="#ffffff"
             android:layout_width="11dp"
             android:layout_height="16dp"
             />

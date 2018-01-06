@@ -6,14 +6,23 @@
     android:layout_height="98dp"
     android:background="@color/dividedBackgroundColor">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_centerVertical="true"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="14dp"
+        android:background="@drawable/frag_user_profile_img_bg"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/main_profile_img"
         android:layout_centerVertical="true"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="16dp"
-        android:background="@color/colorAccent"
+        android:src="@drawable/profile_image"
         />
+
 
     <TextView
         android:id="@+id/main_notice_tv"

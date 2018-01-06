@@ -41,6 +41,7 @@
             android:textSize="19sp"
             android:textColor="@color/white"
             android:background="@color/primaryColor"
+
             android:layout_marginTop="26dp"
             android:layout_marginLeft="71dp"
             android:layout_marginRight="12dp"
@@ -59,7 +60,4 @@
             android:textColor="@color/white"
             android:background="@color/primaryColor"/>
     </LinearLayout>
-
-
-
 </LinearLayout>

@@ -8,14 +8,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.androidquery.AQuery
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.course_active_item.view.*
 import kotlinx.android.synthetic.main.course_watching_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
-import kotlinx.android.synthetic.main.lecture_active_item.view.*
+import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.util.ListUtils
+import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 
 /**
@@ -27,6 +30,7 @@ class MyCourseFragment : Fragment() {
         const val TAG = "MyCourseFragment"
     }
     private var lectureWatchingData : LectureWatchingItem? = null
+
     data class LectureWatchingItem (
             val chapterName: String,
             val lectureTitle: String
@@ -64,7 +68,7 @@ class MyCourseFragment : Fragment() {
                 ListUtils.TYPE_HEADER -> HeaderViewHolder(layoutInflater.inflate(R.layout.main_notice_item, parent, false))
                 ListUtils.TYPE_SECOND_HEADER -> SecondHeaderViewHolder(layoutInflater.inflate(R.layout.course_watching_item, parent, false))
                 ListUtils.TYPE_FOOTER -> FooterViewHolder(layoutInflater.inflate(R.layout.course_item_footer, parent, false))
-                else -> ElemViewHolder(layoutInflater.inflate(R.layout.lecture_active_item, parent, false))
+                else -> ElemViewHolder(layoutInflater.inflate(R.layout.course_active_item, parent, false))
             }
         }
 
@@ -75,6 +79,8 @@ class MyCourseFragment : Fragment() {
                 (holder as MyCourseFragment.ElemViewHolder).bind(courseInfoList[position - 2])
             } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
                 (holder as MyCourseFragment.SecondHeaderViewHolder).bind()
+            } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
+                (holder as MyCourseFragment.HeaderViewHolder).bind()
             }
         }
 
@@ -92,13 +98,11 @@ class MyCourseFragment : Fragment() {
             itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
             itemView.main_course_active_course_tv.text = courseInfo.courseTitle
 
-            itemView.main_course_active_chapters_tv.text =
-                    String.format(resources.getString(R.string.msg_format_chapter_count), courseInfo.chapterCnt)
+            itemView.main_course_active_chapters_tv.text = resources.getString(R.string.msg_format_chapter_count, courseInfo.chapterCnt)
 
             val progressPercentage = courseInfo.progressPercentage
             itemView.main_course_active_progress_bar.progress = progressPercentage
-            itemView.main_course_active_progress_tv.text =
-                    String.format(resources.getString(R.string.msg_format_progress_percentage), progressPercentage)
+            itemView.main_course_active_progress_tv.text = resources.getString(R.string.msg_format_progress_percentage, progressPercentage)
         }
     }
 
@@ -111,7 +115,13 @@ class MyCourseFragment : Fragment() {
         }
     }
 
-    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            var aQuery = AQuery(context)
+            val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_THUMBNAIL)
+            aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+        }
+    }
 
     inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
