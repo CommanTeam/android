@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
-    android:layout_height="480dp"
+    android:layout_height="560dp"
+    android:orientation="vertical"
+    tools:context="org.appjam.comman.ui.lectureSubsection.LectureSubPopupActivity">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -24,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/lecturePopup_title_tv"
                 android:layout_width="wrap_content"
@@ -46,64 +46,38 @@
                 android:fontFamily="@font/nanum_square_regular"
                 android:text="강사명"
                 android:textColor="@color/grayMainTextColor"
-<<<<<<< HEAD
-                android:textSize="15sp" />
-=======
                 android:textSize="18sp" />
-
->>>>>>> master
         </LinearLayout>
     </LinearLayout>
 
     <View
-<<<<<<< HEAD
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
-        android:layout_width="match_parent"
-=======
         android:layout_marginRight="29dp"
         android:layout_marginLeft="29dp"
-        android:layout_width="328dp"
->>>>>>> master
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/divideLineColor"/>
 
     <LinearLayout
-<<<<<<< HEAD
         android:layout_width="match_parent"
-        android:layout_height="272dp"
-=======
-        android:layout_width="387dp"
         android:layout_height="317dp"
->>>>>>> master
         android:orientation="vertical">
-
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-<<<<<<< HEAD
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="16dp">
-=======
                 android:layout_marginLeft="29dp"
                 android:layout_marginRight="29dp"
                 android:layout_marginTop="19dp">
->>>>>>> master
-
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/lecture_popup_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scrollbarSize="5dp"
+                    android:scrollbarSize="6dp"
                     android:scrollbarStyle="outsideInset"
                     android:scrollbars="vertical"/>
             </LinearLayout>
-
     </LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -115,13 +89,11 @@
             android:background="@color/primaryColor"
             android:layout_marginLeft="260dp"
             android:layout_marginRight="29dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
             android:text="닫기"
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="17dp"
             android:textColor="@color/white"/>
     </LinearLayout>
-
-
 </LinearLayout>

@@ -20,12 +20,18 @@
 <<<<<<< HEAD
         <activity android:name=".ui.lecture.LectureListActivity"/>
         <activity android:name=".ui.lectureSubsection.LectureSubActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
 
         <activity android:name=".ui.lectureRegist.LectureRegistActivity"
             android:theme="@style/NoActionBar">
+<<<<<<< HEAD
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 =======
@@ -34,12 +40,27 @@
 >>>>>>> master
 
         <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
+=======
+
+        </activity>
+>>>>>>> lectureSubsection_마진_변경
 
         <activity android:name=".ui.main.MainActivity"
                 android:theme="@style/NoActionBar">
         </activity>
 
+<<<<<<< HEAD
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
+=======
+        <activity android:name="org.appjam.comman.ui.card.CardActivity">
+
+         </activity>
+
+        <!-- <activity -->
+        <!-- android:name=".ui.user.LoginActivity" -->
+        <!-- android:label="@string/app_name" -->
+        <!-- android:theme="@style/AppBar"> -->
+>>>>>>> lectureSubsection_마진_변경
 
              <actvity
              android:name=".ui.user.LoginActivity"
@@ -56,6 +77,7 @@
             android:name="LectureVideo1Activity"/>
 
 
+<<<<<<< HEAD
         <activity
 <<<<<<< HEAD
             android:name=".ui.lectureRegist.EnrollPopupActivity"
@@ -73,6 +95,9 @@
          <!-- 퀴즈 채점 결과 Activity -->
         <activity android:name=".ui.quiz.QuizResultActivity" />
 >>>>>>> master
+=======
+
+>>>>>>> lectureSubsection_마진_변경
 
         <!-- 퀴즈 해설 팝업 Activity -->
         <activity android:name=".ui.quiz.PopupExplainActivity"
@@ -97,10 +122,16 @@
 >>>>>>> master
         <service android:name=".ui.lecture.LectureVideoService" />
 
+<<<<<<< HEAD
          <!--등록 팝업 Activity -->
         <activity
             android:name=".EnrollPopupActivity"
             android:theme="@style/Theme.PopUp" />
 
+=======
+        <!-- 등록 팝업 Activity -->
+        <activity android:name=".ui.lectureRegist.EnrollPopupActivity"
+                   android:theme="@style/Theme.PopUp"></activity>
+>>>>>>> lectureSubsection_마진_변경
     </application>
 </manifest>
