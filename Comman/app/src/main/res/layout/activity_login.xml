@@ -26,9 +26,6 @@
             android:textSize="20sp" />
 
 
-
-
-
     </LinearLayout>
 
     <com.kakao.usermgmt.LoginButton

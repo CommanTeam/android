@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+
+    android:orientation="vertical"
+    tools:context="org.appjam.comman.LectureVideo1Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/lec_title_tv"
+            android:layout_width="282dp"
+            android:layout_height="22dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginTop="21dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="01. 필렛 넣기"
+            android:textColor="@color/mainTextColor"
+            android:textSize="21sp" />
+
+        <Button
+            android:id="@+id/lec_big_btn"
+            android:layout_width="79dp"
+            android:layout_height="29dp"
+            android:layout_marginRight="19dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="18dp"
+            android:background="@color/primaryColor"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="크게보기"
+            android:textColor="@color/white"
+            android:textSize="17sp" />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="222dp"
+        android:background="@color/primaryColor" />
+
+    <TextView
+        android:id="@+id/lec_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="19dp"
+        android:fontFamily="@font/nanum_square_regular"
+        android:text="라이노 위주의 툴 수업이며..블라블라블라블라블라블라블.."
+        android:textColor="@color/pageCountTextColor"
+        android:textSize="19sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/divideLineColor" />
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lec_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
