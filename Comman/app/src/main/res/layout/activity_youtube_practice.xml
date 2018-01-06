@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.youtube.player.YouTubePlayerView
+        android:id="@+id/practice_lectureVideo_youtube_playerView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+    </com.google.android.youtube.player.YouTubePlayerView>
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/compat_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_below="@+id/practice_lectureVideo_youtube_playerView"
+        android:layout_marginTop="10dp"
+        android:background="@color/progressBackgroundColor"
+        android:progressTint="@color/primaryColor"
+
+        />
+
+    <TextView
+        android:id="@+id/youtube_current_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="현재 진행 시간"
+        android:textSize="20sp"
+        />
+
+</RelativeLayout>
