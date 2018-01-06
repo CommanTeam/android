@@ -15,13 +15,13 @@ class MainTabAdapter(fm : FragmentManager?) : FragmentStatePagerAdapter(fm) {
 
     constructor(fm : FragmentManager?, tabCount : Int) : this(fm) {
         this.tabCount = tabCount
-        this.firstTab2 = SearchNewCourseFragment()
+        this.firstTab = MyCourseFragment()
         this.secondTab = SearchFragment()
     }
 
     override fun getItem(position: Int): Fragment? {
         when(position) {
-            0 -> return firstTab2
+            0 -> return firstTab
             1 -> return secondTab
         }
         return null

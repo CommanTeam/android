@@ -4,7 +4,7 @@
     android:layout_width="332dp"
     android:layout_height="480dp"
     android:orientation="vertical"
-    tools:context="org.appjam.comman.ui.lecture.LecturePopupActivity">
+    tools:context="org.appjam.comman.ui.lectureSubsection.LectureSubPopupActivity">
     
 
     <LinearLayout
@@ -72,14 +72,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="16dp">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/lecture_popup_list"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbarSize="5dp"/>
             </LinearLayout>
 
     </LinearLayout>

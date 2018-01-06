@@ -44,7 +44,6 @@
             android:layout_marginLeft="61dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="28dp"/>
-
         <Button
             android:id="@+id/enroll_close_btn"
             android:layout_width="99dp"
@@ -57,7 +56,4 @@
             android:textColor="@color/white"
             android:background="@color/primaryColor"/>
     </LinearLayout>
-
-
-
 </LinearLayout>
