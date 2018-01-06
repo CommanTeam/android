@@ -3,23 +3,23 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="98dp"
+    android:layout_height="119.2dp"
     android:background="@color/dividedBackgroundColor">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_centerVertical="true"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginLeft="14dp"
+        android:layout_width="77dp"
+        android:layout_height="77dp"
+        android:layout_marginLeft="16dp"
         android:background="@drawable/frag_user_profile_img_bg"
         />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/main_profile_img"
         android:layout_centerVertical="true"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginLeft="16dp"
+        android:layout_width="73dp"
+        android:layout_height="73dp"
+        android:layout_marginLeft="18dp"
         android:src="@drawable/profile_image"
         />
 
@@ -29,15 +29,15 @@
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_toRightOf ="@id/main_profile_img"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="19dp"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
+        android:layout_height="68dp"
         android:background="@drawable/frag_notice_textview_bg"
         android:padding="10dp"
         android:text="[Rhino] 반지 모델링하기 강좌의 답변이 도착했어요."
         android:lineSpacingMultiplier="1.2"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textColor="@color/mainTextColor"
         android:fontFamily="@font/nanum_square_bold"
         />
