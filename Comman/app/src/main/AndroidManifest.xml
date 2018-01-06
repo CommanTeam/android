@@ -18,11 +18,7 @@
             android:value="@string/kakao_app_key" />
         <activity android:name=".ui.lecture.LectureListActivity"/>
         <activity android:name=".ui.lectureSubsection.LectureSubActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
@@ -63,10 +59,18 @@
         <activity
             android:name=".ui.lectureSubsection.LectureSubPopupActivity"
             android:theme="@style/Theme.PopUp" >
-             </activity>
+        </activity>
 
-         <!-- 강의 결제 팝업 Activity -->
-         <activity android:name="org.appjam.comman.ChargePopupActivity"/>
+        <!-- 강의 결제 팝업 Activity -->
+        <activity android:name="org.appjam.comman.ChargePopupActivity"/>
+
+        <activity android:name=".youtube.YoutubePracticeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service android:name=".ui.lecture.LectureVideoService" />
 

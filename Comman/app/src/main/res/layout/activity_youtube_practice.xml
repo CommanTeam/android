@@ -12,15 +12,13 @@
 
     </com.google.android.youtube.player.YouTubePlayerView>
 
-    <android.support.v7.widget.AppCompatSeekBar
-        android:id="@+id/compat_seek_bar"
+    <org.appjam.comman.custom.CustomSeekBar
+        android:id="@+id/youtube_progress_bar"
         android:layout_width="match_parent"
-        android:layout_height="15dp"
+        android:layout_height="20dp"
         android:layout_below="@+id/practice_lectureVideo_youtube_playerView"
         android:layout_marginTop="10dp"
-        android:background="@color/progressBackgroundColor"
-        android:progressTint="@color/primaryColor"
-
+        android:background="@color/white"
         />
 
     <TextView
