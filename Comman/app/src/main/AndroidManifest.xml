@@ -17,7 +17,6 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity android:name=".ui.lecture.LectureListActivity"></activity>
         <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
         <activity
             android:name=".ui.user.LoginActivity"
@@ -26,7 +25,9 @@
 
         <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
         <activity android:name=".ui.main.MainActivity"
-                android:theme="@style/NoActionBar">
+                android:theme="@style/NoActionBar"/>
+            <activity android:name=".ui.lecture.LectureListActivity">
+
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN" />

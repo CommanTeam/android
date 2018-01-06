@@ -34,6 +34,7 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
             var chapterCont:String
     )
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_list)
