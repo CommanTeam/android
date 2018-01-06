@@ -5,7 +5,7 @@
     android:layout_height="320dp"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="org.appjam.comman.ChargePopupActivity">
+    tools:context="org.appjam.comman.ui.lectureRegist.ChargePopupActivity">
 
 
     <LinearLayout

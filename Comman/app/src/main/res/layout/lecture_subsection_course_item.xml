@@ -28,13 +28,16 @@
         android:layout_marginBottom="12dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/lecture_subsection_course_item_bg">
-        <ImageView
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/lecture_subsection_course_profile_iv"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="13dp"
-            android:background="@drawable/kakao_default_profile_image"/>
+            android:src="@mipmap/ic_launcher" />
+
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,6 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
         <ImageView
                 android:id="@+id/lecture_subsection_bar_iv"
                 android:layout_width="match_parent"

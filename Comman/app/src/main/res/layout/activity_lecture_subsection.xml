@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context="org.appjam.comman.ui.card.CardActivity">
+    tools:context="org.appjam.comman.ui.lectureSubsection.LectureSubActivity">
 //위에 activity 바꾸기
     <LinearLayout
         android:id="@+id/lecture_subsection_top_layout"
@@ -14,7 +14,6 @@
         android:layout_height="47dp"
         android:orientation="horizontal"
         android:background="@color/primaryColor">
-
         <Button
             android:id="@+id/card_back_btn"
             android:layout_gravity="center_vertical"
@@ -24,7 +23,6 @@
             android:layout_height="16dp"
             android:backgroundTint="#ffffff"
             />
-
         <TextView
             android:id="@+id/card_lecture_name_tv"
             android:layout_gravity="center_vertical"
@@ -46,5 +44,4 @@
             android:layout_below="@+id/lecture_subsection_top_layout"
             android:background="@color/backgroundColor">
         </android.support.v7.widget.RecyclerView>
-
 </RelativeLayout>

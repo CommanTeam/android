@@ -35,6 +35,7 @@
         android:fontFamily="@font/nanum_square_bold"
         android:textColor="@color/mainTextColor"/>
     <Button
+        android:id="@+id/lecture_charge_btn"
         android:layout_width="80dp"
         android:layout_height="20dp"
         android:layout_alignParentRight="true"
