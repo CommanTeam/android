@@ -43,14 +43,9 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_video)
-<<<<<<< HEAD
         Toast.makeText(this@LectureVideoActivity, "onCreate() 호출", Toast.LENGTH_SHORT).show()
         lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         land_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
-=======
-        lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this)
-
->>>>>>> master
 
     }
 
