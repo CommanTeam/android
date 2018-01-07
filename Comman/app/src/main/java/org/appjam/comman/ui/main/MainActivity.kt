@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
         main_content_view_pager.adapter = mainTabAdapter
         main_content_view_pager.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(main_tab_layout))
-
         main_tab_layout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
