@@ -11,3 +11,7 @@ fun <T> Observable<T>.setDefaultThreads() : Observable<T> {
     return this.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }
 
+//fun Bundle.putList(list : List<Any>) : Bundle {
+//    Bundle.
+//}
+

@@ -11,8 +11,10 @@ object CoursesData {
                           val courseImage: String,
                           val chapterCnt: Int,
                           val progressPercentage: Int)
+
     data class MyCourseAlarmItem(
             val myCourseProfile : Int,
             val myCourseAlarm : String
     )
+
 }
