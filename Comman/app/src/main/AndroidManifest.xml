@@ -18,7 +18,7 @@
             android:value="@string/kakao_app_key" />
 
         <activity android:name=".ui.lecture.LectureListActivity" />
-        <activity android:name=".ui.card.CardActivity" />
+
 
         <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
 
@@ -34,6 +34,7 @@
              android:name=".ui.user.LoginActivity"
              android:label="@string/app_name"
              android:theme="@style/AppBar">
+        <!--<activity android:name=".ui.card.CardActivity" >-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
