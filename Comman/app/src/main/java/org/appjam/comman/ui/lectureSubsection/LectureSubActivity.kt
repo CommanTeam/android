@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_lecture_subsection.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_course_item.view.*
 import org.appjam.comman.R
+import org.appjam.comman.ui.lecture.LectureListActivity
 import org.appjam.comman.util.ListUtils
 
 /**
@@ -23,14 +24,14 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
 
     private var chapterList : RecyclerView?=null
     private var chapterListData : ArrayList<ChapterListData>?=arrayListOf()
-    private var lectureSubAdapter : LectureSubAdapter? = null
+    private var lectureSubAdapter : LectureSubAadapter? = null
 
     data class ChapterListData(
+            val id: Int,
             val number: String,
             val content: String,
             val totalNumber: String
     )
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +40,11 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
        chapterList=lecture_subsection_list_view
         chapterList!!.layoutManager=LinearLayoutManager(this)
 
-        chapterListData?.add(ChapterListData("1장","반지 모델링 하기","총 16강"))
-        chapterListData?.add(ChapterListData("2장","반지 모델링 하기","총 16강"))
-        chapterListData?.add(ChapterListData("3장","반지 모델링 하기","총 16강"))
+        chapterListData?.add(ChapterListData(1,"1장","반지 모델링 하기","총 16강"))
+        chapterListData?.add(ChapterListData(2,"2장","반지 모델링 하기","총 16강"))
+        chapterListData?.add(ChapterListData(1,"3장","반지 모델링 하기","총 16강"))
 
-        lectureSubAdapter=LectureSubAdapter(chapterListData)
+        lectureSubAdapter=LectureSubAadapter(chapterListData)
 
         chapterList!!.adapter=lectureSubAdapter
 
@@ -69,12 +70,18 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
             itemView.lecture_subsection_chapterlist_chapnum_tv.text = chapterListData!![position].number
             itemView.lecture_subsection_chapterlist_totalnum_tv.text = chapterListData!![position].totalNumber
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chapterListData!![position].content
+            itemView.setOnClickListener {
+                val intent = Intent(this@LectureSubActivity, LectureListActivity::class.java)
+                intent.putExtra("chapterID", chapterListData!![position].id)
+                //intent.putExtra("chapterID", chapterListData!![position].id)
+                startActivity(intent)
+            }
 
         }
     }
     inner class FooterViewHolder(itemView:View):RecyclerView.ViewHolder(itemView)
 
-    inner class LectureSubAdapter(var datalist: ArrayList<ChapterListData>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    inner class LectureSubAadapter(var datalist: ArrayList<ChapterListData>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private var onItemClick : View.OnClickListener? = null
 

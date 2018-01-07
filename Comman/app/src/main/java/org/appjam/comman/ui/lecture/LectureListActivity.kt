@@ -4,14 +4,19 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.chapter_explanation_item.view.*
 import kotlinx.android.synthetic.main.lecture_list_item.view.*
 import org.appjam.comman.R
+import org.appjam.comman.network.APIClient
+import org.appjam.comman.network.data.ChapterData
 import org.appjam.comman.util.ListUtils
+import org.appjam.comman.util.setDefaultThreads
 import java.util.*
 
 /**
@@ -19,21 +24,23 @@ import java.util.*
  */
 class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
 
+    companion object {
+        const val TAG = "LectureListActivity"
+    }
+
     private var lectureList : RecyclerView? = null
     private var lectureData : ArrayList<LectureData> = arrayListOf()
     private var lectureAdapter : LectureAdapter? = null
-    private var chapterExpData : ChapterExpData? =null
+
+    private var chapterInfo: ChapterData.ChapterInfo? = null
+    private var lectureListInChapter : List<ChapterData.LectureListinChapterData>? = null
+    private val disposables = CompositeDisposable()
 
     data class LectureData(
             var lectureImage:Int,
             var lectureNum:String,
             var lectureName:String
     )
-    data class ChapterExpData(
-            var chapterTitle:String,
-            var chapterCont:String
-    )
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,13 +49,29 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
         lectureList = lecture_list
         lectureList!!.layoutManager = LinearLayoutManager(this)
 
-        chapterExpData = ChapterExpData("1장. 라이노 툴 다루기","티 스플라인을 사용하여 자연스")
         lectureData.add(LectureData(R.drawable.picture_icon,"28 페이지","01 필렛 넣기"))
         lectureData.add(LectureData(R.drawable.video_icon,"10: 18","02 리볼브 하기"))
         lectureData.add(LectureData(R.drawable.quiz_icon,"20 문제","03 챔퍼 넣기"))
-        lectureData.add(LectureData(R.drawable.picture_icon,"15 페이지","04 면만들기"))
+        lectureData.add(LectureData(R.drawable.video_icon,"15 페이지","04 면만들기"))
+        disposables.add(APIClient.apiService.getChapterInfo(intent.getIntExtra(ChapterData.CHAPTER_ID_KEY, 0))
+                .setDefaultThreads()
+                .subscribe({
+                    response ->
+                        chapterInfo = response.data[0]
+                        lectureList?.adapter?.notifyDataSetChanged()
+                }, {
+                    failure -> Log.i(TAG, failure.message)
+                }))
+        disposables.add(APIClient.apiService.getLectureListInChapter( intent.getIntExtra("chapterID",0))
+                .setDefaultThreads()
+                .subscribe({ response1 ->
+                    lectureListInChapter = response1.result
+                    lectureList?.adapter?.notifyDataSetChanged()
+                },{
+                    failure -> Log.i(TAG, failure.message)
+                }))
 
-        lectureAdapter = LectureAdapter(lectureData, chapterExpData)
+        lectureAdapter = LectureAdapter()
 //        lectureAdapter!!.setOnItemClickListener(this)
         lectureList!!.adapter = lectureAdapter
     }
@@ -58,28 +81,32 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
 
         Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
     }
-
-    inner class LectureViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView){
-        fun bind(position: Int) {
-            //var lectureimage: ImageView = itemView!!.findViewById(R.id.lecture_list_img) as ImageView
-            itemView.lecture_list_img.setImageResource(lectureData[position].lectureImage)
-            //var lecturenum: TextView = itemView!!.findViewById(R.id.lecture_list_num_tv) as TextView
-            itemView.lecture_list_num_tv.text = lectureData[position].lectureNum
-            //var lecturename: TextView = itemView!!.findViewById(R.id.lecture_list_name_tv) as TextView
-            itemView.lecture_list_name_tv.text = lectureData[position].lectureName
-        }
-    }
     inner class ChapterExpViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView){
         fun bind() {
             //var chaptertitle: TextView = itemView!!.findViewById(R.id.chapter_title_tv) as TextView
-            itemView.chapter_title_tv.text = chapterExpData!!.chapterTitle
+            itemView.chapter_title_tv.text = chapterInfo?.title
             //var chaptercont: TextView = itemView!!.findViewById(R.id.chapter_content_tv) as TextView
-            itemView.chapter_content_tv.text = chapterExpData!!.chapterCont
+            itemView.chapter_content_tv.text = chapterInfo?.info
         }
     }
+    inner class LectureViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView){
+        fun bind(position: Int) {
+            //var lectureimage: ImageView = itemView!!.findViewById(R.id.lecture_list_img) as ImageView
+//            Glide.with(this@LectureListActivity)
+//                    .load(lectureListInChapter?.watchedFlag)
+//                    .into(itemView.lecture_list_img)
+            itemView.lecture_list_img.setImageResource(lectureData[position].lectureImage)
+            //var lecturenum: TextView = itemView!!.findViewById(R.id.lecture_list_num_tv) as TextView
+            itemView.lecture_list_num_tv.text = lectureData!![position].lectureNum
+            itemView.lecture_list_name_tv.text = lectureData!![position].lectureName
+           // itemView.lecture_list_num_tv.text = lectureListInChapter?.get(position)?.size.toString()
+            //itemView.lecture_list_name_tv.text = lectureListInChapter?.get(position)?.lectureTitle
+        }
+    }
+
     inner class FootViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
 
-    inner class LectureAdapter(var datalist : ArrayList<LectureData>?, var chapterExpData : ChapterExpData?) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    inner class LectureAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
         private var onItemClick : View.OnClickListener? = null
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
@@ -106,7 +133,7 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
         }
 
 
-        override fun getItemCount()= lectureData.size + 2
+        override fun getItemCount()= lectureListInChapter?.size?: 0 + 2
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
@@ -129,5 +156,10 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
             else ListUtils.TYPE_ELEM
         }
 
+    }
+//disposables은 불렀으면 반드시 파괴해주어야한다.
+    override fun onDestroy() {
+        disposables.clear()
+        super.onDestroy()
     }
 }
