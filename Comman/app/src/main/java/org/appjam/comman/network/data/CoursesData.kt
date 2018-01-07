@@ -17,7 +17,6 @@ object CoursesData {
             val myCourseAlarm : String
     )
 
-<<<<<<< HEAD
     data class CourseMetaResponse(val result: List<CourseMetadata>)
 
     data class CourseMetadata(val id: Int,
@@ -31,6 +30,4 @@ object CoursesData {
                               val category_id: Int)
 
 
-=======
->>>>>>> master
 }

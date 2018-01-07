@@ -62,14 +62,14 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
                 }, {
                     failure -> Log.i(TAG, failure.message)
                 }))
-        disposables.add(APIClient.apiService.getLectureListInChapter( intent.getIntExtra("chapterID",0))
-                .setDefaultThreads()
-                .subscribe({ response1 ->
-                    lectureListInChapter = response1.result
-                    lectureList?.adapter?.notifyDataSetChanged()
-                },{
-                    failure -> Log.i(TAG, failure.message)
-                }))
+//        disposables.add(APIClient.apiService.getLectureListInChapter( intent.getIntExtra("chapterID",0))
+//                .setDefaultThreads()
+//                .subscribe({ response1 ->
+//                    lectureListInChapter = response1.result
+//                    lectureList?.adapter?.notifyDataSetChanged()
+//                },{
+//                    failure -> Log.i(TAG, failure.message)
+//                }))
 
         lectureAdapter = LectureAdapter()
 //        lectureAdapter!!.setOnItemClickListener(this)
@@ -97,10 +97,10 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
 //                    .into(itemView.lecture_list_img)
             itemView.lecture_list_img.setImageResource(lectureData[position].lectureImage)
             //var lecturenum: TextView = itemView!!.findViewById(R.id.lecture_list_num_tv) as TextView
-            itemView.lecture_list_num_tv.text = lectureData!![position].lectureNum
+  //          itemView.lecture_list_num_tv.text = lectureData!![position].lectureNum
             itemView.lecture_list_name_tv.text = lectureData!![position].lectureName
-           // itemView.lecture_list_num_tv.text = lectureListInChapter?.get(position)?.size.toString()
-            //itemView.lecture_list_name_tv.text = lectureListInChapter?.get(position)?.lectureTitle
+           itemView.lecture_list_num_tv.text = lectureListInChapter?.get(position)?.size.toString()
+//            itemView.lecture_list_name_tv.text = lectureListInChapter?.get(position)?.lectureTitle
         }
     }
 
@@ -133,7 +133,8 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
         }
 
 
-        override fun getItemCount()= lectureListInChapter?.size?: 0 + 2
+//        override fun getItemCount()= lectureListInChapter?.size?: 0 + 2
+        override fun getItemCount() = lectureData.size + 2
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {

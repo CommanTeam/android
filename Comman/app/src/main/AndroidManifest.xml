@@ -17,10 +17,6 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
         <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
         <activity
             android:name=".ui.user.LoginActivity"
@@ -39,7 +35,6 @@
 
 
         <activity android:name=".ui.main.MainActivity"
-<<<<<<< HEAD
                 android:theme="@style/NoActionBar"/>
 
 
@@ -51,27 +46,20 @@
              android:theme="@style/AppBar">
 
              </actvity>
-=======
             android:theme="@style/NoActionBar"/>
 
-        <activity android:name=".ui.lecture.LectureVideoActivity"/>
 
         <actvity
             android:name=".ui.user.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppBar">
         </actvity>
->>>>>>> master
 
         <activity
             android:name="LectureVideo1Activity"/>
 
 
-<<<<<<< HEAD
-         <!-- 퀴즈 채점 결과 Activity -->
-=======
         <!-- 퀴즈 채점 결과 Activity -->
->>>>>>> master
         <activity android:name=".ui.quiz.QuizResultActivity" />
 
         <!-- 퀴즈 해설 팝업 Activity -->

@@ -7,11 +7,7 @@ import org.appjam.comman.network.data.SearchedCoursesData
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * Created by junhoe on 2018. 1. 4..
@@ -32,7 +28,6 @@ object APIClient {
 
         //수강중인 강좌
         @GET("/users/main/progressLecture/{userID}")
-<<<<<<< HEAD
         fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
 
         @GET("/content/chapters")
@@ -40,8 +35,6 @@ object APIClient {
 
         @GET("/content/lecturepage/lectureList")
         fun getLectureListInChapter(@Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
-=======
-        fun getRegisteredCourses(@Path("userID") userId: Int) : Observable<CoursesData.CoursesResponse>
 
         //강좌검색
         @POST("/search/courses")
@@ -49,6 +42,5 @@ object APIClient {
 //                @Header("authorization") tokenValue : String,
                 @Body searchPost : SearchedCoursesData.SearchedcoursesPost
         ) : Observable<SearchedCoursesData.SearchedCoursesResponse>
->>>>>>> master
     }
 }
