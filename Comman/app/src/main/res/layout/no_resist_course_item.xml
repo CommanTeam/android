@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_marginTop="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+    <ImageView
+        android:id="@+id/home_navigation_img"
+        android:layout_width="101dp"
+        android:layout_height="118dp"
+        android:background="@drawable/home_navigation_icon"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/new_course_request_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/home_navigation_img"
+        android:layout_centerHorizontal="true"
+        android:text="새로운 강좌를 등록해 주세요."
+        android:textSize="@dimen/sp_change16_19"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+    <Button
+        android:layout_below="@id/new_course_request_tv"
+        android:layout_width="198dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="@dimen/dp_change16_19"
+        android:layout_centerHorizontal="true"
+        android:text="강좌 검색하기"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@drawable/new_course_resist_btn_bg"
+        />
+    </RelativeLayout>
+</RelativeLayout>

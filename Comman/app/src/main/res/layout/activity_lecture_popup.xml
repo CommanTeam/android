@@ -53,13 +53,12 @@
     <View
         android:layout_marginRight="29dp"
         android:layout_marginLeft="29dp"
-        android:layout_marginBottom="16dp"
-        android:layout_width="match_parent"
+        android:layout_width="328dp"
         android:layout_height="1dp"
         android:background="@color/divideLineColor"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="387dp"
         android:layout_height="317dp"
         android:orientation="vertical">
             <LinearLayout
@@ -88,13 +87,14 @@
             android:id="@+id/lecture_popup_btn"
             android:layout_width="96dp"
             android:layout_height="36dp"
-            android:background="@color/primaryColor"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="17dp"
-            android:layout_marginLeft="230dp"
+            android:layout_marginLeft="260dp"
+            android:layout_marginRight="29dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:text="닫기"
             android:fontFamily="@font/nanum_square_bold"
-            android:textSize="19dp"
+            android:textSize="19sp"
+            android:background="@color/primaryColor"
             android:textColor="@color/white"/>
     </LinearLayout>
 
