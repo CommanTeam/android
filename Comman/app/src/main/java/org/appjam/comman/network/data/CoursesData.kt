@@ -17,12 +17,4 @@ object CoursesData {
             val myCourseAlarm : String
     )
 
-    data class SearchedCoursesResponse(val result : List<SearchedCourseInfo>)
-
-    data class SearchedCourseInfo(val id: Int,
-                                  val title: String,
-                                  val info: String,
-                                  val image_path: String,
-                                  val hit: Int)
-
 }
