@@ -7,8 +7,7 @@
     android:layout_height="373dp"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context="org.appjam.comman.ChargePopupActivity">
-
+    tools:context="org.appjam.comman.ui.lectureRegist.ChargePopupActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="[Rhino] 반지 모델링하기"
-                android:textAlignment="viewEnd"
+                android:gravity="end"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
         </LinearLayout>
@@ -95,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="8,8000원"
-                android:textAlignment="viewEnd"
+                android:gravity="end"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
 

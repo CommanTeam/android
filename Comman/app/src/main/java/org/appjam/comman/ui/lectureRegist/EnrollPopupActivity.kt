@@ -1,9 +1,10 @@
-package org.appjam.comman
+package org.appjam.comman.ui.lectureRegist
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
 import kotlinx.android.synthetic.main.activity_enroll_popup.*
+import org.appjam.comman.R
 
 class EnrollPopupActivity : AppCompatActivity() {
 
@@ -12,6 +13,10 @@ class EnrollPopupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_enroll_popup)
 
         //닫기 버튼 클릭시 팝업 종료
+        enroll_close_btn.setOnClickListener{
+            finish()
+        }
+        //등록하기 버튼 클릭시 팝업 종료
         enroll_close_btn.setOnClickListener{
             finish()
         }

@@ -18,7 +18,7 @@ import org.appjam.comman.util.ListUtils
  */
 class SearchNewCourseFragment : Fragment() {
 
-    private val myCourseAlarmList =  mutableListOf< CoursesData.MyCourseAlarmItem>()
+    private val myCourseAlarmList =  mutableListOf<CoursesData.MyCourseAlarmItem>()
 
     init {
         myCourseAlarmList.add(CoursesData.MyCourseAlarmItem(R.drawable.profile_image,"[Rhino] 반지 모델링하기 강좌의 답변이 도착했도다"))

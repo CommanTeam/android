@@ -1,6 +1,7 @@
 package org.appjam.comman.util
 
 import android.content.Context
+import com.google.android.youtube.player.YouTubePlayer
 import com.kakao.usermgmt.response.model.UserProfile
 
 /**
@@ -11,6 +12,8 @@ object PrefUtils {
     const val FILE_NAME = "CommanPrefFile"
     const val USER_TOKEN = "userToken"
     const val USER_THUMBNAIL = "userThumbnail"
+    const val CURRENT_TIME = "youtubeCurrentTime"
+
     fun getUserToken(context: Context): String {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val userToken = pref.getString(USER_TOKEN, "")
@@ -39,5 +42,18 @@ object PrefUtils {
     fun getString(context: Context, key: String) : String {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         return pref.getString(key, "")
+    }
+
+    fun putYoutubeCurrentTime(context: Context, youtubePlayer: YouTubePlayer) {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt(CURRENT_TIME, youtubePlayer.currentTimeMillis)
+        editor.apply()
+        editor.commit()
+    }
+
+    fun getInt(context: Context, key: String) : Int {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        return pref.getInt(key, 0)
     }
 }

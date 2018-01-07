@@ -77,6 +77,8 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
 
+            if(position==0)
+            itemView.lecture_subsection_lock_layout.visibility=View.GONE
         }
     }
     inner class FooterViewHolder(itemView:View):RecyclerView.ViewHolder(itemView)
@@ -129,7 +131,5 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
             else -> ListUtils.TYPE_ELEM
 
         }
-
-
     }
 }

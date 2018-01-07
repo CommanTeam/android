@@ -1,9 +1,10 @@
-package org.appjam.comman
+package org.appjam.comman.ui.lectureRegist
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
 import kotlinx.android.synthetic.main.activity_charge_popup.*
+import org.appjam.comman.R
 
 class ChargePopupActivity : AppCompatActivity() {
 
@@ -13,6 +14,9 @@ class ChargePopupActivity : AppCompatActivity() {
 
         //닫기 버튼 클릭시 팝업 종료
         charge_close_btn.setOnClickListener{
+            finish()
+        }
+        charge_ok_btn.setOnClickListener{
             finish()
         }
     }
