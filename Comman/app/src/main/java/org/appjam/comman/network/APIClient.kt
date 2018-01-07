@@ -6,10 +6,7 @@ import org.appjam.comman.network.data.SearchedCoursesData
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 /**
  * Created by junhoe on 2018. 1. 4..
@@ -38,5 +35,10 @@ object APIClient {
 //                @Header("authorization") tokenValue : String,
                 @Body searchPost : SearchedCoursesData.SearchedcoursesPost
         ) : Observable<SearchedCoursesData.SearchedCoursesResponse>
+
+        @GET("/users/main/greeting")
+        fun getGreetingInfo(
+                @Header("authorization") tokenValue : String
+        ) : Observable<>
     }
 }
