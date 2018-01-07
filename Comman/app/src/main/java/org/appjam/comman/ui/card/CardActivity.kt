@@ -83,7 +83,8 @@ class CardActivity : AppCompatActivity() {
         disposables.add(APIClient.apiService.getLectureCards(1)
                 .setDefaultThreads()
                 .subscribe({
-                    response -> cardResponse?.result = response.result[2].image_priority
+                    response ->
+                        cardResponse?.result = response.result
                     bundle.putStringArrayList("result", cardResponse?.result)
                     pageCount = cardResponse!!.result.size + 1
                     currentPage = cardResponse!!.result.
@@ -109,6 +110,7 @@ class CardActivity : AppCompatActivity() {
 //                })
 //        )
     }
+//
 
     inner class CardPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm){
 

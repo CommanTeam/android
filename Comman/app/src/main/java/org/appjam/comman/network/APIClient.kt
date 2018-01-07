@@ -29,8 +29,7 @@ object APIClient {
         @GET("/users/main/progressLecture/{userID}")
         fun getRegisteredCourses(@Path("userID") userId: Int) : Observable<CoursesData.CoursesResponse>
 
-        @GET("/content/lecturepicture/lectureimgUrl?courseID={courseID}&lectureID={lectureID}")
-        fun getLectureCards(@Path("courseID") courseID: Int,
-                            @Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
+        @GET("/content/lecturepicture/{lectureID]")
+        fun getLectureCards(@Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
     }
 }

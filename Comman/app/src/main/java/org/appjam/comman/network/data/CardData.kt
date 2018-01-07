@@ -8,7 +8,6 @@ object CardData {
 //            var lectureImageUrlArr : List<String>,
 //            var nextLectureID : String
             var result : ArrayList<CardInfo>
-
     )
     data class CardInfo(
             val lecture_id : Int,
