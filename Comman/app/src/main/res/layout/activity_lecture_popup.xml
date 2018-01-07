@@ -59,6 +59,7 @@
         android:background="@color/divideLineColor"/>
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="317dp"
         android:orientation="vertical">
@@ -69,6 +70,7 @@
                 android:layout_marginLeft="29dp"
                 android:layout_marginRight="29dp"
                 android:layout_marginTop="19dp">
+                android:layout_marginRight="29dp">
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/lecture_popup_list"
                     android:layout_width="match_parent"
