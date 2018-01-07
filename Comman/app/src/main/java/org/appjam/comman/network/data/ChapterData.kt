@@ -19,7 +19,8 @@ object ChapterData {
                                         val chapterID : Int,
                                         val lectureTitle: String,
                                         val lectureType : Int,
-                                        val videoID:Int,
+                                        val videoID : Int,
+                                        val userID : String,
                                         val watchedFlag: Int,
                                         val size: Int
     )

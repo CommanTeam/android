@@ -60,7 +60,6 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 
