@@ -50,7 +50,7 @@ class MyCourseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.main_my_lecture_rv
         recyclerView.layoutManager = LinearLayoutManager(context)
-        disposables.add(APIClient.apiService.getRegisteredCourses(1)
+        disposables.add(APIClient.apiService.getRegisteredCourses(PrefUtils.getUserToken(context))
                 .setDefaultThreads()
                 .subscribe ({
                     response ->

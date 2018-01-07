@@ -28,7 +28,7 @@ import com.kakao.util.exception.KakaoException
 import com.kakao.util.helper.log.Logger
 import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
-import org.appjam.comman.ui.main.MainActivity
+import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.util.PrefUtils
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
@@ -146,7 +146,7 @@ class LoginActivity : AppCompatActivity() {
                 editor.putString("profile_img_url", userProfile.profileImagePath)
                 //성공하면 MainActivity로 이동
                 //프로필 이미지 url과 이메일 값 디비에 삽입하기
-                val intent = Intent(baseContext, MainActivity::class.java)
+                val intent = Intent(baseContext, CardActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
                 intent.putExtra("user_profile_img", user_profile_img)

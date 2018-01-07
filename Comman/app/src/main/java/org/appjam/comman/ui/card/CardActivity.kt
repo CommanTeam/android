@@ -8,12 +8,13 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_card.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CardData
-import org.appjam.comman.ui.main.MyCourseFragment
+import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SetColorUtils
 import org.appjam.comman.util.setDefaultThreads
 
@@ -32,7 +33,6 @@ class CardActivity : AppCompatActivity() {
     private var cardResponse : CardData.CardResponse? = null
     var pagePosition : Int = 0
     var pageCount : Int = 0
-    var currentPage : Int = 0
     val bundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +67,7 @@ class CardActivity : AppCompatActivity() {
                         card_next_btn.setBackgroundResource(R.drawable.view_pager_next_btn)
                     }
                 }
+                card_count_tv.text = "$pagePosition / $pageCount"
             }
         })
 
@@ -80,26 +81,53 @@ class CardActivity : AppCompatActivity() {
             card_view_pager.currentItem = card_view_pager.currentItem + 1
         }
 
-        disposables.add(APIClient.apiService.getLectureCards(1)
+        disposables.add(APIClient.apiService.getLectureInfo(PrefUtils.getUserToken(this))
+                .setDefaultThreads()
+                .subscribe({
+                    response -> card_lecture_name_tv.text = response.data[0].priority.toString()
+                }, {
+                    failure -> Log.i(CardActivity.TAG, "on Failure ${failure.message}")
+                }))
+
+
+        disposables.add(APIClient.apiService.getLectureCards(PrefUtils.getUserToken(this), 1)
                 .setDefaultThreads()
                 .subscribe({
                     response ->
                         cardResponse?.result = response.result
-                    bundle.putStringArrayList("result", cardResponse?.result)
-                    pageCount = cardResponse!!.result.size + 1
-                    currentPage = cardResponse!!.result.
+                        pageCount = cardResponse?.result?.size?:0 + 1
+
+//                        bundle.getString("title")
+//                        bundle.getString("image_path")
+
+                    val gson = Gson()
+//                    bundle.putString("cardInfo", gson.toJson(cardResponse?.result))
+                    card_count_tv.text = "1 / $pageCount"
+
+
+                }, {
+                    failure -> Log.i(CardActivity.TAG, "on Failure ${failure.message}")
+                }))
+
+//                    private var courseInfoJson : String? = null
+//                    private var courseInfoList : SearchedCoursesData.SearchedCoursesResponse? = null
+//
+//                    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+//                        if(arguments != null) {
+//                            val gson = Gson()
+//                            courseInfoJson = arguments.getString("ans")
+//                            courseInfoList = gson.fromJson(courseInfoJson, SearchedCoursesData.SearchedCoursesResponse::class.java)
+//                        }
+//                    pageCount = cardResponse!!.result.size + 1
+//                    currentPage = cardResponse!!.result.
 //                    cardResponse?.lectureImageUrlArr = response.lectureImageUrlArr
 //                    cardResponse?.nextLectureID = response.nextLectureID
 //                    bundle.putStringArrayList("image_url", cardResponse?.lectureImageUrlArr as ArrayList<String>?)
 //                    bundle.putString("nextLectureID", cardResponse?.nextLectureID)
 //                    pageCount = cardResponse!!.lectureImageUrlArr.size + 1
 
-                            card_view_pager.adapter.notifyDataSetChanged()
 
-                }, {
-                    failure -> Log.i(TAG, "on Failure ${failure.message}")
-                })
-        )
+
         //        disposables.add(APIClient.apiService.getRegisteredCourses(1)
 //                .setDefaultThreads()
 //                .subscribe ({
@@ -109,14 +137,15 @@ class CardActivity : AppCompatActivity() {
 //                    failure -> Log.i(TAG, "on Failure ${failure.message}")
 //                })
 //        )
+
     }
 //
-
     inner class CardPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm){
 
         override fun getItem(position:Int): Fragment {
             return if(position<count-1) {
                 val cardFragment = CardFragment()
+                bundle.putString("card_img", cardResponse?.result?.get(position)?.image_path)
                 cardFragment.arguments = bundle
                 cardFragment
             } else {
@@ -128,5 +157,8 @@ class CardActivity : AppCompatActivity() {
         override fun getCount():Int= pageCount
     }
 
-
+    override fun onDestroy() {
+        disposables.clear()
+        super.onDestroy()
+    }
 }

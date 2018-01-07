@@ -21,28 +21,27 @@
         <activity
             android:name=".ui.user.LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar"/>
-        <activity android:name=".ui.lecture.LectureListActivity" />
-        <activity android:name=".ui.card.CardActivity" />
-
-        <activity android:name=".ui.lectureSubsection.LectureSubActivity">
+            android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
+        <activity android:name=".ui.lecture.LectureListActivity" />
+        <activity android:name=".ui.card.CardActivity">
+        </activity>
+
+        <activity android:name=".ui.lectureSubsection.LectureSubActivity">
+          </activity>
 
         <activity android:name=".ui.main.MainActivity"
             android:theme="@style/NoActionBar"/>
 
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
 
-        <actvity
-            android:name=".ui.user.LoginActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppBar">
-        </actvity>
 
         <activity
             android:name="LectureVideo1Activity"/>
@@ -57,10 +56,7 @@
 
         <!-- 강의 결제 팝업 Activity -->
         <activity android:name=".ui.lectureRegist.ChargePopupActivity">
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        </activity>
 
 
         <!-- 강의 설명 팝업 Activity -->
