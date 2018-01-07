@@ -5,6 +5,7 @@ import org.appjam.comman.network.data.CardData
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.LoginData
 import org.appjam.comman.network.data.QuizData
+import org.appjam.comman.network.data.SearchedCoursesData
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -30,7 +31,9 @@ object APIClient {
 
     interface APIService {
 
+        //수강중인 강좌
         @GET("/users/main/progressLecture/{userID}")
+
         fun getRegisteredCourses(@Path("userID") email : String) : Observable<CoursesData.CoursesResponse>
 
         @POST("/users/insert_user_info")
@@ -41,5 +44,13 @@ object APIClient {
 
         @GET("/content/lecturepicture/{lectureID]")
         fun getLectureCards(@Path("lectureID") lectureID : Int) : Observable<CardData.CardResponse>
+        fun getRegisteredCourses(@Path("userID") userId: Int) : Observable<CoursesData.CoursesResponse>
+
+        //강좌검색
+        @POST("/search/courses")
+        fun getSearchedCourses(
+//                @Header("authorization") tokenValue : String,
+                @Body searchPost : SearchedCoursesData.SearchedcoursesPost
+        ) : Observable<SearchedCoursesData.SearchedCoursesResponse>
     }
 }

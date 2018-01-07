@@ -17,14 +17,17 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
+
         <activity android:name=".ui.lecture.LectureListActivity"/>
         <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
         <activity android:name="org.appjam.comman.ui.quiz.QuizActivity"
                    android:theme="@style/NoActionBar"/>
 
+        <activity android:name=".ui.card.CardActivity" />
+
+
         <activity android:name=".ui.main.MainActivity"
-                android:theme="@style/NoActionBar">
-        </activity>
+            android:theme="@style/NoActionBar"/>
 
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
 
@@ -41,7 +44,17 @@
             android:name="LectureVideo1Activity"/>
 
         <!-- 퀴즈 채점 결과 Activity -->
-        <activity android:name=".ui.quiz.QuizResultActivity"></activity>
+        <activity android:name=".ui.quiz.QuizResultActivity" />
+
+        <!-- 퀴즈 해설 팝업 Activity -->
+        <activity android:name=".ui.quiz.PopupExplainActivity"
+            android:theme="@style/Theme.PopUp" />
+
+        <!-- 강의 결제 팝업 Activity -->
+        <activity android:name=".ui.lectureRegist.ChargePopupActivity"/>
+
+
+        <service android:name=".ui.lecture.LectureVideoService" />
 
         <!-- 강의 설명 팝업 Activity -->
         <activity
@@ -49,17 +62,12 @@
             android:theme="@style/Theme.PopUp" >
         </activity>
 
-        <!-- 강의 결제 팝업 Activity -->
-        <activity android:name="org.appjam.comman.ChargePopupActivity"/>
-
-
         <service android:name=".ui.lecture.LectureVideoService" />
 
-         <!-- 등록 팝업 Activity -->
-         <activity android:name=".EnrollPopupActivity"
-         android:theme="@style/Theme.PopUp"></activity>
-
-        <activity android:name=".ui.card.CardActivity" />
+        <!--등록 팝업 Activity -->
+        <activity
+            android:name=".ui.lectureRegist.EnrollPopupActivity"
+            android:theme="@style/Theme.PopUp" />
 
     </application>
 </manifest>

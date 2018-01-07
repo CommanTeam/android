@@ -70,6 +70,8 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
             itemView.lecture_subsection_chapterlist_totalnum_tv.text = chapterListData!![position].totalNumber
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chapterListData!![position].content
 
+            if(position==0)
+            itemView.lecture_subsection_lock_layout.visibility=View.GONE
         }
     }
     inner class FooterViewHolder(itemView:View):RecyclerView.ViewHolder(itemView)
@@ -122,7 +124,5 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
             else -> ListUtils.TYPE_ELEM
 
         }
-
-
     }
 }

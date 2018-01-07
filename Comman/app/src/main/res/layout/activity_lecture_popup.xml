@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="387dp"
+    android:layout_width="match_parent"
     android:layout_height="560dp"
     android:orientation="vertical"
     tools:context="org.appjam.comman.ui.lectureSubsection.LectureSubPopupActivity">
-    
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
         android:layout_marginLeft="29dp"
         android:layout_marginRight="29dp"
         android:layout_marginTop="29dp"
@@ -26,7 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/lecturePopup_title_tv"
                 android:layout_width="wrap_content"
@@ -49,9 +47,7 @@
                 android:text="강사명"
                 android:textColor="@color/grayMainTextColor"
                 android:textSize="18sp" />
-
         </LinearLayout>
-
     </LinearLayout>
 
     <View
@@ -65,23 +61,20 @@
         android:layout_width="387dp"
         android:layout_height="317dp"
         android:orientation="vertical">
-
-
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="29dp"
-                android:layout_marginRight="29dp"
-                android:layout_marginTop="19dp">
+                android:layout_marginRight="29dp">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/lecture_popup_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scrollbars="vertical"
+                    android:scrollbarSize="6dp"
                     android:scrollbarStyle="outsideInset"
-                    android:scrollbarSize="5dp"/>
+                    android:scrollbars="vertical"/>
             </LinearLayout>
 
     </LinearLayout>
@@ -94,7 +87,6 @@
             android:id="@+id/lecture_popup_btn"
             android:layout_width="96dp"
             android:layout_height="36dp"
-            android:background="@color/primaryColor"
             android:layout_marginLeft="260dp"
             android:layout_marginRight="29dp"
             android:layout_marginTop="30dp"
@@ -102,6 +94,7 @@
             android:text="닫기"
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
+            android:background="@color/primaryColor"
             android:textColor="@color/white"/>
     </LinearLayout>
 
