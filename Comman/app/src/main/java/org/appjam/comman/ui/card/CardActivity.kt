@@ -7,9 +7,14 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_card.*
 import org.appjam.comman.R
+import org.appjam.comman.network.APIClient
+import org.appjam.comman.ui.main.MyCourseFragment
 import org.appjam.comman.util.SetColorUtils
+import org.appjam.comman.util.setDefaultThreads
 
 /**
  * Created by KSY on 2017-12-31.
@@ -18,6 +23,7 @@ import org.appjam.comman.util.SetColorUtils
 class CardActivity : AppCompatActivity() {
 
     var pagePosition : Int = 0
+    private val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +70,19 @@ class CardActivity : AppCompatActivity() {
             card_view_pager.currentItem = card_view_pager.currentItem + 1
         }
 
+//        d
+        disposables.add(APIClient.apiService.getLectureCards(1, 1))
+
+
+        disposables.add(APIClient.apiService.getRegisteredCourses(1)
+                .setDefaultThreads()
+                .subscribe ({
+                    response ->
+                    recyclerView.adapter = MyCourseFragment.MyLectureAdapter(response.result)
+                }, {
+                    failure -> Log.i(MyCourseFragment.TAG, "on Failure ${failure.message}")
+                })
+        )
     }
 
     inner class CardPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm){

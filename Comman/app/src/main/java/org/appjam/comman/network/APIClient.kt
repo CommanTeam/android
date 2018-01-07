@@ -1,6 +1,7 @@
 package org.appjam.comman.network
 
 import io.reactivex.Observable
+import org.appjam.comman.network.data.CardData
 import org.appjam.comman.network.data.CoursesData
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -27,5 +28,9 @@ object APIClient {
 
         @GET("/users/main/progressLecture/{userID}")
         fun getRegisteredCourses(@Path("userID") userId: Int) : Observable<CoursesData.CoursesResponse>
+
+        @GET("/content/lecturepicture/lectureimgUrl?courseID={courseID}&lectureID={lectureID}")
+        fun getLectureCards(@Path("courseID") courseID: Int,
+                            @Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
     }
 }

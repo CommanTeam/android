@@ -9,28 +9,10 @@
     android:orientation="vertical"
     tools:context="org.appjam.comman.ui.lectureRegist.ChargePopupActivity">
 
-<<<<<<< HEAD
-
-        <LinearLayout
-            android:layout_width="match_parent"
-=======
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="54dp"
-            android:layout_height="54dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="140dp"
-            android:layout_marginRight="140dp"
-            android:layout_marginTop="32dp"
-            android:src="@drawable/enrollment_charge_check_icon" />
-        <TextView
-            android:layout_width="wrap_content"
->>>>>>> lectureSubsection_마진_변경
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
             <ImageView
                 android:layout_gravity="center_horizontal"
@@ -62,21 +44,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:layout_marginBottom="36dp"
         android:layout_marginRight="29dp"
         android:layout_marginLeft="29dp"
         android:layout_marginTop="27dp"
         android:orientation="vertical">
 
-=======
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp">
->>>>>>> lectureSubsection_마진_변경
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
             android:orientation="horizontal">
 
             <TextView
@@ -86,28 +62,15 @@
                 android:text="강좌명"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
-
-=======
-            android:text="강좌명"
-            android:fontFamily="@font/nanum_square_bold"
-            android:textSize="16sp"
-            android:textColor="@color/mainTextColor" />
->>>>>>> lectureSubsection_마진_변경
             <TextView
                 android:id="@+id/charge_title_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_bold"
-<<<<<<< HEAD
                 android:text="[Rhino] 반지 모델링하기"
-                android:textAlignment="viewEnd"
+                android:gravity="end"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
-=======
-                android:gravity="end"
-                android:textSize="16sp"
-                android:textColor="@color/mainTextColor" />
->>>>>>> lectureSubsection_마진_변경
         </LinearLayout>
 
         <LinearLayout
@@ -115,7 +78,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:orientation="horizontal">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -124,27 +86,22 @@
                 android:text="결제금액"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
-
             <TextView
                 android:id="@+id/charge_price_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="8,8000원"
-                android:textAlignment="viewEnd"
+                android:gravity="end"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
-
         </LinearLayout>
-
     </LinearLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="98dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-
         <Button
             android:id="@+id/charge_ok_btn"
             android:layout_width="111dp"
@@ -155,9 +112,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
-            android:text="결제하기"
-            />
-
+            android:text="결제하기"/>
         <Button
             android:id="@+id/charge_close_btn"
             android:layout_width="96dp"
@@ -170,7 +125,6 @@
             android:background="@color/primaryColor"
             android:layout_marginRight="29dp"/>
     </RelativeLayout>
-
 </LinearLayout>
 
 
