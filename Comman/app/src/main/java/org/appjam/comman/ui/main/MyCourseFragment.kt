@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,11 +14,9 @@ import kotlinx.android.synthetic.main.course_watching_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
 import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
-import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
-import org.appjam.comman.util.setDefaultThreads
 
 /**
  * Created by RyuDongIl on 2018-01-02.
@@ -50,15 +47,15 @@ class MyCourseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.main_my_lecture_rv
         recyclerView.layoutManager = LinearLayoutManager(context)
-        disposables.add(APIClient.apiService.getRegisteredCourses(1)
-                .setDefaultThreads()
-                .subscribe ({
-                    response ->
-                        recyclerView.adapter = MyLectureAdapter(response.result)
-                }, {
-                    failure -> Log.i(TAG, "on Failure ${failure.message}")
-                })
-        )
+//        disposables.add(APIClient.apiService.getRegisteredCourses(1)
+//                .setDefaultThreads()
+//                .subscribe ({
+//                    response ->
+//                        recyclerView.adapter = MyLectureAdapter(response.result)
+//                }, {
+//                    failure -> Log.i(TAG, "on Failure ${failure.message}")
+//                })
+//        )
     }
 
     inner class MyLectureAdapter(private val courseInfoList: List<CoursesData.CourseInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
