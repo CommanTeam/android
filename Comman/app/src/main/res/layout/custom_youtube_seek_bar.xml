@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/CustomProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/progressBackgroundColor"
+        />
+    <ImageView
+        android:id="@+id/seekBarThumb"
+        android:layout_height="15dp"
+        android:layout_width="15dp"
+        android:src="@drawable/custom_youtube_seek_bar_thumb"
+        />
+
+</RelativeLayout>
