@@ -184,5 +184,9 @@ class LoginActivity : AppCompatActivity() {
         disposables.clear()
         super.onDestroy()
     }
+
+    override fun onBackPressed() {
+        finish()
+    }
 }
 
