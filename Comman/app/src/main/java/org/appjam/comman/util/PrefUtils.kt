@@ -18,9 +18,6 @@ object PrefUtils {
     fun getUserToken(context: Context): String {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val userToken = pref.getString(USER_TOKEN, "")
-//        if (userToken == "") {
-//            throw RuntimeException("user token is null. Please check login process")
-//        }
         return userToken
     }
 
@@ -46,6 +43,32 @@ object PrefUtils {
         editor.putInt(POSITION, position)
         editor.apply()
         editor.commit()
+    }
+
+    fun putLectureOfCourseID(context: Context, lectureID: Int, courseID: Int) {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt(courseID.toString(), lectureID)
+        editor.apply()
+        editor.commit()
+    }
+
+    fun putLectureOfCoursePosition(context: Context, position: Int, courseID: Int) {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt(courseID.toString(), position)
+        editor.apply()
+        editor.commit()
+    }
+
+    fun getRecentLectureOfCourseID(context: Context, courseID: Int) : Int {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        return pref.getInt(courseID.toString(), -1)
+    }
+
+    fun getRecentLectureOfCoursePosition(context: Context, courseID: Int) : Int {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        return pref.getInt(courseID.toString(), -1)
     }
 
     fun putYoutubeCurrentTime(context: Context, youtubePlayer: YouTubePlayer) {
