@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
-import org.appjam.comman.ui.main.MainActivity
+import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 import java.security.MessageDigest
@@ -94,8 +94,12 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "인터넷 연결을 확인해주세요", Toast.LENGTH_SHORT).show()
                 }
             }
-
-            !isConnected
+            if(isConnected) {
+                false
+            }
+            else {
+                true
+            }
         }
 
         if(Session.getCurrentSession().isOpened){
@@ -129,8 +133,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun requestMe() {
-        login_splashTitle_layout.visibility = View.VISIBLE
-
 
         UserManagement.requestMe(object : MeResponseCallback() {
             override fun onFailure(errorResult: ErrorResult?) {
@@ -155,21 +157,16 @@ class LoginActivity : AppCompatActivity() {
                         .setDefaultThreads()
                         .subscribe ({
                             response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
-                            Toast.makeText(this@LoginActivity,response.token, Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                            Log.e("token", response.token)
+                            val intent = Intent(this@LoginActivity, QuizActivity::class.java)
+                            //task(stack이 모여 형성하는 작업의 단위)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK) // 기존에 쌓여있던 스택을 모두 삭제
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK) // task를 새로 생성
                             startActivity(intent)
                         }, {
                             failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
                         })
-                )
-
-                //성공하면 MainActivity로 이동
-                //프로필 이미지 url과 이메일 값 디비에 삽입하기
-
-                //싱글탑, 클리어탑 고민
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
+                        )
             }
 
             override fun onNotSignedUp() {
