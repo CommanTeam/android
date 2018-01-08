@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
-import org.appjam.comman.ui.CourseSubsection.LectureSubActivity
+import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 import java.security.MessageDigest
@@ -163,7 +163,7 @@ class LoginActivity : AppCompatActivity() {
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
 
-                                val intent = Intent(this@LoginActivity, LectureSubActivity::class.java)
+                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)
@@ -175,7 +175,7 @@ class LoginActivity : AppCompatActivity() {
                             .setDefaultThreads()
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
-                                val intent = Intent(this@LoginActivity, LectureSubActivity::class.java)
+                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
                                 startActivity(intent)
                             }, {

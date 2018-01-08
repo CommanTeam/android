@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context="org.appjam.comman.ui.CourseSubsection.LectureSubActivity">
+    tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubActivity">
 //위에 activity 바꾸기
     <LinearLayout
         android:id="@+id/lecture_subsection_top_layout"

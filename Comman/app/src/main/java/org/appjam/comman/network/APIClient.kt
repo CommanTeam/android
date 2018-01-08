@@ -88,12 +88,13 @@ object APIClient {
                 @Header("authorization") tokenVale : String
         ) : Observable<CategoryData.CategoryResponse>
 
-        //Popup Title 정보
-        @GET("/content/courses")
+        //강좌별 챕터정보
+        @GET("/content/courses/")
         fun getPopupTitleInfos(@Header("authorization")tokenValue: String, @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
-        //Popup Content 정보
-        @GET("/content/courses")
-        fun getPopupContentInfos(@Header("authorization")tokenValue: String, @Query("courseID") courseID :Int) :Observable<PopupData.PopupContentResponse>
+
+        //강좌id로 강좌정보 가져오기
+        @GET("/content/courses/{courseID}/chapters")
+        fun getPopupContentInfos(@Header("authorization")tokenValue: String, @Path("courseID") cour0seID :Int) :Observable<PopupData.PopupContentResponse>
         //카테고리 검색 결과
         @GET("/search/courses/categories/{categoryID}")
         fun getLecturesOfCategory(

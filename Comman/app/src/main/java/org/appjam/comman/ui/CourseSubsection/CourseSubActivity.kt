@@ -17,7 +17,7 @@ import org.appjam.comman.util.ListUtils
 /**
  * Created by KSY on 2018-01-03.
  */
-class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
+class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
 
     }
@@ -37,13 +37,8 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
-<<<<<<< HEAD:Comman/app/src/main/java/org/appjam/comman/ui/CourseSubsection/LectureSubActivity.kt
         chapterList = lecture_subsection_list_view
         chapterList!!.layoutManager = LinearLayoutManager(this)
-=======
-        chapterList=lecture_subsection_list_view
-        chapterList!!.layoutManager=LinearLayoutManager(this)
->>>>>>> master:Comman/app/src/main/java/org/appjam/comman/ui/CourseSubsection/CourseSubActivity.kt
 
         chapterListData.add(ChapterListData(1, "1장", "반지 모델링 하기", "총 16강"))
         chapterListData.add(ChapterListData(2, "2장", "반지 모델링 하기", "총 16강"))
@@ -59,7 +54,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(position: Int) {
             itemView.lecture_subsection_course_popup_layout.setOnClickListener {
-                val intent = Intent(applicationContext, LectureSubPopupActivity::class.java)
+                val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
                 intent.putExtra("courseID", chapterListData!![position].id)
                 startActivity(intent)
             }
@@ -76,19 +71,14 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
             itemView.lecture_subsection_chapterlist_totalnum_tv.text = chapterListData!![position].totalNumber
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chapterListData!![position].content
             itemView.setOnClickListener {
-                val intent = Intent(this@LectureSubActivity, LectureListActivity::class.java)
+                val intent = Intent(this@CourseSubActivity, LectureListActivity::class.java)
                 intent.putExtra("chapterID", chapterListData!![position].id)
                 //intent.putExtra("chapterID", chapterListData!![position].id)
                 startActivity(intent)
             }
 
-<<<<<<< HEAD:Comman/app/src/main/java/org/appjam/comman/ui/CourseSubsection/LectureSubActivity.kt
             if (position == 0)
                 itemView.lecture_subsection_lock_layout.visibility = View.GONE
-=======
-            if(position==0)
-                itemView.lecture_subsection_lock_layout.visibility=View.GONE
->>>>>>> master:Comman/app/src/main/java/org/appjam/comman/ui/CourseSubsection/CourseSubActivity.kt
         }
     }
 
