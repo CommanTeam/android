@@ -51,7 +51,7 @@ class MyCourseFragment : Fragment() {
 //                .setDefaultThreads()
 //                .subscribe ({
 //                    response ->
- //                       recyclerView.adapter = MyLectureAdapter(response.result)
+//                        recyclerView.adapter = MyLectureAdapter(response.result)
 //                }, {
 //                    failure -> Log.i(TAG, "on Failure ${failure.message}")
 //                })

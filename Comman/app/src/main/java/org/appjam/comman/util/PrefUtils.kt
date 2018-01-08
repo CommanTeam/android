@@ -1,7 +1,6 @@
 package org.appjam.comman.util
 
 import android.content.Context
-import android.util.Log
 import com.google.android.youtube.player.YouTubePlayer
 import com.kakao.usermgmt.response.model.UserProfile
 
@@ -27,7 +26,6 @@ object PrefUtils {
     fun putUserToken(context: Context, token: String) {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val editor = pref.edit()
-        Log.e("Here token value", token)
         editor.putString(USER_TOKEN, token)
         editor.apply()
         editor.commit()

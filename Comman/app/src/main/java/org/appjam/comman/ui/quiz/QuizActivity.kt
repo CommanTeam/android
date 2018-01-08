@@ -4,19 +4,13 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
-import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_quiz.*
 import org.appjam.comman.R
-import org.appjam.comman.network.APIClient
-import org.appjam.comman.network.data.QuizData
-import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SetColorUtils
-import org.appjam.comman.util.setDefaultThreads
 
 class QuizActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -24,34 +18,17 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
         val TAG = "QuizActivity"
     }
 
-    interface NetworkParsedListener {
-        fun onNext()
-    }
-
-
     override fun onClick(p0: View?) {
 
     }
 
-    private val disposables = CompositeDisposable()
-    var quizInfoList: List<QuizData.QuizInfo> = listOf()
-
     var pagePosition : Int = 0
-    var viewPager: ViewPager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
-        viewPager = quiz_view_pager
 
-        disposables.add(APIClient.apiService.getQuizResult(PrefUtils.getUserToken(this), 1)
-                .setDefaultThreads()
-                .subscribe ({
-                    response -> quizInfoList = response.result
-                    quiz_view_pager.adapter = QuizPagerAdapter(supportFragmentManager)
-                }, {failure -> Log.i(QuizQuestionFragment.TAG, "on Failure ${failure.message}")
-                })
-        )
+        quiz_view_pager.adapter = QuizPagerAdapter(supportFragmentManager)
 
         quiz_view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -94,18 +71,16 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    inner class QuizPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    inner class QuizPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
         override fun getItem(position: Int): Fragment {
             return if (position < count - 1) {
-                val bundle = Bundle()
-                bundle.putInt("position", position)
-                val fragment = QuizQuestionFragment()
-                fragment.arguments = bundle
-                fragment
+                QuizQuestionFragment()
             } else {
                 QuizSubmitFragment()
             }
         }
-        override fun getCount(): Int = quizInfoList.size + 1
+
+        override fun getCount(): Int = 10
+
     }
 }
