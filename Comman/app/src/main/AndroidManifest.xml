@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.appjam.comman">
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -17,28 +16,30 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
+        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
 
-        <activity android:name=".ui.lecture.LectureListActivity"/>
-        <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
-        <activity android:name="org.appjam.comman.ui.quiz.QuizActivity"
-                   android:theme="@style/NoActionBar"/>
-
-        <activity android:name=".ui.card.CardActivity" />
-
-
-        <activity android:name=".ui.main.MainActivity"
+        <activity android:name=".youtube.YoutubePracticeActivity"
             android:theme="@style/NoActionBar"/>
+
+        <activity android:name=".ui.lecture.LectureListActivity" />
+
 
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
 
-        <activity android:name=".ui.user.LoginActivity"
-        android:label="@string/app_name"
-        android:theme="@style/AppBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+        <activity android:name=".ui.main.MainActivity"/>
+
+
+        <activity
+            android:name=".ui.user.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+
+        <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
 
         <activity
             android:name="LectureVideo1Activity"/>
@@ -47,24 +48,29 @@
         <activity android:name=".ui.quiz.QuizResultActivity" />
 
         <!-- 퀴즈 해설 팝업 Activity -->
-        <activity android:name=".ui.quiz.PopupExplainActivity"
+        <activity
+            android:name=".ui.quiz.PopupExplainActivity"
             android:theme="@style/Theme.PopUp" />
 
         <!-- 강의 결제 팝업 Activity -->
-        <activity android:name=".ui.lectureRegist.ChargePopupActivity"/>
-
+        <activity android:name=".ui.lectureRegist.ChargePopupActivity">
+        </activity>
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
         <!-- 강의 설명 팝업 Activity -->
         <activity
             android:name=".ui.lectureSubsection.LectureSubPopupActivity"
-            android:theme="@style/Theme.PopUp" >
+            android:theme="@style/Theme.PopUp">
+
         </activity>
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
         <!--등록 팝업 Activity -->
+        <activity
+            android:name=".ui.lectureRegist.LectureRegistActivity"
+            android:theme="@style/Theme.PopUp" />
         <activity
             android:name=".ui.lectureRegist.EnrollPopupActivity"
             android:theme="@style/Theme.PopUp" />

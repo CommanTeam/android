@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/course_result_recyclerview"
+            android:id="@+id/course_result_recyclerview"
         android:layout_marginLeft="@dimen/dp_change16_19"
         android:layout_marginRight="@dimen/dp_change16_19"
         android:layout_width="wrap_content"
