@@ -17,4 +17,17 @@ object CoursesData {
             val myCourseAlarm : String
     )
 
+    data class CourseMetaResponse(val result: List<CourseMetadata>)
+
+    data class CourseMetadata(val id: Int,
+                              val supplier_id: Int,
+                              val opened_chapter: Int,
+                              val image_path: String,
+                              val name: String,
+                              val title: String,
+                              val info: String,
+                              val price: Int,
+                              val category_id: Int)
+
+
 }

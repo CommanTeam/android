@@ -41,8 +41,6 @@ class LectureSubPopupActivity : AppCompatActivity() {
         }
     }
 
-
-
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         //바깥 레이어 클릭시 안닫히게 한다.
         if (MotionEvent.ACTION_OUTSIDE == event!!.action) {
@@ -77,7 +75,7 @@ class LectureSubPopupActivity : AppCompatActivity() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): LecturePopupViewHolder {
-            val mainView : View = LayoutInflater.from(parent!!.context).inflate(R.layout.lecture_popup_items, parent, false)
+            val mainView : View = LayoutInflater.from(parent!!.context).inflate(R.layout.activity_lecture_popup, parent, false)
 
             return LecturePopupViewHolder(mainView)
         }
