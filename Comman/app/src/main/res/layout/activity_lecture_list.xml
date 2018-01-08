@@ -12,7 +12,7 @@
         android:id="@+id/lecture_list"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="21dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

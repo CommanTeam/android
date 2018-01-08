@@ -4,14 +4,20 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.category_information_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_search_category.view.*
 import org.appjam.comman.R
+import org.appjam.comman.network.APIClient
+import org.appjam.comman.network.data.CategoryData
 import org.appjam.comman.util.ListUtils
+import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SpaceItemDecoration
+import org.appjam.comman.util.setDefaultThreads
 
 /**
  * Created by junhoe on 2017. 12. 31..
@@ -19,6 +25,9 @@ import org.appjam.comman.util.SpaceItemDecoration
 class SearchCategoryFragment : Fragment() {
 
     private val categoryItemList = mutableListOf<CategoryItem>()
+    private var categoryInfoList : List<CategoryData.CategoryInfo> = listOf()
+    private val disposables = CompositeDisposable()
+
     data class CategoryItem(val name: String)
 
     init {
@@ -46,6 +55,16 @@ class SearchCategoryFragment : Fragment() {
                                 = if ((recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_HEADER) or
                                 (recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_FOOTER)) 2 else 1
                     }
+
+        disposables.add(APIClient.apiService.getCategoryInfos(PrefUtils.getUserToken(context))
+                .setDefaultThreads()
+                .subscribe({
+                    response -> categoryInfoList = response.result
+                                recyclerView.adapter.notifyDataSetChanged()
+                }, {
+                    failure -> Log.i(MyCourseFragment.TAG, "on Failure ${failure.message}")
+                }))
+
     }
 
     inner class CategoryAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -62,7 +81,7 @@ class SearchCategoryFragment : Fragment() {
             }
         }
 
-        override fun getItemCount() = categoryItemList.size + 2
+        override fun getItemCount() = categoryInfoList.size + 2
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
@@ -84,7 +103,12 @@ class SearchCategoryFragment : Fragment() {
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
         fun bind(position: Int) {
-            itemView.categoryContent_tv.text = categoryItemList[position].name
+            itemView.categoryTitle_tv.text = categoryInfoList[position].categoryName
+            var categoryContent = ""
+            for (title in categoryInfoList[position].title) {
+                categoryContent += (title + ", ")
+            }
+            itemView.categoryContent_tv.text = categoryContent
         }
     }
     inner class FootViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

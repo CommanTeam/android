@@ -5,29 +5,167 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/video_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:background="@color/primaryColor">
+
+        <Button
+            android:id="@+id/video_back_btn"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="19dp"
+            android:background="@drawable/title_back_btn"
+            android:backgroundTint="#ffffff"
+            android:layout_width="13dp"
+            android:layout_height="19dp"/>
+
+        <TextView
+            android:id="@+id/video_lecture_name_tv"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01. 필렛 넣기"
+            android:fontFamily="@font/nanum_square_bold"
+            android:textSize="21sp"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/video_top2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/video_top_layout">
+
+        <TextView
+            android:id="@+id/video_lecture_name2_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="01. 필렛 넣기"
+            android:textColor="@color/mainTextColor"
+            android:textSize="21sp" />
+
+        <Button
+            android:id="@+id/video_full_screen_btn"
+            android:layout_width="79dp"
+            android:layout_height="29dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="19dp"
+            android:background="@drawable/video_full_screen_btn_bg"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="크게보기"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+
+
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/practice_lectureVideo_youtube_playerView"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:layout_below="@+id/video_top2_layout">
 
     </com.google.android.youtube.player.YouTubePlayerView>
-
-    <org.appjam.comman.custom.CustomSeekBar
-        android:id="@+id/youtube_progress_bar"
+    
+    <RelativeLayout
+        android:id="@+id/youtube_bottom_bar_layout"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/practice_lectureVideo_youtube_playerView"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
-        />
+        android:background="#525252">
+
+        <org.appjam.comman.custom.CustomSeekBar
+            android:id="@+id/youtube_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_marginTop="2dp"
+            />
+        
+        <Button
+            android:id="@+id/youtube_playing_btn"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_below="@id/youtube_progress_bar"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/video_new_play_btn"
+            />
+
+        <Button
+            android:id="@+id/youtube_pause_btn"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_below="@id/youtube_progress_bar"
+            android:layout_toRightOf="@+id/youtube_playing_btn"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="13dp"
+            android:background="@drawable/video_new_pause_btn"
+            />
+        
+        <TextView
+            android:id="@+id/youtube_current_time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/youtube_progress_bar"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="19dp"
+            android:text="7 : 10 / 10 : 56"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanum_square_regular"
+            />
+
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/youtube_current_time_text"
-        android:layout_width="wrap_content"
+        android:id="@+id/lectureVideo_content_tv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="현재 진행 시간"
-        android:textSize="20sp"
+        android:layout_below="@id/youtube_bottom_bar_layout"
+        android:layout_marginTop="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:text="라이노 위주의 툴 수업이며...블라블라블라블라..."
+        android:textSize="19sp"
+        android:textColor="@color/pageCountTextColor"
+        android:fontFamily="@font/nanum_square_regular"
         />
+
+    <View
+        android:id="@+id/divide_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/lectureVideo_content_tv"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/divideLineColor"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/video_lecture_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/divide_line"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp">
+
+    </android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>
