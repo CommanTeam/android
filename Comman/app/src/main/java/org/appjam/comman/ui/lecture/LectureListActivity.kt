@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.chapter_explanation_item.view.*
 import kotlinx.android.synthetic.main.lecture_list_item.view.*
 import org.appjam.comman.R
@@ -38,14 +37,11 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_list)
 
-        lectureList = lecture_list
+//        lectureList = lecture_list
         lectureList!!.layoutManager = LinearLayoutManager(this)
 
         chapterExpData = ChapterExpData("1장. 라이노 툴 다루기","티 스플라인을 사용하여 자연스")
         lectureData.add(LectureData(R.drawable.picture_icon,"28 페이지","01 필렛 넣기"))
-        lectureData.add(LectureData(R.drawable.video_icon,"10: 18","02 리볼브 하기"))
-        lectureData.add(LectureData(R.drawable.quiz_icon,"20 문제","03 챔퍼 넣기"))
-        lectureData.add(LectureData(R.drawable.picture_icon,"15 페이지","04 면만들기"))
 
         lectureAdapter = LectureAdapter(lectureData, chapterExpData)
 //        lectureAdapter!!.setOnItemClickListener(this)
@@ -62,7 +58,6 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener  {
         fun bind(position: Int) {
             //var lectureimage: ImageView = itemView!!.findViewById(R.id.lecture_list_img) as ImageView
             itemView.lecture_list_img.setImageResource(lectureData[position].lectureImage)
-            //var lecturenum: TextView = itemView!!.findViewById(R.id.lecture_list_num_tv) as TextView
             itemView.lecture_list_num_tv.text = lectureData[position].lectureNum
             //var lecturename: TextView = itemView!!.findViewById(R.id.lecture_list_name_tv) as TextView
             itemView.lecture_list_name_tv.text = lectureData[position].lectureName
