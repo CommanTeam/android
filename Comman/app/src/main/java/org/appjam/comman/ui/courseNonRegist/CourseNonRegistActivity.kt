@@ -1,4 +1,4 @@
-package org.appjam.comman.ui.lectureRegist
+package org.appjam.comman.ui.courseNonRegist
 
 import android.content.Intent
 import android.os.Bundle
@@ -18,7 +18,7 @@ import org.appjam.comman.util.ListUtils
 /**
  * Created by KSY on 2018-01-04.
  */
-class LectureRegistActivity: AppCompatActivity(), View.OnClickListener {
+class CourseNonRegistActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
 
     }

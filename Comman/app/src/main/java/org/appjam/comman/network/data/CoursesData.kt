@@ -7,10 +7,12 @@ object CoursesData {
 
     data class CoursesResponse(val result : List<CourseInfo>)
 
-    data class CourseInfo(val courseTitle: String,
-                          val courseImage: String,
-                          val chapterCnt: Int,
-                          val progressPercentage: Int)
+    data class CourseInfo(
+            val courseID : Int,
+            val courseTitle : String,
+            val courseImage: String,
+            val chapterCnt: Int,
+            val progressPercentage: Int)
 
     data class MyCourseAlarmItem(
             val myCourseProfile : Int,
@@ -28,6 +30,10 @@ object CoursesData {
                               val info: String,
                               val price: Int,
                               val category_id: Int)
+
+    data class CheckRegistered(
+            val result : Int
+    )
 
 
 }
