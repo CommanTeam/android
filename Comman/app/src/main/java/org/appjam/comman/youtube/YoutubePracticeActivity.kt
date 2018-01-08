@@ -8,6 +8,7 @@ import com.google.android.youtube.player.YouTubePlayer
 import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import org.appjam.comman.R
 import org.appjam.comman.custom.CustomSeekBar
+import org.appjam.comman.util.TimeUtils
 import java.util.*
 
 
@@ -26,14 +27,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-    }
-
-    private fun formatTime(millis: Int): String {
-        val seconds = millis / 1000
-        val minutes = seconds / 60
-        val hours = minutes / 60
-
-        return (if (hours != 0) hours.toString() + " : " else "") + String.format("%02d : %02d", minutes % 60, seconds % 60)
     }
 
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
@@ -58,8 +51,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         override fun run() {
                             if (player.isPlaying) {
                                 runOnUiThread {
-                                    val current_time = formatTime(player.currentTimeMillis)
-                                    val duration_time = formatTime(player.durationMillis)
+                                    val current_time = TimeUtils.formatTime(player.currentTimeMillis)
+                                    val duration_time = TimeUtils.formatTime(player.durationMillis)
                                     youtube_current_time_tv.text = "$current_time / $duration_time"
                                     youtube_progress_bar.progress = player.currentTimeMillis
                                     youtube_progress_bar.setSeekBarListener(object: CustomSeekBar.CustomSeekBarListener {
