@@ -1,6 +1,7 @@
 package org.appjam.comman.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -16,6 +17,8 @@ import kotlinx.android.synthetic.main.search_result_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CategoryData
+import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
+import org.appjam.comman.ui.courseNonRegist.CourseNonRegistActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
@@ -25,7 +28,7 @@ import org.appjam.comman.util.setDefaultThreads
  */
 class SearchCategoryResultFragment : Fragment() {
 
-    private var lecturesInfo : List<CategoryData.LecturesOfCategory> = listOf()
+    private var coursesInfo: List<CategoryData.CoursesOfCategory> = listOf()
     private val disposables = CompositeDisposable()
 
     companion object {
@@ -49,7 +52,7 @@ class SearchCategoryResultFragment : Fragment() {
             disposables.add(APIClient.apiService.getLecturesOfCategory(PrefUtils.getUserToken(context), categoryID)
                     .setDefaultThreads()
                     .subscribe({
-                        response -> lecturesInfo = response.result
+                        response -> coursesInfo = response.result
                         recyclerView.adapter.notifyDataSetChanged()
                     }, {
                         failure -> Log.i(TAG, "on Failure ${failure.message}")
@@ -59,13 +62,33 @@ class SearchCategoryResultFragment : Fragment() {
     }
 
     inner class ElemViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
+        @SuppressLint("LongLogTag")
         fun bind(position: Int){
             val aQuery = AQuery(context)
-            aQuery.id(itemView.course_result_img).image(lecturesInfo[position].image_path)
-            itemView.course_title_tv.text = lecturesInfo[position].title
-            itemView.course_content_tv.text = lecturesInfo[position].info
-            val hit =lecturesInfo[position].hit
+            aQuery.id(itemView.course_result_img).image(coursesInfo[position].image_path)
+            itemView.course_title_tv.text = coursesInfo[position].title
+            itemView.course_content_tv.text = coursesInfo[position].info
+            val hit = coursesInfo[position].hit
             itemView.course_people_tv.text = "$hit 명이 수강중입니다"
+
+            disposables.add(APIClient.apiService.checkRegisterCourse(
+                    PrefUtils.getUserToken(context), coursesInfo[position].id)
+                    .setDefaultThreads()
+                    .subscribe({
+                        response ->
+                        if(response.result == 1) {
+                            val intent = Intent(context, CourseSubActivity::class.java)
+                            intent.putExtra("courseID", coursesInfo[position].id)
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(context, CourseNonRegistActivity::class.java)
+                            intent.putExtra("courseID", coursesInfo[position].id)
+                            startActivity(intent)
+                        }
+                    }, {
+                        failure -> Log.i(TAG, "on Failure ${failure.message}")
+                    }))
+
         }
     }
     inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -91,7 +114,7 @@ class SearchCategoryResultFragment : Fragment() {
             else ListUtils.TYPE_ELEM
         }
 
-        override fun getItemCount() = lecturesInfo.size + 1
+        override fun getItemCount() = coursesInfo.size + 1
 
         @SuppressLint("NewApi")
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {

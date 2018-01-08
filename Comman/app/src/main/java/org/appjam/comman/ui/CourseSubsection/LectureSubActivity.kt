@@ -37,8 +37,13 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
+<<<<<<< HEAD:Comman/app/src/main/java/org/appjam/comman/ui/CourseSubsection/LectureSubActivity.kt
         chapterList = lecture_subsection_list_view
         chapterList!!.layoutManager = LinearLayoutManager(this)
+=======
+        chapterList=lecture_subsection_list_view
+        chapterList!!.layoutManager=LinearLayoutManager(this)
+>>>>>>> master:Comman/app/src/main/java/org/appjam/comman/ui/CourseSubsection/CourseSubActivity.kt
 
         chapterListData.add(ChapterListData(1, "1장", "반지 모델링 하기", "총 16강"))
         chapterListData.add(ChapterListData(2, "2장", "반지 모델링 하기", "총 16강"))
@@ -77,8 +82,13 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
 
+<<<<<<< HEAD:Comman/app/src/main/java/org/appjam/comman/ui/CourseSubsection/LectureSubActivity.kt
             if (position == 0)
                 itemView.lecture_subsection_lock_layout.visibility = View.GONE
+=======
+            if(position==0)
+                itemView.lecture_subsection_lock_layout.visibility=View.GONE
+>>>>>>> master:Comman/app/src/main/java/org/appjam/comman/ui/CourseSubsection/CourseSubActivity.kt
         }
     }
 
