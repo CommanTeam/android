@@ -5,6 +5,11 @@ package org.appjam.comman.network.data
  */
 object GreetingData {
     data class GreetingResponse(
-            val 
+            val result : GreetingResult
+    )
+
+    data class GreetingResult (
+            val ment : String,
+            val userImg : String
     )
 }
