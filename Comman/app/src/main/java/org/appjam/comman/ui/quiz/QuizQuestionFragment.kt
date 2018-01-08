@@ -9,14 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.choice_item.view.*
 import kotlinx.android.synthetic.main.fragment_quiz_choice.view.*
 import kotlinx.android.synthetic.main.quiz_content_item.view.*
 import org.appjam.comman.R
+import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.QuizData
 import org.appjam.comman.util.ListUtils
-import org.appjam.comman.util.SetColorUtils
+import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SpaceItemDecoration
+import org.appjam.comman.util.setDefaultThreads
 
 /**
  * Created by RyuDongIl on 2018-01-01.
@@ -34,6 +35,8 @@ class QuizQuestionFragment : Fragment() {
             val number: String,
             val content: String
     )
+
+    private var totalCnt : Int = 0;
     private var adapter : QuizAdapter? = null
 
 //    init {
@@ -56,6 +59,15 @@ class QuizQuestionFragment : Fragment() {
         val quizInfoList = (activity as QuizActivity).quizInfoList
         recyclerView?.adapter = QuizAdapter((activity as QuizActivity).quizInfoList[pagePostion])
         Log.i(TAG, "on View created ${pagePostion}")
+
+        disposables.add(APIClient.apiService.getQuizResult(PrefUtils.getUserToken(context), 1)
+                .setDefaultThreads()
+                .subscribe({ response ->
+                   totalCnt = response.result.size
+                }, { failure ->
+                    Log.i(QuizQuestionFragment.TAG, "on Failure ${failure.message}")
+                })
+        )
     }
 
     inner class QuizAdapter(var quizInfo: QuizData.QuizInfo?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -81,6 +93,7 @@ class QuizQuestionFragment : Fragment() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
                 (holder as QuizQuestionFragment.ElemViewHolder).bind(position - 1)
+
             } else if(holder?.itemViewType == ListUtils.TYPE_FOOTER) {
                 (holder as QuizQuestionFragment.FooterViewHolder)
             } else if(holder?.itemViewType == ListUtils.TYPE_HEADER) {
@@ -114,13 +127,13 @@ class QuizQuestionFragment : Fragment() {
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
         fun bind(position: Int) {
-            itemView.quiz_choice_number_tv.text = questionContentsList[position].number
-            itemView.quiz_choice_content_tv.text = questionContentsList[position].content
-            itemView.setOnClickListener {
-                itemView.quiz_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.primaryColor))
-                itemView.quiz_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.white))
-                itemView.quiz_choice_content_tv.setTextColor(SetColorUtils.get(context, R.color.white))
-            }
+//            itemView.quiz_choice_number_tv.text = question_Arr?.questionID.toString()
+//            itemView.quiz_choice_content_tv.text = question_Arr?.questionContent.toString()
+//            itemView.setOnClickListener {
+//                itemView.quiz_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.primaryColor))
+//                itemView.quiz_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.white))
+//                itemView.quiz_choice_content_tv.setTextColor(SetColorUtils.get(context, R.color.white))
+//            }
         }
     }
 
@@ -128,7 +141,8 @@ class QuizQuestionFragment : Fragment() {
         fun bind(quizInfo: QuizData.QuizInfo?) {
             Log.i(TAG, "on bind : $quizInfo")
             itemView.quiz_number_tv.text = "Q." + quizInfo?.quizID.toString()
-            itemView.quiz_count_btn.text = quizInfo?.quizPriority.toString()
+            itemView.quiz_count_btn.text = quizInfo?.quizPriority.toString() + " / " + totalCnt
+            itemView.quiz_question_tv.text = quizInfo?.explanation
         }
     }
 

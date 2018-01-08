@@ -148,7 +148,8 @@ class LoginActivity : AppCompatActivity() {
             override fun onSuccess(userProfile: UserProfile) {
                 Log.e("onSuccess", userProfile.toString())
                 var user_nickName = userProfile.nickname
-                var user_email = userProfile.email
+                var user_token = Session.getCurrentSession().tokenInfo.accessToken
+                Log.e("kakao", user_token)
                 lateinit var user_profile_img : String
 
                 if(userProfile.thumbnailImagePath != null)
@@ -158,7 +159,7 @@ class LoginActivity : AppCompatActivity() {
 
                 if(PrefUtils.getUserToken(this@LoginActivity) != null) {
                     disposables.add(APIClient.apiService.getPostToken(PrefUtils.getUserToken(this@LoginActivity),
-                                                                    LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
+                                     LoginData.LoginInfo(user_nickName, user_profile_img, user_token))
                             .setDefaultThreads()
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
@@ -171,7 +172,7 @@ class LoginActivity : AppCompatActivity() {
                                 failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
                             }))
                 } else {
-                    disposables.add(APIClient.apiService.getPostToken(LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
+                    disposables.add(APIClient.apiService.getPostToken(LoginData.LoginInfo(user_nickName, user_profile_img, user_token))
                             .setDefaultThreads()
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
