@@ -1,4 +1,4 @@
-package org.appjam.comman.ui.lectureRegist
+package org.appjam.comman.ui.courseNonRegist
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity

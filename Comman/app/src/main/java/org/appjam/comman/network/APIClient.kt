@@ -71,7 +71,7 @@ object APIClient {
         @POST("/search/courses")
         fun getSearchedCourses(
                 @Header("authorization") tokenValue : String,
-                @Body searchPost : SearchedCoursesData.SearchedcoursesPost
+                @Body searchPost : SearchedCoursesData.SearchedCoursesPost
         ) : Observable<SearchedCoursesData.SearchedCoursesResponse>
 
 
@@ -92,6 +92,13 @@ object APIClient {
         fun getLecturesOfCategory(
                 @Header("authorization") tokenValue: String,
                 @Path("categoryID") categoryID : Int
-        ) : Observable<CategoryData.LecturesOfCategoryResponse>
+        ) : Observable<CategoryData.CoursesOfCategoryResponse>
+
+        //유저별 강좌 등록 여부
+        @GET("/users/register/{courseID}")
+        fun checkRegisterCourse(
+                @Header("authorization") tokenValue: String,
+                @Path("courseID") courseID : Int
+        ) : Observable<CoursesData.CheckRegistered>
     }
 }

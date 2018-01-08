@@ -26,6 +26,10 @@ import org.appjam.comman.util.setDefaultThreads
  */
 class SearchFragment : Fragment(), View.OnClickListener {
 
+    companion object {
+        private val TAG = "SearchFragment"
+    }
+
     private val bundle = Bundle()
     private var textWatcher: TextWatcher? = null
     private val disposables = CompositeDisposable()
@@ -55,7 +59,7 @@ class SearchFragment : Fragment(), View.OnClickListener {
     inner class editTextWather : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
             disposables.add(APIClient.apiService.getSearchedCourses(
-                    PrefUtils.getUserToken(context), SearchedCoursesData.SearchedcoursesPost(p0.toString()))
+                    PrefUtils.getUserToken(context), SearchedCoursesData.SearchedCoursesPost(p0.toString()))
                     .setDefaultThreads()
                     .subscribe({ response ->
                         courseInfoList = response
@@ -63,7 +67,7 @@ class SearchFragment : Fragment(), View.OnClickListener {
                         bundle.putString("ans", gson.toJson(courseInfoList))
                         ReplaceFragment(SearchCourseListFragment(), bundle, "search")
                     }, { failure ->
-                        Log.i(MyCourseFragment.TAG, "on Failure ${failure.message}")
+                        Log.i(TAG, "on Failure ${failure.message}")
                     }))
         }
 
