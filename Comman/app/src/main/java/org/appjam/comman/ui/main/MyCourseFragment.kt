@@ -50,6 +50,7 @@ class MyCourseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.main_my_lecture_rv
         recyclerView.layoutManager = LinearLayoutManager(context)
+
         disposables.add(APIClient.apiService.getRegisteredCourses(PrefUtils.getUserToken(context))
                 .setDefaultThreads()
                 .subscribe ({
@@ -59,6 +60,15 @@ class MyCourseFragment : Fragment() {
                     failure -> Log.i(TAG, "on Failure ${failure.message}")
                 })
         )
+//        disposables.add(APIClient.apiService.getRegisteredCourses(1)
+//                .setDefaultThreads()
+//                .subscribe ({
+//                    response ->
+//                        recyclerView.adapter = MyLectureAdapter(response.result)
+//                }, {
+//                    failure -> Log.i(TAG, "on Failure ${failure.message}")
+//                })
+//        )
     }
 
     inner class MyLectureAdapter(private val courseInfoList: List<CoursesData.CourseInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

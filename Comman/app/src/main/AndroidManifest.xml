@@ -16,7 +16,6 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-
         <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>
         <activity
             android:name=".ui.user.LoginActivity"
@@ -31,21 +30,18 @@
         </activity>
 
         <activity android:name=".ui.lecture.LectureListActivity" />
-        <activity android:name=".ui.card.CardActivity">
+        <activity android:name=".ui.card.CardActivity"
+            android:theme="@style/NoActionBar">
         </activity>
-
-        <activity android:name=".ui.lectureSubsection.LectureSubActivity">
-          </activity>
+        <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
 
         <activity android:name=".ui.main.MainActivity"
             android:theme="@style/NoActionBar"/>
 
         <activity android:name=".ui.lecture.LectureVideoActivity"/>
 
-
         <activity
             android:name="LectureVideo1Activity"/>
-
 
         <!-- 퀴즈 채점 결과 Activity -->
         <activity android:name=".ui.quiz.QuizResultActivity" />
@@ -58,6 +54,7 @@
         <activity android:name=".ui.lectureRegist.ChargePopupActivity">
         </activity>
 
+        <service android:name=".ui.lecture.LectureVideoService" />
 
         <!-- 강의 설명 팝업 Activity -->
         <activity

@@ -67,6 +67,7 @@ class CardActivity : AppCompatActivity() {
                         card_next_btn.setBackgroundResource(R.drawable.view_pager_next_btn)
                     }
                 }
+                pagePosition += 1
                 card_count_tv.text = "$pagePosition / $pageCount"
             }
         })
@@ -80,31 +81,50 @@ class CardActivity : AppCompatActivity() {
         card_next_layout.setOnClickListener {
             card_view_pager.currentItem = card_view_pager.currentItem + 1
         }
+//        disposables.add(APIClient.apiService.getLectureCards(1)
+//                .setDefaultThreads()
+//                .subscribe({
+//                    response -> cardResponse?.result = response.result[2].image_priority
+//                    bundle.putStringArrayList("result", cardResponse?.result)
+//                    pageCount = cardResponse!!.result.size + 1
+//                    currentPage = cardResponse!!.result.
+////                    cardResponse?.lectureImageUrlArr = response.lectureImageUrlArr
+////                    cardResponse?.nextLectureID = response.nextLectureID
+////                    bundle.putStringArrayList("image_url", cardResponse?.lectureImageUrlArr as ArrayList<String>?)
+////                    bundle.putString("nextLectureID", cardResponse?.nextLectureID)
+////                    pageCount = cardResponse!!.lectureImageUrlArr.size + 1
+//
+//                    card_view_pager.adapter.notifyDataSetChanged()
+//
+//                }, {
+//                    failure -> Log.i(TAG, "on Failure ${failure.message}")
+//                })
+//        )
+        //        disposables.add(APIClient.apiService.getRegisteredCourses(1)
+//                .setDefaultThreads()
+//                .subscribe ({
+//                    response ->
+//                        recyclerView.adapter = MyLectureAdapter(response.result)
+//                }, {
+//                    failure -> Log.i(TAG, "on Failure ${failure.message}")
+//                })
+//        )
 
-        disposables.add(APIClient.apiService.getLectureInfo(PrefUtils.getUserToken(this))
-                .setDefaultThreads()
-                .subscribe({
-                    response -> card_lecture_name_tv.text = response.data[0].priority.toString()
-                }, {
-                    failure -> Log.i(CardActivity.TAG, "on Failure ${failure.message}")
-                }))
-
-
-        disposables.add(APIClient.apiService.getLectureCards(PrefUtils.getUserToken(this), 1)
+        disposables.add(APIClient.apiService.getLectureCards(PrefUtils.getUserToken(this), 4)
                 .setDefaultThreads()
                 .subscribe({
                     response ->
                         cardResponse?.result = response.result
-                        pageCount = cardResponse?.result?.size?:0 + 1
-
+                        pageCount = response.result.size + 1
+                        val gson = Gson()
+                        bundle.putString("cardInfoList", gson.toJson(response))
 //                        bundle.getString("title")
 //                        bundle.getString("image_path")
 
-                    val gson = Gson()
+
 //                    bundle.putString("cardInfo", gson.toJson(cardResponse?.result))
                     card_count_tv.text = "1 / $pageCount"
-
-
+                    card_view_pager.adapter.notifyDataSetChanged()
                 }, {
                     failure -> Log.i(CardActivity.TAG, "on Failure ${failure.message}")
                 }))
@@ -145,7 +165,8 @@ class CardActivity : AppCompatActivity() {
         override fun getItem(position:Int): Fragment {
             return if(position<count-1) {
                 val cardFragment = CardFragment()
-                bundle.putString("card_img", cardResponse?.result?.get(position)?.image_path)
+//                bundle.putString("card_img", cardResponse?.result?.get(position)?.image_path)
+                bundle.putInt("position", position)
                 cardFragment.arguments = bundle
                 cardFragment
             } else {
@@ -155,6 +176,7 @@ class CardActivity : AppCompatActivity() {
             }
         }
         override fun getCount():Int= pageCount
+
     }
 
     override fun onDestroy() {

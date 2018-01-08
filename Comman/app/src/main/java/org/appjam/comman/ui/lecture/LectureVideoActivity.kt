@@ -46,6 +46,8 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
         Toast.makeText(this@LectureVideoActivity, "onCreate() 호출", Toast.LENGTH_SHORT).show()
         lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         land_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
+        lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this)
+
 
     }
 

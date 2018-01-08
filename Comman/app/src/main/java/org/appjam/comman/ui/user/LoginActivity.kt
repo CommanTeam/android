@@ -6,7 +6,6 @@ package org.appjam.comman.ui.user
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Bundle
@@ -26,18 +25,26 @@ import com.kakao.usermgmt.callback.MeResponseCallback
 import com.kakao.usermgmt.response.model.UserProfile
 import com.kakao.util.exception.KakaoException
 import com.kakao.util.helper.log.Logger
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
+import org.appjam.comman.network.APIClient
+import org.appjam.comman.network.data.LoginData
 import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.setDefaultThreads
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+import org.appjam.comman.ui.main.MainActivity
 
 
 
 class LoginActivity : AppCompatActivity() {
+    companion object {
+        const val TAG = "LoginActivity"
+    }
     private var callback: SessionCallback? = null
-    private var shared : SharedPreferences? = null
+    private val disposables = CompositeDisposable()
 
     //카카오톡 프로필 사진은 이미지 url 형태로 제공하는데 해당 라이브러리를 사용하면 url 을 ImageView id만 매핑시켜 주면 한줄의 코드로 매우 편리하게 적용가능합니다.
     var aQuery : AQuery? = null
@@ -139,20 +146,31 @@ class LoginActivity : AppCompatActivity() {
                 Log.e("onSuccess", userProfile.toString())
                 var user_nickName = userProfile.nickname
                 var user_email = userProfile.email
-                var user_profile_img = userProfile.thumbnailImagePath
-                PrefUtils.putUserProfile(this@LoginActivity, userProfile)
-                shared = applicationContext.getSharedPreferences("shared", 0)
-                val editor = shared!!.edit()
-                editor.putString("profile_img_url", userProfile.profileImagePath)
+                lateinit var user_profile_img : String
+                if(userProfile.thumbnailImagePath != null)
+                    user_profile_img = userProfile.thumbnailImagePath
+                else
+                    user_profile_img = ""
+
+                disposables.add(APIClient.apiService.getPostToken(LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
+                        .setDefaultThreads()
+                        .subscribe ({
+                            response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
+                            Toast.makeText(this@LoginActivity,response.token, Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity, CardActivity::class.java)
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                            startActivity(intent)
+                        }, {
+                            failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
+                        })
+                )
+
                 //성공하면 MainActivity로 이동
                 //프로필 이미지 url과 이메일 값 디비에 삽입하기
-                val intent = Intent(baseContext, CardActivity::class.java)
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
-                intent.putExtra("user_profile_img", user_profile_img)
-                intent.putExtra("user_email", user_email)
-                intent.putExtra("user_nickName", user_nickName)
-                startActivity(intent)
+
+                //싱글탑, 클리어탑 고민
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
             }
 
             override fun onNotSignedUp() {
@@ -163,8 +181,9 @@ class LoginActivity : AppCompatActivity() {
 
     //이 부분이 없는 경우 누적 로그인이 될 수 있음
     override fun onDestroy() {
-        super.onDestroy()
         Session.getCurrentSession().removeCallback(callback)
+        disposables.clear()
+        super.onDestroy()
     }
 }
 

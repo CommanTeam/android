@@ -1,10 +1,7 @@
 package org.appjam.comman.network
 
 import io.reactivex.Observable
-import org.appjam.comman.network.data.CardData
-import org.appjam.comman.network.data.CoursesData
-import org.appjam.comman.network.data.LectureData
-import org.appjam.comman.network.data.SearchedCoursesData
+import org.appjam.comman.network.data.*
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -32,13 +29,21 @@ object APIClient {
         fun getRegisteredCourses(@Header("authorization") tokenValue : String) : Observable<CoursesData.CoursesResponse>
 
         //카드 뉴스
-        @GET("/content/lecturepicture/{lectureID]")
+        @GET("/content/lecturepicture/{lectureID}")
         fun getLectureCards(@Header("authorization") tokenValue: String,
                             @Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
 
         //강의정보얻기
         @GET("/content/lectures")
         fun getLectureInfo(@Header("authorization") tokenValue : String) : Observable<LectureData.LectureResponse>
+
+        @POST("/users/insert_user_info")
+        fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+
+        @GET("/content/lecturequiz/{lectureID}")
+        fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
+
+//        fun getRegisteredCourses(@Path("userID") email: String) : Observable<CoursesData.CoursesResponse>
 
         //강좌검색
         @POST("/search/courses")

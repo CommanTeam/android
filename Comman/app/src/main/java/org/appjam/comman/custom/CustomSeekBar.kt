@@ -4,12 +4,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import kotlinx.android.synthetic.main.custom_youtube_seek_bar.view.*
 import org.appjam.comman.R
-import android.view.MotionEvent
 
 
 /**
