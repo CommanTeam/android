@@ -22,9 +22,9 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private var chapterList : RecyclerView?=null
-    private var chapterListData : ArrayList<ChapterListData>?=arrayListOf()
-    private var lectureSubAdapter : LectureSubAadapter? = null
+    private var chapterList: RecyclerView? = null
+    private var chapterListData: ArrayList<ChapterListData> = arrayListOf()
+    private var lectureSubAdapter: LectureSubAadapter? = null
 
     data class ChapterListData(
             val id: Int,
@@ -37,24 +37,25 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
-        chapterList=lecture_subsection_list_view
-        chapterList!!.layoutManager=LinearLayoutManager(this)
+        chapterList = lecture_subsection_list_view
+        chapterList!!.layoutManager = LinearLayoutManager(this)
 
-        chapterListData?.add(ChapterListData(1,"1장","반지 모델링 하기","총 16강"))
-        chapterListData?.add(ChapterListData(2,"2장","반지 모델링 하기","총 16강"))
-        chapterListData?.add(ChapterListData(1,"3장","반지 모델링 하기","총 16강"))
+        chapterListData.add(ChapterListData(1, "1장", "반지 모델링 하기", "총 16강"))
+        chapterListData.add(ChapterListData(2, "2장", "반지 모델링 하기", "총 16강"))
+        chapterListData.add(ChapterListData(1, "3장", "반지 모델링 하기", "총 16강"))
 
-        lectureSubAdapter=LectureSubAadapter(chapterListData)
+        lectureSubAdapter = LectureSubAadapter(chapterListData)
 
-        chapterList!!.adapter=lectureSubAdapter
+        chapterList!!.adapter = lectureSubAdapter
 
 
     }
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind() {
+        fun bind(position: Int) {
             itemView.lecture_subsection_course_popup_layout.setOnClickListener {
                 val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
+                intent.putExtra("courseID", chapterListData!![position].id)
                 startActivity(intent)
             }
         }
@@ -76,32 +77,32 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
 
-            if(position==0)
-                itemView.lecture_subsection_lock_layout.visibility=View.GONE
+            if (position == 0)
+                itemView.lecture_subsection_lock_layout.visibility = View.GONE
         }
     }
-    inner class FooterViewHolder(itemView:View):RecyclerView.ViewHolder(itemView)
+
+    inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     inner class LectureSubAadapter(var datalist: ArrayList<ChapterListData>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-        private var onItemClick : View.OnClickListener? = null
+        private var onItemClick: View.OnClickListener? = null
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-            return if(viewType == ListUtils.TYPE_HEADER) {
-                val view : View = layoutInflater.inflate(R.layout.lecture_subsection_course_item, parent, false)
+            return if (viewType == ListUtils.TYPE_HEADER) {
+                val view: View = layoutInflater.inflate(R.layout.lecture_subsection_course_item, parent, false)
                 view.setOnClickListener(onItemClick)
                 HeaderViewHolder(view)
             } else if (viewType == ListUtils.TYPE_SECOND_HEADER) {
-                val view : View = layoutInflater.inflate(R.layout.lecture_subsection_video_item, parent, false)
+                val view: View = layoutInflater.inflate(R.layout.lecture_subsection_video_item, parent, false)
                 view.setOnClickListener(onItemClick)
                 SecondHeaderViewHolder(view)
-            } else if  (viewType == ListUtils.TYPE_ELEM)  {
-                val view : View = layoutInflater.inflate(R.layout.lecture_subsection_chapterlist_item, parent, false)
+            } else if (viewType == ListUtils.TYPE_ELEM) {
+                val view: View = layoutInflater.inflate(R.layout.lecture_subsection_chapterlist_item, parent, false)
                 view.setOnClickListener(onItemClick)
                 ElemViewHolder(view)
-            }
-            else {
-                val view : View = layoutInflater.inflate(R.layout.lecture_list_footer, parent, false)
+            } else {
+                val view: View = layoutInflater.inflate(R.layout.lecture_list_footer, parent, false)
                 view.setOnClickListener(onItemClick)
                 FooterViewHolder(view)
             }
@@ -111,14 +112,12 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
-                (holder as ElemViewHolder).bind(position - 2 )
-            }else if(holder?.itemViewType == ListUtils.TYPE_HEADER) {
-                (holder as HeaderViewHolder).bind()
-            }
-            else if(holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER){
+                (holder as ElemViewHolder).bind(position - 2)
+            } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
+                (holder as HeaderViewHolder).bind(position)
+            } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
                 holder as SecondHeaderViewHolder
-            }
-            else
+            } else
                 holder as FooterViewHolder
         }
 
@@ -126,7 +125,7 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
                 = when (position) {
             0 -> ListUtils.TYPE_HEADER
             1 -> ListUtils.TYPE_SECOND_HEADER
-            (itemCount - 1)->ListUtils.TYPE_FOOTER
+            (itemCount - 1) -> ListUtils.TYPE_FOOTER
             else -> ListUtils.TYPE_ELEM
 
         }

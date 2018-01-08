@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/lecturePopup_lecName_tv"
+        android:id="@+id/lecturePopup_lecTitle_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="단원"
