@@ -1,11 +1,8 @@
 package org.appjam.comman.network.data
 
 /**
-<<<<<<< HEAD
- * Created by KSY on 2018-01-07.
-=======
+
  * Created by yeahen on 2018-01-07.
->>>>>>> master
  */
 object CardData {
     data class CardResponse (
