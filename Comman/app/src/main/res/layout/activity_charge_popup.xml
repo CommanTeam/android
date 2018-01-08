@@ -9,11 +9,14 @@
     android:orientation="vertical"
     tools:context="org.appjam.comman.ui.lectureRegist.ChargePopupActivity">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <ImageView
                 android:layout_gravity="center_horizontal"
                 android:layout_width="63dp"
@@ -62,7 +65,6 @@
                 android:text="강좌명"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
-
             <TextView
                 android:id="@+id/charge_title_tv"
                 android:layout_width="match_parent"
@@ -79,7 +81,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
             android:orientation="horizontal">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,7 +89,6 @@
                 android:text="결제금액"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
-
             <TextView
                 android:id="@+id/charge_price_tv"
                 android:layout_width="match_parent"
@@ -97,18 +97,14 @@
                 android:gravity="end"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
-
         </LinearLayout>
-
     </LinearLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="98dp"
         android:orientation="horizontal"
         android:gravity="center_vertical">
-
         <Button
             android:id="@+id/charge_ok_btn"
             android:layout_width="111dp"
@@ -119,9 +115,7 @@
             android:textColor="@color/white"
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
-            android:text="결제하기"
-            />
-
+            android:text="결제하기"/>
         <Button
             android:id="@+id/charge_close_btn"
             android:layout_width="96dp"
@@ -134,11 +128,5 @@
             android:background="@color/primaryColor"
             android:layout_marginRight="29dp"/>
     </RelativeLayout>
-
 </LinearLayout>
-
-
-
-
-
-
+    </LinearLayout>
