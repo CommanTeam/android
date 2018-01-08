@@ -30,11 +30,12 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
-import org.appjam.comman.ui.main.MainActivity
+import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
+
 
 
 
@@ -155,9 +156,10 @@ class LoginActivity : AppCompatActivity() {
                         .setDefaultThreads()
                         .subscribe ({
                             response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
-                            Log.e(TAG, response.token)
-                            Toast.makeText(this@LoginActivity, response.token, Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+
+                            Log.i(TAG,"aaaaaaaaaaaaaaaaa ${response.token}")
+                            Toast.makeText(this@LoginActivity,response.token, Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this@LoginActivity, CardActivity::class.java)
                             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                             startActivity(intent)
                         }, {

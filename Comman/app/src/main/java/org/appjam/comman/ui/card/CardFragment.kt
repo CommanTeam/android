@@ -5,21 +5,35 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
 import com.androidquery.AQuery
-import kotlinx.android.synthetic.main.fragment_card_first.view.*
+import com.google.gson.Gson
 import org.appjam.comman.R
+import org.appjam.comman.network.data.CardData
 
 /**
  * Created by KSY on 2017-12-31.
  */
 class CardFragment : Fragment(){
     var aQuery : AQuery? = null
+    private var cardResponse : CardData.CardResponse? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.fragment_card_first, container, false)
+
         if(arguments != null) {
             aQuery = AQuery(context)
-            aQuery!!.id(v.frag_card_img).image(arguments.getString("image_url"))
+            val gson = Gson()
+//            Toast.makeText(context, arguments.getString("cardInfoList"), Toast.LENGTH_SHORT).show()
+//            cardResponse = gson.fromJson(arguments.getString("cardInfoList"), CardData.CardResponse::class.java)
+//            var position = 0
+//            if(arguments.getInt("position") != null)
+//                position = arguments.getInt("position")
+            val img_url = arguments.getString("image_url")
+            Toast.makeText(context, img_url, Toast.LENGTH_SHORT).show()
+//            val image_url = cardResponse!!.result[position].image_path
+            aQuery!!.id(v.findViewById<ImageView>(R.id.frag_card_img)).image(img_url)
         }
         return v
     }

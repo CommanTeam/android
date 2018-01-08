@@ -29,6 +29,24 @@ object APIClient {
         fun getRegisteredCourses(@Header("authorization") tokenValue : String
         ) : Observable<CoursesData.CoursesResponse>
 
+        //카드 뉴스
+        @GET("/content/lecturepicture/{lectureID}")
+        fun getLectureCards(@Header("authorization") tokenValue: String,
+                            @Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
+
+        //강의정보얻기
+        @GET("/content/lectures")
+        fun getLectureInfo(@Header("authorization") tokenValue : String) : Observable<LectureData.LectureResponse>
+
+        @GET("/users/main/progressLecture/{userID}")
+        fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
+
+        @GET("/content/chapters")
+        fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
+
+        @GET("/content/lecturepage/lectureList")
+        fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
+
         @POST("/users/insert_user_info")
         fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
 
@@ -37,8 +55,6 @@ object APIClient {
 
         @GET("/content/lecturepicture/{lectureID]")
         fun getLectureCards(@Path("lectureID") lectureID : Int) : Observable<CardData.CardResponse>
-
-
 
         //강좌검색
         @POST("/search/courses")

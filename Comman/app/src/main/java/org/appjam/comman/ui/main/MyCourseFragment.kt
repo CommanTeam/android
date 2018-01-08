@@ -58,6 +58,7 @@ class MyCourseFragment : Fragment(), View.OnClickListener {
         val recyclerView = view.main_my_lecture_rv
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = MyLectureAdapter()
+
         disposables.add(APIClient.apiService.getRegisteredCourses(PrefUtils.getUserToken(context))
                 .setDefaultThreads()
                 .subscribe ({
