@@ -20,26 +20,22 @@ class CardFragment : Fragment(){
     private var cardResponse : CardData.CardResponse? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-//        var aQuery = AQuery(context)
-//        val thumbnailUrl = greetingInfo?.userImg
-//        aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
-//        var aQuery = AQuery(context)
-//        val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_THUMBNAIL)
-//        aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
         val v = inflater!!.inflate(R.layout.fragment_card_first, container, false)
 
         if(arguments != null) {
             aQuery = AQuery(context)
             val gson = Gson()
-            Toast.makeText(context, arguments.getString("cardInfoList"), Toast.LENGTH_SHORT).show()
-            cardResponse = gson.fromJson(arguments.getString("cardInfoList"), CardData.CardResponse::class.java)
-            val position = arguments.getInt("position")
-            val image_url = cardResponse!!.result[position].image_path
-            aQuery!!.id(v.findViewById<ImageView>(R.id.frag_card_img)).image(image_url)
+//            Toast.makeText(context, arguments.getString("cardInfoList"), Toast.LENGTH_SHORT).show()
+//            cardResponse = gson.fromJson(arguments.getString("cardInfoList"), CardData.CardResponse::class.java)
+//            var position = 0
+//            if(arguments.getInt("position") != null)
+//                position = arguments.getInt("position")
+            val img_url = arguments.getString("image_url")
+            Toast.makeText(context, img_url, Toast.LENGTH_SHORT).show()
+//            val image_url = cardResponse!!.result[position].image_path
+            aQuery!!.id(v.findViewById<ImageView>(R.id.frag_card_img)).image(img_url)
         }
         return v
     }
-
 }
 

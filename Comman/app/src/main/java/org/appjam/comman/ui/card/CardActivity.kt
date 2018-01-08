@@ -33,13 +33,10 @@ class CardActivity : AppCompatActivity() {
     private var cardResponse : CardData.CardResponse? = null
     var pagePosition : Int = 0
     var pageCount : Int = 0
-    val bundle = Bundle()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card)
-
-        card_view_pager.adapter=CardPagerAdapter(supportFragmentManager)
 
         card_view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -50,7 +47,8 @@ class CardActivity : AppCompatActivity() {
 
             @SuppressLint("ResourceAsColor")
             override fun onPageSelected(position: Int) {
-                pagePosition = position
+//                pagePosition = position
+//                bundle.putInt("position", position)
                 when (position) {
                     card_view_pager.adapter.count - 1 -> {
                         card_next_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.grayMainTextColor))
@@ -67,8 +65,9 @@ class CardActivity : AppCompatActivity() {
                         card_next_btn.setBackgroundResource(R.drawable.view_pager_next_btn)
                     }
                 }
-                pagePosition += 1
+                pagePosition = position + 1
                 card_count_tv.text = "$pagePosition / $pageCount"
+
             }
         })
 
@@ -81,92 +80,30 @@ class CardActivity : AppCompatActivity() {
         card_next_layout.setOnClickListener {
             card_view_pager.currentItem = card_view_pager.currentItem + 1
         }
-//        disposables.add(APIClient.apiService.getLectureCards(1)
-//                .setDefaultThreads()
-//                .subscribe({
-//                    response -> cardResponse?.result = response.result[2].image_priority
-//                    bundle.putStringArrayList("result", cardResponse?.result)
-//                    pageCount = cardResponse!!.result.size + 1
-//                    currentPage = cardResponse!!.result.
-////                    cardResponse?.lectureImageUrlArr = response.lectureImageUrlArr
-////                    cardResponse?.nextLectureID = response.nextLectureID
-////                    bundle.putStringArrayList("image_url", cardResponse?.lectureImageUrlArr as ArrayList<String>?)
-////                    bundle.putString("nextLectureID", cardResponse?.nextLectureID)
-////                    pageCount = cardResponse!!.lectureImageUrlArr.size + 1
-//
-//                    card_view_pager.adapter.notifyDataSetChanged()
-//
-//                }, {
-//                    failure -> Log.i(TAG, "on Failure ${failure.message}")
-//                })
-//        )
-        //        disposables.add(APIClient.apiService.getRegisteredCourses(1)
-//                .setDefaultThreads()
-//                .subscribe ({
-//                    response ->
-//                        recyclerView.adapter = MyLectureAdapter(response.result)
-//                }, {
-//                    failure -> Log.i(TAG, "on Failure ${failure.message}")
-//                })
-//        )
 
         disposables.add(APIClient.apiService.getLectureCards(PrefUtils.getUserToken(this), 4)
                 .setDefaultThreads()
                 .subscribe({
                     response ->
-                        cardResponse?.result = response.result
+                        cardResponse = response
                         pageCount = response.result.size + 1
                         val gson = Gson()
-                        bundle.putString("cardInfoList", gson.toJson(response))
-//                        bundle.getString("title")
-//                        bundle.getString("image_path")
-
-
-//                    bundle.putString("cardInfo", gson.toJson(cardResponse?.result))
-                    card_count_tv.text = "1 / $pageCount"
-                    card_view_pager.adapter.notifyDataSetChanged()
+                        card_count_tv.text = "1 / $pageCount"
+                        card_lecture_name_tv.text="${response.result[0].title}"
+                        card_view_pager.adapter=CardPagerAdapter(supportFragmentManager)
                 }, {
                     failure -> Log.i(CardActivity.TAG, "on Failure ${failure.message}")
                 }))
-
-//                    private var courseInfoJson : String? = null
-//                    private var courseInfoList : SearchedCoursesData.SearchedCoursesResponse? = null
-//
-//                    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-//                        if(arguments != null) {
-//                            val gson = Gson()
-//                            courseInfoJson = arguments.getString("ans")
-//                            courseInfoList = gson.fromJson(courseInfoJson, SearchedCoursesData.SearchedCoursesResponse::class.java)
-//                        }
-//                    pageCount = cardResponse!!.result.size + 1
-//                    currentPage = cardResponse!!.result.
-//                    cardResponse?.lectureImageUrlArr = response.lectureImageUrlArr
-//                    cardResponse?.nextLectureID = response.nextLectureID
-//                    bundle.putStringArrayList("image_url", cardResponse?.lectureImageUrlArr as ArrayList<String>?)
-//                    bundle.putString("nextLectureID", cardResponse?.nextLectureID)
-//                    pageCount = cardResponse!!.lectureImageUrlArr.size + 1
-
-
-
-        //        disposables.add(APIClient.apiService.getRegisteredCourses(1)
-//                .setDefaultThreads()
-//                .subscribe ({
-//                    response ->
-//                        recyclerView.adapter = MyLectureAdapter(response.result)
-//                }, {
-//                    failure -> Log.i(TAG, "on Failure ${failure.message}")
-//                })
-//        )
-
     }
-//
+
     inner class CardPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm){
 
         override fun getItem(position:Int): Fragment {
-            return if(position<count-1) {
+            val bundle = Bundle()
+            return if (position < count-1) {
                 val cardFragment = CardFragment()
-//                bundle.putString("card_img", cardResponse?.result?.get(position)?.image_path)
-                bundle.putInt("position", position)
+                val bundle = Bundle()
+                bundle.putString("image_url", cardResponse!!.result[position].image_path)
                 cardFragment.arguments = bundle
                 cardFragment
             } else {
