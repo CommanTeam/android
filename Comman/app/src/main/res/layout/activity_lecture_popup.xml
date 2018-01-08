@@ -4,11 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="560dp"
     android:orientation="vertical"
-<<<<<<< HEAD
     tools:context="org.appjam.comman.ui.CourseSubsection.LectureSubPopupActivity">
-=======
-    tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity">
->>>>>>> master
 
     <LinearLayout
         android:layout_width="wrap_content"

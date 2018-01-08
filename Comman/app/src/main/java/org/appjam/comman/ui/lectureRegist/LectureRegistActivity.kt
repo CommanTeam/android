@@ -12,12 +12,9 @@ import kotlinx.android.synthetic.main.activity_lecture_subsection.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_course_item.view.*
 import org.appjam.comman.R
-<<<<<<< HEAD
-import org.appjam.comman.ui.CourseSubsection.LectureSubPopupActivity
-=======
 import org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity
->>>>>>> master
 import org.appjam.comman.util.ListUtils
+
 
 /**
  * Created by KSY on 2018-01-04.

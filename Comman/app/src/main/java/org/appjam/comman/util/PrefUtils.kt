@@ -18,12 +18,6 @@ object PrefUtils {
     fun getUserToken(context: Context): String {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val userToken = pref.getString(USER_TOKEN, "")
-<<<<<<< HEAD
-//        if (userToken == "") {
-//            throw RuntimeException("user token is null. Please check login process")
-//        }
-=======
->>>>>>> master
         return userToken
     }
 

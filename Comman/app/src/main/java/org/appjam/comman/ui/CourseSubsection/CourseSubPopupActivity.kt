@@ -32,7 +32,6 @@ class CourseSubPopupActivity : AppCompatActivity() {
         lecturePopupDatas!!.add(LecturePopupData(R.drawable.kakao_default_profile_image,"2장. 필렛 넣기", "가장 기본적인 라이노의 기능과 활용방법을 배워볼 수 있다. 점 선, 면, 덩어리의 개념을 이해하면서 기초적인 모델링을 해볼 수 있다."))
         lecturePopupAdapter = LecturePopupAdapter(lecturePopupDatas)
 
-
         lecturePopupList!!.adapter = lecturePopupAdapter
 
         //닫기 버튼 클릭시 팝업 종료
@@ -54,7 +53,7 @@ class CourseSubPopupActivity : AppCompatActivity() {
      * */
     private inner class LecturePopupViewHolder(itemView : View?) : RecyclerView.ViewHolder(itemView) {
         var img : ImageView = itemView!!.findViewById(R.id.lecturePopup_img)
-        var title : TextView = itemView!!.findViewById(R.id.lecturePopup_lecName_tv)
+        var title : TextView = itemView!!.findViewById(R.id.lecturePopup_lecTitle_tv)
         var content : TextView = itemView!!.findViewById(R.id.lecturePopup_lecContent_tv)
     }
 
