@@ -76,8 +76,8 @@ class LectureSubPopupActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: LecturePopupViewHolder?, position: Int) {
             holder!!.img.setImageResource(dataList!!.get(position).img)
-            holder!!.title.text = dataList!!.get(position).title
-            holder!!.content.text = dataList!!.get(position).content
+            holder!!.title.text = (dataList!!.get(position).title)
+            holder!!.content.text = (dataList!!.get(position).content)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): LecturePopupViewHolder {
