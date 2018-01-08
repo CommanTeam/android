@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.GreetingData
 import org.appjam.comman.network.data.LectureData
+import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.TimeUtils
@@ -120,12 +122,16 @@ class MyCourseFragment : Fragment() {
             itemView.main_course_active_progress_bar.progress = progressPercentage
             itemView.main_course_active_progress_tv.text = resources.getString(R.string.msg_format_progress_percentage, progressPercentage)
 
-
+            itemView.setOnClickListener {
+                val intent = Intent(context, CourseSubActivity::class.java)
+                intent.getIntExtra("courseID", courseInfo.courseID)
+                startActivity(intent)
+            }
         }
     }
 
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // TODO: Implement more detail view binding
+        // TODO : 비디오일 경우 백그라운드 설정 및 몇 가지 설정 좀 더 필요, intent 연결도 필요
         fun bind() {
             if(recentLectureInfo != null) {
                 itemView.main_course_wathing_chapter_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
@@ -150,6 +156,7 @@ class MyCourseFragment : Fragment() {
                             "${TimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
                 }
+
             } else {
                 itemView.main_lecture_wathing_layout.visibility = View.GONE
                 itemView.main_lecture_wathing_tv.visibility = View.GONE
