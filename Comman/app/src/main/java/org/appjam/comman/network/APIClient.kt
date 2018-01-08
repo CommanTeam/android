@@ -24,6 +24,14 @@ object APIClient {
 
     interface APIService {
 
+        //로그인 토큰 가져오기
+        @POST("/users/insert_user_info")
+        fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+        @POST("/users/insert_user_info")
+        fun getPostToken(@Header("authorization") tokenValue: String,
+                         @Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+
+
         //수강중인 강좌
         @GET("/users/main/progressLecture/")
         fun getRegisteredCourses(@Header("authorization") tokenValue : String
@@ -41,19 +49,20 @@ object APIClient {
         @GET("/users/main/progressLecture/{userID}")
         fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
 
+
+
         @GET("/content/chapters")
         fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
+
 
         @GET("/content/lecturepage/lectureList")
         fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
 
-        @POST("/users/insert_user_info")
-        fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
-
         @GET("/content/lecturequiz/{lectureID}")
         fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
 
-        @GET("/content/lecturepicture/{lectureID]")
+
+        @GET("/content/lecturepicture/{lectureID}")
         fun getLectureCards(@Path("lectureID") lectureID : Int) : Observable<CardData.CardResponse>
 
         //강좌검색
@@ -63,6 +72,8 @@ object APIClient {
                 @Body searchPost : SearchedCoursesData.SearchedcoursesPost
         ) : Observable<SearchedCoursesData.SearchedCoursesResponse>
 
+
+        //내 강좌 인사말 가져오기
         @GET("/users/main/greeting")
         fun getGreetingInfo(
                 @Header("authorization") tokenValue : String
