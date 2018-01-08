@@ -14,5 +14,4 @@ object SearchedCoursesData {
                                   val info: String,
                                   val image_path: String,
                                   val hit: Int)
-
 }
