@@ -5,31 +5,31 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.androidquery.AQuery
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_course_search_result.view.*
 import kotlinx.android.synthetic.main.search_result_item.view.*
 import org.appjam.comman.R
+import org.appjam.comman.network.APIClient
+import org.appjam.comman.network.data.CategoryData
 import org.appjam.comman.util.ListUtils
+import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.setDefaultThreads
 
 /**
  * Created by ChoGyuJin on 2018-01-04.
  */
-class SearchCourseResultFragment : Fragment() {
+class SearchCategoryResultFragment : Fragment() {
 
-    private val searchCourseItemList = mutableListOf<searchCourseItem>()
-    data class searchCourseItem(
-            val courseImage:Int,
-            val courseTitle:String,
-            val courseContent:String,
-            val coursePeople:String
-    )
-    init {
-        searchCourseItemList.add(searchCourseItem(R.drawable.picture_icon,"모바일 결제 기초","1오십자제한오십자제한오십자제한오십자제한오십자제한","13.2 천 명이 수강 중입니다."))
-        searchCourseItemList.add(searchCourseItem(R.drawable.picture_icon,"모바일 결제 기초","2오십자제한오십자제한오십자제한오십자제한오십자제한","23.2 천 명이 수강 중입니다."))
-        searchCourseItemList.add(searchCourseItem(R.drawable.picture_icon,"모바일 결제 기초","3오십자제한오십자제한오십자제한오십자제한오십자제한","33.2 천 명이 수강 중입니다."))
-        searchCourseItemList.add(searchCourseItem(R.drawable.picture_icon,"모바일 결제 기초","4오십자제한오십자제한오십자제한오십자제한오십자제한","43.2 천 명이 수강 중입니다."))
+    private var lecturesInfo : List<CategoryData.LecturesOfCategory> = listOf()
+    private val disposables = CompositeDisposable()
+
+    companion object {
+        const val TAG = "SearchCategoryResultFragment"
     }
 
 
@@ -38,21 +38,38 @@ class SearchCourseResultFragment : Fragment() {
     }
 
 
+    @SuppressLint("LongLogTag")
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         val recyclerView = view!!.course_result_recyclerview
         recyclerView.adapter = CourseSearchResultAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
 
+        if(arguments != null) {
+            val categoryID = arguments.getInt("categoryID")
+            disposables.add(APIClient.apiService.getLecturesOfCategory(PrefUtils.getUserToken(context), categoryID)
+                    .setDefaultThreads()
+                    .subscribe({
+                        response -> lecturesInfo = response.result
+                        recyclerView.adapter.notifyDataSetChanged()
+                    }, {
+                        failure -> Log.i(TAG, "on Failure ${failure.message}")
+                    }))
+        }
+
     }
+
     inner class ElemViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         fun bind(position: Int){
-            itemView.course_result_img.setImageResource(searchCourseItemList[position]!!.courseImage)
-            itemView.course_title_tv.text = searchCourseItemList[position].courseTitle
-            itemView.course_content_tv.text = searchCourseItemList[position].courseContent
-            itemView.course_peaple_tv.text = searchCourseItemList[position].coursePeople
+            val aQuery = AQuery(context)
+            aQuery.id(itemView.course_result_img).image(lecturesInfo[position].image_path)
+            itemView.course_title_tv.text = lecturesInfo[position].title
+            itemView.course_content_tv.text = lecturesInfo[position].info
+            val hit =lecturesInfo[position].hit
+            itemView.course_people_tv.text = "$hit 명이 수강중입니다"
         }
     }
     inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     inner class CourseSearchResultAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -74,7 +91,7 @@ class SearchCourseResultFragment : Fragment() {
             else ListUtils.TYPE_ELEM
         }
 
-        override fun getItemCount() = searchCourseItemList.size + 1
+        override fun getItemCount() = lecturesInfo.size + 1
 
         @SuppressLint("NewApi")
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {

@@ -1,4 +1,4 @@
-package org.appjam.comman.ui.lectureSubsection
+package org.appjam.comman.ui.CourseSubsection
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +17,7 @@ import org.appjam.comman.util.ListUtils
 /**
  * Created by KSY on 2018-01-03.
  */
-class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
+class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(p0: View?) {
 
     }
@@ -54,7 +54,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             itemView.lecture_subsection_course_popup_layout.setOnClickListener {
-                val intent = Intent(applicationContext, LectureSubPopupActivity::class.java)
+                val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
                 startActivity(intent)
             }
         }
@@ -70,7 +70,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
             itemView.lecture_subsection_chapterlist_totalnum_tv.text = chapterListData!![position].totalNumber
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chapterListData!![position].content
             itemView.setOnClickListener {
-                val intent = Intent(this@LectureSubActivity, LectureListActivity::class.java)
+                val intent = Intent(this@CourseSubActivity, LectureListActivity::class.java)
                 intent.putExtra("chapterID", chapterListData!![position].id)
                 //intent.putExtra("chapterID", chapterListData!![position].id)
                 startActivity(intent)

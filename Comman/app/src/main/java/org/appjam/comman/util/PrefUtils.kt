@@ -13,13 +13,14 @@ object PrefUtils {
     const val LECTURE_ID = "lectureID"
     const val POSITION = "currentPoistion"
     const val CURRENT_TIME = "youtubeCurrentTime"
+    const val DURATION_TIME = "youtubeDurationTime"
 
     fun getUserToken(context: Context): String {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val userToken = pref.getString(USER_TOKEN, "")
-        if (userToken == "") {
-            throw RuntimeException("user token is null. Please check login process")
-        }
+//        if (userToken == "") {
+//            throw RuntimeException("user token is null. Please check login process")
+//        }
         return userToken
     }
 
@@ -51,6 +52,14 @@ object PrefUtils {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val editor = pref.edit()
         editor.putInt(CURRENT_TIME, youtubePlayer.currentTimeMillis)
+        editor.apply()
+        editor.commit()
+    }
+
+    fun putYoutubeDurationTime(context: Context, youtubePlayer: YouTubePlayer) {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt(DURATION_TIME, youtubePlayer.durationMillis)
         editor.apply()
         editor.commit()
     }

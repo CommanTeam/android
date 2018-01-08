@@ -31,6 +31,7 @@
         android:fontFamily="@font/nanum_square_bold"
         />
     <Button
+        android:id="@+id/new_course_request_btn"
         android:layout_below="@id/new_course_request_tv"
         android:layout_width="198dp"
         android:layout_height="58dp"
