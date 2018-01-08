@@ -48,20 +48,10 @@ object APIClient {
 
         @GET("/users/main/progressLecture/{userID}")
         fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
-<<<<<<< HEAD
         //강의페이지 중 개요
         @GET("/content/chapters")
         fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
         //강의페이지 중 강의목록
-=======
-
-
-
-        @GET("/content/chapters")
-        fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
-
-
->>>>>>> master
         @GET("/content/lecturepage/lectureList")
         fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
 
@@ -91,5 +81,12 @@ object APIClient {
         fun getCategoryInfos(
                 @Header("authorization") tokenVale : String
         ) : Observable<CategoryData.CategoryResponse>
+
+        //Popup Title 정보
+        @GET("/contet/course")
+        fun getPopupTitleInfos(@Header("authorization")tokenValue: String, @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
+        //Popup Content 정보
+        @GET("/content/courses")
+        fun getPopupContentInfos(@Header("authorization")tokenValue: String, @Query("courseID") courseID :Int) :Observable<PopupData.PopupContentResponse>
     }
 }
