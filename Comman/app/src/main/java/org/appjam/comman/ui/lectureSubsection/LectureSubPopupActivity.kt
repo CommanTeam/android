@@ -8,8 +8,6 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_lecture_popup.*
 import kotlinx.android.synthetic.main.lecture_popup_items.view.*
 import org.appjam.comman.R
@@ -69,15 +67,12 @@ class LectureSubPopupActivity : AppCompatActivity() {
             itemView.lecturePopup_lecContent_tv.text = lecturePopupDatas!![position].elemContent
         }
     }
-
     /***
      * 어댑터는 데이터와 화면 출력을 이어주는 객체입니다 여기서는 QuizResultData에 넣은 데이터들을 ViewHolder로 연결하기 위해 쓰였습니다 **/
-    private inner class LecturePopupAdapter(var dataList : ArrayList<LecturePopupData>?) : RecyclerView.Adapter<LecturePopupViewHolder>() {
+    private inner class LecturePopupAdapter(var dataList : ArrayList<LecturePopupElemData>?) : RecyclerView.Adapter<LecturePopupViewHolder>() {
 
         override fun onBindViewHolder(holder: LecturePopupViewHolder?, position: Int) {
-            holder!!.img.setImageResource(dataList!!.get(position).img)
-            holder!!.title.text = (dataList!!.get(position).title)
-            holder!!.content.text = (dataList!!.get(position).content)
+            (holder as LecturePopupViewHolder).bind(position)
         }
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): LecturePopupViewHolder {
@@ -87,6 +82,5 @@ class LectureSubPopupActivity : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int = dataList!!.size
-
     }
 }

@@ -36,10 +36,10 @@ object APIClient {
 
         @GET("/users/main/progressLecture/{userID}")
         fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
-
+        //강의페이지 중 개요
         @GET("/content/chapters")
         fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
-
+        //강의페이지 중 강의목록
         @GET("/content/lecturepage/lectureList")
         fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
         fun getRegisteredCourses(@Path("userID" ) email : String) : Observable<CoursesData.CoursesResponse>
