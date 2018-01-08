@@ -23,8 +23,6 @@ object APIClient {
     }
 
     interface APIService {
-
-
         //카드 뉴스
         @GET("/content/lecturepicture/{lectureID}")
         fun getLectureCards(@Header("authorization") tokenValue: String,
@@ -51,6 +49,7 @@ object APIClient {
         fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
 //        fun getRegisteredCourses(@Path("userID") email: String) : Observable<CoursesData.CoursesResponse>
 
+        //카드뉴스
         @GET("/content/lecturepicture/{lectureID]")
         fun getLectureCards(@Path("lectureID") lectureID : Int) : Observable<CardData.CardResponse>
 
@@ -60,6 +59,5 @@ object APIClient {
 //                @Header("authorization") tokenValue : String,
                 @Body searchPost : SearchedCoursesData.SearchedcoursesPost
         ) : Observable<SearchedCoursesData.SearchedCoursesResponse>
-
     }
 }
