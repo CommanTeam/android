@@ -11,6 +11,7 @@
         android:orientation="vertical"
         >
     <RelativeLayout
+        android:id="@+id/category_img_layout"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@drawable/frag_categoryheader_roundcorner_bg"
@@ -42,6 +43,7 @@
             android:layout_marginRight="13dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:singleLine="true"
             android:text="자바, C++..."
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="15sp"

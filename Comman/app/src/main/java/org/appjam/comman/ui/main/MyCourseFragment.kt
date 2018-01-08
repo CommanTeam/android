@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
+import org.appjam.comman.network.data.GreetingData
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
@@ -24,12 +25,18 @@ import org.appjam.comman.util.setDefaultThreads
 /**
  * Created by RyuDongIl on 2018-01-02.
  */
-class MyCourseFragment : Fragment() {
+class MyCourseFragment : Fragment(), View.OnClickListener {
+    override fun onClick(p0: View?) {
+
+    }
 
     companion object {
         const val TAG = "MyCourseFragment"
     }
+
     private var lectureWatchingData : LectureWatchingItem? = null
+    private var greetingInfo : GreetingData.GreetingResult? = null
+    private var courseInfoList: List<CoursesData.CourseInfo> = listOf()
 
     data class LectureWatchingItem (
             val chapterName: String,
@@ -50,28 +57,30 @@ class MyCourseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.main_my_lecture_rv
         recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = MyLectureAdapter()
 
         disposables.add(APIClient.apiService.getRegisteredCourses(PrefUtils.getUserToken(context))
                 .setDefaultThreads()
                 .subscribe ({
-                    response ->
-                        recyclerView.adapter = MyLectureAdapter(response.result)
+                    response -> courseInfoList = response.result
+                                recyclerView.adapter.notifyDataSetChanged()
+
                 }, {
                     failure -> Log.i(TAG, "on Failure ${failure.message}")
                 })
         )
-//        disposables.add(APIClient.apiService.getRegisteredCourses(1)
-//                .setDefaultThreads()
-//                .subscribe ({
-//                    response ->
-//                        recyclerView.adapter = MyLectureAdapter(response.result)
-//                }, {
-//                    failure -> Log.i(TAG, "on Failure ${failure.message}")
-//                })
-//        )
+        disposables.add(APIClient.apiService.getGreetingInfo(PrefUtils.getUserToken(context))
+                .setDefaultThreads()
+                .subscribe({
+                    response -> greetingInfo = response.result
+                                recyclerView.adapter.notifyDataSetChanged()
+                }, {
+                    failure -> Log.i(TAG, "on Failure ${failure.message}")
+                })
+        )
     }
 
-    inner class MyLectureAdapter(private val courseInfoList: List<CoursesData.CourseInfo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    inner class MyLectureAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
             return when (viewType) {
@@ -107,12 +116,13 @@ class MyCourseFragment : Fragment() {
         fun bind(courseInfo: CoursesData.CourseInfo) {
             itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
             itemView.main_course_active_course_tv.text = courseInfo.courseTitle
-
             itemView.main_course_active_chapters_tv.text = resources.getString(R.string.msg_format_chapter_count, courseInfo.chapterCnt)
 
             val progressPercentage = courseInfo.progressPercentage
             itemView.main_course_active_progress_bar.progress = progressPercentage
             itemView.main_course_active_progress_tv.text = resources.getString(R.string.msg_format_progress_percentage, progressPercentage)
+
+
         }
     }
 
@@ -128,8 +138,9 @@ class MyCourseFragment : Fragment() {
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             var aQuery = AQuery(context)
-            val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_THUMBNAIL)
+            val thumbnailUrl = greetingInfo?.userImg
             aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+            itemView.main_notice_tv.text = greetingInfo?.ment
         }
     }
 

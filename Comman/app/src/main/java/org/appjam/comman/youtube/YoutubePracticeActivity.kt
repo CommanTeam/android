@@ -1,8 +1,6 @@
 package org.appjam.comman.youtube
 
-import android.graphics.Point
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -24,14 +22,29 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_practice)
         practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
+
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
     }
 
+    private fun formatTime(millis: Int): String {
+        val seconds = millis / 1000
+        val minutes = seconds / 60
+        val hours = minutes / 60
+
+        return (if (hours != 0) hours.toString() + " : " else "") + String.format("%02d : %02d", minutes % 60, seconds % 60)
+    }
+
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
         if (!wasRestored) {
             player!!.loadVideo(videoId)
+            youtube_playing_btn.setOnClickListener {
+                player.play()
+            }
+            youtube_pause_btn.setOnClickListener {
+                player.pause()
+            }
             Toast.makeText(this@YoutubePracticeActivity, "onInitializationSuccess() 호출", Toast.LENGTH_SHORT).show()
             player.setPlayerStateChangeListener(object : YouTubePlayer.PlayerStateChangeListener {
                 override fun onAdStarted() {}
@@ -45,7 +58,9 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         override fun run() {
                             if (player.isPlaying) {
                                 runOnUiThread {
-                                    youtube_current_time_text.text = player.currentTimeMillis.toString()
+                                    val current_time = formatTime(player.currentTimeMillis)
+                                    val duration_time = formatTime(player.durationMillis)
+                                    youtube_current_time_tv.text = "$current_time / $duration_time"
                                     youtube_progress_bar.progress = player.currentTimeMillis
                                     youtube_progress_bar.setSeekBarListener(object: CustomSeekBar.CustomSeekBarListener {
                                         override fun onThumbDragged(progress: Int) {
