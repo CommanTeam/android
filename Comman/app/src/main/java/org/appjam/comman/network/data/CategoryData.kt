@@ -15,4 +15,16 @@ object CategoryData {
             val title : List<String>
     )
 
+    data class LecturesOfCategoryResponse (
+            val result : List<LecturesOfCategory>
+    )
+
+    data class LecturesOfCategory (
+            val id : Int,
+            val title : String,
+            val info : String,
+            val image_path : String,
+            val hit : Int
+    )
+
 }

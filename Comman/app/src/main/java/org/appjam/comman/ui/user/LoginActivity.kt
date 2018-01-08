@@ -163,8 +163,14 @@ class LoginActivity : AppCompatActivity() {
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
                                 Toast.makeText(this@LoginActivity, PrefUtils.getUserToken(this@LoginActivity), Toast.LENGTH_SHORT).show()
+<<<<<<< HEAD
                                 val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+=======
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+>>>>>>> master
                                 startActivity(intent)
                             }, {
                                 failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")

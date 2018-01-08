@@ -12,7 +12,11 @@ import kotlinx.android.synthetic.main.activity_lecture_subsection.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_course_item.view.*
 import org.appjam.comman.R
+<<<<<<< HEAD
 import org.appjam.comman.ui.CourseSubsection.LectureSubPopupActivity
+=======
+import org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity
+>>>>>>> master
 import org.appjam.comman.util.ListUtils
 
 /**
@@ -55,7 +59,7 @@ class LectureRegistActivity: AppCompatActivity(), View.OnClickListener {
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             itemView.lecture_subsection_course_popup_layout.setOnClickListener {
-                val intent = Intent(applicationContext, LectureSubPopupActivity::class.java)
+                val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
                 startActivity(intent)
             }
         }

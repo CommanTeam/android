@@ -54,7 +54,7 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             itemView.lecture_subsection_course_popup_layout.setOnClickListener {
-                val intent = Intent(applicationContext, LectureSubPopupActivity::class.java)
+                val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
                 startActivity(intent)
             }
         }

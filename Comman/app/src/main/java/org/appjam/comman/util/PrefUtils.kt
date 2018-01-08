@@ -13,13 +13,17 @@ object PrefUtils {
     const val LECTURE_ID = "lectureID"
     const val POSITION = "currentPoistion"
     const val CURRENT_TIME = "youtubeCurrentTime"
+    const val DURATION_TIME = "youtubeDurationTime"
 
     fun getUserToken(context: Context): String {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val userToken = pref.getString(USER_TOKEN, "")
+<<<<<<< HEAD
 //        if (userToken == "") {
 //            throw RuntimeException("user token is null. Please check login process")
 //        }
+=======
+>>>>>>> master
         return userToken
     }
 
@@ -47,10 +51,44 @@ object PrefUtils {
         editor.commit()
     }
 
+    fun putLectureOfCourseID(context: Context, lectureID: Int, courseID: Int) {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt(courseID.toString(), lectureID)
+        editor.apply()
+        editor.commit()
+    }
+
+    fun putLectureOfCoursePosition(context: Context, position: Int, courseID: Int) {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt(courseID.toString(), position)
+        editor.apply()
+        editor.commit()
+    }
+
+    fun getRecentLectureOfCourseID(context: Context, courseID: Int) : Int {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        return pref.getInt(courseID.toString(), -1)
+    }
+
+    fun getRecentLectureOfCoursePosition(context: Context, courseID: Int) : Int {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        return pref.getInt(courseID.toString(), -1)
+    }
+
     fun putYoutubeCurrentTime(context: Context, youtubePlayer: YouTubePlayer) {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val editor = pref.edit()
         editor.putInt(CURRENT_TIME, youtubePlayer.currentTimeMillis)
+        editor.apply()
+        editor.commit()
+    }
+
+    fun putYoutubeDurationTime(context: Context, youtubePlayer: YouTubePlayer) {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putInt(DURATION_TIME, youtubePlayer.durationMillis)
         editor.apply()
         editor.commit()
     }
