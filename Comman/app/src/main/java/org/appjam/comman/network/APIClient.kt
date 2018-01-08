@@ -24,9 +24,6 @@ object APIClient {
 
     interface APIService {
 
-        //수강중인 강좌
-        @GET("/users/main/progressLecture/")
-        fun getRegisteredCourses(@Header("authorization") tokenValue : String) : Observable<CoursesData.CoursesResponse>
 
         //카드 뉴스
         @GET("/content/lecturepicture/{lectureID}")
@@ -37,13 +34,25 @@ object APIClient {
         @GET("/content/lectures")
         fun getLectureInfo(@Header("authorization") tokenValue : String) : Observable<LectureData.LectureResponse>
 
+        @GET("/users/main/progressLecture/{userID}")
+        fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
+
+        @GET("/content/chapters")
+        fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
+
+        @GET("/content/lecturepage/lectureList")
+        fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
+        fun getRegisteredCourses(@Path("userID" ) email : String) : Observable<CoursesData.CoursesResponse>
+
         @POST("/users/insert_user_info")
         fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
 
         @GET("/content/lecturequiz/{lectureID}")
         fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
-
 //        fun getRegisteredCourses(@Path("userID") email: String) : Observable<CoursesData.CoursesResponse>
+
+        @GET("/content/lecturepicture/{lectureID]")
+        fun getLectureCards(@Path("lectureID") lectureID : Int) : Observable<CardData.CardResponse>
 
         //강좌검색
         @POST("/search/courses")
