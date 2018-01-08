@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.choice_item.view.*
-import kotlinx.android.synthetic.main.choice_item_footer.view.*
 import kotlinx.android.synthetic.main.fragment_quiz_choice.view.*
 import org.appjam.comman.R
 import org.appjam.comman.util.ListUtils
@@ -109,14 +108,13 @@ class QuizQuestionFragment : Fragment() {
     inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
         fun bind(position: Int) {
-            itemView.quiz_footer_choice_number_tv.text = questionContentsList[position].number
-            itemView.quiz_footer_choice_content_tv.text = questionContentsList[position].content
-            itemView.setOnClickListener {
-                itemView.quiz_footer_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.primaryColor))
-                itemView.quiz_footer_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.white))
-                itemView.quiz_footer_choice_content_tv.setTextColor(SetColorUtils.get(context, R.color.white))
+//            itemView.quiz_footer_choice_number_tv.text = questionContentsList[position].number
+//            itemView.quiz_footer_choice_content_tv.text = questionContentsList[position].content
+//            itemView.setOnClickListener {
+//                itemView.quiz_footer_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.primaryColor))
+//                itemView.quiz_footer_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.white))
+//                itemView.quiz_footer_choice_content_tv.setTextColor(SetColorUtils.get(context, R.color.white))
             }
         }
     }
 
-}
