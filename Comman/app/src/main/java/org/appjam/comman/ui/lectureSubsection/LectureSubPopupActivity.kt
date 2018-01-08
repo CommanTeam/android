@@ -65,7 +65,8 @@ class LectureSubPopupActivity : AppCompatActivity() {
      * */
     private inner class LecturePopupViewHolder(itemView : View?) : RecyclerView.ViewHolder(itemView) {
         fun bind(position: Int){
-            itemView.lecturePopup_lecTitle_tv.text = lecturePopupDatas[position].elemTitle
+            itemView.lecturePopup_lecTitle_tv.text = lecturePopupDatas!![position].elemTitle
+            itemView.lecturePopup_lecContent_tv.text = lecturePopupDatas!![position].elemContent
         }
     }
 
