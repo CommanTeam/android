@@ -43,11 +43,13 @@ object APIClient {
 
         //강의정보얻기
         @GET("/content/lectures")
-        fun getLectureInfo(@Header("authorization") tokenValue : String) : Observable<LectureData.LectureResponse>
+        fun getLectureInfo(@Header("authorization") tokenValue : String,
+                           @Query("lectureID") lectureID: Int) : Observable<LectureData.LectureResponse>
 
-        @GET("/users/main/progressLecture/{userID}")
-        fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
-
+        //최근 강의 정보얻기
+        @GET("/users/lectureRecentWatch/{lectureID}")
+        fun getRecentLecture(@Header("authorization") tokenValue: String,
+                             @Path("lectureID") lectureID: Int) : Observable<LectureData.RecentLectureResponse>
 
 
         @GET("/content/chapters")
@@ -89,5 +91,11 @@ object APIClient {
                 @Query("lectureID") lectureID : Int
         ) : Observable<NextLectureData.NextLectureResponse>
 
+        //카테고리 검색 결과
+        @GET("/search/courses/categories/{categoryID}")
+        fun getLecturesOfCategory(
+                @Header("authorization") tokenValue: String,
+                @Path("categoryID") categoryID : Int
+        ) : Observable<CategoryData.LecturesOfCategoryResponse>
     }
 }

@@ -41,6 +41,11 @@ class SearchFragment : Fragment(), View.OnClickListener {
         main_search_et.addTextChangedListener(textWatcher)
 
         main_cancel_btn.setOnClickListener(this)
+        search_layout.setOnClickListener {
+            val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hide.hideSoftInputFromWindow(search_layout.windowToken, 0)
+        }
+
 
         if (!main_search_et.isActivated)
             fragmentTransaction.add(R.id.main_searchCategory_layout, SearchCategoryFragment())

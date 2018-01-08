@@ -8,13 +8,15 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.google.gson.Gson
+import android.widget.Toast
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_card.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CardData
 import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.PrefUtils.putCurrentLectureID
+import org.appjam.comman.util.PrefUtils.putLectureOfCourseID
 import org.appjam.comman.util.SetColorUtils
 import org.appjam.comman.util.setDefaultThreads
 
@@ -43,8 +45,11 @@ class CardActivity : AppCompatActivity() {
 //        getText!!.text=secondString
 
         val intent = getIntent()
+
         val lectureTitle = intent.getStringExtra("card_lecture_name_tv")
         card_lecture_name_tv!!.text=lectureTitle
+        val course_ID=intent.getIntExtra("courseID",1)
+
 
         card_view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -95,9 +100,17 @@ class CardActivity : AppCompatActivity() {
                     response ->
                         cardResponse = response
                         pageCount = response.result.size + 1
-                        val gson = Gson()
-                        card_count_tv.text = "1 / $pageCount"
                         card_view_pager.adapter=CardPagerAdapter(supportFragmentManager)
+                        putCurrentLectureID(this,4)
+                        putLectureOfCourseID(this,4,course_ID)
+
+                        val prefPosition = PrefUtils.getRecentLectureOfCoursePosition(this, course_ID)
+
+                        if(prefPosition != -1) {
+                            card_view_pager.currentItem += prefPosition      //전에 보던 페이지를 불러온다.
+                            Toast.makeText(applicationContext, card_view_pager.currentItem, Toast.LENGTH_LONG).show()
+                        }else
+                            card_count_tv.text = "1 / $pageCount"
                 }, {
                     failure -> Log.i(CardActivity.TAG, "on Failure ${failure.message}")
                 }))

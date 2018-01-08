@@ -11,6 +11,7 @@ import com.androidquery.AQuery
 import com.google.gson.Gson
 import org.appjam.comman.R
 import org.appjam.comman.network.data.CardData
+import org.appjam.comman.util.PrefUtils
 
 /**
  * Created by KSY on 2017-12-31.
@@ -34,6 +35,7 @@ class CardFragment : Fragment(){
             Toast.makeText(context, img_url, Toast.LENGTH_SHORT).show()
 //            val image_url = cardResponse!!.result[position].image_path
             aQuery!!.id(v.findViewById<ImageView>(R.id.frag_card_img)).image(img_url)
+            PrefUtils.putCurrentLecturePosition(context,arguments.getInt("position") )
         }
         return v
     }
