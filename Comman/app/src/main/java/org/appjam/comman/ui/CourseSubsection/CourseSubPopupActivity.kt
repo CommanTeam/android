@@ -15,6 +15,7 @@ import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.PopupData
 import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.SpaceItemDecoration
 import org.appjam.comman.util.setDefaultThreads
 
 class CourseSubPopupActivity : AppCompatActivity() {
@@ -34,6 +35,7 @@ class CourseSubPopupActivity : AppCompatActivity() {
 
         lecture_popup_list.layoutManager = LinearLayoutManager(this)
         lecture_popup_list.adapter = LecturePopupAdapter()
+        lecture_popup_list.addItemDecoration(SpaceItemDecoration(this, 19, 19, 0, 0))
 
         lecturePopupDatas!!.add(LecturePopupElemData("1장. 라이노 툴 다루기","가장 기본적인 라이노의 기능과 활룔바법하하하하하하하하하 ㅏ하하하하하하하하하 하하하하"))
         lecturePopupDatas!!.add(LecturePopupElemData("2장. 필렛 넣기","cocedakdskfbsdkjanknvksdnasdk nkjdsfn ksadnfsadkfnsdkfnsakjfndskjaf ndskfn sdkfnsadkfnadksfnsadkfnsdfk"))

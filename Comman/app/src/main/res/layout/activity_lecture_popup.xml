@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="560dp"
     android:orientation="vertical"
-    tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity">
+    tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity"
+    android:background="@color/white"
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -53,24 +55,22 @@
     <View
         android:layout_marginRight="29dp"
         android:layout_marginLeft="29dp"
-        android:layout_marginBottom="16dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/divideLineColor"/>
 
     <LinearLayout
-
+        android:background="@drawable/popup_inner_bottom_shadow"
         android:layout_width="match_parent"
         android:layout_height="317dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="29dp"
-                android:layout_marginRight="29dp"
-                android:layout_marginTop="19dp">
-                android:layout_marginRight="29dp">
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/lecture_popup_list"
                     android:layout_width="match_parent"
@@ -80,22 +80,23 @@
                     android:scrollbars="vertical"/>
             </LinearLayout>
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        >
         <Button
             android:id="@+id/lecture_popup_btn"
             android:layout_width="96dp"
             android:layout_height="36dp"
             android:background="@color/primaryColor"
-            android:layout_marginLeft="260dp"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="29dp"
             android:text="닫기"
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="17dp"
             android:textColor="@color/white"/>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
