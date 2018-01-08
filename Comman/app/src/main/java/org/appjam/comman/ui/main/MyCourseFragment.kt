@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.androidquery.AQuery
+import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.course_active_item.view.*
 import kotlinx.android.synthetic.main.course_watching_item.view.*
@@ -18,39 +19,32 @@ import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.GreetingData
+import org.appjam.comman.network.data.LectureData
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.TimeUtils
 import org.appjam.comman.util.setDefaultThreads
 
 /**
  * Created by RyuDongIl on 2018-01-02.
  */
-class MyCourseFragment : Fragment(), View.OnClickListener {
-    override fun onClick(p0: View?) {
-
-    }
+class MyCourseFragment : Fragment() {
 
     companion object {
         const val TAG = "MyCourseFragment"
     }
 
-    private var lectureWatchingData : LectureWatchingItem? = null
     private var greetingInfo : GreetingData.GreetingResult? = null
-    private var courseInfoList: List<CoursesData.CourseInfo> = listOf()
-
-    data class LectureWatchingItem (
-            val chapterName: String,
-            val lectureTitle: String
-    )
+    private lateinit var courseInfoList : CoursesData.CoursesResponse
+    private var recentLectureInfo : LectureData.RecentLectureInfo? = null
 
     private val disposables = CompositeDisposable()
 
-    init {
-        // TODO: Implement network data class
-        lectureWatchingData = MyCourseFragment.LectureWatchingItem("무슨 강좌 01 챕터", "[Rhino] 반지 모델링")
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        if(arguments != null) {
+            val gson = Gson()
+            courseInfoList = gson.fromJson(arguments.getString("courseInfoList"), CoursesData.CoursesResponse::class.java)
+        }
         return inflater!!.inflate(R.layout.fragment_main_my_lecture, container, false)
     }
 
@@ -59,16 +53,7 @@ class MyCourseFragment : Fragment(), View.OnClickListener {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = MyLectureAdapter()
 
-        disposables.add(APIClient.apiService.getRegisteredCourses(PrefUtils.getUserToken(context))
-                .setDefaultThreads()
-                .subscribe ({
-                    response -> courseInfoList = response.result
-                                recyclerView.adapter.notifyDataSetChanged()
 
-                }, {
-                    failure -> Log.i(TAG, "on Failure ${failure.message}")
-                })
-        )
         disposables.add(APIClient.apiService.getGreetingInfo(PrefUtils.getUserToken(context))
                 .setDefaultThreads()
                 .subscribe({
@@ -78,6 +63,19 @@ class MyCourseFragment : Fragment(), View.OnClickListener {
                     failure -> Log.i(TAG, "on Failure ${failure.message}")
                 })
         )
+
+        if(PrefUtils.getInt(context, PrefUtils.LECTURE_ID) != null) {
+            disposables.add(APIClient.apiService.getRecentLecture(
+                    PrefUtils.getUserToken(context), PrefUtils.getInt(context, PrefUtils.LECTURE_ID))
+                    .setDefaultThreads()
+                    .subscribe({
+                        response -> recentLectureInfo = response.result
+                                    recyclerView.adapter.notifyDataSetChanged()
+                    }, {
+                        failure -> Log.i(TAG, "on Failure ${failure.message}")
+                    }))
+        }
+
     }
 
     inner class MyLectureAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -91,11 +89,11 @@ class MyCourseFragment : Fragment(), View.OnClickListener {
             }
         }
 
-        override fun getItemCount() = courseInfoList.size + 3
+        override fun getItemCount() = courseInfoList.result.size + 3
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
-                (holder as MyCourseFragment.ElemViewHolder).bind(courseInfoList[position - 2])
+                (holder as MyCourseFragment.ElemViewHolder).bind(courseInfoList.result[position - 2])
             } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
                 (holder as MyCourseFragment.SecondHeaderViewHolder).bind()
             } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
@@ -129,9 +127,33 @@ class MyCourseFragment : Fragment(), View.OnClickListener {
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
         fun bind() {
-            itemView.main_course_wathing_chapter_tv.text = lectureWatchingData!!.chapterName
-            itemView.main_course_wathing_title_tv.text = lectureWatchingData!!.lectureTitle
+            if(recentLectureInfo != null) {
+                itemView.main_course_wathing_chapter_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
 
+                if((recentLectureInfo!!.lecture_priority)/10==0) {
+                    itemView.main_course_wathing_title_tv.text = "0${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
+                }
+                else {
+                    itemView.main_course_wathing_title_tv.text = "${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
+                }
+
+                if(recentLectureInfo!!.lecture_type == 0) {
+                    itemView.main_lecture_watching_progress_tv.text =
+                            "${PrefUtils.getInt(context, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_quiz}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_quiz_icon)
+                } else if(recentLectureInfo!!.lecture_type == 1) {
+                    itemView.main_lecture_watching_progress_tv.text =
+                            "${PrefUtils.getInt(context, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_picture}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
+                } else {
+                    itemView.main_lecture_watching_progress_tv.text =
+                            "${TimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
+                }
+            } else {
+                itemView.main_lecture_wathing_layout.visibility = View.GONE
+                itemView.main_lecture_wathing_tv.visibility = View.GONE
+            }
         }
     }
 

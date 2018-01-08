@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.category_information_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_search_category.view.*
@@ -24,30 +26,16 @@ import org.appjam.comman.util.setDefaultThreads
  */
 class SearchCategoryFragment : Fragment() {
 
-    private val categoryItemList = mutableListOf<CategoryItem>()
     private var categoryInfoList : List<CategoryData.CategoryInfo> = listOf()
     private val disposables = CompositeDisposable()
 
-    data class CategoryItem(val name: String)
-
-    init {
-        // TODO: Implement network data class
-        categoryItemList.add(CategoryItem("코딩"))
-        categoryItemList.add(CategoryItem("디자인 툴"))
-        categoryItemList.add(CategoryItem("문서"))
-        categoryItemList.add(CategoryItem("황혼 프로젝트"))
-        categoryItemList.add(CategoryItem("문서"))
-        categoryItemList.add(CategoryItem("황혼 프로젝트"))
-        categoryItemList.add(CategoryItem("문서"))
-    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?)
-        = inflater?.inflate(R.layout.fragment_main_search_category, container, false)
+         = inflater?.inflate(R.layout.fragment_main_search_category, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val recyclerView = view.main_searchCategory_rv
         recyclerView.adapter = CategoryAdapter()
-
         recyclerView.layoutManager = GridLayoutManager(context,2)
         recyclerView.addItemDecoration(SpaceItemDecoration(context, 8))
         (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -88,7 +76,7 @@ class SearchCategoryFragment : Fragment() {
                 (holder as ElemViewHolder).bind(position - 1)
             }
             else if(holder?.itemViewType == ListUtils.TYPE_HEADER)
-                    (holder as HeaderViewHolder)
+                    (holder as HeaderViewHolder).bind()
             else if(holder?. itemViewType == ListUtils.TYPE_FOOTER)
                 holder as FootViewHolder
         }
@@ -98,6 +86,7 @@ class SearchCategoryFragment : Fragment() {
             else if (position == itemCount - 1) ListUtils.TYPE_FOOTER
             else ListUtils.TYPE_ELEM
         }
+
     }
 
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -109,9 +98,23 @@ class SearchCategoryFragment : Fragment() {
                 categoryContent += (title + ", ")
             }
             itemView.categoryContent_tv.text = categoryContent
+            itemView.setOnClickListener {
+                val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+                val bundle = Bundle()
+                bundle.putInt("categoryID", categoryInfoList[position].categoryID)
+                (parentFragment as SearchFragment).ReplaceFragment(SearchCategoryResultFragment(), bundle, "searchResult")
+            }
         }
     }
     inner class FootViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
-    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            itemView.setOnClickListener {
+                val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+            }
+        }
+    }
 }

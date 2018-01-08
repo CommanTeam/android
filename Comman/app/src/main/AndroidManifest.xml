@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.lectureSubsection.LectureSubActivity"/>
+        <activity android:name=".ui.CourseSubsection.CourseSubActivity"/>
 
         <activity
             android:name="LectureVideo1Activity"/>
@@ -61,7 +61,7 @@
 
         <!-- 강의 설명 팝업 Activity -->
         <activity
-            android:name=".ui.lectureSubsection.LectureSubPopupActivity"
+            android:name=".ui.CourseSubsection.CourseSubPopupActivity"
             android:theme="@style/Theme.PopUp">
 
         </activity>

@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_card.*
 import org.appjam.comman.R
@@ -87,7 +86,6 @@ class CardActivity : AppCompatActivity() {
                     response ->
                         cardResponse = response
                         pageCount = response.result.size + 1
-                        val gson = Gson()
                         card_count_tv.text = "1 / $pageCount"
                         card_lecture_name_tv.text="${response.result[0].title}"
                         card_view_pager.adapter=CardPagerAdapter(supportFragmentManager)
