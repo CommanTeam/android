@@ -2,7 +2,6 @@ package org.appjam.comman.util
 
 import android.content.Context
 import com.google.android.youtube.player.YouTubePlayer
-import com.kakao.usermgmt.response.model.UserProfile
 
 /**
  * Created by junhoe on 2017. 12. 31..
@@ -11,15 +10,16 @@ object PrefUtils {
 
     const val FILE_NAME = "CommanPrefFile"
     const val USER_TOKEN = "userToken"
-    const val USER_THUMBNAIL = "userThumbnail"
+    const val LECTURE_ID = "lectureID"
+    const val POSITION = "currentPoistion"
     const val CURRENT_TIME = "youtubeCurrentTime"
 
     fun getUserToken(context: Context): String {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val userToken = pref.getString(USER_TOKEN, "")
-        if (userToken == "") {
-            throw RuntimeException("user token is null. Please check login process")
-        }
+//        if (userToken == "") {
+//            throw RuntimeException("user token is null. Please check login process")
+//        }
         return userToken
     }
 
@@ -31,17 +31,20 @@ object PrefUtils {
         editor.commit()
     }
 
-    fun putUserProfile(context: Context, userProfile: UserProfile) {
+    fun putCurrentLectureID(context: Context, lectureID: Int) {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putString(USER_THUMBNAIL, userProfile.thumbnailImagePath)
+        editor.putInt(LECTURE_ID, lectureID)
         editor.apply()
         editor.commit()
     }
 
-    fun getString(context: Context, key: String) : String {
+    fun putCurrentLecturePosition(context: Context, position: Int) {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-        return pref.getString(key, "")
+        val editor = pref.edit()
+        editor.putInt(POSITION, position)
+        editor.apply()
+        editor.commit()
     }
 
     fun putYoutubeCurrentTime(context: Context, youtubePlayer: YouTubePlayer) {
@@ -52,8 +55,14 @@ object PrefUtils {
         editor.commit()
     }
 
+    fun getString(context: Context, key: String) : String {
+        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
+        return pref.getString(key, "")
+    }
+
     fun getInt(context: Context, key: String) : Int {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         return pref.getInt(key, 0)
     }
+
 }

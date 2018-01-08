@@ -38,6 +38,14 @@ class CardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card)
 
+//        secondString=getIntent().getStringExtra("firstData")
+//        getText=findViewById(R.id.main2_get_text) as TextView
+//        getText!!.text=secondString
+
+        val intent = getIntent()
+        val lectureTitle = intent.getStringExtra("card_lecture_name_tv")
+        card_lecture_name_tv!!.text=lectureTitle
+
         card_view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }
@@ -89,7 +97,6 @@ class CardActivity : AppCompatActivity() {
                         pageCount = response.result.size + 1
                         val gson = Gson()
                         card_count_tv.text = "1 / $pageCount"
-                        card_lecture_name_tv.text="${response.result[0].title}"
                         card_view_pager.adapter=CardPagerAdapter(supportFragmentManager)
                 }, {
                     failure -> Log.i(CardActivity.TAG, "on Failure ${failure.message}")
@@ -113,7 +120,6 @@ class CardActivity : AppCompatActivity() {
             }
         }
         override fun getCount():Int= pageCount
-
     }
 
     override fun onDestroy() {

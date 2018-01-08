@@ -14,10 +14,12 @@ import org.appjam.comman.R
 class CardLastFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.fragment_card_second, container, false)
-        if(arguments != null) {
+        if (arguments != null) {
             v.card_next_lecture_btn.setOnClickListener {
                 arguments.getString("nextLectureID")
+
             }
+
         }
         return v
     }

@@ -23,6 +23,19 @@ object APIClient {
     }
 
     interface APIService {
+        //로그인 토큰 가져오기
+        @POST("/users/insert_user_info")
+        fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+        @POST("/users/insert_user_info")
+        fun getPostToken(@Header("authorization") tokenValue: String,
+                         @Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+
+
+        //수강중인 강좌
+        @GET("/users/main/progressLecture/")
+        fun getRegisteredCourses(@Header("authorization") tokenValue : String
+        ) : Observable<CoursesData.CoursesResponse>
+
         //카드 뉴스
         @GET("/content/lecturepicture/{lectureID}")
         fun getLectureCards(@Header("authorization") tokenValue: String,
@@ -35,29 +48,46 @@ object APIClient {
         @GET("/users/main/progressLecture/{userID}")
         fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
 
+
+
         @GET("/content/chapters")
         fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
 
-        @GET("/content/lecturepage/lectureList")
-        fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
-        fun getRegisteredCourses(@Path("userID" ) email : String) : Observable<CoursesData.CoursesResponse>
 
-        @POST("/users/insert_user_info")
-        fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+        @GET("/content/lecturepage/lectureList")
+        fun getLectureListInChapter(@Header("authorization") token : String,
+                                    @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
 
         @GET("/content/lecturequiz/{lectureID}")
         fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
-//        fun getRegisteredCourses(@Path("userID") email: String) : Observable<CoursesData.CoursesResponse>
-
-        //카드뉴스
-        @GET("/content/lecturepicture/{lectureID]")
-        fun getLectureCards(@Path("lectureID") lectureID : Int) : Observable<CardData.CardResponse>
 
         //강좌검색
         @POST("/search/courses")
         fun getSearchedCourses(
-//                @Header("authorization") tokenValue : String,
+                @Header("authorization") tokenValue : String,
                 @Body searchPost : SearchedCoursesData.SearchedcoursesPost
         ) : Observable<SearchedCoursesData.SearchedCoursesResponse>
+
+        //내 강좌 인사말 가져오기
+        @GET("/users/main/greeting")
+        fun getGreetingInfo(
+                @Header("authorization") tokenValue : String
+        ) : Observable<GreetingData.GreetingResponse>
+
+        //전체 카테고리 정보
+        @GET("/content/categories/course")
+        fun getCategoryInfos(
+                @Header("authorization") tokenVale : String
+        ) : Observable<CategoryData.CategoryResponse>
+
+        //다음 강좌 정보 가져오기
+        @GET("/content/lecturepage/nextLecture?courseID={courseID}&chapterID={chapterID}&lectureID={lectureID}")
+        fun getNextLectureInfo(
+                @Header("authorization") tokenValue : String,
+                @Query("courseID") courseID : Int,
+                @Query("chapterID") chapterID : Int,
+                @Query("lectureID") lectureID : Int
+        ) : Observable<NextLectureData.NextLectureResponse>
+
     }
 }

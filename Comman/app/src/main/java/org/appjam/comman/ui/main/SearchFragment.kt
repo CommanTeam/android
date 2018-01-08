@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_main_search.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.SearchedCoursesData
+import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 
 
@@ -48,7 +49,8 @@ class SearchFragment : Fragment(), View.OnClickListener {
 
     inner class editTextWather : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
-            disposables.add(APIClient.apiService.getSearchedCourses(SearchedCoursesData.SearchedcoursesPost(p0.toString()))
+            disposables.add(APIClient.apiService.getSearchedCourses(
+                    PrefUtils.getUserToken(context), SearchedCoursesData.SearchedcoursesPost(p0.toString()))
                     .setDefaultThreads()
                     .subscribe({ response ->
                         courseInfoList = response

@@ -47,8 +47,6 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
         lectureSubAdapter=LectureSubAadapter(chapterListData)
 
         chapterList!!.adapter=lectureSubAdapter
-
-
     }
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -75,7 +73,6 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
                 //intent.putExtra("chapterID", chapterListData!![position].id)
                 startActivity(intent)
             }
-
             if(position==0)
             itemView.lecture_subsection_lock_layout.visibility=View.GONE
         }
@@ -128,7 +125,7 @@ class LectureSubActivity : AppCompatActivity(), View.OnClickListener {
             1 -> ListUtils.TYPE_SECOND_HEADER
             (itemCount - 1)->ListUtils.TYPE_FOOTER
             else -> ListUtils.TYPE_ELEM
-
         }
     }
+
 }
