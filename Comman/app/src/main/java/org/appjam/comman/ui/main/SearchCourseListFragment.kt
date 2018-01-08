@@ -44,7 +44,7 @@ class SearchCourseListFragment : Fragment() {
             itemView.course_title_tv.text = courseInfoList?.result?.get(position)?.title
             itemView.course_content_tv.text = courseInfoList?.result?.get(position)?.info
             val hit = courseInfoList?.result?.get(position)?.hit
-            itemView.course_peaple_tv.text = "$hit 명이 수강중입니다"
+            itemView.course_people_tv.text = "$hit 명이 수강중입니다"
         }
     }
 

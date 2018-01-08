@@ -46,7 +46,7 @@
             android:textSize="16sp"
             />
         <TextView
-            android:id="@+id/course_peaple_tv"
+            android:id="@+id/course_people_tv"
             android:textColor="@color/pageCountTextColor"
             android:text="13.2 천 명이 수강 중입니다."
             android:textSize="14sp"

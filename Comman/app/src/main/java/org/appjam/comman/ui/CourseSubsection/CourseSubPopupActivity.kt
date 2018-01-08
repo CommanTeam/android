@@ -1,4 +1,4 @@
-package org.appjam.comman.ui.lectureSubsection
+package org.appjam.comman.ui.CourseSubsection
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -13,7 +13,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_lecture_popup.*
 import org.appjam.comman.R
 
-class LectureSubPopupActivity : AppCompatActivity() {
+class CourseSubPopupActivity : AppCompatActivity() {
 
     private var lecturePopupList : RecyclerView? = null
     private var lecturePopupDatas: ArrayList<LecturePopupData>? = null
@@ -36,7 +36,7 @@ class LectureSubPopupActivity : AppCompatActivity() {
         lecturePopupList!!.adapter = lecturePopupAdapter
 
         //닫기 버튼 클릭시 팝업 종료
-        lecture_popup_btn.setOnClickListener{
+        lecture_popup_btn.setOnClickListener {
             finish()
         }
     }
