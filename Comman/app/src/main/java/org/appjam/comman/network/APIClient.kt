@@ -59,7 +59,8 @@ object APIClient {
         fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
 
         @GET("/content/lecturequiz/{lectureID}")
-        fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
+        fun getQuizResult(@Header("authorization") tokenValue: String,
+                          @Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
 
 
         @GET("/content/lecturepicture/{lectureID}")
