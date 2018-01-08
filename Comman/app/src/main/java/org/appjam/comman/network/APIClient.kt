@@ -100,5 +100,12 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Path("courseID") courseID : Int
         ) : Observable<CoursesData.CheckRegistered>
+
+        //강좌id로 강좌 정보 가져오기
+        @GET("/content/courses")
+        fun getCourseMetaInfo(
+                @Header("authorization") tokenValue: String,
+                @Query("courseID") courseID : Int
+        ) : Observable<CoursesData.CourseMetaResponse>
     }
 }

@@ -5,26 +5,36 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import com.androidquery.AQuery
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_subsection.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_course_item.view.*
+import kotlinx.android.synthetic.main.main_notice_item.view.*
 import org.appjam.comman.R
+import org.appjam.comman.network.APIClient
+import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.ui.lecture.LectureListActivity
+import org.appjam.comman.ui.main.MyCourseFragment
 import org.appjam.comman.util.ListUtils
+import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.setDefaultThreads
 
 /**
  * Created by KSY on 2018-01-03.
  */
-class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
-    override fun onClick(p0: View?) {
+class CourseSubActivity : AppCompatActivity() {
 
+    companion object {
+        private val TAG = "CourseSubActivity"
     }
 
-    private var chapterList : RecyclerView?=null
-    private var chapterListData : ArrayList<ChapterListData>?=arrayListOf()
+    private var courseMetaData : List<CoursesData.CourseMetadata> = listOf()
     private var lectureSubAdapter : LectureSubAadapter? = null
+    private val disposables = CompositeDisposable()
 
     data class ChapterListData(
             val id: Int,
@@ -37,23 +47,35 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
-        chapterList=lecture_subsection_list_view
-        chapterList!!.layoutManager=LinearLayoutManager(this)
+        val recycler_view = lecture_subsection_list_view
+        recycler_view.layoutManager=LinearLayoutManager(this)
 
-        chapterListData?.add(ChapterListData(1,"1장","반지 모델링 하기","총 16강"))
-        chapterListData?.add(ChapterListData(2,"2장","반지 모델링 하기","총 16강"))
-        chapterListData?.add(ChapterListData(1,"3장","반지 모델링 하기","총 16강"))
+        lectureSubAdapter = LectureSubAadapter()
+        recycler_view.adapter = lectureSubAdapter
 
-        lectureSubAdapter=LectureSubAadapter(chapterListData)
-
-        chapterList!!.adapter=lectureSubAdapter
+        disposables.add(APIClient.apiService.getCourseMetaInfo(
+                PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID"))
+                .setDefaultThreads()
+                .subscribe({
+                    response -> courseMetaData = response.result
+                                recycler_view.adapter.notifyDataSetChanged()
+                }, {
+                    failure -> Log.i(TAG, "on Failure ${failure.message}")
+                }))
 
 
     }
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
-            itemView.lecture_subsection_course_popup_layout.setOnClickListener {
+            if(courseMetaData.isNotEmpty()) {
+                val aQuery = AQuery(this@CourseSubActivity)
+                aQuery.id(itemView.lecture_subsection_course_profile_iv).image(courseMetaData[0].supplier_thumbnail)
+                itemView.lecture_subsection_course_name_tv.text = courseMetaData[0].title
+                itemView.lecture_subsection_instructor_name_tv.text = courseMetaData[0].name
+                itemView.lecture_subsection_course_exp_tv.text = courseMetaData[0].info
+            }
+            itemView.lecture_subsection_popup_layout.setOnClickListener {
                 val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
                 startActivity(intent)
             }

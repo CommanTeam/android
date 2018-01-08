@@ -26,6 +26,7 @@ object CoursesData {
                               val opened_chapter: Int,
                               val image_path: String,
                               val name: String,
+                              val supplier_thumbnail: String,
                               val title: String,
                               val info: String,
                               val price: Int,
