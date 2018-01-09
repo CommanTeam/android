@@ -9,7 +9,7 @@
     android:background="@color/backgroundColor"
     tools:context="org.appjam.comman.ui.lecture.LectureListActivity">
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/lecture_list"
+        android:id="@+id/lecture_list_rv"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="21dp"
         android:layout_width="match_parent"

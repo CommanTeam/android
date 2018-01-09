@@ -36,18 +36,19 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener {
     private var lectureInChapterDataList: List<ChapterData.LectureListinChapterData> = listOf()
     private val disposables = CompositeDisposable()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_list)
 
-        lecture_list.layoutManager = LinearLayoutManager(this)
-        lecture_list.adapter = LectureAdapter()
+        lecture_list_rv.layoutManager = LinearLayoutManager(this)
+        lecture_list_rv.adapter = LectureAdapter()
 
         disposables.add(APIClient.apiService.getChapterInfo(PrefUtils.getUserToken(this), intent.getIntExtra(ChapterData.CHAPTER_ID_KEY, 0))
                 .setDefaultThreads()
                 .subscribe({ response ->
                     chapterInfo = response.data[0]
-                    lecture_list.adapter?.notifyDataSetChanged()
+                    lecture_list_rv.adapter?.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, failure.message)
                 }))
@@ -56,14 +57,15 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener {
                 .subscribe({ response ->
                     lectureInChapterDataList = response.result
                     Log.i(TAG, "result: ${response.result}")
-                    lecture_list.adapter?.notifyDataSetChanged()
+                    lecture_list_rv.adapter?.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure, Message: ${failure.message}")
                 }))
+
     }
 
     override fun onClick(v: View?) {
-        val idx: Int = lecture_list.getChildAdapterPosition(v)
+        val idx: Int = lecture_list_rv.getChildAdapterPosition(v)
         val name: String = "hello"
         Toast.makeText(this, name, Toast.LENGTH_SHORT).show()
     }
@@ -93,8 +95,8 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener {
             if (data.lectureType == 2) {
                 itemView.setOnClickListener {
                     val intent = Intent(this@LectureListActivity, LectureVideo1Activity::class.java)
-//                intent.putExtra("chapterID", chapterListData!![position].id)
-                    //intent.putExtra("chapterID", chapterListData!![position].id)
+// intent.putExtra("chapterID", chapterListData!![position].id)
+//intent.putExtra("chapterID", chapterListData!![position].id)
                     startActivity(intent)
                 }
             }

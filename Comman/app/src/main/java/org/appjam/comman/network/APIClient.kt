@@ -42,8 +42,7 @@ object APIClient {
         fun getLectureCards(@Header("authorization") tokenValue: String,
                             @Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
 
-        //강의정보얻기
-        @GET("/content/lectures")
+        //강의페이지 중 개요
         fun getLectureInfo(@Header("authorization") tokenValue : String,
                            @Query("lectureID") lectureID: Int) : Observable<LectureData.LectureResponse>
 
@@ -56,9 +55,10 @@ object APIClient {
         @GET("/content/chapters")
         fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
 
-
+        //강의페이지 중 강의목록
         @GET("/content/lecturepage/lectureList")
         fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
+
 
         @GET("/content/lecturequiz/{lectureID}")
         fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
@@ -87,6 +87,14 @@ object APIClient {
                 @Header("authorization") tokenVale : String
         ) : Observable<CategoryData.CategoryResponse>
 
+        //강좌별 챕터정보
+        @GET("/content/courses/")
+        fun getPopupTitleInfos(@Header("authorization")tokenValue: String, @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
+
+        //강좌id로 강좌정보 가져오기
+        @GET("/content/courses/{courseID}/chapters")
+        fun getPopupContentInfos(@Header("authorization")tokenValue: String, @Path("courseID") courseID :Int) :Observable<PopupData.PopupContentResponse>
+
         //카테고리 검색 결과
         @GET("/search/courses/categories/{categoryID}")
         fun getLecturesOfCategory(
@@ -100,6 +108,13 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Path("courseID") courseID : Int
         ) : Observable<CoursesData.CheckRegistered>
+
+        //유저별 강좌 구매 여부
+        @GET("/users/purchase/{courseID}")
+        fun checkPurchaseCourse(
+                @Header("authorization") tokenValue: String,
+                @Path("courseID") courseID : Int
+        ) : Observable<CoursesData.CheckPurchased>
 
         //강좌id로 강좌 정보 가져오기
         @GET("/content/courses")

@@ -36,5 +36,9 @@ object CoursesData {
             val result : Int
     )
 
+    data class CheckPurchased(
+            val result : Int
+    )
+
 
 }
