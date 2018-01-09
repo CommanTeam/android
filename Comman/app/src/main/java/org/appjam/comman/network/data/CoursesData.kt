@@ -40,5 +40,9 @@ object CoursesData {
             val result : Int
     )
 
+    data class PurchaseCourse(
+            val message : String
+    )
+
 
 }

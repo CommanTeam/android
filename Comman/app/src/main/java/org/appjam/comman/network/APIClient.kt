@@ -50,16 +50,17 @@ object APIClient {
         fun getRecentLecture(@Header("authorization") tokenValue: String,
                              @Path("lectureID") lectureID: Int) : Observable<LectureData.RecentLectureResponse>
 
-
+        //챕터id로 챕터정보 가져오기
         @GET("/content/chapters")
-        fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
+        fun getChapterInfo(@Header("authorization") token : String,
+                           @Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
 
         //강의페이지 중 강의목록
         @GET("/content/lecturepage/lectureList")
         fun getLectureListInChapter(@Header("authorization") token : String,
                                     @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
 
-
+        //강의에 대한 퀴즈정보
         @GET("/content/lecturequiz/{lectureID}")
         fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
 
@@ -126,5 +127,12 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Query("courseID") courseID : Int
         ) : Observable<CoursesData.CourseMetaResponse>
+
+        //유저별 강좌 구매
+        @PUT("/users/purchase/{courseID}")
+        fun purchaseCourse(
+                @Header("authorization") tokenValue: String,
+                @Path("courseID") courseID :Int
+        ) : Observable<CoursesData.PurchaseCourse>
     }
 }

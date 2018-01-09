@@ -5,7 +5,7 @@ package org.appjam.comman.network.data
  */
 object ChapterData {
     const val CHAPTER_ID_KEY = "chapterID"
-    data class  InfoResponse(val data: List<ChapterInfo>)
+    data class InfoResponse(val data: List<ChapterInfo>)
     data class ChapterInfo(val id: Int,
                            val course_id: Int,
                            val info: String,

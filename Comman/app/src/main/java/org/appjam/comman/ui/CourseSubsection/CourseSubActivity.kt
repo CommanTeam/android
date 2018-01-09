@@ -36,7 +36,7 @@ class CourseSubActivity : AppCompatActivity() {
         private val TAG = "CourseSubActivity"
     }
 
-    private var courseMetaData: List<CoursesData.CourseMetadata> = listOf()
+    private var courseMetaData: CoursesData.CourseMetadata? = null
     private val disposables = CompositeDisposable()
     private var chaptersInfoList: List<PopupData.PopupContentInfo> = listOf()
     private var recentLectureInfo: LectureData.RecentLectureInfo? = null
@@ -51,17 +51,17 @@ class CourseSubActivity : AppCompatActivity() {
         recycler_view.adapter = LectureSubAadapter()
 
         disposables.add(APIClient.apiService.getCourseMetaInfo(
-                PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID", 1))  //defaultValue 1넣는게 맞을까?
+                PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID", 0))  //defaultValue 0넣는게 맞을까?
                 .setDefaultThreads()
                 .subscribe({ response ->
-                    courseMetaData = response.result
+                    courseMetaData = response.result[0]
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
                 }))
 
         disposables.add(APIClient.apiService.getPopupContentInfos(
-                PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID", 1))
+                PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID", 0))
                 .setDefaultThreads()
                 .subscribe({ response ->
                     chaptersInfoList = response.result
@@ -71,7 +71,7 @@ class CourseSubActivity : AppCompatActivity() {
                 }))
 
         disposables.add(APIClient.apiService.checkPurchaseCourse(
-                PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID", 1))
+                PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID", 0))
                 .setDefaultThreads()
                 .subscribe({ response ->
                     isPurchased = response.result
@@ -94,16 +94,16 @@ class CourseSubActivity : AppCompatActivity() {
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
-            if (courseMetaData.isNotEmpty()) {
+            if (courseMetaData != null) {
                 val aQuery = AQuery(this@CourseSubActivity)
-                aQuery.id(itemView.lecture_subsection_course_profile_iv).image(courseMetaData[0].supplier_thumbnail)
-                itemView.lecture_subsection_course_name_tv.text = courseMetaData[0].title
-                itemView.lecture_subsection_instructor_name_tv.text = courseMetaData[0].name
-                itemView.lecture_subsection_course_exp_tv.text = courseMetaData[0].info
+                aQuery.id(itemView.lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
+                itemView.lecture_subsection_course_name_tv.text = courseMetaData?.title
+                itemView.lecture_subsection_instructor_name_tv.text = courseMetaData?.name
+                itemView.lecture_subsection_course_exp_tv.text = courseMetaData?.info
             }
             itemView.lecture_subsection_popup_layout.setOnClickListener {
                 val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
-                intent.putExtra("courseID", courseMetaData[0].id)
+                intent.putExtra("courseID", courseMetaData?.id)
                 startActivity(intent)
             }
         }
@@ -116,7 +116,7 @@ class CourseSubActivity : AppCompatActivity() {
                 itemView.lecture_subsection_purchase_btn.visibility = View.VISIBLE
                 itemView.lecture_subsection_purchase_btn.setOnClickListener {
                     val intent = Intent(this@CourseSubActivity, ChargePopupActivity::class.java)
-                    intent.getIntExtra("courseID", courseMetaData[0].id)
+                    intent.putExtra("courseID", courseMetaData?.id)
                     startActivity(intent)
                 }
             } else {
