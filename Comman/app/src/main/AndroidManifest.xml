@@ -36,12 +36,11 @@
         <activity
             android:name=".ui.card.CardActivity"
             android:theme="@style/NoActionBar"></activity>
-
+        <!-- 강의 결제 팝업 Activity -->
         <activity android:name=".ui.courseNonRegist.ChargePopupActivity"
             android:theme="@style/Theme.PopUp" >
 
-        <!--<activity android:name=".ui.user.LoginActivity">-->
-            <intent-filter>
+          <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -69,11 +68,6 @@
             android:name=".ui.quiz.PopupExplainActivity"
             android:theme="@style/Theme.PopUp" />
 
-        <!-- 강의 결제 팝업 Activity -->
-        <!--<activity-->
-            <!--android:name=".ui.courseNonRegist.ChargePopupActivity"-->
-
-            <!--android:theme="@style/Theme.PopUp" />-->
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
