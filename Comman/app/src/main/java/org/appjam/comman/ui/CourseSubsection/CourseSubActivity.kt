@@ -37,7 +37,7 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
-       chapterList=lecture_subsection_list_view
+        chapterList=lecture_subsection_list_view
         chapterList!!.layoutManager=LinearLayoutManager(this)
 
         chapterListData?.add(ChapterListData(1,"1장","반지 모델링 하기","총 16강"))
@@ -74,7 +74,7 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
             if(position==0)
-            itemView.lecture_subsection_lock_layout.visibility=View.GONE
+                itemView.lecture_subsection_lock_layout.visibility=View.GONE
         }
     }
     inner class FooterViewHolder(itemView:View):RecyclerView.ViewHolder(itemView)

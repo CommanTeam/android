@@ -119,7 +119,6 @@ class LoginActivity : AppCompatActivity() {
             //access token을 성공적으로 발급 받아 valid access token을 가지고 있는 상태. 일반적으로 로그인 후의 다음 activity로 이동한다.
             if (Session.getCurrentSession().isOpened) { // 한 번더 세션을 체크해주었습니다.
                 requestMe()
-
             }
         }
 

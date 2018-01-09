@@ -15,11 +15,11 @@ object CategoryData {
             val title : List<String>
     )
 
-    data class LecturesOfCategoryResponse (
-            val result : List<LecturesOfCategory>
+    data class CoursesOfCategoryResponse(
+            val result : List<CoursesOfCategory>
     )
 
-    data class LecturesOfCategory (
+    data class CoursesOfCategory(
             val id : Int,
             val title : String,
             val info : String,

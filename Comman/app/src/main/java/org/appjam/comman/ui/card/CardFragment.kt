@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import com.androidquery.AQuery
 import com.google.gson.Gson
 import org.appjam.comman.R
@@ -32,10 +31,11 @@ class CardFragment : Fragment(){
 //            if(arguments.getInt("position") != null)
 //                position = arguments.getInt("position")
             val img_url = arguments.getString("image_url")
-            Toast.makeText(context, img_url, Toast.LENGTH_SHORT).show()
 //            val image_url = cardResponse!!.result[position].image_path
             aQuery!!.id(v.findViewById<ImageView>(R.id.frag_card_img)).image(img_url)
+           // Toast.makeText(context, "굳 : " + arguments.getInt("position").toString() + "잡 : " + arguments.getInt("course_ID"), Toast.LENGTH_SHORT).show()
             PrefUtils.putCurrentLecturePosition(context,arguments.getInt("position") )
+            PrefUtils.putLectureOfCoursePosition(context, arguments.getInt("position"), arguments.getInt("course_ID"))
         }
         return v
     }

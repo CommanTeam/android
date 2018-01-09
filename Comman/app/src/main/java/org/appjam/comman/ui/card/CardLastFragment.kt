@@ -39,7 +39,8 @@ class CardLastFragment : Fragment() {
             v.card_next_lecture_btn.setOnClickListener {
                 arguments.getString("nextLectureID")
             }
-            PrefUtils.putCurrentLecturePosition(context,arguments.getInt("position") )
+
+            PrefUtils.putCurrentLecturePosition(context, arguments.getInt("position") )
         }
         return v
     }
