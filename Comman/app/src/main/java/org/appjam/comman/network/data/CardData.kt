@@ -6,8 +6,6 @@ package org.appjam.comman.network.data
  */
 object CardData {
     data class CardResponse (
-//            var lectureImageUrlArr : List<String>,
-//            var nextLectureID : String
             var result : List<CardInfo>
     )
     data class CardInfo(

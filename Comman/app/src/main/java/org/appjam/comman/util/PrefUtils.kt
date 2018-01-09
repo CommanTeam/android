@@ -40,14 +40,6 @@ object PrefUtils {
         editor.commit()
     }
 
-    fun putCurrentLecturePosition(context: Context, position: Int) {
-        val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-        val editor = pref.edit()
-        editor.putInt(POSITION, position)
-        editor.apply()
-        editor.commit()
-    }
-
     fun putLectureOfCourseID(context: Context, lectureID: Int, courseID: Int) {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val editor = pref.edit()
@@ -71,7 +63,7 @@ object PrefUtils {
 
     fun getRecentLectureOfCoursePosition(context: Context, courseID: Int) : Int {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-        return pref.getInt(courseID.toString() + "position", -1)
+        return pref.getInt(courseID.toString() + "position", 0)
     }
 
     fun putYoutubeCurrentTime(context: Context, youtubePlayer: YouTubePlayer) {

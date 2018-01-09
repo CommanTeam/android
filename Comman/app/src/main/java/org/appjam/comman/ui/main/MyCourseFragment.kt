@@ -123,7 +123,7 @@ class MyCourseFragment : Fragment() {
 
             itemView.setOnClickListener {
                 val intent = Intent(context, CourseSubActivity::class.java)
-                intent.getIntExtra("courseID", courseInfo.courseID)
+                intent.putExtra("courseID", courseInfo.courseID)
                 startActivity(intent)
             }
         }
