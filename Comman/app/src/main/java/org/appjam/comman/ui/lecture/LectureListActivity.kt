@@ -32,7 +32,7 @@ class LectureListActivity : AppCompatActivity() {
     }
 
     private var chapterInfo: ChapterData.ChapterInfo? = null
-    private var lectureInChapterDataList: List<ChapterData.LectureListinChapterData> = listOf()
+    private var lectureInChapterDataList: List<ChapterData.LectureListInChapterData> = listOf()
     private val disposables = CompositeDisposable()
 
 
@@ -73,7 +73,7 @@ class LectureListActivity : AppCompatActivity() {
     }
 
     inner class LectureViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        fun bind(data: ChapterData.LectureListinChapterData) {
+        fun bind(data: ChapterData.LectureListInChapterData) {
             if (data.watchedFlag == 0) {
                 when {
                     data.lectureType == 0 -> itemView.lecture_list_img.setImageResource(R.drawable.quiz_icon)
