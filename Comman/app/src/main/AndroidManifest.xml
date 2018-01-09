@@ -75,8 +75,6 @@
         </activity>
 
 
-        <activity android:name=".ui.card.CardActivity"
-            android:theme="@style/NoActionBar"/>
         <!--등록 팝업 Activity -->
         <activity
             android:name=".ui.courseNonRegist.CourseNonRegistActivity"

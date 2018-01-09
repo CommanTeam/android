@@ -25,9 +25,6 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
     private var chapterList : RecyclerView?=null
     private var chapterListData : ArrayList<ChapterListData>?=arrayListOf()
     private var lectureSubAdapter : LectureSubAadapter? = null
-    private var chapterList: RecyclerView? = null
-    private var chapterListData: ArrayList<ChapterListData> = arrayListOf()
-    private var lectureSubAdapter: LectureSubAadapter? = null
 
     data class ChapterListData(
             val id: Int,
@@ -43,9 +40,9 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
         chapterList = lecture_subsection_list_view
         chapterList!!.layoutManager = LinearLayoutManager(this)
 
-        chapterListData.add(ChapterListData(1, "1장", "반지 모델링 하기", "총 16강"))
-        chapterListData.add(ChapterListData(2, "2장", "반지 모델링 하기", "총 16강"))
-        chapterListData.add(ChapterListData(1, "3장", "반지 모델링 하기", "총 16강"))
+        chapterListData?.add(ChapterListData(1, "1장", "반지 모델링 하기", "총 16강"))
+        chapterListData?.add(ChapterListData(2, "2장", "반지 모델링 하기", "총 16강"))
+        chapterListData?.add(ChapterListData(1, "3장", "반지 모델링 하기", "총 16강"))
 
         lectureSubAdapter = LectureSubAadapter(chapterListData)
 
