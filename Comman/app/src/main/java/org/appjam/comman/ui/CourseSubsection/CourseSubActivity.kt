@@ -112,6 +112,7 @@ class CourseSubActivity : AppCompatActivity() {
     }
 
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        // TODO : 비디오일 경우 백그라운드 설정 및 몇 가지 설정 좀 더 필요, intent 연결도 필요
         fun bind() {
             if (isPurchased == 0) {
                 itemView.lecture_subsection_purchase_btn.visibility = View.VISIBLE
