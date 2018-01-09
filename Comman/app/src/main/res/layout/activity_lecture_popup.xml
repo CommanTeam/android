@@ -123,40 +123,7 @@
 
 
     </android.support.design.widget.CoordinatorLayout>
-    <!--
-    <LinearLayout
-        android:background="@drawable/popup_inner_bottom_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="317dp"
-        android:orientation="vertical">
-<<<<<<< HEAD
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="29dp"
-                android:layout_marginRight="29dp"
-                android:layout_marginTop="19dp">
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/lecture_popup_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scrollbarSize="6dp"
-                    android:scrollbarStyle="outsideInset"
-                    android:scrollbars="vertical"/>
-            </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-=======
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
 
-        </LinearLayout>
-    </LinearLayout>-->
     <RelativeLayout
         android:layout_marginTop="5dp"
 

@@ -25,10 +25,10 @@ object APIClient {
     interface APIService {
         //로그인 토큰 가져오기
         @POST("/users/insert_user_info")
-        fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+        fun getPostToken(@Body loginData : LoginData.LoginPost) : Observable<LoginData.LoginResponse>
         @POST("/users/insert_user_info")
         fun getPostToken(@Header("authorization") tokenValue: String,
-                         @Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+                         @Body loginData : LoginData.LoginPost) : Observable<LoginData.LoginResponse>
 
 
         //수강중인 강좌
@@ -41,7 +41,8 @@ object APIClient {
         fun getLectureCards(@Header("authorization") tokenValue: String,
                             @Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
 
-        //강의페이지 중 개요
+        //강의id로 강의정보 가져오기
+        @GET("/content/lectures")
         fun getLectureInfo(@Header("authorization") tokenValue : String,
                            @Query("lectureID") lectureID: Int) : Observable<LectureData.LectureResponse>
 
