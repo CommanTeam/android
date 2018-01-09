@@ -84,8 +84,8 @@ object APIClient {
                 @Header("authorization") tokenVale : String
         ) : Observable<CategoryData.CategoryResponse>
 
-        //다음 강좌 정보 가져오기
-        @GET("/content/lecturepage/nextLecture?courseID={courseID}&chapterID={chapterID}&lectureID={lectureID}")
+        //다음 강좌 정보 가져오기 TODO 이 부분 바뀔 것 같아서 조금 나중에 건드리겠음
+        @GET("/content/lecturepage/nextLecture")
         fun getNextLectureInfo(
                 @Header("authorization") tokenValue : String,
                 @Query("courseID") courseID : Int,
@@ -95,11 +95,15 @@ object APIClient {
 
         //강좌별 챕터정보
         @GET("/content/courses/")
-        fun getPopupTitleInfos(@Header("authorization")tokenValue: String, @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
+        fun getPopupTitleInfos(
+                @Header("authorization")tokenValue: String,
+                @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
 
         //강좌id로 강좌정보 가져오기
         @GET("/content/courses/{courseID}/chapters")
-        fun getPopupContentInfos(@Header("authorization")tokenValue: String, @Path("courseID") courseID :Int) :Observable<PopupData.PopupContentResponse>
+        fun getPopupContentInfos(
+                @Header("authorization")tokenValue: String,
+                @Path("courseID") courseID :Int) :Observable<PopupData.PopupContentResponse>
 
         //카테고리 검색 결과
         @GET("/search/courses/categories/{categoryID}")
@@ -135,5 +139,12 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Path("courseID") courseID :Int
         ) : Observable<CoursesData.PurchaseCourse>
+
+        //유저별 강좌 등록
+        @POST("/users/register")
+        fun registerCourse(
+                @Header("authorization") tokenValue: String,
+                @Body registerData : CoursesData.RegisterPost
+        ) : Observable<CoursesData.RegisterCourse>
     }
 }

@@ -55,6 +55,7 @@ class CourseSubActivity : AppCompatActivity() {
                 .setDefaultThreads()
                 .subscribe({ response ->
                     courseMetaData = response.result[0]
+                    card_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
@@ -92,15 +93,18 @@ class CourseSubActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        disposables.clear()
+        super.onDestroy()
+    }
+
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
-            if (courseMetaData != null) {
-                val aQuery = AQuery(this@CourseSubActivity)
-                aQuery.id(itemView.lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
-                itemView.lecture_subsection_course_name_tv.text = courseMetaData?.title
-                itemView.lecture_subsection_instructor_name_tv.text = courseMetaData?.name
-                itemView.lecture_subsection_course_exp_tv.text = courseMetaData?.info
-            }
+            val aQuery = AQuery(this@CourseSubActivity)
+            aQuery.id(itemView.lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
+            itemView.lecture_subsection_course_name_tv.text = courseMetaData?.title
+            itemView.lecture_subsection_instructor_name_tv.text = courseMetaData?.name
+            itemView.lecture_subsection_course_exp_tv.text = courseMetaData?.info
             itemView.lecture_subsection_popup_layout.setOnClickListener {
                 val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
                 intent.putExtra("courseID", courseMetaData?.id)
@@ -161,7 +165,7 @@ class CourseSubActivity : AppCompatActivity() {
         // TODO: 일단 기본적인 것은 완성 혹시나 안되면 데이터 클래스나 통신 쪽을 확인해봐야 함
         fun bind(position: Int) {
             itemView.lecture_subsection_chapterlist_chapnum_tv.text = "${chaptersInfoList[position].priority}장"
-            //itemView.lecture_subsection_chapterlist_totalnum_tv.text = chaptersInfoList[position].lectu   api에 단원의 강좌수 추가되면 수정
+//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].size}강"
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
             if (((isPurchased == 0) and chaptersInfoList[position].open) or (isPurchased == 1)) {
                 itemView.lecture_subsection_lock_layout.visibility = View.GONE
@@ -180,7 +184,7 @@ class CourseSubActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
             return if (viewType == ListUtils.TYPE_HEADER) {
-                val view: View = layoutInflater.inflate(R.layout.lecture_subsection_course_item, parent, false)
+                val view: View = layoutInflater.inflate(R.layout.lecture_subsection_regist_item, parent, false)
                 HeaderViewHolder(view)
             } else if (viewType == ListUtils.TYPE_SECOND_HEADER) {
                 val view: View = layoutInflater.inflate(R.layout.lecture_subsection_video_item, parent, false)
