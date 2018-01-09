@@ -11,11 +11,15 @@ object QuizData {
                          val quizPriority : Int,//퀴즈 순서(퀴즈 제목 옆 인덱스 값)
                          val quizImage : String, //이미지 포함된 퀴즈에서 불러올 이미지 경로
                          val explanation: String, //해당 퀴즈의 정답 해설정보
-                         val questionArr: List<questionArr>
+                         val questionArr: List<QuestionArr>
     )
 
-    data class questionArr(val questionID: Int,
+    data class QuestionArr(val questionID: Int,
                            val questionContent : String,
                            val answerFlag : Int)
+
+    data class AnswerArr(
+            var answerArr : MutableList<Int>
+    )
 
 }

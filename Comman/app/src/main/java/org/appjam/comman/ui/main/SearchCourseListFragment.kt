@@ -122,7 +122,7 @@ class SearchCourseListFragment : Fragment() {
             }
         }
 
-        override fun getItemCount() = courseInfoList.size
+        override fun getItemCount() = courseInfoList.size + 2
 
     }
 
