@@ -40,5 +40,17 @@ object CoursesData {
             val result : Int
     )
 
+    data class PurchaseCourse(
+            val message : String
+    )
+
+    data class RegisterPost(
+            val courseID : Int
+    )
+
+    data class RegisterCourse(
+            val message : String
+    )
+
 
 }

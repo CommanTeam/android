@@ -2,25 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="373dp"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
-    android:layout_height="373dp"
     android:background="@color/white"
     android:orientation="vertical"
     tools:context="org.appjam.comman.ui.courseNonRegist.ChargePopupActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <ImageView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="63dp"
                 android:layout_height="63dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="23dp"
                 android:layout_marginTop="32dp"
                 android:src="@drawable/enrollment_charge_check_icon" />
@@ -36,97 +38,102 @@
                 android:textSize="21sp" />
         </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginRight="29dp"
-        android:background="@color/divideLineColor"
-        android:layout_gravity="center_horizontal"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:layout_marginRight="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="27dp"
-        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="29dp"
+            android:layout_marginRight="29dp"
+            android:background="@color/divideLineColor" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginBottom="36dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginRight="29dp"
+            android:layout_marginTop="27dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_bold"
-                android:text="강좌명"
-                android:textColor="@color/mainTextColor"
-                android:textSize="19sp" />
-            <TextView
-                android:id="@+id/charge_title_tv"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_square_bold"
-                android:text="[Rhino] 반지 모델링하기"
-                android:gravity="end"
-                android:textColor="@color/mainTextColor"
-                android:textSize="19sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:text="강좌명"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/charge_title_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:gravity="end"
+                    android:text="[Rhino] 반지 모델링하기"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="19sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="65dp"
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:text="결제금액"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/charge_price_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="8,8000원"
+                    android:textColor="@color/mainTextColor"
+                    android:textSize="19sp" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_height="98dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="65dp"
+
+            <Button
+                android:id="@+id/charge_ok_btn"
+                android:layout_width="111dp"
+                android:layout_height="37dp"
+                android:layout_marginRight="12dp"
+                android:layout_toLeftOf="@+id/charge_close_btn"
+                android:background="@color/primaryColor"
                 android:fontFamily="@font/nanum_square_bold"
-                android:text="결제금액"
-                android:textColor="@color/mainTextColor"
+                android:text="결제하기"
+                android:textColor="@color/white"
                 android:textSize="19sp" />
-            <TextView
-                android:id="@+id/charge_price_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="8,8000원"
-                android:gravity="end"
-                android:textColor="@color/mainTextColor"
+
+            <Button
+                android:id="@+id/charge_close_btn"
+                android:layout_width="96dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="29dp"
+                android:background="@color/primaryColor"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="닫기"
+                android:textColor="@color/white"
                 android:textSize="19sp" />
-        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="98dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-        <Button
-            android:id="@+id/charge_ok_btn"
-            android:layout_width="111dp"
-            android:layout_height="37dp"
-            android:layout_toLeftOf="@+id/charge_close_btn"
-            android:layout_marginRight="12dp"
-            android:background="@color/primaryColor"
-            android:textColor="@color/white"
-            android:fontFamily="@font/nanum_square_bold"
-            android:textSize="19sp"
-            android:text="결제하기"/>
-        <Button
-            android:id="@+id/charge_close_btn"
-            android:layout_width="96dp"
-            android:layout_height="36dp"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/white"
-            android:text="닫기"
-            android:fontFamily="@font/nanum_square_bold"
-            android:textSize="19sp"
-            android:background="@color/primaryColor"
-            android:layout_marginRight="29dp"/>
-    </RelativeLayout>
 </LinearLayout>
-    </LinearLayout>

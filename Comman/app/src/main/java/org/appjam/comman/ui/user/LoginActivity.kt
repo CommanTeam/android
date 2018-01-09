@@ -4,6 +4,7 @@ package org.appjam.comman.ui.user
  * Created by yeahen on 2017-12-31.
  */
 
+
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -30,7 +31,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
-import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
+import org.appjam.comman.ui.main.MainActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 import java.security.MessageDigest
@@ -149,32 +150,14 @@ class LoginActivity : AppCompatActivity() {
                 var user_email = userProfile.email
                 var user_token = Session.getCurrentSession().tokenInfo.accessToken
                 Log.e("kakao", user_token)
-                lateinit var user_profile_img : String
+                var user_profile_img : String
 
                 if(userProfile.thumbnailImagePath != null)
                     user_profile_img = userProfile.thumbnailImagePath
                 else
                     user_profile_img = ""
 
-                disposables.add(APIClient.apiService.getPostToken(LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
-                        .setDefaultThreads()
-                        .subscribe ({
-                            response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
-                            Log.i(TAG,"aaaaaaaaaaaaaaaaa ${response.token}")
-                            Toast.makeText(this@LoginActivity,response.token, Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
-                            startActivity(intent)
-                        }, {
-                            failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
-                        })
-                )
-                //성공하면 MainActivity로 이동
-                //프로필 이미지 url과 이메일 값 디비에 삽입하기
-
-                //싱글탑, 클리어탑 고민
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                if(PrefUtils.getUserToken(this@LoginActivity) != null) {
+                if(PrefUtils.getUserToken(this@LoginActivity) != "") {
                     disposables.add(APIClient.apiService.getPostToken(PrefUtils.getUserToken(this@LoginActivity),
                                      LoginData.LoginInfo(user_nickName, user_profile_img, user_token))
                             .setDefaultThreads()
@@ -186,10 +169,9 @@ class LoginActivity : AppCompatActivity() {
 //                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
 //                                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
 
-                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
                                 startActivity(intent)
                             }, {
                                 failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
@@ -199,8 +181,7 @@ class LoginActivity : AppCompatActivity() {
                             .setDefaultThreads()
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
-
-                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
                                 startActivity(intent)
                             }, {
