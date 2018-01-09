@@ -22,6 +22,9 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    private var chapterList : RecyclerView?=null
+    private var chapterListData : ArrayList<ChapterListData>?=arrayListOf()
+    private var lectureSubAdapter : LectureSubAadapter? = null
     private var chapterList: RecyclerView? = null
     private var chapterListData: ArrayList<ChapterListData> = arrayListOf()
     private var lectureSubAdapter: LectureSubAadapter? = null
@@ -47,8 +50,6 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
         lectureSubAdapter = LectureSubAadapter(chapterListData)
 
         chapterList!!.adapter = lectureSubAdapter
-
-
     }
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -127,7 +128,7 @@ class CourseSubActivity : AppCompatActivity(), View.OnClickListener {
             1 -> ListUtils.TYPE_SECOND_HEADER
             (itemCount - 1) -> ListUtils.TYPE_FOOTER
             else -> ListUtils.TYPE_ELEM
-
         }
     }
+
 }
