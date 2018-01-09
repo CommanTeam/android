@@ -79,6 +79,8 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener {
 
     inner class LectureViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         fun bind(data: ChapterData.LectureListinChapterData) {
+
+            var lecture_title : String ?=null
             if (data.watchedFlag == 0) {
                 when {
                     data.lectureType == 0 -> itemView.lecture_list_img.setImageResource(R.drawable.quiz_icon)
@@ -99,19 +101,25 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener {
 //intent.putExtra("chapterID", chapterListData!![position].id)
                     startActivity(intent)
                 }
-            }
-            else if (data.lectureType == 0){
-                itemView.setOnClickListener{
+            } else if (data.lectureType == 0) {
+                itemView.setOnClickListener {
                     val intent = Intent(this@LectureListActivity, QuizActivity::class.java)
                     startActivity(intent)
                 }
-            }
-            else{
+            } else if (data.lectureType == 1) {
+
                 itemView.setOnClickListener {
+                    if((data.lecturePriority)/10==0) {
+                        lecture_title="0"+data.lecturePriority.toString()+". "+data.lectureTitle
+                    }
+                    else
+                        lecture_title = data.lecturePriority.toString() + ". " + data.lectureTitle
+
                     val intent = Intent(this@LectureListActivity, CardActivity::class.java)
+                    intent.putExtra("card_lecture_name_tv",lecture_title)
+                    startActivity(intent)
                 }
             }
-
             itemView.lecture_list_name_tv.text = data.lectureTitle
             itemView.lecture_list_num_tv.text = data.size.toString()
         }
@@ -142,7 +150,6 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-
         override fun getItemCount() = lectureInChapterDataList.size + 2
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {

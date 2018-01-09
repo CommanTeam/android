@@ -23,7 +23,6 @@ object APIClient {
     }
 
     interface APIService {
-
         //로그인 토큰 가져오기
         @POST("/users/insert_user_info")
         fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
@@ -57,15 +56,12 @@ object APIClient {
 
         //강의페이지 중 강의목록
         @GET("/content/lecturepage/lectureList")
-        fun getLectureListInChapter(@Header("authorization") token : String, @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
+        fun getLectureListInChapter(@Header("authorization") token : String,
+                                    @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
 
 
         @GET("/content/lecturequiz/{lectureID}")
         fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
-
-
-        @GET("/content/lecturepicture/{lectureID}")
-        fun getLectureCards(@Path("lectureID") lectureID : Int) : Observable<CardData.CardResponse>
 
         //강좌검색
         @POST("/search/courses")
@@ -73,7 +69,6 @@ object APIClient {
                 @Header("authorization") tokenValue : String,
                 @Body searchPost : SearchedCoursesData.SearchedCoursesPost
         ) : Observable<SearchedCoursesData.SearchedCoursesResponse>
-
 
         //내 강좌 인사말 가져오기
         @GET("/users/main/greeting")
@@ -86,6 +81,15 @@ object APIClient {
         fun getCategoryInfos(
                 @Header("authorization") tokenVale : String
         ) : Observable<CategoryData.CategoryResponse>
+
+        //다음 강좌 정보 가져오기
+        @GET("/content/lecturepage/nextLecture?courseID={courseID}&chapterID={chapterID}&lectureID={lectureID}")
+        fun getNextLectureInfo(
+                @Header("authorization") tokenValue : String,
+                @Query("courseID") courseID : Int,
+                @Query("chapterID") chapterID : Int,
+                @Query("lectureID") lectureID : Int
+        ) : Observable<NextLectureData.NextLectureResponse>
 
         //강좌별 챕터정보
         @GET("/content/courses/")

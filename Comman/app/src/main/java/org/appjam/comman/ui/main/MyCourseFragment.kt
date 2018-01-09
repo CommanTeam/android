@@ -77,7 +77,6 @@ class MyCourseFragment : Fragment() {
                         failure -> Log.i(TAG, "on Failure ${failure.message}")
                     }))
         }
-
     }
 
     inner class MyLectureAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -179,5 +178,4 @@ class MyCourseFragment : Fragment() {
         disposables.clear()
         super.onDestroyView()
     }
-
 }

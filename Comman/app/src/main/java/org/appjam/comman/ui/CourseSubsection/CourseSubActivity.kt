@@ -36,7 +36,6 @@ class CourseSubActivity : AppCompatActivity() {
         private val TAG = "CourseSubActivity"
     }
 
-
     private var courseMetaData: List<CoursesData.CourseMetadata> = listOf()
     private val disposables = CompositeDisposable()
     private var chaptersInfoList: List<PopupData.PopupContentInfo> = listOf()
@@ -91,7 +90,6 @@ class CourseSubActivity : AppCompatActivity() {
                         Log.i(LectureListActivity.TAG, "on Failure ${failure.message}")
                     }))
         }
-
     }
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
