@@ -73,23 +73,25 @@ class SearchCategoryResultFragment : Fragment() {
             val hit = coursesInfo[position].hit
             itemView.course_people_tv.text = "$hit 명이 수강중입니다"
 
-            disposables.add(APIClient.apiService.checkRegisterCourse(
-                    PrefUtils.getUserToken(context), coursesInfo[position].id)
-                    .setDefaultThreads()
-                    .subscribe({
-                        response ->
-                        if(response.result == 1) {
-                            val intent = Intent(context, CourseSubActivity::class.java)
-                            intent.putExtra("courseID", coursesInfo[position].id)
-                            startActivity(intent)
-                        } else {
-                            val intent = Intent(context, CourseNonRegistActivity::class.java)
-                            intent.putExtra("courseID", coursesInfo[position].id)
-                            startActivity(intent)
-                        }
-                    }, {
-                        failure -> Log.i(TAG, "on Failure ${failure.message}")
-                    }))
+            itemView.setOnClickListener {
+                disposables.add(APIClient.apiService.checkRegisterCourse(
+                        PrefUtils.getUserToken(context), coursesInfo[position].id)
+                        .setDefaultThreads()
+                        .subscribe({
+                            response ->
+                            if(response.result == 1) {
+                                val intent = Intent(context, CourseSubActivity::class.java)
+                                intent.putExtra("courseID", coursesInfo[position].id)
+                                startActivity(intent)
+                            } else {
+                                val intent = Intent(context, CourseNonRegistActivity::class.java)
+                                intent.putExtra("courseID", coursesInfo[position].id)
+                                startActivity(intent)
+                            }
+                        }, {
+                            failure -> Log.i(TAG, "on Failure ${failure.message}")
+                        }))
+            }
 
         }
     }

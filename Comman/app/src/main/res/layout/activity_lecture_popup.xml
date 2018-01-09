@@ -123,23 +123,10 @@
 
 
     </android.support.design.widget.CoordinatorLayout>
-    <!--
-    <LinearLayout
-        android:background="@drawable/popup_inner_bottom_shadow"
-        android:layout_width="match_parent"
-        android:layout_height="317dp"
-        android:orientation="vertical">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
 
-        </LinearLayout>
-    </LinearLayout>-->
     <RelativeLayout
         android:layout_marginTop="5dp"
+
         android:layout_width="match_parent"
         android:layout_height="95dp"
         android:layout_alignParentBottom="true"

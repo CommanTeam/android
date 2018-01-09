@@ -62,11 +62,36 @@
             android:layout_marginTop="11dp"
             android:background="@drawable/frag_card_quiz_countbtn_bg"
             android:fontFamily="@font/nanum_square_bold"
+<<<<<<< HEAD
             android:gravity="center"
             android:text="26 / 26"
             android:textColor="@color/pageCountTextColor"
             android:textSize="21sp" />
     </RelativeLayout>
+=======
+            android:textSize="21sp"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/card_top_layout">
+    <TextView
+        android:id="@+id/card_count_tv"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:text="26 / 26"
+        android:textSize="21sp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textColor="@color/pageCountTextColor"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:layout_marginTop="21dp"
+        android:layout_marginRight="19dp"
+        android:background="@drawable/frag_card_quiz_countbtn_bg"
+        />
+</RelativeLayout>
+>>>>>>> master
 
     <android.support.v4.view.ViewPager
         android:id="@+id/card_view_pager"

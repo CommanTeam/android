@@ -4,51 +4,112 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/com_kakao_cancel_button_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context="org.appjam.comman.ui.quiz.QuizResultActivity">
 
-    <ScrollView
+        <LinearLayout
+            android:id="@+id/quizResult_top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal"
+            android:background="@color/primaryColor">
+
+            <Button
+                android:id="@+id/quizResult_back_btn"
+                android:layout_marginLeft="19dp"
+                android:backgroundTint="#ffffff"
+                android:layout_width="13dp"
+                android:layout_height="19dp"
+                android:background="@drawable/title_back_btn"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/quizResult_lecture_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="33dp"
+                android:layout_marginRight="19dp"
+                android:text="강의명"
+                android:fontFamily="@font/nanum_square_bold"
+                android:textSize="21sp"
+                android:textColor="#ffffff"
+                />
+        </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/quizResult_result_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginRight="19dp"
         android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp">
+        app:layoutManager="LinearLayoutManager"
+        android:layout_above="@+id/quizResult_bottom_layout"
+        android:layout_below="@+id/quizResult_top_layout"
+        android:background="@color/backgroundColor">
+    </android.support.v7.widget.RecyclerView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    <RelativeLayout
+        android:id="@+id/quizResult_bottom_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@color/lineColor">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/quizResult_prev_layout"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="29dp"
-                android:layout_marginTop="28dp"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/quizResult_prev_btn"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="19dp"
+                    android:layout_marginRight="9dp"
+                    android:layout_width="13dp"
+                    android:layout_height="19dp"
+                    android:background="@drawable/unclickable_view_pager_prev_btn"/>
                 <TextView
+                    android:id="@+id/quizResult_prev_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="14dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="다시 풀기"
                     android:fontFamily="@font/nanum_square_extra_bold"
-                    android:text="채점 결과"
-                    android:textSize="23sp"
+                    android:textSize="19sp"
                     android:textColor="@color/mainTextColor"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="축하합니다. 통과하셨습니다~!"
-                    android:fontFamily="@font/nanum_square_bold"
-                    android:textSize="21sp"
-                    android:textColor="@color/mainTextColor"/>
-
             </LinearLayout>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/quizResult_result_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
-    </ScrollView>
+    <LinearLayout
+        android:id="@+id/quizResult_next_layout"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/quizResult_next_tv"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다음 강의로"
+            android:fontFamily="@font/nanum_square_extra_bold"
+            android:textSize="19sp"
+            android:textColor="@color/mainTextColor"/>
+
+        <Button
+            android:id="@+id/quizResult_next_btn"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="19dp"
+            android:layout_width="13dp"
+            android:layout_height="19dp"
+            android:background="@drawable/view_pager_next_btn"
+            android:textColorHint="@color/mainTextColor"/>
+    </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>
+
 

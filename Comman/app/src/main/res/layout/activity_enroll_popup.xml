@@ -49,6 +49,7 @@
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
             android:textColor="@color/white"
+<<<<<<< HEAD
             android:background="@drawable/rounded_2dp_btn_bg"
             />
         </android.support.v7.widget.CardView>
@@ -60,6 +61,9 @@
             app:sl_dy="2dp"
             app:sl_shadowColor="#000000"
             app:sl_cornerRadius="2dp">
+=======
+            android:background="@drawable/enroll_popup_btn_rounded_bg"
+>>>>>>> master
 
             <Button
                 android:layout_width="wrap_content"
@@ -84,6 +88,10 @@
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
             android:textColor="@color/white"
+<<<<<<< HEAD
             android:background="@drawable/popup_standard_btn"/>
+=======
+            android:background="@drawable/enroll_popup_btn_rounded_bg"/>
+>>>>>>> master
     </LinearLayout>
 </LinearLayout>

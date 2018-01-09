@@ -4,6 +4,7 @@ package org.appjam.comman.ui.user
  * Created by yeahen on 2017-12-31.
  */
 
+
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -95,7 +96,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            !isConnected
+            if(isConnected) {
+                false
+            }
+            else{
+                true
+            }
         }
 
         if(Session.getCurrentSession().isOpened){
@@ -128,7 +134,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun requestMe() {
-        login_splashTitle_layout.visibility = View.VISIBLE
 
         UserManagement.requestMe(object : MeResponseCallback() {
             override fun onFailure(errorResult: ErrorResult?) {
@@ -143,6 +148,11 @@ class LoginActivity : AppCompatActivity() {
                 Log.e("onSuccess", userProfile.toString())
                 var user_nickName = userProfile.nickname
                 var user_email = userProfile.email
+<<<<<<< HEAD
+=======
+                var user_token = Session.getCurrentSession().tokenInfo.accessToken
+                Log.e("kakao", user_token)
+>>>>>>> master
                 var user_profile_img : String
 
                 if(userProfile.thumbnailImagePath != null)
@@ -151,16 +161,13 @@ class LoginActivity : AppCompatActivity() {
                     user_profile_img = ""
 
                 if(PrefUtils.getUserToken(this@LoginActivity) != "") {
-                    disposables.add(APIClient.apiService.getPostToken(PrefUtils.getUserToken(this@LoginActivity),
-                                                                    LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
+                    disposables.add(APIClient.apiService.getPostToken(
+                            PrefUtils.getUserToken(this@LoginActivity), LoginData.LoginPost(user_token))
                             .setDefaultThreads()
                             .subscribe ({
-                                response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
-
-                                Toast.makeText(this@LoginActivity, PrefUtils.getUserToken(this@LoginActivity), Toast.LENGTH_SHORT).show()
-
-//                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
-//                                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+                                response ->
+                                PrefUtils.putUserToken(this@LoginActivity, response.result.token)
+                                PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
 
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -170,12 +177,15 @@ class LoginActivity : AppCompatActivity() {
                                 failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
                             }))
                 } else {
-                    disposables.add(APIClient.apiService.getPostToken(LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
+                    disposables.add(APIClient.apiService.getPostToken(LoginData.LoginPost(user_token))
                             .setDefaultThreads()
                             .subscribe ({
-                                response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
+                                response ->
+                                PrefUtils.putUserToken(this@LoginActivity, response.result.token)
+                                PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)
                             }, {
                                 failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
@@ -194,6 +204,10 @@ class LoginActivity : AppCompatActivity() {
         Session.getCurrentSession().removeCallback(callback)
         disposables.clear()
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }
 
