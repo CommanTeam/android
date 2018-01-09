@@ -15,7 +15,11 @@ class PopupItemDecoration(private val context: Context) : RecyclerView.ItemDecor
         outRect.left = convertDpToPixel(context, 19)
         outRect.right = convertDpToPixel(context, 19)
         outRect.bottom = convertDpToPixel(context, 5)
-        outRect.top = convertDpToPixel(context, 5)
+        if (parent?.getChildAdapterPosition(view) == 0) {
+            outRect.top = convertDpToPixel(context, 25)
+        } else {
+            outRect.top = convertDpToPixel(context, 5)
+        }
     }
 
     private fun convertDpToPixel(context: Context, dp: Int): Int {

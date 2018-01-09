@@ -44,10 +44,6 @@
                 android:label="@string/app_name"
                 android:theme="@style/NoActionBar">
 
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
 
         <activity android:name="LectureVideo1Activity" />
@@ -71,6 +67,11 @@
         <activity
             android:name=".ui.CourseSubsection.CourseSubPopupActivity"
             android:theme="@style/Theme.PopUp">
+
+            <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
 
 
