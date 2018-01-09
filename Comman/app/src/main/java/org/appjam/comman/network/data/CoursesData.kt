@@ -44,5 +44,13 @@ object CoursesData {
             val message : String
     )
 
+    data class RegisterPost(
+            val courseID : Int
+    )
+
+    data class RegisterCourse(
+            val message : String
+    )
+
 
 }
