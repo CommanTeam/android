@@ -2,9 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="6dp"
-    android:layout_marginTop="6dp">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/quizResult_result_layout"

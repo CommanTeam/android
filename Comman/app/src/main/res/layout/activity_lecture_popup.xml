@@ -129,6 +129,25 @@
         android:layout_width="match_parent"
         android:layout_height="317dp"
         android:orientation="vertical">
+<<<<<<< HEAD
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="29dp"
+                android:layout_marginRight="29dp"
+                android:layout_marginTop="19dp">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/lecture_popup_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbarSize="6dp"
+                    android:scrollbarStyle="outsideInset"
+                    android:scrollbars="vertical"/>
+            </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+=======
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -140,6 +159,7 @@
     </LinearLayout>-->
     <RelativeLayout
         android:layout_marginTop="5dp"
+
         android:layout_width="match_parent"
         android:layout_height="95dp"
         android:layout_alignParentBottom="true"

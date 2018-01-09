@@ -62,7 +62,8 @@ object APIClient {
 
         //강의에 대한 퀴즈정보
         @GET("/content/lecturequiz/{lectureID}")
-        fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
+        fun getQuizResult(@Header("authorization") tokenValue: String,
+                          @Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
 
         //강좌검색
         @POST("/search/courses")

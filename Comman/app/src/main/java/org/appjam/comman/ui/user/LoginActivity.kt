@@ -4,6 +4,7 @@ package org.appjam.comman.ui.user
  * Created by yeahen on 2017-12-31.
  */
 
+
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -95,7 +96,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            !isConnected
+            if(isConnected) {
+                false
+            }
+            else{
+                true
+            }
         }
 
         if(Session.getCurrentSession().isOpened){
@@ -128,7 +134,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun requestMe() {
-        login_splashTitle_layout.visibility = View.VISIBLE
 
         UserManagement.requestMe(object : MeResponseCallback() {
             override fun onFailure(errorResult: ErrorResult?) {
@@ -143,7 +148,9 @@ class LoginActivity : AppCompatActivity() {
                 Log.e("onSuccess", userProfile.toString())
                 var user_nickName = userProfile.nickname
                 var user_email = userProfile.email
-                lateinit var user_profile_img : String
+                var user_token = Session.getCurrentSession().tokenInfo.accessToken
+                Log.e("kakao", user_token)
+                var user_profile_img : String
 
                 if(userProfile.thumbnailImagePath != null)
                     user_profile_img = userProfile.thumbnailImagePath
@@ -152,7 +159,7 @@ class LoginActivity : AppCompatActivity() {
 
                 if(PrefUtils.getUserToken(this@LoginActivity) != "") {
                     disposables.add(APIClient.apiService.getPostToken(PrefUtils.getUserToken(this@LoginActivity),
-                                                                    LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
+                                     LoginData.LoginInfo(user_nickName, user_profile_img, user_token))
                             .setDefaultThreads()
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
@@ -170,7 +177,7 @@ class LoginActivity : AppCompatActivity() {
                                 failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
                             }))
                 } else {
-                    disposables.add(APIClient.apiService.getPostToken(LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
+                    disposables.add(APIClient.apiService.getPostToken(LoginData.LoginInfo(user_nickName, user_profile_img, user_token))
                             .setDefaultThreads()
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
@@ -194,6 +201,10 @@ class LoginActivity : AppCompatActivity() {
         Session.getCurrentSession().removeCallback(callback)
         disposables.clear()
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }
 
