@@ -118,7 +118,7 @@ object PrefUtils {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val answers = pref.getString(ANSWERS, "")
         val mutableList = mutableListOf<Int>()
-        for(i in 1..pageCount) { mutableList.add(0) }
+        for(i in 1..pageCount) { mutableList.add(-1) }
         answerArray.answerArr = mutableList
         val gson = Gson()
         return if(answers == "") {

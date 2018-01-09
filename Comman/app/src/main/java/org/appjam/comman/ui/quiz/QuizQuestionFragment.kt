@@ -117,7 +117,11 @@ class QuizQuestionFragment : Fragment() {
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
-            itemView.quiz_number_tv.text = "Q. ${pagePosition + 1}"
+            if(pagePosition < 9) {
+                itemView.quiz_number_tv.text = "Q. 0${pagePosition + 1}"
+            } else {
+                itemView.quiz_number_tv.text = "Q. ${pagePosition + 1}"
+            }
             itemView.quiz_count_btn.text = "${pagePosition + 1} / $pageCount"
             itemView.quiz_question_tv.text = quizInfoList[pagePosition].quizTitle
             if(quizInfoList[pagePosition].quizImage == "") {

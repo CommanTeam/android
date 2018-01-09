@@ -3,7 +3,7 @@ package org.appjam.comman.util
 /**
  * Created by RyuDongIl on 2018-01-08.
  */
-object TimeUtils {
+object YoutubeTimeUtils {
     fun formatTime(millis: Int): String {
         val seconds = millis / 1000
         val minutes = seconds / 60
