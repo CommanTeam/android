@@ -36,9 +36,10 @@
         <activity android:name=".ui.lecture.LectureVideoActivity"
             android:theme="@style/NoActionBar"/>
 
-
-
-        <activity android:name=".ui.CourseSubsection.CourseSubActivity"/>
+        <activity
+            android:name=".ui.CourseSubsection.CourseSubActivity"
+            android:theme="@style/NoActionBar">
+        </activity>
 
         <activity
                 android:name=".ui.user.LoginActivity"
@@ -63,7 +64,7 @@
 
         <!-- 강의 결제 팝업 Activity -->
         <activity android:name=".ui.courseNonRegist.ChargePopupActivity"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/Theme.PopUp"/>
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
@@ -71,13 +72,12 @@
         <activity
             android:name=".ui.CourseSubsection.CourseSubPopupActivity"
             android:theme="@style/Theme.PopUp">
-
         </activity>
 
         <!--등록 팝업 Activity -->
         <activity
             android:name=".ui.courseNonRegist.CourseNonRegistActivity"
-            android:theme="@style/Theme.PopUp" />
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".ui.courseNonRegist.EnrollPopupActivity"
             android:theme="@style/Theme.PopUp" />

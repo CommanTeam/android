@@ -44,6 +44,9 @@ class CardActivity : AppCompatActivity() {
 //        getText=findViewById(R.id.main2_get_text) as TextView
 //        getText!!.text=secondString
 
+        card_back_btn.setOnClickListener{
+              finish()
+        }
         val lectureTitle = intent.getStringExtra("card_lecture_name_tv")
         card_lecture_name_tv!!.text=lectureTitle
         course_ID = intent.getIntExtra("courseID",1)

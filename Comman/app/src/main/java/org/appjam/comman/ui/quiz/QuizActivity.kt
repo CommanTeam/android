@@ -28,6 +28,9 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
+        quiz_back_btn.setOnClickListener{
+            finish()
+        }
         quiz_view_pager.adapter = QuizPagerAdapter(supportFragmentManager)
 
         quiz_view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {

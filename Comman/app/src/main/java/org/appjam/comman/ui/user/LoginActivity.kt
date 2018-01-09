@@ -32,6 +32,7 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
 import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.ui.main.MainActivity
+import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 import java.security.MessageDigest
@@ -157,7 +158,7 @@ class LoginActivity : AppCompatActivity() {
                             response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
                             Log.i(TAG,"aaaaaaaaaaaaaaaaa ${response.token}")
                             Toast.makeText(this@LoginActivity,response.token, Toast.LENGTH_SHORT).show()
-                            val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
+                            val intent = Intent(this@LoginActivity, MainActivity::class.java)
                             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                             startActivity(intent)
                         }, {
@@ -181,7 +182,7 @@ class LoginActivity : AppCompatActivity() {
 //                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
 //                                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
 
-                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
+                                val intent = Intent(this@LoginActivity,MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
 
@@ -194,7 +195,7 @@ class LoginActivity : AppCompatActivity() {
                             .setDefaultThreads()
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
-                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
                                 startActivity(intent)
                             }, {

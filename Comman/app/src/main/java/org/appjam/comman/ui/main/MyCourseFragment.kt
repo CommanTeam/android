@@ -1,6 +1,5 @@
 package org.appjam.comman.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -21,7 +20,6 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.GreetingData
 import org.appjam.comman.network.data.LectureData
-import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.TimeUtils
@@ -54,7 +52,6 @@ class MyCourseFragment : Fragment() {
         val recyclerView = view.main_my_lecture_rv
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = MyLectureAdapter()
-
 
         disposables.add(APIClient.apiService.getGreetingInfo(PrefUtils.getUserToken(context))
                 .setDefaultThreads()
@@ -121,11 +118,6 @@ class MyCourseFragment : Fragment() {
             itemView.main_course_active_progress_bar.progress = progressPercentage
             itemView.main_course_active_progress_tv.text = resources.getString(R.string.msg_format_progress_percentage, progressPercentage)
 
-            itemView.setOnClickListener {
-                val intent = Intent(context, CourseSubActivity::class.java)
-                intent.getIntExtra("courseID", courseInfo.courseID)
-                startActivity(intent)
-            }
         }
     }
 

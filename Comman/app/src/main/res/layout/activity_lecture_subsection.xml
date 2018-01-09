@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:background="@color/backgroundColor"
     tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubActivity">
-//위에 activity 바꾸기
     <LinearLayout
         android:id="@+id/lecture_subsection_top_layout"
         android:layout_width="match_parent"
@@ -15,7 +14,7 @@
         android:orientation="horizontal"
         android:background="@color/primaryColor">
         <Button
-            android:id="@+id/card_back_btn"
+            android:id="@+id/sub_back_btn"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="19dp"
             android:background="@drawable/title_back_btn"

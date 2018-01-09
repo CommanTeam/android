@@ -5,6 +5,7 @@
     android:layout_height="96dp"
     android:layout_centerHorizontal="true">
   <RelativeLayout
+      android:id="@+id/lecture_subsection_layout"
       android:layout_width="match_parent"
       android:layout_height="84dp"
       android:layout_marginLeft="19dp"
