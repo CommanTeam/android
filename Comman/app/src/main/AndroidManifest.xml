@@ -41,10 +41,7 @@
             android:name=".ui.lecture.LectureVideoActivity"
             android:theme="@style/NoActionBar" />
 
-        <activity
-            android:name=".ui.user.LoginActivity"
-            android:label="@string/app_name"
-            android:theme="@style/NoActionBar" />
+        <activity android:name=".ui.CourseSubsection.CourseSubActivity" />
 
         <!-- 강의 설명 팝업 Activity -->
         <activity
@@ -71,7 +68,10 @@
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
-        <activity android:name=".ui.CourseSubsection.CourseSubActivity">
+        <activity
+            android:name=".ui.user.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

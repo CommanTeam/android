@@ -134,5 +134,12 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Path("courseID") courseID :Int
         ) : Observable<CoursesData.PurchaseCourse>
+
+        //유저별 강좌 등록
+        @POST("/users/register")
+        fun registerCourse(
+                @Header("authorization") tokenValue: String,
+                @Body registerData : CoursesData.RegisterPost
+        ) : Observable<CoursesData.RegisterCourse>
     }
 }
