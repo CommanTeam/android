@@ -143,7 +143,7 @@
         android:layout_marginRight="19dp"
         android:text="라이노 위주의 툴 수업이며...블라블라블라블라..."
         android:textSize="19sp"
-        android:textColor="@color/pageCountTextColor"
+        android:textColor="@color/mainTextColor"
         android:fontFamily="@font/nanum_square_regular"
         />
 

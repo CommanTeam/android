@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/lec_title_tv"
             android:layout_width="282dp"
-            android:layout_height="22dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="21dp"
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
@@ -34,7 +34,7 @@
             android:layout_marginRight="19dp"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="18dp"
-            android:background="@color/primaryColor"
+            android:background="@drawable/rounded_4dp_btn_bg"
             android:fontFamily="@font/nanum_square_bold"
             android:text="크게보기"
             android:textColor="@color/white"

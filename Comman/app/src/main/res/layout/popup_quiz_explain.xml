@@ -102,7 +102,7 @@
        android:id="@+id/popup_close_btn"
        android:layout_width="96dp"
        android:layout_height="37dp"
-       android:background="@color/primaryColor"
+       android:background="@drawable/rounded_2dp_btn_bg"
        android:fontFamily="@font/nanum_square_bold"
        android:textColor="@color/white"
        android:text="닫기"

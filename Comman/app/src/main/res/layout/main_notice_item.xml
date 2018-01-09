@@ -12,6 +12,7 @@
         android:layout_height="77dp"
         android:layout_marginLeft="16dp"
         android:background="@drawable/frag_user_profile_img_bg"
+        android:elevation="@dimen/shadow"
         />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -21,12 +22,15 @@
         android:layout_height="73dp"
         android:layout_marginLeft="18dp"
         android:src="@drawable/profile_image"
+        android:elevation="@dimen/shadow"
+
         />
 
 
     <TextView
         android:id="@+id/main_notice_tv"
         android:layout_centerVertical="true"
+        android:gravity="center_vertical"
         android:layout_alignParentRight="true"
         android:layout_toRightOf ="@id/main_profile_img"
         android:layout_marginLeft="14dp"
@@ -40,6 +44,7 @@
         android:textSize="18sp"
         android:textColor="@color/mainTextColor"
         android:fontFamily="@font/nanum_square_bold"
+        android:elevation="@dimen/shadow"
         />
 
 </RelativeLayout>

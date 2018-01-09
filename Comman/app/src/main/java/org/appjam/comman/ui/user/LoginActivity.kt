@@ -143,7 +143,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.e("onSuccess", userProfile.toString())
                 var user_nickName = userProfile.nickname
                 var user_email = userProfile.email
-                lateinit var user_profile_img : String
+                var user_profile_img : String
 
                 if(userProfile.thumbnailImagePath != null)
                     user_profile_img = userProfile.thumbnailImagePath

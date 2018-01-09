@@ -40,7 +40,7 @@
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
             android:textColor="@color/white"
-            android:background="@color/primaryColor"
+            android:background="@drawable/rounded_2dp_btn_bg"
 
             android:layout_marginTop="26dp"
             android:layout_marginLeft="71dp"
@@ -58,6 +58,6 @@
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
             android:textColor="@color/white"
-            android:background="@color/primaryColor"/>
+            android:background="@drawable/rounded_2dp_btn_bg"/>
     </LinearLayout>
 </LinearLayout>

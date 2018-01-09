@@ -117,10 +117,11 @@
                 android:layout_height="37dp"
                 android:layout_marginRight="12dp"
                 android:layout_toLeftOf="@+id/charge_close_btn"
-                android:background="@color/primaryColor"
+                android:background="@drawable/rounded_2dp_btn_bg"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="결제하기"
                 android:textColor="@color/white"
+                android:translationZ="@dimen/shadow"
                 android:textSize="19sp" />
 
             <Button
@@ -129,11 +130,13 @@
                 android:layout_height="36dp"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="29dp"
-                android:background="@color/primaryColor"
+                android:background="@drawable/rounded_2dp_btn_bg"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="닫기"
                 android:textColor="@color/white"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                android:elevation="20dp"
+                android:translationZ="20dp"/>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

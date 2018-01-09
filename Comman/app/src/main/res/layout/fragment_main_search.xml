@@ -32,6 +32,7 @@
             android:layout_marginLeft="@dimen/dp_change16_19"
             android:layout_marginRight="@dimen/dp_change16_19"
             android:layout_marginTop="11dp"
+            android:elevation="@dimen/shadow"
             android:background="@drawable/frag_mainsearch_roundcorner"
             android:orientation="horizontal">
 
