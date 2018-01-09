@@ -15,6 +15,7 @@ import org.appjam.comman.R
 import org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity
 import org.appjam.comman.util.ListUtils
 
+
 /**
  * Created by KSY on 2018-01-04.
  */

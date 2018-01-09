@@ -95,8 +95,8 @@ class LectureListActivity : AppCompatActivity(), View.OnClickListener {
             if (data.lectureType == 2) {
                 itemView.setOnClickListener {
                     val intent = Intent(this@LectureListActivity, LectureVideo1Activity::class.java)
-//                intent.putExtra("chapterID", chapterListData!![position].id)
-                    //intent.putExtra("chapterID", chapterListData!![position].id)
+// intent.putExtra("chapterID", chapterListData!![position].id)
+//intent.putExtra("chapterID", chapterListData!![position].id)
                     startActivity(intent)
                 }
             } else if (data.lectureType == 0) {
