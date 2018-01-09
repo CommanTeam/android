@@ -41,9 +41,6 @@ object APIClient {
         fun getLectureCards(@Header("authorization") tokenValue: String,
                             @Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
 
-        //강의정보얻기
-        @GET("/content/lectures")
-        fun getRegisteredCourses(@Path("userID") userId: Int ) : Observable<CoursesData.CoursesResponse>
         //강의페이지 중 개요
         fun getLectureInfo(@Header("authorization") tokenValue : String,
                            @Query("lectureID") lectureID: Int) : Observable<LectureData.LectureResponse>
@@ -53,16 +50,17 @@ object APIClient {
         fun getRecentLecture(@Header("authorization") tokenValue: String,
                              @Path("lectureID") lectureID: Int) : Observable<LectureData.RecentLectureResponse>
 
-
+        //챕터id로 챕터정보 가져오기
         @GET("/content/chapters")
-        fun getChapterInfo(@Header("authorization") token : String,@Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
-
+        fun getChapterInfo(@Header("authorization") token : String,
+                           @Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
 
         //강의페이지 중 강의목록
         @GET("/content/lecturepage/lectureList")
         fun getLectureListInChapter(@Header("authorization") token : String,
                                     @Query("chapterID") chapterID: Int) : Observable<ChapterData.LectureListInChapterResponse>
 
+        //강의에 대한 퀴즈정보
         @GET("/content/lecturequiz/{lectureID}")
         fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
 
@@ -100,7 +98,7 @@ object APIClient {
 
         //강좌id로 강좌정보 가져오기
         @GET("/content/courses/{courseID}/chapters")
-        fun getPopupContentInfos(@Header("authorization")tokenValue: String, @Path("courseID") cour0seID :Int) :Observable<PopupData.PopupContentResponse>
+        fun getPopupContentInfos(@Header("authorization")tokenValue: String, @Path("courseID") courseID :Int) :Observable<PopupData.PopupContentResponse>
 
         //카테고리 검색 결과
         @GET("/search/courses/categories/{categoryID}")
@@ -115,5 +113,33 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Path("courseID") courseID : Int
         ) : Observable<CoursesData.CheckRegistered>
+
+        //유저별 강좌 구매 여부
+        @GET("/users/purchase/{courseID}")
+        fun checkPurchaseCourse(
+                @Header("authorization") tokenValue: String,
+                @Path("courseID") courseID : Int
+        ) : Observable<CoursesData.CheckPurchased>
+
+        //강좌id로 강좌 정보 가져오기
+        @GET("/content/courses")
+        fun getCourseMetaInfo(
+                @Header("authorization") tokenValue: String,
+                @Query("courseID") courseID : Int
+        ) : Observable<CoursesData.CourseMetaResponse>
+
+        //유저별 강좌 구매
+        @PUT("/users/purchase/{courseID}")
+        fun purchaseCourse(
+                @Header("authorization") tokenValue: String,
+                @Path("courseID") courseID :Int
+        ) : Observable<CoursesData.PurchaseCourse>
+
+        //유저별 강좌 등록
+        @POST("/users/register")
+        fun registerCourse(
+                @Header("authorization") tokenValue: String,
+                @Body registerData : CoursesData.RegisterPost
+        ) : Observable<CoursesData.RegisterCourse>
     }
 }

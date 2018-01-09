@@ -4,23 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundColor">
-<Button
-    android:id="@+id/lecture_regist_btn"
-    android:layout_width="198dp"
-    android:layout_height="60dp"
-    android:background="@drawable/frag_quiz_submitbtn_bg"
-    android:text="등록하기"
-    android:textColor="@color/white"
-    android:textSize="23sp"
-    android:fontFamily="@font/nanum_square_bold"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="20dp"
-    android:layout_marginBottom="26dp"/>
+
     <ImageView
         android:id="@+id/lecture_regist_bar_iv"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="103dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@color/divideLineColor"
         android:layout_centerHorizontal="true"/>
     <TextView
@@ -28,23 +19,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="단원 목록"
-        android:layout_below="@+id/lecture_regist_btn"
         android:textSize="21sp"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="19dp"
         android:fontFamily="@font/nanum_square_bold"
         android:textColor="@color/mainTextColor"/>
-    <Button
-        android:id="@+id/lecture_charge_btn"
-        android:layout_width="93dp"
-        android:layout_height="23dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="19dp"
-        android:layout_below="@id/lecture_regist_btn"
-        android:text="강좌 구매"
-        android:textColor="@color/white"
-        android:fontFamily="@font/nanum_square_bold"
-        android:textSize="18sp"
-        android:background="@drawable/frag_quiz_submitbtn_bg"/>
+
 </RelativeLayout>

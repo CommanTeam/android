@@ -66,7 +66,7 @@ class MyCourseFragment : Fragment() {
                 })
         )
 
-        if(PrefUtils.getInt(context, PrefUtils.LECTURE_ID) != null) {
+        if(PrefUtils.getInt(context, PrefUtils.LECTURE_ID) != 0) {
             disposables.add(APIClient.apiService.getRecentLecture(
                     PrefUtils.getUserToken(context), PrefUtils.getInt(context, PrefUtils.LECTURE_ID))
                     .setDefaultThreads()
@@ -123,7 +123,7 @@ class MyCourseFragment : Fragment() {
 
             itemView.setOnClickListener {
                 val intent = Intent(context, CourseSubActivity::class.java)
-                intent.getIntExtra("courseID", courseInfo.courseID)
+                intent.putExtra("courseID", courseInfo.courseID)
                 startActivity(intent)
             }
         }
