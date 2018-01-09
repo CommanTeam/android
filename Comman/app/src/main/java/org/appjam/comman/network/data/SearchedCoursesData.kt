@@ -5,7 +5,7 @@ package org.appjam.comman.network.data
  */
 object SearchedCoursesData {
 
-    data class SearchedcoursesPost(val search : String)
+    data class SearchedCoursesPost(val search : String)
 
     data class SearchedCoursesResponse(val result : List<SearchedCourseInfo>)
 

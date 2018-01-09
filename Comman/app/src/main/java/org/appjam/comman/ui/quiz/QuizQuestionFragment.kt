@@ -30,6 +30,7 @@ class QuizQuestionFragment : Fragment() {
     }
 
     private val disposables = CompositeDisposable()
+
     private var pagePostion = 0
     data class ContentItem(
             val number: String,
@@ -141,7 +142,7 @@ class QuizQuestionFragment : Fragment() {
         fun bind(quizInfo: QuizData.QuizInfo?) {
             Log.i(TAG, "on bind : $quizInfo")
             itemView.quiz_number_tv.text = "Q." + quizInfo?.quizID.toString()
-            itemView.quiz_count_btn.text = quizInfo?.quizPriority.toString() + " / " + totalCnt
+            itemView.quiz_count_btn.text = quizInfo?.quizPriority.toString() + " / " + totalCnt.toString()
             itemView.quiz_question_tv.text = quizInfo?.explanation
         }
     }
