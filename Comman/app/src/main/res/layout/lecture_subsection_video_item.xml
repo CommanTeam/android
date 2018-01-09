@@ -11,7 +11,8 @@
         android:layout_marginBottom="8dp"
         android:layout_marginRight="19dp"
         android:layout_marginLeft="19dp"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:background="@color/backgroundColor">
     <TextView
         android:id="@+id/lecture_subsection_video_title_tv"
         android:layout_width="wrap_content"
@@ -29,6 +30,7 @@
         android:layout_below="@+id/lecture_subsection_video_title_tv"
         android:layout_marginTop="14dp"
         android:elevation="2dp">
+
     <ImageView
          android:layout_width="match_parent"
          android:layout_height="114dp"
@@ -92,8 +94,8 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:progressTint="@color/primaryColor"
             android:background="@color/grayMainTextColor"/>
-        //android:visibility="" />
     </RelativeLayout>
+
     <TextView
         android:id="@+id/lecture_subsection_chapterlist_title_tv"
         android:layout_width="wrap_content"
@@ -104,5 +106,19 @@
         android:layout_marginTop="42dp"
         android:fontFamily="@font/nanum_square_bold"
         android:textColor="@color/mainTextColor"/>
+        
+        <Button
+            android:id="@+id/lecture_subsection_purchase_btn"
+            android:layout_width="93dp"
+            android:layout_height="23dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/lecture_subsection_video_play_layout"
+            android:layout_marginTop="42dp"
+            android:text="강좌 구매"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/nanum_square_bold"
+            android:background="@drawable/frag_quiz_submitbtn_bg"
+            />
     </RelativeLayout>
 </RelativeLayout>

@@ -1,68 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="560dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity">
+    tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity"
+    android:background="@color/white">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginRight="29dp"
-        android:layout_marginTop="29dp"
-        android:orientation="horizontal">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/lecturePopup_img"
-            android:layout_width="88dp"
-            android:layout_height="88dp"
-            android:src="@mipmap/ic_launcher" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/lecturePopup_title_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="19dp"
-                android:fontFamily="@font/nanum_square_bold"
-                android:text="[Rhino] 반지 모델링하기"
-                android:textColor="@color/mainTextColor"
-                android:textSize="21sp" />
-
-            <TextView
-                android:id="@+id/lecturePopup_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="19dp"
-                android:layout_marginLeft="16dp"
-                android:fontFamily="@font/nanum_square_regular"
-                android:text="강사명"
-                android:textColor="@color/grayMainTextColor"
-                android:textSize="18sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <View
-        android:layout_marginRight="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginBottom="16dp"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divideLineColor"/>
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fitsSystemWindows="true">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            android:background="@color/white"
+            android:fitsSystemWindows="true">
+
+            <android.support.v7.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="61dp"
+                android:background="@color/white"
+                app:layout_collapseMode="pin">
+
+                <TextView
+                    android:id="@+id/toolbarTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="21sp"
+                    android:fontFamily="@font/nanum_square_bold"
+                    android:layout_marginLeft="29dp"
+                    android:layout_marginRight="29dp"
+                    android:textColor="@color/mainTextColor"
+                    android:text="[Rhino] 반지 모델링하기"/>
+
+            </android.support.v7.widget.Toolbar>
+
+            <RelativeLayout
+                android:id="@+id/upperLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:paddingLeft="29dp"
+                android:paddingRight="29dp"
+                android:paddingTop="20dp"
+                android:background="@color/white"
+                app:layout_collapseMode="parallax">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/lecturePopup_img"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:layout_centerVertical="true"
+                    android:src="@color/mainTextColor"
+                    app:layout_collapseMode="parallax"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/lecturePopup_img"
+                    >
+
+                    <TextView
+                        android:id="@+id/lecturePopup_title_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="12dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="19dp"
+                        android:fontFamily="@font/nanum_square_bold"
+                        android:text="[Rhino] 반지 모델링하기"
+                        android:lineSpacingExtra="2dip"
+                        android:textColor="@color/mainTextColor"
+                        android:textSize="21sp" />
+
+                    <TextView
+                        android:id="@+id/lecturePopup_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="19dp"
+                        android:layout_marginLeft="16dp"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:text="강사명"
+                        android:textColor="@color/grayMainTextColor"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/divideLineColor"/>
+
+            </RelativeLayout>
+
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lecture_popup_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="95dp"
+        android:background="@drawable/popup_inner_bottom_shadow"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+    <!--
     <LinearLayout
-
+        android:background="@drawable/popup_inner_bottom_shadow"
         android:layout_width="match_parent"
         android:layout_height="317dp"
         android:orientation="vertical">
+<<<<<<< HEAD
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -80,21 +147,45 @@
             </LinearLayout>
     </LinearLayout>
     <LinearLayout
+=======
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+
+        </LinearLayout>
+    </LinearLayout>-->
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="95dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+
         <Button
             android:id="@+id/lecture_popup_btn"
             android:layout_width="96dp"
             android:layout_height="36dp"
-            android:background="@color/primaryColor"
-            android:layout_marginLeft="260dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/popup_cancel_btn"
+            android:layout_alignParentRight="true"
             android:layout_marginRight="29dp"
             android:text="닫기"
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="17dp"
             android:textColor="@color/white"/>
-    </LinearLayout>
-</LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="465dp"
+        android:background="@drawable/popup_inner_bottom_shadow">
+
+    </RelativeLayout>
+
+</RelativeLayout>

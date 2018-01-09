@@ -26,12 +26,17 @@ object CoursesData {
                               val opened_chapter: Int,
                               val image_path: String,
                               val name: String,
+                              val supplier_thumbnail: String,
                               val title: String,
                               val info: String,
                               val price: Int,
                               val category_id: Int)
 
     data class CheckRegistered(
+            val result : Int
+    )
+
+    data class CheckPurchased(
             val result : Int
     )
 
