@@ -66,7 +66,7 @@ class MyCourseFragment : Fragment() {
                 })
         )
 
-        if(PrefUtils.getInt(context, PrefUtils.LECTURE_ID) != null) {
+        if(PrefUtils.getInt(context, PrefUtils.LECTURE_ID) != 0) {
             disposables.add(APIClient.apiService.getRecentLecture(
                     PrefUtils.getUserToken(context), PrefUtils.getInt(context, PrefUtils.LECTURE_ID))
                     .setDefaultThreads()
@@ -77,7 +77,6 @@ class MyCourseFragment : Fragment() {
                         failure -> Log.i(TAG, "on Failure ${failure.message}")
                     }))
         }
-
     }
 
     inner class MyLectureAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -179,5 +178,4 @@ class MyCourseFragment : Fragment() {
         disposables.clear()
         super.onDestroyView()
     }
-
 }

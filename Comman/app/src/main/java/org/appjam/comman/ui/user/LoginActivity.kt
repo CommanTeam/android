@@ -38,7 +38,6 @@ import java.security.NoSuchAlgorithmException
 
 
 
-
 class LoginActivity : AppCompatActivity() {
     companion object {
         const val TAG = "LoginActivity"
@@ -118,7 +117,6 @@ class LoginActivity : AppCompatActivity() {
             //access token을 성공적으로 발급 받아 valid access token을 가지고 있는 상태. 일반적으로 로그인 후의 다음 activity로 이동한다.
             if (Session.getCurrentSession().isOpened) { // 한 번더 세션을 체크해주었습니다.
                 requestMe()
-
             }
         }
 
@@ -152,13 +150,18 @@ class LoginActivity : AppCompatActivity() {
                 else
                     user_profile_img = ""
 
-                if(PrefUtils.getUserToken(this@LoginActivity) != null) {
+                if(PrefUtils.getUserToken(this@LoginActivity) != "") {
                     disposables.add(APIClient.apiService.getPostToken(PrefUtils.getUserToken(this@LoginActivity),
                                                                     LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
                             .setDefaultThreads()
                             .subscribe ({
                                 response -> PrefUtils.putUserToken(this@LoginActivity, response.token)
+
                                 Toast.makeText(this@LoginActivity, PrefUtils.getUserToken(this@LoginActivity), Toast.LENGTH_SHORT).show()
+
+//                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
+//                                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -178,7 +181,6 @@ class LoginActivity : AppCompatActivity() {
                                 failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")
                             }))
                 }
-
             }
 
             override fun onNotSignedUp() {
