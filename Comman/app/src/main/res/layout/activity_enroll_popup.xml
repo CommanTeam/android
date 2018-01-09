@@ -32,6 +32,15 @@
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <android.support.v7.widget.CardView
+            android:layout_width="116dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginLeft="71dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="33dp"
+            android:elevation="10dp"
+            >
         <Button
             android:id="@+id/enroll_ok_btn"
             android:layout_width="116dp"
@@ -41,12 +50,29 @@
             android:textSize="19sp"
             android:textColor="@color/white"
             android:background="@drawable/rounded_2dp_btn_bg"
+            />
+        </android.support.v7.widget.CardView>
+        <com.dd.ShadowLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:sl_dx="2dp"
+            app:sl_dy="2dp"
+            app:sl_shadowColor="#000000"
+            app:sl_cornerRadius="2dp">
 
-            android:layout_marginTop="26dp"
-            android:layout_marginLeft="71dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="33dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="88dp"
+                android:minHeight="36dp"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:background="@color/primaryColor"
+                android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                android:text="Button"/>
 
+        </com.dd.ShadowLayout>
         <Button
             android:id="@+id/enroll_close_btn"
             android:layout_width="116dp"
@@ -58,6 +84,6 @@
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
             android:textColor="@color/white"
-            android:background="@drawable/rounded_2dp_btn_bg"/>
+            android:background="@drawable/popup_standard_btn"/>
     </LinearLayout>
 </LinearLayout>

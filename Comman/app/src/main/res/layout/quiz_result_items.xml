@@ -12,7 +12,7 @@
         android:layout_height="79dp"
         android:layout_marginBottom="12dp"
         android:background="@color/white"
-        android:elevation="2dp">
+        android:elevation="@dimen/shadow">
 
         <TextView
             android:id="@+id/quizResult_list_tv"

@@ -44,7 +44,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="29dp"
             android:layout_marginRight="29dp"
-            android:background="@color/divideLineColor" />
+            android:background="@color/divideLineColor"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +54,8 @@
             android:layout_marginLeft="29dp"
             android:layout_marginRight="29dp"
             android:layout_marginTop="27dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,7 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="98dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clipToPadding="false">
 
             <Button
                 android:id="@+id/charge_ok_btn"
@@ -135,8 +138,8 @@
                 android:text="닫기"
                 android:textColor="@color/white"
                 android:textSize="19sp"
-                android:elevation="20dp"
-                android:translationZ="20dp"/>
+                android:translationZ="@dimen/shadow"
+                android:elevation="@dimen/shadow"/>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

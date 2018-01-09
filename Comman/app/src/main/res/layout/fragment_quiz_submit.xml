@@ -68,6 +68,8 @@
                 android:textSize="23sp"
                 android:textColor="#ffffff"
                 android:fontFamily="@font/nanum_square_bold"
+                android:translationZ="@dimen/shadow"
+                android:elevation="@dimen/shadow"
                 />
 
         </RelativeLayout>
