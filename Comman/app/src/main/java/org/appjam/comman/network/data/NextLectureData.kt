@@ -5,7 +5,12 @@ package org.appjam.comman.network.data
  */
 object NextLectureData {
     data class NextLectureResponse(
-            val resultOfCourse : Int,
-            val resultOfChapter : Int
+            val nextLectureOfCourse : NextLectureInfo,
+            val nextLectureOfChapter : Int
+    )
+
+    data class NextLectureInfo(
+            val lectureID : Int,
+            val lectureType : Int
     )
 }

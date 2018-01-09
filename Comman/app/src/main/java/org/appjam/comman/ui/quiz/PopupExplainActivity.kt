@@ -7,31 +7,46 @@ package org.appjam.comman.ui.quiz
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import com.androidquery.AQuery
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.popup_quiz_explain.*
 import org.appjam.comman.R
-
+import org.appjam.comman.network.data.QuizData
 
 
 class PopupExplainActivity : AppCompatActivity(){
-
-    var quiz_num : String? = null
-    var quiz_text : String? = null
-    var quiz_answer_num : String? = null
-    var quiz_answer_text : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.popup_quiz_explain)
 
-        val intent = getIntent()
-        var quiz_num = intent.getStringExtra("quiz_num")
-        var quiz_text = intent.getStringExtra("quiz_text")
-        var quiz_answer_num = intent.getStringExtra("quiz_answer_num")
-        var quiz_answer_text = intent.getStringExtra("quiz_answer_text")
-        popup_num_tv.text = quiz_num
-        popup_quiz_tv.text = quiz_text
-        popup_answerNum_tv.text = quiz_answer_num
-        popup_answer_tv.text =  quiz_answer_text
+        val gson = Gson()
+        val quizInfoList = gson.fromJson(intent.getStringExtra("quizInfo"), QuizData.QuizInfo::class.java)
+        val quizCount = intent.getIntExtra("quizCount", 0)
+
+        if(quizInfoList.quizPriority < 10) {
+            popup_num_tv.text = "Q. 0${quizInfoList.quizPriority}"
+        } else {
+            popup_num_tv.text = "Q. ${quizInfoList.quizPriority}"
+        }
+        popup_quiz_tv.text = quizInfoList.quizTitle
+        if(quizInfoList.quizImage == "") {
+            popup_img.visibility = View.GONE
+        } else {
+            popup_img.visibility = View.VISIBLE
+            val aQuery = AQuery(this)
+            aQuery.id(popup_img).image(quizInfoList.quizImage)
+        }
+
+        var i = 0
+        for(question in quizInfoList.questionArr) {
+            i++
+            if(question.answerFlag == 1)
+                popup_answerNum_tv.text = "정답: ${i}번"
+        }
+        popup_answer_tv.text = "해설: ${quizInfoList.explanation}"
+        popup_count_btn.text = "${quizInfoList.quizPriority} / ${quizCount}"
 
         //닫기 버튼 클릭시 팝업 종료
         popup_close_btn.setOnClickListener{

@@ -27,6 +27,7 @@ class QuizActivity : AppCompatActivity() {
     private val disposables = CompositeDisposable()
     private var quizInfoList: QuizData.QuizResponse? = null
     private var lectureID: Int = 10
+    private var courseID: Int = 0
     private var pageCount: Int = 0
     private var pagePosition: Int = 0
     private var answerArray: QuizData.AnswerArr = QuizData.AnswerArr(mutableListOf())
@@ -38,9 +39,9 @@ class QuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
-//        val courseID = intent.getIntExtra("courseID",0)
+//        courseID = intent.getIntExtra("courseID",0)       //TODO lectureID 테스트를 위해 10으로 고정해놨음. 나중에 해결바람
 //        lectureID = intent.getIntExtra("lectureID", 0)
-        val courseID = 1
+        courseID = 1
 
         PrefUtils.putCurrentLectureID(this, lectureID)
         PrefUtils.putLectureOfCourseID(this, lectureID, courseID)
@@ -58,13 +59,15 @@ class QuizActivity : AppCompatActivity() {
                 when (position) {
                     pageCount - 1 -> {
                         quiz_prev_tv.setTextColor(SetColorUtils.get(this@QuizActivity, R.color.mainTextColor))
-                        quiz_next_tv.setTextColor(SetColorUtils.get(this@QuizActivity, R.color.mainTextColor))
                         quiz_next_tv.setTextColor(SetColorUtils.get(this@QuizActivity, R.color.grayMainTextColor))
+                        quiz_prev_btn.setBackgroundResource(R.drawable.view_pager_prev_btn)
                         quiz_next_btn.setBackgroundResource(R.drawable.unclickable_view_pager_next_btn)
                     }
                     0 -> {
                         quiz_prev_tv.setTextColor(SetColorUtils.get(this@QuizActivity, R.color.grayMainTextColor))
+                        quiz_next_tv.setTextColor(SetColorUtils.get(this@QuizActivity, R.color.mainTextColor))
                         quiz_prev_btn.setBackgroundResource(R.drawable.unclickable_view_pager_prev_btn)
+                        quiz_next_btn.setBackgroundResource(R.drawable.view_pager_next_btn)
                     }
                     else -> {
                         quiz_prev_tv.setTextColor(SetColorUtils.get(this@QuizActivity, R.color.mainTextColor))
@@ -76,6 +79,28 @@ class QuizActivity : AppCompatActivity() {
                 pagePosition = position
             }
         })
+
+        disposables.add(APIClient.apiService.getQuizResult(
+                PrefUtils.getUserToken(this), lectureID)
+                .setDefaultThreads()
+                .subscribe({ response ->
+                    quizInfoList = response
+                    pageCount = response.result.size + 1
+                    quiz_view_pager.adapter = QuizPagerAdapter(supportFragmentManager)
+                    if(lectureID == PrefUtils.getRecentLectureOfCourseID(this, courseID)) { //최근 강좌의 강의면 처리해줘야 할 것
+                        if(pageCount - 1 == PrefUtils.getRecentLectureOfCoursePosition(this, courseID))
+                            quiz_view_pager.currentItem = PrefUtils.getRecentLectureOfCoursePosition(this, courseID) - 1
+                        else
+                            quiz_view_pager.currentItem = PrefUtils.getRecentLectureOfCoursePosition(this, courseID)
+                    } else {
+                        val mutableList = mutableListOf<Int>()
+                        for(i in 1..pageCount) { mutableList.add(-1) }
+                        answerArray.answerArr = mutableList
+                        PrefUtils.putAnswerArr(this, answerArray)
+                    }
+                }, { failure ->
+                    Log.i(TAG, "on Failure ${failure.message}")
+                }))
 
         disposables.add(APIClient.apiService.getLectureInfo(
                 PrefUtils.getUserToken(this), lectureID)
@@ -93,26 +118,6 @@ class QuizActivity : AppCompatActivity() {
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
                 }))
-
-        disposables.add(APIClient.apiService.getQuizResult(
-                PrefUtils.getUserToken(this), lectureID)
-                .setDefaultThreads()
-                .subscribe({ response ->
-                    quizInfoList = response
-                    pageCount = response.result.size + 1
-                    quiz_view_pager.adapter = QuizPagerAdapter(supportFragmentManager)
-                    if(lectureID == PrefUtils.getRecentLectureOfCourseID(this, courseID)) { //최근 강좌의 강의면 처리해줘야 할 것
-                        quiz_view_pager.currentItem = PrefUtils.getRecentLectureOfCoursePosition(this, courseID)
-                    } else {
-                        val mutableList = mutableListOf<Int>()
-                        for(i in 1..pageCount) { mutableList.add(0) }
-                        answerArray.answerArr = mutableList
-                        PrefUtils.putAnswerArr(this, answerArray)
-                    }
-                }, { failure ->
-                    Log.i(TAG, "on Failure ${failure.message}")
-                })
-        )
 
         quiz_prev_layout.setOnClickListener {
             quiz_view_pager.currentItem = quiz_view_pager.currentItem - 1
@@ -140,6 +145,8 @@ class QuizActivity : AppCompatActivity() {
                 bundle.putInt("passValue", passValue)
                 bundle.putInt("lecturePriority", lecturePriority)
                 bundle.putString("lectureTitle", lectureTitle)
+                bundle.putInt("lectureID", lectureID)
+                bundle.putInt("courseID", courseID)
                 val quizSubmitFragment = QuizSubmitFragment()
                 quizSubmitFragment.arguments = bundle
                 quizSubmitFragment

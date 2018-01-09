@@ -33,6 +33,10 @@ object LectureData {
             val cnt_lecture_quiz : Int,
             val cnt_lecture_picture : Int
     )
+
+    data class FinishLecture(
+            val message : String
+    )
 }
 
 
