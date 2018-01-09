@@ -39,11 +39,15 @@
 
 
         <activity android:name=".ui.CourseSubsection.CourseSubActivity"/>
-            <activity
+
+        <activity
                 android:name=".ui.user.LoginActivity"
                 android:label="@string/app_name"
                 android:theme="@style/NoActionBar">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name="LectureVideo1Activity" />
@@ -68,15 +72,8 @@
             android:name=".ui.CourseSubsection.CourseSubPopupActivity"
             android:theme="@style/Theme.PopUp">
 
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
 
-
-        <activity android:name=".ui.card.CardActivity"
-            android:theme="@style/NoActionBar"/>
         <!--등록 팝업 Activity -->
         <activity
             android:name=".ui.courseNonRegist.CourseNonRegistActivity"
