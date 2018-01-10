@@ -46,7 +46,7 @@ class EnrollPopupActivity : AppCompatActivity() {
                     .subscribe({ response ->
                         if(response.message == "강좌 등록 성공") {
                             val intent = Intent(this@EnrollPopupActivity, CourseSubActivity::class.java)
-                            intent.getIntExtra("courseID", courseID)
+                            intent.putExtra("courseID", courseID)
                             startActivity(intent)
                         }
                     }, { failure ->

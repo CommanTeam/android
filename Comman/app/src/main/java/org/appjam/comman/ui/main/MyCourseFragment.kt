@@ -22,7 +22,7 @@ import org.appjam.comman.network.data.GreetingData
 import org.appjam.comman.network.data.LectureData
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
-import org.appjam.comman.util.TimeUtils
+import org.appjam.comman.util.YoutubeTimeUtils
 import org.appjam.comman.util.setDefaultThreads
 
 /**
@@ -152,7 +152,7 @@ class MyCourseFragment : Fragment() {
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
                 } else {
                     itemView.main_lecture_watching_progress_tv.text =
-                            "${TimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
+                            "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
                 }
 
@@ -166,9 +166,9 @@ class MyCourseFragment : Fragment() {
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             var aQuery = AQuery(context)
-            val thumbnailUrl = greetingInfo?.userImg
+            val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_IMAGE)
             aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
-            itemView.main_notice_tv.text = greetingInfo?.ment
+            itemView.main_notice_tv.text = PrefUtils.getString(context, PrefUtils.NICKNAME)+ greetingInfo?.ment
         }
     }
 

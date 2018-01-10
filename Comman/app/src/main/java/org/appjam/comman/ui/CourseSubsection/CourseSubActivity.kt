@@ -24,7 +24,7 @@ import org.appjam.comman.ui.courseNonRegist.ChargePopupActivity
 import org.appjam.comman.ui.lecture.LectureListActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
-import org.appjam.comman.util.TimeUtils
+import org.appjam.comman.util.YoutubeTimeUtils
 import org.appjam.comman.util.setDefaultThreads
 
 /**
@@ -151,7 +151,7 @@ class CourseSubActivity : AppCompatActivity() {
                     itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
                 } else {
                     itemView.lecture_subsection_video_time_tv.text =
-                            "${TimeUtils.formatTime(PrefUtils.getInt(this@CourseSubActivity, PrefUtils.DURATION_TIME))}"
+                            "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(this@CourseSubActivity, PrefUtils.DURATION_TIME))}"
                     itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_video_icon)
                     itemView.lecture_subsection_watching_progress_bar.visibility = View.VISIBLE
                 }

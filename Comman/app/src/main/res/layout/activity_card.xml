@@ -42,7 +42,7 @@
     <TextView
         android:id="@+id/card_count_tv"
         android:layout_width="82dp"
-        android:layout_height="26dp"
+        android:layout_height="wrap_content"
         android:text="26 / 26"
         android:textSize="21sp"
         android:fontFamily="@font/nanum_square_bold"

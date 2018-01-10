@@ -17,9 +17,7 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity
-            android:name="org.appjam.comman.ui.quiz.QuizActivity"
-            android:theme="@style/NoActionBar" />
+        <!--<activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>-->
 
         <activity
             android:name=".youtube.YoutubePracticeActivity"
@@ -38,7 +36,6 @@
             android:theme="@style/NoActionBar"></activity>
 
         <activity
-
             android:name=".ui.CourseSubsection.CourseSubActivity"
             android:theme="@style/NoActionBar">
         </activity>
@@ -57,7 +54,13 @@
             android:name=".ui.lecture.LectureVideoActivity"
             android:theme="@style/NoActionBar"/>
 
+        <activity
+            android:name=".ui.quiz.QuizActivity"
+            android:label="@string/app_name">
+        </activity>
 
+            <!--android:name=".ui.lecture.LectureVideoActivity"-->
+            <!--android:theme="@style/NoActionBar" />-->
         <!-- 강의 설명 팝업 Activity -->
         <activity
             android:name=".ui.CourseSubsection.CourseSubPopupActivity"
@@ -86,7 +89,10 @@
         <!--등록 팝업 Activity -->
         <activity
             android:name=".ui.courseNonRegist.CourseNonRegistActivity"
-            android:theme="@style/NoActionBar" />
+            android:theme="@style/NoActionBar">
+
+        </activity>
+
         <activity
             android:name=".ui.courseNonRegist.EnrollPopupActivity"
             android:theme="@style/Theme.PopUp" />

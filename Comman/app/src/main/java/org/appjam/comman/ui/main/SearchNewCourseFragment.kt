@@ -52,9 +52,9 @@ class SearchNewCourseFragment : Fragment() {
     inner class MyCourseAlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind() {
             var aQuery = AQuery(context)
-            val thumbnailUrl = greetingInfo?.userImg
+            val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_IMAGE)
             aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
-            itemView.main_notice_tv.text = greetingInfo?.ment
+            itemView.main_notice_tv.text = PrefUtils.getString(context, PrefUtils.NICKNAME) + greetingInfo?.ment
         }
     }
 
