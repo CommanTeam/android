@@ -12,6 +12,8 @@
         android:layout_marginBottom="12dp">
 
     <LinearLayout
+        android:id="@+id/lecvideo_list_items_layout"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal"
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -54,6 +56,7 @@
                 android:layout_marginRight="18dp"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="01 필렛 넣기"
+                android:gravity="end"
                 android:textColor="@color/mainTextColor"
                 android:textSize="21sp" />
 

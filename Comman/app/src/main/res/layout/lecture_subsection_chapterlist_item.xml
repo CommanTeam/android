@@ -14,6 +14,7 @@
       android:layout_marginRight="19dp"
       app:cardElevation="5dp">
   <RelativeLayout
+      android:id="@+id/lecture_subsection_layout"
       android:layout_width="match_parent"
       android:layout_height="84dp"
       android:background="@color/pageCountTextColor"

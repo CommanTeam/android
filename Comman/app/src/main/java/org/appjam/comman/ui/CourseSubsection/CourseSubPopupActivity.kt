@@ -6,11 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_charge_popup.*
 import kotlinx.android.synthetic.main.activity_lecture_popup.*
 import kotlinx.android.synthetic.main.lecture_popup_items.view.*
 import org.appjam.comman.R
@@ -60,7 +60,7 @@ class CourseSubPopupActivity : AppCompatActivity(), AppBarLayout.OnOffsetChanged
                 },{failure ->
                     Log.i("CourseSubPopupActivity","on Failure, Message : ${failure.message}")
                 }))
-        lecture_popup_btn.setOnClickListener {
+        charge_ok_btn.setOnClickListener {
             finish()
         }
     }
@@ -105,14 +105,6 @@ class CourseSubPopupActivity : AppCompatActivity(), AppBarLayout.OnOffsetChanged
         alphaAnimation.duration = duration
         alphaAnimation.fillAfter = true
         v.startAnimation(alphaAnimation)
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        //바깥 레이어 클릭시 안닫히게 한다.
-        if (MotionEvent.ACTION_OUTSIDE == event!!.action) {
-            return false
-        }
-        return true
     }
 
     /**ViewHolder는 각 리스트에 어떤 뷰가 들어가는지 설정해주는 부분입니다. 한 번 설정해주면 몇번이고 재사용이 가능합니다

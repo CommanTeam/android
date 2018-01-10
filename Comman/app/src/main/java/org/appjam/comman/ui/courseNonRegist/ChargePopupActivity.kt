@@ -14,6 +14,7 @@ import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 
+
 class ChargePopupActivity : AppCompatActivity() {
 
     companion object {
@@ -26,6 +27,8 @@ class ChargePopupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_charge_popup)
+
+        var choice : Int ?=null
 
         disposables.add(APIClient.apiService.getPopupTitleInfos(
                 PrefUtils.getUserToken(this), intent.getIntExtra("courseID", 1))
@@ -41,6 +44,7 @@ class ChargePopupActivity : AppCompatActivity() {
         //닫기 버튼 클릭시 팝업 종료
         charge_close_btn.setOnClickListener{
             finish()
+
         }
         charge_ok_btn.setOnClickListener {
             disposables.add(APIClient.apiService.purchaseCourse(
@@ -56,14 +60,6 @@ class ChargePopupActivity : AppCompatActivity() {
                         failure -> Log.i(TAG, "on Failure ${failure.message}")
                     }))
         }
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        //바깥 레이어 클릭시 안닫히게 한다.
-        if (MotionEvent.ACTION_OUTSIDE == event!!.action) {
-            return false
-        }
-        return true
     }
 
     override fun onDestroy() {

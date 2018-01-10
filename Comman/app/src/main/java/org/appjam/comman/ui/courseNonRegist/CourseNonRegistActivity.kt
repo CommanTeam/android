@@ -19,14 +19,12 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.PopupData
 import org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity
+import org.appjam.comman.ui.courseNonRegist.EnrollPopupActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 
 
-/**
- * Created by KSY on 2018-01-04.
- */
 class CourseNonRegistActivity : AppCompatActivity() {
 
     companion object {
@@ -42,6 +40,10 @@ class CourseNonRegistActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
+        sub_back_btn.setOnClickListener{
+            finish()
+        }
+
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAdapter()
@@ -53,7 +55,7 @@ class CourseNonRegistActivity : AppCompatActivity() {
                 .setDefaultThreads()
                 .subscribe({ response ->
                     courseMetaData = response.result[0]
-                    card_lecture_name_tv.text = courseMetaData?.title
+                    sub_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")

@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import com.androidquery.AQuery
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_list.*
@@ -46,7 +45,9 @@ class CourseSubActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
-
+        sub_back_btn.setOnClickListener{
+            finish()
+        }
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAadapter()
@@ -56,7 +57,7 @@ class CourseSubActivity : AppCompatActivity() {
                 .setDefaultThreads()
                 .subscribe({ response ->
                     courseMetaData = response.result[0]
-                    card_lecture_name_tv.text = courseMetaData?.title
+                    sub_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
@@ -156,9 +157,7 @@ class CourseSubActivity : AppCompatActivity() {
 
             } else {
                 itemView.lecture_subsection_video_title_tv.visibility = View.GONE
-                //itemView.lecture_subsection_video_play_layout.visibility = View.GONE
-                val frameLayout = itemView.lecture_subsection_video_play_layout as FrameLayout
-                frameLayout.visibility = View.GONE
+                itemView.lecture_subsection_video_play_layout.visibility = View.GONE
             }
         }
     }
@@ -223,4 +222,3 @@ class CourseSubActivity : AppCompatActivity() {
         }
     }
 }
-
