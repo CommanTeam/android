@@ -6,6 +6,7 @@ import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Build
 import android.support.annotation.RequiresApi
+import android.util.Log
 import android.util.SparseArray
 import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
@@ -19,6 +20,9 @@ import com.facebook.network.connectionclass.ConnectionQuality
  */
 class AudioExtractor(context: Context, private val mediaPlayer: MediaPlayer?) : YouTubeExtractor(context) {
 
+    companion object {
+        const val TAG = "AudioExtractor"
+    }
     var listener: MediaStartListener? = null
 
     interface MediaStartListener {
@@ -35,6 +39,7 @@ class AudioExtractor(context: Context, private val mediaPlayer: MediaPlayer?) : 
         if (ytFiles == null) {
             return
         }
+        Log.i(TAG, "in here")
         val ytFile = getBestStream(ytFiles)
         mediaPlayer?.apply {
             reset()

@@ -31,7 +31,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
-import org.appjam.comman.ui.main.MainActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 import org.appjam.comman.youtube.YoutubePracticeActivity

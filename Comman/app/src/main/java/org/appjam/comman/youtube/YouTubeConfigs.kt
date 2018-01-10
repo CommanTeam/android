@@ -5,7 +5,7 @@ package org.appjam.comman.youtube
  */
 object YouTubeConfigs {
     const val API_KEY = "AIzaSyAbs-ujhIKO22BfWHiLsW5zvqfujsVookw"
-    const val URL_PREFIX = "https://www.youtube.com/watch?v="
+    const val URL_PREFIX = "http://www.youtube.com/watch?v="
 
     const val VIDEO_ID = "videoId"
     const val CURR_PLAY_TIME = "currPlayTime"

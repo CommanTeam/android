@@ -2,7 +2,10 @@ package org.appjam.comman.youtube
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -39,7 +42,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     }
 
     private val disposables = CompositeDisposable()
-    private var videoId = "Rs8zSWSR5Ys"
+    private var videoId = "ph2vj5T3L8o"
     private var lectureID: Int = 27        //실험중
     private var chapterID: Int = 1
     private var courseID: Int = 1
@@ -68,6 +71,25 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
         video_lecture_list_rv?.layoutManager = LinearLayoutManager(this)
         video_lecture_list_rv?.adapter = LectureVideoAdapter()
+
+        floating_layout?.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (!Settings.canDrawOverlays(this)) {
+                    val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                            Uri.parse("package:" + packageName))
+                    startActivityForResult(intent, 1234)
+                } else {
+                    val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
+                    intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                    startService(intent)
+                }
+            } else {
+                val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
+                intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                startService(intent)
+            }
+
+        }
 
         disposables.add(APIClient.apiService.getVideoLectureInfo(       //비디오강의 정보 가져오기
                 PrefUtils.getUserToken(this), lectureID)
@@ -129,7 +151,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         youtube_current_time_tv.text = "$current_time / $duration_time"
                         youtube_progress_bar.progress = mPlayer!!.currentTimeMillis
                         PrefUtils.putYoutubeCurrentTimeInCourse(this@YoutubePracticeActivity, mPlayer!!.currentTimeMillis, courseID)
-                        Log.i(TAG, PrefUtils.getInt(this@YoutubePracticeActivity, PrefUtils.CURRENT_TIME).toString())
                         youtube_progress_bar.setSeekBarListener(object : CustomSeekBar.CustomSeekBarListener {
                             override fun onThumbDragged(progress: Int) {
                                 mPlayer!!.seekToMillis(progress)

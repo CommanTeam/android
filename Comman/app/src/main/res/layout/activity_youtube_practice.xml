@@ -176,12 +176,34 @@
         android:layout_marginRight="19dp">
 
     </android.support.v7.widget.RecyclerView>
-    
-    <android.support.v4.widget.CircleImageView
-        android:id="@+id/youtube_floating_img"
+
+    <RelativeLayout
+        android:id="@+id/floating_layout"
         android:layout_width="61dp"
         android:layout_height="61dp"
-        android:background="@color/primaryColor"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="44dp"
+        android:layout_marginRight="42dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/youtube_floating_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/primaryColor"
+            />
+
+        <ImageView
+            android:id="@+id/floating_exercising_img"
+            android:layout_width="16dp"
+            android:layout_height="19dp"
+            android:src="@drawable/floating_exercising_btn"
+            android:layout_marginTop="21dp"
+            android:layout_marginLeft="23dp"
+            />
+
+    </RelativeLayout>
+    
 
 </RelativeLayout>

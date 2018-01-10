@@ -16,9 +16,11 @@ object ChapterData {
     data class LectureListInChapterResponse(val result : List<LectureListInChapterData>)
     data class LectureListInChapterData(val lectureID : Int,
                                         val lecturePriority: Int,
+                                        val chapterID : Int,
                                         val lectureTitle: String,
                                         val lectureType : Int,
-                                        val chapterID : Int,
+                                        val videoID : Int,
+                                        val userID : String,
                                         val watchedFlag: Int,
                                         val size: Int
     )
