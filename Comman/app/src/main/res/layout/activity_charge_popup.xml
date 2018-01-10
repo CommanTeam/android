@@ -50,7 +50,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="12dp"
             android:layout_marginLeft="29dp"
             android:layout_marginRight="29dp"
             android:layout_marginTop="27dp"
@@ -102,6 +102,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:text="8,8000원"
+                    android:fontFamily="@font/nanum_square_bold"
                     android:textColor="@color/primaryColor"
                     android:textSize="19sp" />
             </LinearLayout>
@@ -116,11 +117,10 @@
         <RelativeLayout
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="98dp"
+            android:layout_height="90dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             >
-
             <com.dd.ShadowLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

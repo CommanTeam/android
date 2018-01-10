@@ -9,17 +9,17 @@
     tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubActivity">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/lecture_subsection_top_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="10dp">
     <LinearLayout
-        android:id="@+id/lecture_subsection_top_layout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:orientation="horizontal"
         android:background="@color/primaryColor">
         <Button
-            android:id="@+id/card_back_btn"
+            android:id="@+id/sub_back_btn"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="19dp"
             android:background="@drawable/title_back_btn"
@@ -27,7 +27,7 @@
             android:layout_height="19dp"
             android:backgroundTint="#ffffff"/>
         <TextView
-            android:id="@+id/card_lecture_name_tv"
+            android:id="@+id/sub_lecture_name_tv"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="33dp"
             android:layout_marginRight="19dp"
