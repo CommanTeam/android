@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import com.androidquery.AQuery
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_list.*
@@ -177,7 +178,9 @@ class CourseSubActivity : AppCompatActivity() {
 
             } else {
                 itemView.lecture_subsection_video_title_tv.visibility = View.GONE
-                itemView.lecture_subsection_video_play_layout.visibility = View.GONE
+                //itemView.lecture_subsection_video_play_layout.visibility = View.GONE
+                val frameLayout = itemView.lecture_subsection_video_play_layout as FrameLayout
+                frameLayout.visibility = View.GONE
             }
         }
     }

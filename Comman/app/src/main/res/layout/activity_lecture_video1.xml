@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-
     android:orientation="vertical"
     tools:context="org.appjam.comman.LectureVideo1Activity">
 
@@ -21,25 +20,27 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
-
             android:fontFamily="@font/nanum_square_bold"
             android:text="01. 필렛 넣기"
             android:textColor="@color/mainTextColor"
             android:textSize="21sp" />
 
+        <com.dd.ShadowLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="19dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="18dp">
         <Button
             android:id="@+id/lec_big_btn"
             android:layout_width="79dp"
             android:layout_height="29dp"
-            android:layout_marginRight="19dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="18dp"
-            android:background="@drawable/enroll_popup_btn_rounded_bg"
+            android:background="@drawable/rounded_4dp_btn_bg"
             android:fontFamily="@font/nanum_square_bold"
             android:text="크게보기"
             android:textColor="@color/white"
             android:textSize="17sp" />
-
+        </com.dd.ShadowLayout>
 
     </LinearLayout>
 

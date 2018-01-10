@@ -7,7 +7,6 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import kotlinx.android.synthetic.main.activity_lecture_video.*
 import org.appjam.comman.R
-import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.youtube.YouTubeConfigs
 
 class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener,
@@ -22,11 +21,11 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
     }
 
     override fun onStopped() {
-        PrefUtils.putYoutubeCurrentTime(this, player!!)
+//        PrefUtils.putYoutubeCurrentTime(this, player!!)
     }
 
     override fun onPaused() {
-        PrefUtils.putYoutubeCurrentTime(this, player!!)
+//        PrefUtils.putYoutubeCurrentTime(this, player!!)
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {

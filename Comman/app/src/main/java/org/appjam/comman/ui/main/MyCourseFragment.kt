@@ -164,6 +164,7 @@ class MyCourseFragment : Fragment() {
             } else {
                 itemView.main_lecture_wathing_layout.visibility = View.GONE
                 itemView.main_lecture_wathing_tv.visibility = View.GONE
+
             }
         }
     }

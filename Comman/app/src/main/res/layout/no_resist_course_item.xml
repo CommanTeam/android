@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" 
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_marginTop="80dp"
@@ -30,18 +30,23 @@
         android:textColor="@color/mainTextColor"
         android:fontFamily="@font/nanum_square_bold"
         />
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_change16_19"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/new_course_request_tv"
+            app:cardElevation="@dimen/shadow">
     <Button
         android:id="@+id/new_course_request_btn"
-        android:layout_below="@id/new_course_request_tv"
         android:layout_width="198dp"
         android:layout_height="58dp"
-        android:layout_marginTop="@dimen/dp_change16_19"
-        android:layout_centerHorizontal="true"
         android:text="강좌 검색하기"
         android:fontFamily="@font/nanum_square_bold"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:background="@drawable/new_course_resist_btn_bg"
         />
+        </android.support.v7.widget.CardView>
     </RelativeLayout>
 </RelativeLayout>
