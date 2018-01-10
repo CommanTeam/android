@@ -13,8 +13,7 @@ object VideoData {
             val title : String,
             val info : String,
             val file_path : String,
-            val lecture_type : Int,
             val video_id : String,
-            val lecture_priority : Int
+            val priority: Int
     )
 }

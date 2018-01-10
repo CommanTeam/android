@@ -25,8 +25,10 @@ object LectureData {
     )
 
     data class RecentLectureInfo (
+            val course_ID : Int,
             val course_title : String,
             val chapter_priority : Int,
+            val chapter_ID : Int,
             val lecture_title : String,
             val lecture_priority : Int,
             val lecture_type: Int,
