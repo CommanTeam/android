@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lecture_subsection_course_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundColor">
@@ -9,28 +9,32 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="19dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="19dp"
-        android:layout_centerHorizontal="true">
+        android:layout_marginRight="19dp">
 
-    <TextView
-        android:id="@+id/lecture_subsection_course_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="강좌 설명"
-        android:textSize="21dp"
-        android:layout_marginTop="23dp"
-        android:fontFamily="@font/nanum_square_bold"
-        android:textColor="@color/mainTextColor"
-         />
+        <TextView
+            android:id="@+id/lecture_subsection_course_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="강좌 설명"
+            android:textColor="@color/mainTextColor"
+            android:textSize="21dp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="177dp"
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/lecture_subsection_course_title_tv"
             android:layout_marginTop="12dp"
+            app:cardElevation="@dimen/shadow">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="177dp"
             android:background="@drawable/lecture_subsection_course_item_bg">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -159,26 +163,32 @@
             </LinearLayout>
 
         </RelativeLayout>
-    <ImageView
-        android:id="@+id/lecture_subsection_bar3_iv"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/divideLineColor"
-        android:layout_marginTop="254dp"
-        android:layout_centerHorizontal="true"/>
+        </android.support.v7.widget.CardView>
+        <ImageView
+            android:id="@+id/lecture_subsection_bar3_iv"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="254dp"
+            android:background="@color/divideLineColor" />
 
+        <android.support.v7.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lecture_subsection_bar3_iv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="26dp"
+            android:layout_marginTop="20dp"
+            app:cardElevation="@dimen/shadow">
         <Button
             android:id="@+id/lecture_regist_btn"
             android:layout_width="198dp"
             android:layout_height="60dp"
-            android:layout_below="@+id/lecture_subsection_bar3_iv"
             android:background="@drawable/frag_quiz_submitbtn_bg"
+            android:fontFamily="@font/nanum_square_bold"
             android:text="등록하기"
             android:textColor="@color/white"
-            android:textSize="23sp"
-            android:fontFamily="@font/nanum_square_bold"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="26dp"/>
-</RelativeLayout>
+            android:textSize="23sp" />
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
 </RelativeLayout>

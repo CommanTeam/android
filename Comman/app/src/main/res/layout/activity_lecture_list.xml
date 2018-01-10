@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context="org.appjam.comman.ui.lecture.LectureListActivity">
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:cardElevation="10dp"
+        >
     <LinearLayout
         android:id="@+id/lectureList_subsection_top_layout"
         android:layout_width="match_parent"
@@ -36,6 +41,7 @@
             android:textColor="#ffffff"
             android:textSize="21sp" />
     </LinearLayout>
+    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/lecture_list_rv"

@@ -10,13 +10,12 @@
         android:layout_height="79dp"
         android:layout_marginBottom="12dp"
         android:background="@color/white"
-        android:elevation="2dp">
+        android:elevation="@dimen/shadow">
 
         <TextView
             android:id="@+id/quizResult_list_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
             android:layout_marginLeft="21dp"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/nanum_square_bold"

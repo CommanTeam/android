@@ -14,7 +14,7 @@
         <TextView
             android:id="@+id/quiz_count_btn"
             android:layout_width="81dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
             android:layout_alignParentRight="true"
             android:text="26 /26"
@@ -68,6 +68,8 @@
                 android:textSize="23sp"
                 android:textColor="#ffffff"
                 android:fontFamily="@font/nanum_square_bold"
+                android:translationZ="@dimen/shadow"
+                android:elevation="@dimen/shadow"
                 />
 
         </RelativeLayout>
