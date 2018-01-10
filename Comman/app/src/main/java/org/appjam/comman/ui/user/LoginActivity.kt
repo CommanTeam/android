@@ -30,7 +30,6 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
-import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.ui.main.MainActivity
 import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.PrefUtils
@@ -152,6 +151,7 @@ class LoginActivity : AppCompatActivity() {
                 else
                     user_profile_img = ""
 
+<<<<<<< HEAD
                 disposables.add(APIClient.apiService.getPostToken(LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
                         .setDefaultThreads()
                         .subscribe ({
@@ -171,6 +171,9 @@ class LoginActivity : AppCompatActivity() {
                 //싱글탑, 클리어탑 고민
 //                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 if(PrefUtils.getUserToken(this@LoginActivity) != null) {
+=======
+                if(PrefUtils.getUserToken(this@LoginActivity) != "") {
+>>>>>>> master
                     disposables.add(APIClient.apiService.getPostToken(PrefUtils.getUserToken(this@LoginActivity),
                                                                     LoginData.LoginInfo(user_nickName, user_profile_img, user_email))
                             .setDefaultThreads()
@@ -182,10 +185,13 @@ class LoginActivity : AppCompatActivity() {
 //                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
 //                                intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
 
+<<<<<<< HEAD
                                 val intent = Intent(this@LoginActivity,MainActivity::class.java)
+=======
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+>>>>>>> master
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-
                                 startActivity(intent)
                             }, {
                                 failure -> Log.i(LoginActivity.TAG, "on Failure ${failure.message}")

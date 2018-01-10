@@ -28,6 +28,7 @@ object PopupData {
             val title : String,
             val info : String,
             val priority : Int,
-            val open : Boolean
+            val open : Boolean,
+            val size : Int
     )
 }

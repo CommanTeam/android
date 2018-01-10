@@ -15,8 +15,6 @@ import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CardData
 import org.appjam.comman.util.PrefUtils
-import org.appjam.comman.util.PrefUtils.putCurrentLectureID
-import org.appjam.comman.util.PrefUtils.putLectureOfCourseID
 import org.appjam.comman.util.SetColorUtils
 import org.appjam.comman.util.setDefaultThreads
 
@@ -30,11 +28,11 @@ class CardActivity : AppCompatActivity() {
     companion object {
         const val TAG = "CardActivity"
     }
+
     private val disposables = CompositeDisposable()
-    private var cardResponse : CardData.CardResponse? = null
-    var pagePosition : Int = 0
-    var pageCount : Int = 0
-    var course_ID : Int = 0
+    private var cardInfolist : List<CardData.CardInfo> = listOf()
+    private var lectureID: Int = 0
+    private var pageCount: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +49,12 @@ class CardActivity : AppCompatActivity() {
         card_lecture_name_tv!!.text=lectureTitle
         course_ID = intent.getIntExtra("courseID",1)
 
+        val courseID = intent.getIntExtra("courseID",0)
+        lectureID = intent.getIntExtra("lectureID", 0)
+        var current_page : Int = 1
+
+        PrefUtils.putCurrentLectureID(this, lectureID)
+        PrefUtils.putLectureOfCourseID(this, lectureID, courseID)
 
         card_view_pager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
@@ -61,12 +65,14 @@ class CardActivity : AppCompatActivity() {
 
             @SuppressLint("ResourceAsColor")
             override fun onPageSelected(position: Int) {
+                PrefUtils.putLectureOfCoursePosition(this@CardActivity, position, courseID)
                 when (position) {
                     card_view_pager.adapter.count - 1 -> {
                         card_next_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.grayMainTextColor))
                         card_next_btn.setBackgroundResource(R.drawable.unclickable_view_pager_next_btn)
                     }
                     0 -> {
+                        Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_SHORT).show()
                         card_prev_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.grayMainTextColor))
                         card_prev_btn.setBackgroundResource(R.drawable.unclickable_view_pager_prev_btn)
                     }
@@ -77,68 +83,53 @@ class CardActivity : AppCompatActivity() {
                         card_next_btn.setBackgroundResource(R.drawable.view_pager_next_btn)
                     }
                 }
-                pagePosition = position + 1
-                card_count_tv.text = "$pagePosition / $pageCount"
+                card_count_tv.text = "${position + 1} / $pageCount"
             }
         })
-        card_prev_layout.setOnClickListener {
-            if(pagePosition != 0) {
-                card_view_pager.currentItem = card_view_pager.currentItem - 1
-            }
-        }
 
+        card_prev_layout.setOnClickListener {
+            card_view_pager.currentItem = card_view_pager.currentItem - 1
+        }
         card_next_layout.setOnClickListener {
             card_view_pager.currentItem = card_view_pager.currentItem + 1
         }
 
-        disposables.add(APIClient.apiService.getLectureCards(PrefUtils.getUserToken(this), 4)
+        disposables.add(APIClient.apiService.getLectureCards(
+                PrefUtils.getUserToken(this), lectureID)
                 .setDefaultThreads()
-                .subscribe({
-                    response ->
-                        cardResponse = response
-                        pageCount = response.result.size + 1
-                        putCurrentLectureID(this,4)
-                        putLectureOfCourseID(this,4, course_ID)
-                        card_count_tv.text = "1 / $pageCount"
-
-                        card_view_pager.adapter=CardPagerAdapter(supportFragmentManager)
-
-                        val prefPosition = PrefUtils.getRecentLectureOfCoursePosition(this, course_ID)
-
-                        if(prefPosition != -1) {
-                            card_view_pager.currentItem = prefPosition      //전에 보던 페이지를 불러온다.
-                            Toast.makeText(applicationContext, card_view_pager.currentItem, Toast.LENGTH_LONG).show()
-                            card_count_tv.text = "${prefPosition+1} / $pageCount"
-                        } else {
-                            Toast.makeText(applicationContext, prefPosition.toString() + "다죽어라", Toast.LENGTH_LONG).show()
+                .subscribe({ response ->
+                        cardInfolist = response.result
+                        pageCount = cardInfolist.size + 1
+                        card_count_tv.text = "$current_page / $pageCount"
+                        card_view_pager.adapter = CardPagerAdapter(supportFragmentManager)
+                        if(lectureID == PrefUtils.getRecentLectureOfCourseID(this, courseID)) { //이 코드가 disposable 안에 들어갈지는 고민
+                            card_view_pager.currentItem = PrefUtils.getRecentLectureOfCoursePosition(this, courseID)
+                            current_page = card_view_pager.currentItem + 1
                         }
-                        card_view_pager.adapter.notifyDataSetChanged()
-                }, {
-                    failure -> Log.i(CardActivity.TAG, "on Failure ${failure.message}")
+                }, { failure ->
+                    Log.i(CardActivity.TAG, "on Failure ${failure.message}")
                 }))
     }
 
     inner class CardPagerAdapter(fm: FragmentManager): FragmentStatePagerAdapter(fm){
 
         override fun getItem(position:Int): Fragment {
-            val bundle = Bundle()
-//            Toast.makeText(applicationContext,position.toString(),Toast.LENGTH_SHORT).show()
-            return if (position< count-1) {
+            return if (position < count - 1) {
                 val cardFragment = CardFragment()
                 val bundle = Bundle()
-                bundle.putInt("position", position)
-                bundle.putString("image_url", cardResponse!!.result[position].image_path)
-                bundle.putInt("course_ID", course_ID)
-                Toast.makeText(applicationContext,position.toString(),Toast.LENGTH_SHORT).show()
+                bundle.putString("image_url", cardInfolist[position].image_path)
                 cardFragment.arguments = bundle
                 cardFragment
             } else {
                 val cardLastFragment = CardLastFragment()
+                val bundle = Bundle()
+                bundle.putInt("lectureID", lectureID)
                 cardLastFragment.arguments = bundle
                 cardLastFragment
             }
         }
-        override fun getCount():Int= pageCount
+
+        override fun getCount(): Int= pageCount
     }
 
     override fun onDestroy() {
