@@ -24,5 +24,7 @@
         android:textSize="23sp"
         android:background="@drawable/frag_quiz_submitbtn_bg"
         android:textColor="#ffffff"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true"
+        android:translationZ="@dimen/shadow"
+        android:elevation="@dimen/shadow"/>
 </RelativeLayout>

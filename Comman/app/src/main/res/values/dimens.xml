@@ -7,7 +7,7 @@
 
     <dimen name="sp_change16_19">19sp</dimen>
     <dimen name="sp_change18_21">21sp</dimen>
-
+    <dimen name="shadow">8dp</dimen>
 
 
 </resources>

@@ -7,7 +7,11 @@
     android:orientation="vertical"
     android:background="@color/backgroundColor"
     tools:context="org.appjam.comman.ui.CourseSubsection.CourseSubActivity">
-//위에 activity 바꾸기
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="10dp">
     <LinearLayout
         android:id="@+id/lecture_subsection_top_layout"
         android:layout_width="match_parent"
@@ -34,6 +38,7 @@
             android:textSize="21sp"
             android:textColor="#ffffff"/>
     </LinearLayout>
+    </android.support.v7.widget.CardView>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/lecture_subsection_list_view"
             android:layout_width="match_parent"
