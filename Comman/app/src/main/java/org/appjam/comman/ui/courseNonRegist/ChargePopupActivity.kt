@@ -62,14 +62,6 @@ class ChargePopupActivity : AppCompatActivity() {
         }
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        //바깥 레이어 클릭시 안닫히게 한다.
-        if (MotionEvent.ACTION_OUTSIDE == event!!.action) {
-            return false
-        }
-        return true
-    }
-
     override fun onDestroy() {
         disposables.clear()
         super.onDestroy()

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.MotionEvent
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_enroll_popup.*
 import org.appjam.comman.R
@@ -53,14 +52,6 @@ class EnrollPopupActivity : AppCompatActivity() {
                         Log.i(TAG, "on Failure ${failure.message}")
                     }))
         }
-    }
-
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        //바깥 레이어 클릭시 안닫히게 한다.
-        if (MotionEvent.ACTION_OUTSIDE == event!!.action) {
-            return false
-        }
-        return true
     }
 
     override fun onDestroy() {
