@@ -39,10 +39,9 @@ dependencies {
     compile group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION
     // KaKaoSDK
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    // CircleImageView
-    compile 'com.googlecode.android-query:android-query:0.25.9'
-
     //AQuery
+    compile 'com.googlecode.android-query:android-query:0.25.9'
+    // CircleImageView
     compile 'de.hdodenhof:circleimageview:1.2.1'
     compile 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
     compile 'com.facebook.network.connectionclass:connectionclass:1.0.1'

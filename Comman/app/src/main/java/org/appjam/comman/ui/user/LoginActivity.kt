@@ -18,6 +18,9 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import com.androidquery.AQuery
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.network.ErrorResult
@@ -64,6 +67,13 @@ class LoginActivity : AppCompatActivity() {
 
         login_kakaoLogin_btn.visibility = View.GONE
 
+        var splash_gif = GlideDrawableImageViewTarget(splash_gif)
+        Glide.with(this)
+                .load(R.raw.splash)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .crossFade()
+                .into(splash_gif)
+
         val handler = Handler()
         handler.postDelayed({
             login_kakaoLogin_btn.visibility = View.VISIBLE
@@ -96,12 +106,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            if(isConnected) {
-                false
-            }
-            else{
-                true
-            }
+            !isConnected
         }
 
         if(Session.getCurrentSession().isOpened){

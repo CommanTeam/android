@@ -1,40 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical"
+<RelativeLayout android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     tools:context=".ui.user.LoginActivity"
-    android:background="@color/colorPrimary"
+    android:background="@color/primaryColor"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/login_splashTitle_layout"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
-        <TextView
-            android:id="@+id/login_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:text="컴만"
-            android:textColor="@android:color/background_light"
-            android:textSize="20sp" />
 
+    <ImageView
+        android:layout_centerInParent="true"
+        android:id="@+id/splash_gif"
+        android:layout_width="330dp"
+        android:layout_height="640dp" />
 
-    </LinearLayout>
 
     <com.kakao.usermgmt.LoginButton
         android:id="@+id/login_kakaoLogin_btn"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:layout_marginTop="200dp">
-    </com.kakao.usermgmt.LoginButton>
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/splash_gif"
+        android:layout_marginTop="524dp"
+        android:layout_marginBottom="48dp"></com.kakao.usermgmt.LoginButton>
 
 
-
-</LinearLayout>
+</RelativeLayout>

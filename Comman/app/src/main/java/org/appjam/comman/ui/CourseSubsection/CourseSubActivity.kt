@@ -58,15 +58,15 @@ class CourseSubActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
-
-        chapterList = lecture_subsection_list_view
-        chapterList!!.layoutManager = LinearLayoutManager(this)
-
-        chapterListData?.add(ChapterListData(1, "1장", "반지 모델링 하기", "총 16강"))
-        chapterListData?.add(ChapterListData(2, "2장", "반지 모델링 하기", "총 16강"))
-        chapterListData?.add(ChapterListData(1, "3장", "반지 모델링 하기", "총 16강"))
-
-        lectureSubAdapter = LectureSubAadapter()
+//
+//        chapterList = lecture_subsection_list_view
+//        chapterList!!.layoutManager = LinearLayoutManager(this)
+//
+//        chapterListData?.add(ChapterListData(1, "1장", "반지 모델링 하기", "총 16강"))
+//        chapterListData?.add(ChapterListData(2, "2장", "반지 모델링 하기", "총 16강"))
+//        chapterListData?.add(ChapterListData(1, "3장", "반지 모델링 하기", "총 16강"))
+//
+//        lectureSubAdapter = LectureSubAadapter()
 
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)

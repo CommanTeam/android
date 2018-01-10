@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.androidquery.AQuery
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.popup_quiz_explain.*
 import org.appjam.comman.R
@@ -37,6 +38,11 @@ class PopupExplainActivity : AppCompatActivity(){
             popup_img.visibility = View.VISIBLE
             val aQuery = AQuery(this)
             aQuery.id(popup_img).image(quizInfoList.quizImage)
+            Glide.with(this)
+                    .load(quizInfoList.quizImage)
+                    .centerCrop()
+                    .crossFade()
+                    .into(popup_img)
         }
 
         var i = 0

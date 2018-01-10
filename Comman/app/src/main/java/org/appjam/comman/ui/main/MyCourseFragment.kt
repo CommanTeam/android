@@ -150,10 +150,15 @@ class MyCourseFragment : Fragment() {
                     itemView.main_lecture_watching_progress_tv.text =
                             "${PrefUtils.getInt(context, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_picture}"
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
+                    //예은
+                    itemView.main_lecture_wathing_layout.setBackgroundResource(R.drawable.home_picture_default_image)
                 } else {
                     itemView.main_lecture_watching_progress_tv.text =
                             "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
+                    //예은
+                    itemView.main_lecture_wathing_layout.setBackgroundResource(R.drawable.home_quiz_default_image)
+
                 }
 
             } else {
@@ -168,6 +173,7 @@ class MyCourseFragment : Fragment() {
             var aQuery = AQuery(context)
             val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_IMAGE)
             aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+
             itemView.main_notice_tv.text = PrefUtils.getString(context, PrefUtils.NICKNAME)+ greetingInfo?.ment
         }
     }
