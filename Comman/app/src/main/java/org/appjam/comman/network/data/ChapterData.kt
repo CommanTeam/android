@@ -13,14 +13,12 @@ object ChapterData {
                            val priority: Int)
 
 
-    data class LectureListInChapterResponse(val result : List<LectureListinChapterData>)
-    data class LectureListinChapterData(val lectureID : Int,
+    data class LectureListInChapterResponse(val result : List<LectureListInChapterData>)
+    data class LectureListInChapterData(val lectureID : Int,
                                         val lecturePriority: Int,
-                                        val chapterID : Int,
                                         val lectureTitle: String,
                                         val lectureType : Int,
-                                        val videoID : Int,
-                                        val userID : String,
+                                        val chapterID : Int,
                                         val watchedFlag: Int,
                                         val size: Int
     )

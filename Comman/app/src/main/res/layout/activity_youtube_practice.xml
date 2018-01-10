@@ -134,7 +134,7 @@
             android:layout_below="@id/youtube_progress_bar"
             android:layout_marginTop="12dp"
             android:layout_marginRight="19dp"
-            android:text="7 : 10 / 10 : 56"
+            android:text="00 : 00 / 00 : 00"
             android:textSize="18sp"
             android:textColor="@color/white"
             android:fontFamily="@font/nanum_square_regular"
