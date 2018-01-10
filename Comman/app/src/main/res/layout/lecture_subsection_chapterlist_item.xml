@@ -4,38 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true">
-<<<<<<< HEAD
-
     <android.support.v7.widget.CardView
-=======
-  <android.support.v7.widget.CardView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="6dp"
-      android:layout_marginBottom="6dp"
-      android:layout_centerHorizontal="true"
-      android:layout_marginLeft="19dp"
-      android:layout_marginRight="19dp"
-      app:cardElevation="5dp">
-  <RelativeLayout
-      android:id="@+id/lecture_subsection_layout"
-      android:layout_width="match_parent"
-      android:layout_height="84dp"
-      android:background="@color/pageCountTextColor"
-      >
-    <TextView
-        android:id="@+id/lecture_subsection_chapterlist_chapnum_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1장"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/nanum_square_bold"
-        android:layout_marginTop="18dp"
-        android:layout_marginLeft="15dp"/>
-    <TextView
-        android:id="@+id/lecture_subsection_chapterlist_totalnum_tv"
->>>>>>> master
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

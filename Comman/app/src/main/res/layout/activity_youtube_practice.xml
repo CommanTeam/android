@@ -172,8 +172,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/divide_line"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp">
+        android:layout_marginRight="8dp">
 
     </android.support.v7.widget.RecyclerView>
 

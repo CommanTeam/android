@@ -10,14 +10,9 @@
     android:layout_height="151dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="9dp"
-<<<<<<< HEAD
     android:layout_marginTop="9dp"
     android:layout_marginRight="11dp"
     android:layout_marginLeft="11dp"
-=======
-    android:layout_marginRight="19dp"
-    android:layout_marginLeft="19dp"
->>>>>>> master
     app:cardCornerRadius="4dp"
     app:cardElevation="5dp">
 

@@ -31,6 +31,7 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
+import org.appjam.comman.youtube.YoutubePracticeActivity
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -163,7 +164,7 @@ class LoginActivity : AppCompatActivity() {
                                 PrefUtils.putUserToken(this@LoginActivity, response.result.token)
                                 PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
 
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                val intent = Intent(this@LoginActivity, YoutubePracticeActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)
@@ -177,7 +178,7 @@ class LoginActivity : AppCompatActivity() {
                                 response ->
                                 PrefUtils.putUserToken(this@LoginActivity, response.result.token)
                                 PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                val intent = Intent(this@LoginActivity, YoutubePracticeActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)
