@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import com.androidquery.AQuery
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
@@ -51,10 +53,15 @@ class SearchNewCourseFragment : Fragment() {
 
     inner class MyCourseAlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind() {
+            itemView.setOnClickListener {
+                val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+            }
             var aQuery = AQuery(context)
             val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_IMAGE)
             aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
             itemView.main_notice_tv.text = PrefUtils.getString(context, PrefUtils.NICKNAME) + greetingInfo?.ment
+
         }
     }
 
@@ -68,6 +75,7 @@ class SearchNewCourseFragment : Fragment() {
             else if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
                 (holder as CourseResistRequestViewHolder)
             }
+
         }
 
         override fun getItemCount(): Int = 2
@@ -84,6 +92,7 @@ class SearchNewCourseFragment : Fragment() {
                 mainView.new_course_request_btn.setOnClickListener {
                     (activity as MainActivity).main_content_view_pager.currentItem += 1
                 }
+
                 return CourseResistRequestViewHolder(mainView)
             }
         }

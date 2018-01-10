@@ -1,3 +1,5 @@
+package org.appjam.comman.ui.courseNonRegist
+
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -23,9 +25,6 @@ import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 
 
-/**
- * Created by KSY on 2018-01-04.
- */
 class CourseNonRegistActivity : AppCompatActivity() {
 
     companion object {
@@ -40,6 +39,10 @@ class CourseNonRegistActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
+
+        sub_back_btn.setOnClickListener{
+            finish()
+        }
 
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)

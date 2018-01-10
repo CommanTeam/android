@@ -67,13 +67,15 @@
                 android:layout_toLeftOf="@id/main_cancel_btn"
                 android:layout_toRightOf="@id/main_search_img"
                 android:backgroundTint="@color/white"
-                android:inputType=""
+                android:privateImeOptions="defaultInputmode=korean"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:fontFamily="@font/nanum_square_bold"
                 android:hint="검색어를 입력해주세요"
-                android:privateImeOptions="defaultInputmode=korean"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
                 android:textSize="18sp" />
         </RelativeLayout>
-
 
     </LinearLayout>
 

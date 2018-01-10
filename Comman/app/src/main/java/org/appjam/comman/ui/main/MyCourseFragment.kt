@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.GreetingData
 import org.appjam.comman.network.data.LectureData
+import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.YoutubeTimeUtils
@@ -118,14 +120,11 @@ class MyCourseFragment : Fragment() {
             itemView.main_course_active_progress_bar.progress = progressPercentage
             itemView.main_course_active_progress_tv.text = resources.getString(R.string.msg_format_progress_percentage, progressPercentage)
 
-<<<<<<< HEAD
-=======
-            itemView.setOnClickListener {
+         itemView.setOnClickListener {
                 val intent = Intent(context, CourseSubActivity::class.java)
                 intent.putExtra("courseID", courseInfo.courseID)
                 startActivity(intent)
             }
->>>>>>> master
         }
     }
 

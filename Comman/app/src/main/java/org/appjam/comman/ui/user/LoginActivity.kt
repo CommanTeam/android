@@ -3,8 +3,6 @@ package org.appjam.comman.ui.user
 /**
  * Created by yeahen on 2017-12-31.
  */
-
-
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager

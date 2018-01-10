@@ -53,7 +53,15 @@ class SearchCourseListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
     }
 
-    inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            itemView.setOnClickListener{
+                val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+            }
+        }
+    }
+
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             itemView.setOnClickListener {

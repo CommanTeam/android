@@ -47,7 +47,6 @@ class CardActivity : AppCompatActivity() {
         }
         val lectureTitle = intent.getStringExtra("card_lecture_name_tv")
         card_lecture_name_tv!!.text=lectureTitle
-        course_ID = intent.getIntExtra("courseID",1)
 
         val courseID = intent.getIntExtra("courseID",0)
         lectureID = intent.getIntExtra("lectureID", 0)

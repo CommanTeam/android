@@ -49,6 +49,7 @@ class CourseSubActivity : AppCompatActivity() {
         sub_back_btn.setOnClickListener{
             finish()
         }
+
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAadapter()
