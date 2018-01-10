@@ -25,18 +25,21 @@
 
         <activity android:name=".ui.user.LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/NoActionBar"/>
-]
+            android:theme="@style/NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
         <activity
             android:name=".ui.lecture.LectureListActivity"
             android:theme="@style/NoActionBar" />
 
-
-
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/NoActionBar" />
-
 
         <activity
             android:name=".ui.card.CardActivity"
@@ -52,6 +55,7 @@
         <activity android:name=".ui.CourseSubsection.CourseSubActivity"
             android:theme="@style/NoActionBar"/>
 
+
         <!-- 강의 설명 팝업 Activity -->
         <activity
             android:name=".ui.CourseSubsection.CourseSubPopupActivity"
@@ -59,17 +63,14 @@
             />
 
 
-        <activity android:name="LectureVideo1Activity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name="LectureVideo1Activity" />
+
 
         <!-- 퀴즈 채점 결과 Activity -->
         <activity
             android:name=".ui.quiz.QuizResultActivity"
             android:theme="@style/NoActionBar" />
+
 
         <!-- 퀴즈 해설 팝업 Activity -->
         <activity
@@ -85,8 +86,6 @@
 
         <service android:name=".ui.lecture.LectureVideoService"
             />
-
-
 
         <!--등록 팝업 Activity -->
         <activity

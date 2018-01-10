@@ -1,89 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@color/backgroundColor"
+    android:orientation="vertical"
     tools:context="org.appjam.comman.ui.lecture.LectureListActivity">
 
     <TextView
         android:id="@+id/chapter_tv"
-        android:layout_marginTop="22dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginBottom="14dp"
-        android:textSize="@dimen/sp_change18_21"
-        android:fontFamily="@font/nanum_square_bold"
-        android:textColor="@color/mainTextColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="개요"
-        />
-    <RelativeLayout
-        android:background="@color/white"
-        android:layout_gravity="center"
-        android:layout_width="match_parent"
+        android:layout_marginBottom="14dp"
         android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
-        android:layout_height="158dp"
-        >
-        <TextView
-            android:id="@+id/chapter_title_tv"
-            android:layout_marginTop="@dimen/dp_change16_19"
-            android:layout_marginLeft="15dp"
-            android:text="1장. 라이노 툴 다루기"
-            android:textColor="@color/mainTextColor"
-            android:textSize="@dimen/sp_change18_21"
-            android:fontFamily="@font/nanum_square_bold"
-            android:layout_marginBottom="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/chapter_line"
-            android:layout_below="@+id/chapter_title_tv"
-            android:layout_marginHorizontal="13dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/divideLineColor"
-            />
-        <TextView
-            android:id="@+id/chapter_content_tv"
-            android:layout_below="@+id/chapter_line"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="@dimen/dp_change16_19"
-            android:fontFamily="@font/nanum_square_regular"
-            android:textSize="18sp"
-            android:textColor="@color/explanationColor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="asdasdasdasdasdasdasdasdasdasdasdasdasdsdsd"
-            />
+        android:layout_marginTop="22dp"
+        android:fontFamily="@font/nanum_square_bold"
+        android:text="개요"
+        android:textColor="@color/mainTextColor"
+        android:textSize="@dimen/sp_change18_21" />
 
-    </RelativeLayout>
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardElevation="@dimen/shadow"
+        android:layout_gravity="center"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="158dp"
+
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/chapter_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="@dimen/dp_change16_19"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="1장. 라이노 툴 다루기"
+                android:textColor="@color/mainTextColor"
+                android:textSize="@dimen/sp_change18_21" />
+
+            <ImageView
+                android:id="@+id/chapter_line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/chapter_title_tv"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/divideLineColor" />
+
+            <TextView
+                android:id="@+id/chapter_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/chapter_line"
+                android:layout_marginBottom="@dimen/dp_change16_19"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:text="asdasdasdasdasdasdasdasdasdasdasdasdasdsdsd"
+                android:textColor="@color/explanationColor"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <ImageView
-        android:layout_gravity="center"
         android:layout_width="match_parent"
+        android:layout_height="1dp"
         android:layout_below="@+id/ch_title"
+        android:layout_gravity="center"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="18dp"
-        android:layout_height="1dp"
-        android:background="@color/divideLineColor"
-        />
+        android:background="@color/divideLineColor" />
+
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="19dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="8dp"
-        android:text="강의 목록"
         android:fontFamily="@font/nanum_square_bold"
-        android:textSize="21sp"
+        android:text="강의 목록"
         android:textColor="@color/mainTextColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textSize="21sp" />
 </LinearLayout>
 

@@ -32,7 +32,7 @@ object APIClient {
 
 
         //수강중인 강좌
-        @GET("/users/main/progressLecture/")
+        @GET("/users/main/progressCourse/")
         fun getRegisteredCourses(@Header("authorization") tokenValue : String
         ) : Observable<CoursesData.CoursesResponse>
 
