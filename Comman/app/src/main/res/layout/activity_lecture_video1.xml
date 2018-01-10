@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-
     android:orientation="vertical"
     tools:context="org.appjam.comman.LectureVideo1Activity">
 
@@ -18,14 +17,9 @@
             android:id="@+id/lec_title_tv"
             android:layout_width="282dp"
             android:layout_height="wrap_content"
-<<<<<<< HEAD
-            android:layout_marginBottom="21dp"
-=======
             android:layout_gravity="center_vertical"
->>>>>>> master
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
-
             android:fontFamily="@font/nanum_square_bold"
             android:text="01. 필렛 넣기"
             android:textColor="@color/mainTextColor"
@@ -38,11 +32,7 @@
             android:layout_marginRight="19dp"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="18dp"
-<<<<<<< HEAD
             android:background="@drawable/rounded_4dp_btn_bg"
-=======
-            android:background="@drawable/enroll_popup_btn_rounded_bg"
->>>>>>> master
             android:fontFamily="@font/nanum_square_bold"
             android:text="크게보기"
             android:textColor="@color/white"

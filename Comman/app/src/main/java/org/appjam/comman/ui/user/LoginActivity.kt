@@ -148,11 +148,8 @@ class LoginActivity : AppCompatActivity() {
                 Log.e("onSuccess", userProfile.toString())
                 var user_nickName = userProfile.nickname
                 var user_email = userProfile.email
-<<<<<<< HEAD
-=======
                 var user_token = Session.getCurrentSession().tokenInfo.accessToken
                 Log.e("kakao", user_token)
->>>>>>> master
                 var user_profile_img : String
 
                 if(userProfile.thumbnailImagePath != null)

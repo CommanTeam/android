@@ -97,19 +97,6 @@
        android:gravity="center_vertical"
         android:layout_marginRight="29dp">
 
-<<<<<<< HEAD
-   <Button
-       android:layout_centerVertical="true"
-       android:layout_alignParentRight="true"
-       android:id="@+id/popup_close_btn"
-       android:layout_width="96dp"
-       android:layout_height="37dp"
-       android:background="@drawable/rounded_2dp_btn_bg"
-       android:fontFamily="@font/nanum_square_bold"
-       android:textColor="@color/white"
-       android:text="닫기"
-       android:textSize="19sp"/>
-=======
        <Button
            android:id="@+id/popup_close_btn"
            android:layout_width="96dp"
@@ -122,7 +109,6 @@
            android:text="닫기"
            android:textColor="@color/white"
            android:textSize="19sp" />
->>>>>>> master
    </RelativeLayout>
 
 </LinearLayout>
