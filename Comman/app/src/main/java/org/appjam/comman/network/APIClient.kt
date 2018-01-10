@@ -25,10 +25,10 @@ object APIClient {
     interface APIService {
         //로그인 토큰 가져오기
         @POST("/users/insert_user_info")
-        fun getPostToken(@Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+        fun getPostToken(@Body loginData : LoginData.LoginPost) : Observable<LoginData.LoginResponse>
         @POST("/users/insert_user_info")
         fun getPostToken(@Header("authorization") tokenValue: String,
-                         @Body loginData : LoginData.LoginInfo) : Observable<LoginData.LoginResponse>
+                         @Body loginData : LoginData.LoginPost) : Observable<LoginData.LoginResponse>
 
 
         //수강중인 강좌
@@ -41,7 +41,8 @@ object APIClient {
         fun getLectureCards(@Header("authorization") tokenValue: String,
                             @Path("lectureID") lectureID: Int) : Observable<CardData.CardResponse>
 
-        //강의페이지 중 개요
+        //강의id로 강의정보 가져오기
+        @GET("/content/lectures")
         fun getLectureInfo(@Header("authorization") tokenValue : String,
                            @Query("lectureID") lectureID: Int) : Observable<LectureData.LectureResponse>
 
@@ -62,7 +63,8 @@ object APIClient {
 
         //강의에 대한 퀴즈정보
         @GET("/content/lecturequiz/{lectureID}")
-        fun getQuizResult(@Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
+        fun getQuizResult(@Header("authorization") tokenValue: String,
+                          @Path("lectureID") lectureId : Int) :Observable<QuizData.QuizResponse>
 
         //강좌검색
         @POST("/search/courses")
@@ -83,22 +85,24 @@ object APIClient {
                 @Header("authorization") tokenVale : String
         ) : Observable<CategoryData.CategoryResponse>
 
-        //다음 강좌 정보 가져오기
-        @GET("/content/lecturepage/nextLecture?courseID={courseID}&chapterID={chapterID}&lectureID={lectureID}")
+        //다음 강의 정보 가져오기
+        @GET("/content/lecturepage/nextLecture")
         fun getNextLectureInfo(
                 @Header("authorization") tokenValue : String,
-                @Query("courseID") courseID : Int,
-                @Query("chapterID") chapterID : Int,
                 @Query("lectureID") lectureID : Int
         ) : Observable<NextLectureData.NextLectureResponse>
 
         //강좌별 챕터정보
         @GET("/content/courses/")
-        fun getPopupTitleInfos(@Header("authorization")tokenValue: String, @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
+        fun getPopupTitleInfos(
+                @Header("authorization")tokenValue: String,
+                @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
 
         //강좌id로 강좌정보 가져오기
         @GET("/content/courses/{courseID}/chapters")
-        fun getPopupContentInfos(@Header("authorization")tokenValue: String, @Path("courseID") courseID :Int) :Observable<PopupData.PopupContentResponse>
+        fun getPopupContentInfos(
+                @Header("authorization")tokenValue: String,
+                @Path("courseID") courseID :Int) :Observable<PopupData.PopupContentResponse>
 
         //카테고리 검색 결과
         @GET("/search/courses/categories/{categoryID}")
@@ -141,5 +145,19 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Body registerData : CoursesData.RegisterPost
         ) : Observable<CoursesData.RegisterCourse>
+
+        //유저의 수강 종료 갱신
+        @PUT("/users/lectureHistory/{lectureID}")
+        fun registerFinishLecture(
+                @Header("authorization") tokenValue: String,
+                @Path("lectureID") lectureID: Int
+        ) : Observable<LectureData.FinishLecture>
+
+        //강의ID로 비디오강의정보 가져오기
+        @GET("/content/lecturevideo/{lectureID}")
+        fun getVideoLectureInfo(
+                @Header("authorization") tokenValue: String,
+                @Path("lectureID") lectureID: Int
+        ) : Observable<VideoData.VideoLectureResponse>
     }
 }

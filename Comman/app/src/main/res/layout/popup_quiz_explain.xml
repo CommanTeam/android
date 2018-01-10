@@ -31,16 +31,35 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/popup_num_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:layout_marginTop="7dp"
-                        android:fontFamily="@font/nanum_square_extra_bold"
-                        android:text="문제 번호"
-                        android:textColor="@color/mainTextColor"
-                        android:textSize="23dp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/popup_num_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:layout_marginTop="7dp"
+                            android:fontFamily="@font/nanum_square_extra_bold"
+                            android:text="문제 번호"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="23dp" />
+
+                        <TextView
+                            android:id="@+id/popup_count_btn"
+                            android:layout_width="82dp"
+                            android:layout_height="27dp"
+                            android:layout_alignParentRight="true"
+                            android:text="13 / 26"
+                            android:textAlignment="center"
+                            android:textSize="21sp"
+                            android:textColor="@color/pageCountTextColor"
+                            android:background="@drawable/frag_card_quiz_countbtn_bg"
+                            android:fontFamily="@font/nanum_square_bold"
+                            />
+
+                    </RelativeLayout>
 
                     <TextView
                         android:id="@+id/popup_quiz_tv"
@@ -93,20 +112,22 @@
    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="82dp"
+       android:gravity="center_vertical"
         android:layout_marginRight="29dp">
 
-   <Button
-       android:layout_centerVertical="true"
-       android:layout_alignParentRight="true"
-       android:id="@+id/popup_close_btn"
-       android:layout_width="96dp"
-       android:layout_height="37dp"
-       android:background="@color/primaryColor"
-       android:fontFamily="@font/nanum_square_bold"
-       android:textColor="@color/white"
-       android:text="닫기"
-       android:textSize="19sp"/>
+       <Button
+           android:id="@+id/popup_close_btn"
+           android:layout_width="96dp"
+           android:layout_height="37dp"
+           android:layout_alignParentEnd="true"
+           android:layout_alignParentRight="true"
+           android:layout_centerVertical="true"
+           android:background="@color/primaryColor"
+           android:fontFamily="@font/nanum_square_bold"
+           android:text="닫기"
+           android:textColor="@color/white"
+           android:textSize="19sp" />
    </RelativeLayout>
 
 </LinearLayout>

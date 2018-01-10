@@ -24,7 +24,7 @@ import org.appjam.comman.ui.courseNonRegist.ChargePopupActivity
 import org.appjam.comman.ui.lecture.LectureListActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
-import org.appjam.comman.util.TimeUtils
+import org.appjam.comman.util.YoutubeTimeUtils
 import org.appjam.comman.util.setDefaultThreads
 
 /**
@@ -170,7 +170,7 @@ class CourseSubActivity : AppCompatActivity() {
                     itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
                 } else {
                     itemView.lecture_subsection_video_time_tv.text =
-                            "${TimeUtils.formatTime(PrefUtils.getInt(this@CourseSubActivity, PrefUtils.DURATION_TIME))}"
+                            "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(this@CourseSubActivity, PrefUtils.DURATION_TIME))}"
                     itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_video_icon)
                     itemView.lecture_subsection_watching_progress_bar.visibility = View.VISIBLE
                 }
@@ -187,7 +187,7 @@ class CourseSubActivity : AppCompatActivity() {
         // TODO: 일단 기본적인 것은 완성 혹시나 안되면 데이터 클래스나 통신 쪽을 확인해봐야 함
         fun bind(position: Int) {
             itemView.lecture_subsection_chapterlist_chapnum_tv.text = "${chaptersInfoList[position].priority}장"
-            //itemView.lecture_subsection_chapterlist_totalnum_tv.text = chaptersInfoList[position].lectu   api에 단원의 강좌수 추가되면 수정
+//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].size}강"
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
             if (((isPurchased == 0) and chaptersInfoList[position].open) or (isPurchased == 1)) {
                 itemView.lecture_subsection_lock_layout.visibility = View.GONE
