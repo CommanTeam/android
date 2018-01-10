@@ -56,7 +56,7 @@ class SearchNewCourseFragment : Fragment() {
             itemView.setOnClickListener {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)
-            }
+          }
             var aQuery = AQuery(context)
             val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_IMAGE)
             aQuery.id(itemView.main_profile_img).image(thumbnailUrl)

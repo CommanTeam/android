@@ -94,7 +94,6 @@ class SearchFragment : Fragment(), View.OnClickListener {
 
                 main_search_et.removeTextChangedListener(textWatcher)
                 ReplaceFragment(SearchCategoryFragment(), bundle, "cancel")
-                main_search_et.clearFocus()
 
                 val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(main_search_et.windowToken, 0)

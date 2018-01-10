@@ -4,13 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/dividedBackgroundColor"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <TextView
             android:id="@+id/course_search"
@@ -68,8 +71,7 @@
                 android:layout_toRightOf="@id/main_search_img"
                 android:backgroundTint="@color/white"
                 android:privateImeOptions="defaultInputmode=korean"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
+                style="@android:style/Widget.EditText"
                 android:fontFamily="@font/nanum_square_bold"
                 android:hint="검색어를 입력해주세요"
                 android:imeOptions="actionDone"
