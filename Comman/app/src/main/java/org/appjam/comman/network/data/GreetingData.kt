@@ -9,7 +9,6 @@ object GreetingData {
     )
 
     data class GreetingResult (
-            val ment : String,
-            val userImg : String
+            val ment : String
     )
 }

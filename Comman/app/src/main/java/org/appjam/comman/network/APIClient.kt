@@ -85,12 +85,10 @@ object APIClient {
                 @Header("authorization") tokenVale : String
         ) : Observable<CategoryData.CategoryResponse>
 
-        //다음 강좌 정보 가져오기 TODO 이 부분 바뀔 것 같아서 조금 나중에 건드리겠음
+        //다음 강의 정보 가져오기
         @GET("/content/lecturepage/nextLecture")
         fun getNextLectureInfo(
                 @Header("authorization") tokenValue : String,
-                @Query("courseID") courseID : Int,
-                @Query("chapterID") chapterID : Int,
                 @Query("lectureID") lectureID : Int
         ) : Observable<NextLectureData.NextLectureResponse>
 
@@ -147,5 +145,19 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Body registerData : CoursesData.RegisterPost
         ) : Observable<CoursesData.RegisterCourse>
+
+        //유저의 수강 종료 갱신
+        @PUT("/users/lectureHistory/{lectureID}")
+        fun registerFinishLecture(
+                @Header("authorization") tokenValue: String,
+                @Path("lectureID") lectureID: Int
+        ) : Observable<LectureData.FinishLecture>
+
+        //강의ID로 비디오강의정보 가져오기
+        @GET("/content/lecturevideo/{lectureID}")
+        fun getVideoLectureInfo(
+                @Header("authorization") tokenValue: String,
+                @Path("lectureID") lectureID: Int
+        ) : Observable<VideoData.VideoLectureResponse>
     }
 }
