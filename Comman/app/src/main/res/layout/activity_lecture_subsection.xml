@@ -13,7 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardElevation="10dp">
+
     <LinearLayout
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:orientation="horizontal"
@@ -43,8 +48,8 @@
             android:id="@+id/lecture_subsection_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="LinearLayoutManager"
             android:layout_below="@+id/lecture_subsection_top_layout"
+            app:layoutManager="LinearLayoutManager"
             android:background="@color/backgroundColor">
         </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

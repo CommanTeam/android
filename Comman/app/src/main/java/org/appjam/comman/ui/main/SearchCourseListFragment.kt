@@ -51,14 +51,29 @@ class SearchCourseListFragment : Fragment() {
         val recyclerView = view!!.course_result_recyclerview
         recyclerView.adapter = SearchCourseListAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
+        view.setOnClickListener {
+            val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hide.hideSoftInputFromWindow(view.windowToken, 0)
+
+        }
+        }
+
+    inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            itemView.setOnClickListener{
+                val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+
+            }
+        }
     }
 
-    inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             itemView.setOnClickListener {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+
             }
         }
     }

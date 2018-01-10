@@ -101,6 +101,7 @@ class SearchCategoryFragment : Fragment() {
             itemView.setOnClickListener {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+
                 val bundle = Bundle()
                 bundle.putInt("categoryID", categoryInfoList[position].categoryID)
                 (parentFragment as SearchFragment).ReplaceFragment(SearchCategoryResultFragment(), bundle, "searchResult")
@@ -114,6 +115,7 @@ class SearchCategoryFragment : Fragment() {
             itemView.setOnClickListener {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+
             }
         }
     }

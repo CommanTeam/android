@@ -50,6 +50,9 @@ class QuizResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_result)
 
+        quizResult_back_btn.setOnClickListener{
+            finish()
+        }
         val gson = Gson()
         quizInfoList = gson.fromJson(intent.getStringExtra("quizInfoList"), QuizData.QuizResponse::class.java).result
         answerArray = PrefUtils.getAnswerArr(this, quizInfoList.size)

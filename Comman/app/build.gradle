@@ -42,8 +42,12 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // CircleImageView
     compile 'com.googlecode.android-query:android-query:0.25.9'
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     //shadow button
     compile 'com.github.dmytrodanylyk.shadow-layout:library:1.0.3'
+
     //AQuery
     compile 'de.hdodenhof:circleimageview:1.2.1'
     compile 'com.github.HaarigerHarald:android-youtubeExtractor:master-SNAPSHOT'
