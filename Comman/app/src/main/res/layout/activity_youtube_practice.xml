@@ -167,5 +167,12 @@
         android:layout_marginRight="19dp">
 
     </android.support.v7.widget.RecyclerView>
+    
+    <android.support.v4.widget.CircleImageView
+        android:id="@+id/youtube_floating_img"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:background="@color/primaryColor"
+        />
 
 </RelativeLayout>
