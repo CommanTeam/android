@@ -124,6 +124,7 @@
 
     </android.support.design.widget.CoordinatorLayout>
 
+
     <RelativeLayout
         android:layout_marginTop="5dp"
 
@@ -131,21 +132,24 @@
         android:layout_height="95dp"
         android:layout_alignParentBottom="true"
         android:background="@color/white">
-
+        <com.dd.ShadowLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="29dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="17dp"
+            android:layout_centerVertical="true">
         <Button
             android:id="@+id/lecture_popup_close_btn"
             android:layout_width="96dp"
             android:layout_height="36dp"
-            android:layout_centerVertical="true"
             android:background="@drawable/popup_cancel_btn"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="29dp"
             android:text="닫기"
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="19sp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="17dp"
             android:textColor="@color/white"/>
+        </com.dd.ShadowLayout>
     </RelativeLayout>
 
     <RelativeLayout

@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="96dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_centerHorizontal="true">
+  <android.support.v7.widget.CardView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="6dp"
+      android:layout_marginBottom="6dp"
+      android:layout_centerHorizontal="true"
+      android:layout_marginLeft="19dp"
+      android:layout_marginRight="19dp"
+      app:cardElevation="5dp">
   <RelativeLayout
       android:id="@+id/lecture_subsection_layout"
       android:layout_width="match_parent"
       android:layout_height="84dp"
-      android:layout_marginLeft="19dp"
-      android:layout_marginRight="19dp"
       android:background="@color/pageCountTextColor"
-      android:layout_marginTop="6dp"
-      android:layout_marginBottom="6dp"
-      android:layout_centerHorizontal="true">
+      >
     <TextView
         android:id="@+id/lecture_subsection_chapterlist_chapnum_tv"
         android:layout_width="wrap_content"
@@ -47,6 +52,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="6dp"/>
   </RelativeLayout>
+  </android.support.v7.widget.CardView>
   <RelativeLayout
       android:id="@+id/lecture_subsection_lock_layout"
       android:layout_width="match_parent"

@@ -14,6 +14,7 @@ object ChapterData {
 
 
     data class LectureListInChapterResponse(val result : List<LectureListInChapterData>)
+
     data class LectureListInChapterData(val lectureID : Int,
                                         val lecturePriority: Int,
                                         val chapterID : Int,
@@ -24,4 +25,5 @@ object ChapterData {
                                         val watchedFlag: Int,
                                         val size: Int
     )
+
 }

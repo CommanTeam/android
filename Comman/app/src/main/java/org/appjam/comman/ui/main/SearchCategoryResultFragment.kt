@@ -21,6 +21,7 @@ import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.ui.courseNonRegist.CourseNonRegistActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.SpaceItemDecoration
 import org.appjam.comman.util.setDefaultThreads
 
 /**
@@ -46,6 +47,7 @@ class SearchCategoryResultFragment : Fragment() {
         val recyclerView = view!!.course_result_recyclerview
         recyclerView.adapter = CourseSearchResultAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.addItemDecoration(SpaceItemDecoration(context, 19, 19, 0, 0))
 
         if(arguments != null) {
             val categoryID = arguments.getInt("categoryID")

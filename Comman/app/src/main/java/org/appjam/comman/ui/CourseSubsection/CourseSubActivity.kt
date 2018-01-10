@@ -45,11 +45,9 @@ class CourseSubActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
-
         sub_back_btn.setOnClickListener{
             finish()
         }
-
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAadapter()
@@ -59,7 +57,7 @@ class CourseSubActivity : AppCompatActivity() {
                 .setDefaultThreads()
                 .subscribe({ response ->
                     courseMetaData = response.result[0]
-                    card_lecture_name_tv.text = courseMetaData?.title
+                    sub_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
@@ -224,4 +222,3 @@ class CourseSubActivity : AppCompatActivity() {
         }
     }
 }
-

@@ -55,7 +55,7 @@ class CourseNonRegistActivity : AppCompatActivity() {
                 .setDefaultThreads()
                 .subscribe({ response ->
                     courseMetaData = response.result[0]
-                    card_lecture_name_tv.text = courseMetaData?.title
+                    sub_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")

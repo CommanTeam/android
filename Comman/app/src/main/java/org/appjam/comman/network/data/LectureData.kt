@@ -32,6 +32,8 @@ object LectureData {
             val lecture_title : String,
             val lecture_priority : Int,
             val lecture_type: Int,
+            val lecture_video_id : String,
+            val playTime : Int,
             val cnt_lecture_quiz : Int,
             val cnt_lecture_picture : Int
     )
