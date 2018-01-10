@@ -23,6 +23,7 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.QuizData
 import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.ui.card.CardActivity
+import org.appjam.comman.ui.courseNonRegist.ChargePopupActivity
 import org.appjam.comman.ui.main.MyCourseFragment
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
@@ -88,7 +89,12 @@ class QuizResultActivity : AppCompatActivity() {
             disposables.add(APIClient.apiService.getNextLectureInfo(
                     PrefUtils.getUserToken(this), lectureID)
                     .setDefaultThreads()
-                    .subscribe({ response ->        //TODO 구매해야 되는 강좌일 경우 구매 팝업 띄워야 하는데 어떻게 넘어오는지 고려해서 짜야함
+                    .subscribe({ response ->
+                        if(response.nextLectureOfCourse.purchaseFlag == 0) {   //구매해야되는 경우
+                            val intent = Intent(this@QuizResultActivity, ChargePopupActivity::class.java)
+                            intent.putExtra("courseID", courseID)
+                            startActivity(intent)
+                        }
                         if(response.nextLectureOfCourse.lectureID == -1) {
                             val intent = Intent(this, CourseSubActivity::class.java)
                             intent.putExtra("courseID", courseID)
