@@ -1,7 +1,6 @@
 package org.appjam.comman.util
 
 import android.content.Context
-import com.google.android.youtube.player.YouTubePlayer
 import com.google.gson.Gson
 import org.appjam.comman.network.data.LoginData
 import org.appjam.comman.network.data.QuizData
@@ -69,18 +68,15 @@ object PrefUtils {
         return pref.getInt(courseID.toString() + "position", 0)
     }
 
-    fun putYoutubeCurrentTime(context: Context, youtubePlayer: YouTubePlayer) {
+    fun getYoutubeCurrentTimeInCourse(context: Context, courseID: Int) : Int {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-        val editor = pref.edit()
-        editor.putInt(CURRENT_TIME, youtubePlayer.currentTimeMillis)
-        editor.apply()
-        editor.commit()
+        return pref.getInt(CURRENT_TIME + courseID.toString(), 0)
     }
 
-    fun putYoutubeDurationTime(context: Context, youtubePlayer: YouTubePlayer) {
+    fun putYoutubeCurrentTimeInCourse(context: Context, current_time: Int, courseID: Int) {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
         val editor = pref.edit()
-        editor.putInt(DURATION_TIME, youtubePlayer.durationMillis)
+        editor.putInt(CURRENT_TIME + courseID.toString(), current_time)
         editor.apply()
         editor.commit()
     }

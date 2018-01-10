@@ -93,6 +93,7 @@ class LectureListActivity : AppCompatActivity() {
                         val intent = Intent(this@LectureListActivity, YoutubePracticeActivity::class.java)
                         intent.putExtra("courseID", chapterInfo?.course_id)
                         intent.putExtra("lectureID", data.lectureID)
+                        intent.putExtra("chapterID", chapterInfo?.id)
                         startActivity(intent)
                     }
                     //TODO video 시간 서버한테 받을 수 있으면 그걸로 text에 넣기
