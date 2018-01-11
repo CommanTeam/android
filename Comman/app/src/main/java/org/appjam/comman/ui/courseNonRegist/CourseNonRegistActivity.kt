@@ -11,16 +11,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.androidquery.AQuery
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_lecture_preview_item.view.*
 import kotlinx.android.synthetic.main.activity_lecture_subsection.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
-import kotlinx.android.synthetic.main.lecture_subsection_course_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_regist_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.PopupData
 import org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity
-import org.appjam.comman.ui.courseNonRegist.EnrollPopupActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
@@ -35,7 +34,7 @@ class CourseNonRegistActivity : AppCompatActivity() {
     private var courseMetaData: CoursesData.CourseMetadata? = null
     private var chaptersInfoList: List<PopupData.PopupContentInfo> = listOf()
     private val disposables = CompositeDisposable()
-
+    private var isPurchased: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,16 +80,17 @@ class CourseNonRegistActivity : AppCompatActivity() {
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             val aQuery = AQuery(this@CourseNonRegistActivity)
-            aQuery.id(itemView.Regist_lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
-            itemView.Regist_lecture_subsection_course_name_tv.text = courseMetaData?.title
-            itemView.Regist_lecture_subsection_instructor_name_tv.text = courseMetaData?.name
-            itemView.Regist_lecture_subsection_course_exp_tv.text = courseMetaData?.info
-            itemView.Regist_lecture_subsection_popup_layout.setOnClickListener {
+            aQuery.id(itemView.regist_lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
+
+            itemView.regist_lecture_subsection_course_name_tv.text = courseMetaData?.title
+            itemView.regist_lecture_subsection_instructor_name_tv.text = courseMetaData?.name
+            itemView.regist_lecture_subsection_course_exp_tv.text = courseMetaData?.info
+            itemView.regist_lecture_subsection_popup_layout.setOnClickListener {
                 val intent = Intent(this@CourseNonRegistActivity, CourseSubPopupActivity::class.java)
                 intent.putExtra("courseID", courseMetaData?.id)
                 startActivity(intent)
             }
-            itemView.lecture_regist_btn.setOnClickListener {
+            itemView.regist_lecture_regist_btn.setOnClickListener {
                 val intent = Intent(this@CourseNonRegistActivity, EnrollPopupActivity::class.java)
                 intent.putExtra("courseID", courseMetaData?.id)
                 startActivity(intent)
@@ -100,14 +100,25 @@ class CourseNonRegistActivity : AppCompatActivity() {
 
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO 맛보기 강좌 넣을때 여기다가 추가
+        fun bind() {
+            if (isPurchased == 0) {
+                itemView.lecture_subsection_purchase_btn.visibility = View.VISIBLE
+                itemView.lecture_subsection_purchase_btn.setOnClickListener {
+                    val intent = Intent(this@CourseNonRegistActivity, ChargePopupActivity::class.java)
+                    intent.putExtra("courseID", courseMetaData?.id)
+                    startActivity(intent)
+                }
+            } else {
+                itemView.lecture_subsection_purchase_btn.visibility = View.GONE
+            }
+        }
     }
-
 
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
         fun bind(position: Int) {
             itemView.lecture_subsection_chapterlist_chapnum_tv.text = "${chaptersInfoList[position].priority}장"
-//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].lectureCnt}강"
+           itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].lectureCnt}강"
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
         }
     }
@@ -119,13 +130,14 @@ class CourseNonRegistActivity : AppCompatActivity() {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
             return when (viewType) {
                 ListUtils.TYPE_HEADER -> {
-                    val view: View = layoutInflater.inflate(R.layout.lecture_subsection_course_item, parent, false)
+                    val view: View = layoutInflater.inflate(R.layout.lecture_subsection_regist_item, parent, false)
                     HeaderViewHolder(view)
                 }
                 ListUtils.TYPE_SECOND_HEADER -> {
-                    val view: View = layoutInflater.inflate(R.layout.activity_lecture_regist, parent, false)
+                    val view: View = layoutInflater.inflate(R.layout.activity_lecture_preview_item, parent, false)
                     SecondHeaderViewHolder(view)
                 }
+
                 ListUtils.TYPE_ELEM -> {
                     val view: View = layoutInflater.inflate(R.layout.lecture_subsection_chapterlist_item, parent, false)
                     ElemViewHolder(view)

@@ -92,14 +92,15 @@ object APIClient {
                 @Query("lectureID") lectureID : Int
         ) : Observable<NextLectureData.NextLectureResponse>
 
-        //강좌ID로 강좌정보 가져오기
+
+
+        //강좌id로 강좌정보 가져오기
         @GET("/content/courses")
         fun getPopupTitleInfos(
-                @Header("authorization") tokenValue : String,
-                @Query("courseID") courseID : Int) : Observable<PopupData.PopupTitleResponse>
+                @Header("authorization")tokenValue: String,
+                @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
 
-        //강좌별 챕터 정보
-
+        //강좌별 챕터정보
         @GET("/content/courses/{courseID}/chapters")
         fun getPopupContentInfos(
                 @Header("authorization")tokenValue: String,

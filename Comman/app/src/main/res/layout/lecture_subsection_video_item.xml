@@ -41,15 +41,15 @@
                     android:id="@+id/lecture_subsection_video_thumb"
                     android:layout_width="match_parent"
                     android:layout_height="114dp"
-                    android:alpha="0.6"
                     android:background="@drawable/lecture_subsection_video_item_bg"
                     android:scaleType="fitXY"/>
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="114dp"
-                    android:alpha="0.3"
-                    android:background="@drawable/lecture_subsection_video_item_bg"
-                    android:scaleType="fitXY"/>
+                    android:alpha="0.6"
+                    android:background="@drawable/lecture_subsection_video_item_bg" />
+
                 <Button
                     android:id="@+id/lecture_subsection_video_play_btn"
                     android:layout_width="48dp"
@@ -112,41 +112,16 @@
                     android:progressTint="@color/primaryColor" />
             </RelativeLayout>
         </android.support.v7.widget.CardView>
-
         <TextView
-            android:id="@+id/lecture_subsection_chapterlist_title_tv"
+            android:id="@+id/lecture_subsection_preview_chapterlist_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lecture_subsection_video_play_layout"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="31dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="단원 목록"
             android:textColor="@color/mainTextColor"
             android:textSize="21sp" />
-
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/lecture_subsection_video_play_layout"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="8dp"
-            app:cardElevation="3dp">
-
-            <Button
-                android:id="@+id/lecture_subsection_purchase_btn"
-                android:layout_width="93dp"
-                android:layout_height="28dp"
-                android:layout_alignBottom="@+id/lecture_subsection_chapterlist_title_tv"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/frag_quiz_submitbtn_bg"
-                android:fontFamily="@font/nanum_square_bold"
-                android:text="강좌 구매"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </android.support.v7.widget.CardView>
     </RelativeLayout>
-
 </RelativeLayout>

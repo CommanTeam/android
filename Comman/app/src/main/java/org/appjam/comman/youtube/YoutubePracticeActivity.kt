@@ -44,7 +44,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private var chapterID: Int = 1
     private var courseID: Int = 1
     private var isComplete: Int = 0
-    private var videoLectureInfo: List<VideoData.VideoLectureInfo>? = null
+    private var videoLectureInfo: VideoData.VideoLectureInfo? = null
     private var lectureList: List<ChapterData.LectureListInChapterData> = listOf()
     private var nextLectureResponse: NextLectureData.NextLectureResponse? = null
     private var mPlayer: YouTubePlayer? = null
@@ -74,14 +74,14 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 .setDefaultThreads()
                 .subscribe({ response ->
                     videoLectureInfo = response.result
-                    if (videoLectureInfo!![0].priority < 10) {
-                        video_lecture_name_tv?.text = "0${videoLectureInfo!![0].priority}. ${videoLectureInfo!![0].title}"
-                        video_lecture_name2_tv?.text = "0${videoLectureInfo!![0].priority}. ${videoLectureInfo!![0].title}"
+                    if (videoLectureInfo!!.priority < 10) {
+                        video_lecture_name_tv?.text = "0${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
+                        video_lecture_name2_tv?.text = "0${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
                     } else {
-                        video_lecture_name_tv?.text = "${videoLectureInfo!![0].priority}. ${videoLectureInfo!![0].title}"
-                        video_lecture_name2_tv?.text = "${videoLectureInfo!![0].priority}. ${videoLectureInfo!![0].title}"
+                        video_lecture_name_tv?.text = "${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
+                        video_lecture_name2_tv?.text = "${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
                     }
-                    lectureVideo_content_tv?.text = videoLectureInfo!![0].info
+                    lectureVideo_content_tv?.text = videoLectureInfo!!.info
 //                    videoId = videoLectureInfo[0].video_id
                     practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                     land_practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
@@ -230,7 +230,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER -> // 리스트에서 가장 1번 값이다. 하지만 인덱스 상에서는 0번째 값이 되어야 1번째에 올 수 있기에 -1
                     (holder as SecondHeaderViewHolder).bind()
                 holder?.itemViewType == ListUtils.TYPE_ELEM -> {//리스트에서 2번째 값이다. 하지만 인덱스 상에서는 1번째 값이 되어야 2번째에 올 수 있기에 -1
-                    val elem_position = ((videoLectureInfo?.get(0)?.priority ?: 0) + position - 2) % lectureList.size
+                    val elem_position = ((videoLectureInfo?.priority?: 0) + position - 2) % lectureList.size
                     (holder as ElemViewHolder).bind(elem_position)
                 }
             }
@@ -259,10 +259,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         fun bind() {
             if (nextLectureResponse?.nextLectureOfChapter != -1) {
                 itemView.secLecVideo_time_tv.text = YoutubeTimeUtils.formatTime(mPlayer?.durationMillis ?: 0)
-                if ((videoLectureInfo?.get(0)?.priority ?: 0) < 10)
-                    itemView.secLecVideo_title_tv.text = "0${(videoLectureInfo?.get(0)?.priority ?: 0)} ${videoLectureInfo?.get(0)?.title}"
+                if ((videoLectureInfo?.priority?: 0) < 10)
+                    itemView.secLecVideo_title_tv.text = "0${videoLectureInfo?.priority} ${videoLectureInfo?.title}"
                 else
-                    itemView.secLecVideo_title_tv.text = "${(videoLectureInfo?.get(0)?.priority ?: 0)} ${videoLectureInfo?.get(0)?.title}"
+                    itemView.secLecVideo_title_tv.text = "${videoLectureInfo?.priority} ${videoLectureInfo?.title}"
             } else {
                 itemView.setOnClickListener {
                     val intent = ListUtils.linkToNextLecture(this@YoutubePracticeActivity, nextLectureResponse, courseID)
@@ -303,7 +303,9 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         startActivity(intent)
                     }
                     //TODO video 시간 서버한테 받을 수 있으면 그걸로 text에 넣기
-                    itemView.etcLecVideo_time_tv.text = "${data.playTime}"
+
+        itemView.etcLecVideo_time_tv.text = "${YoutubeTimeUtils.formatTime(data.playTime)}"
+
                 }
                 data.lectureType == 0 -> {
                     itemView.setOnClickListener {
@@ -312,7 +314,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         intent.putExtra("lectureID", data.lectureID)
                         startActivity(intent)
                     }
-                    itemView.etcLecVideo_time_tv.text = "${data.size} 페이지"
+                    itemView.etcLecVideo_time_tv.text = "${data.lectureCnt} 페이지"
                 }
                 data.lectureType == 1 -> {
                     itemView.setOnClickListener {
@@ -321,7 +323,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         intent.putExtra("lectureID", data.lectureID)
                         startActivity(intent)
                     }
-                    itemView.etcLecVideo_time_tv.text = "${data.size} 문제"
+                    itemView.etcLecVideo_time_tv.text = "${data.lectureCnt} 문제"
                 }
             }
         }

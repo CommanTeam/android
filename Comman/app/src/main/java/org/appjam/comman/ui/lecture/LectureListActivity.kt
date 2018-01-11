@@ -48,7 +48,7 @@ class LectureListActivity : AppCompatActivity() {
                 PrefUtils.getUserToken(this), intent.getIntExtra(ChapterData.CHAPTER_ID_KEY, 0))
                 .setDefaultThreads()
                 .subscribe({ response ->
-                    chapterInfo = response.data[0]
+                    chapterInfo = response.data
                     lectureList_lecture_name_tv.text = chapterInfo?.title
                     lecture_list_rv.adapter.notifyDataSetChanged()
                 }, { failure ->
@@ -108,7 +108,7 @@ class LectureListActivity : AppCompatActivity() {
                         intent.putExtra("lectureID", data.lectureID)
                         startActivity(intent)
                     }
-                    itemView.lecture_list_num_tv.text = "${data.size} 페이지"
+                    itemView.lecture_list_num_tv.text = "${data.lectureCnt} 페이지"
                 }
                 data.lectureType == 1 -> {
                     itemView.setOnClickListener {
@@ -117,7 +117,7 @@ class LectureListActivity : AppCompatActivity() {
                         intent.putExtra("lectureID", data.lectureID)
                         startActivity(intent)
                     }
-                    itemView.lecture_list_num_tv.text = "${data.size} 문제"
+                    itemView.lecture_list_num_tv.text = "${data.lectureCnt} 문제"
                 }
             }
             if(data.lecturePriority < 10) {

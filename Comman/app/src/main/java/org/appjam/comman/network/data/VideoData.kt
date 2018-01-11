@@ -5,7 +5,7 @@ package org.appjam.comman.network.data
  */
 object VideoData {
     data class VideoLectureResponse(
-            val result : List<VideoLectureInfo>
+            val result : VideoLectureInfo
     )
 
     data class VideoLectureInfo(

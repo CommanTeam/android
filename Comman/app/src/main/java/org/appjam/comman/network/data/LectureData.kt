@@ -5,7 +5,7 @@ package org.appjam.comman.network.data
  */
 object LectureData {
     data class LectureResponse (
-            val data : List<LectureInfo>
+            val data : LectureInfo
     )
 
     data class LectureInfo (
@@ -18,7 +18,7 @@ object LectureData {
             val info : String,
             val pass_value : Int,
             val video_id : String,
-            val playTime : Int
+            val playTime: Int
     )
 
     data class RecentLectureResponse (

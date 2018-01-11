@@ -111,15 +111,15 @@ class QuizActivity : AppCompatActivity() {
                 PrefUtils.getUserToken(this), lectureID)
                 .setDefaultThreads()
                 .subscribe({ response ->
-                    if(response.data[0].priority < 10) {
-                        quiz_lecture_name_tv.text = "0${response.data[0].priority} ${response.data[0].title}"
-                    } else {
-                        quiz_lecture_name_tv.text = "${response.data[0].priority} ${response.data[0].title}"
-                    }
-                    passValue = response.data[0].pass_value
-                    lecturePriority = response.data[0].priority
-                    lectureTitle = response.data[0].title
-                    quiz_view_pager.adapter.notifyDataSetChanged()
+//                    if(response.data[0].priority < 10) {
+//                        quiz_lecture_name_tv.text = "0${response.data[0].priority} ${response.data[0].title}"
+//                    } else {
+//                        quiz_lecture_name_tv.text = "${response.data[0].priority} ${response.data[0].title}"
+//                    }
+//                    passValue = response.data[0].pass_value
+//                    lecturePriority = response.data[0].priority
+//                    lectureTitle = response.data[0].title
+//                    quiz_view_pager.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
                 }))

@@ -14,11 +14,6 @@ object CoursesData {
             val chapterCnt: Int,
             val progressPercentage: Int)
 
-    data class MyCourseAlarmItem(
-            val myCourseProfile : Int,
-            val myCourseAlarm : String
-    )
-
     data class CourseMetaResponse(val result: List<CourseMetadata>)
 
     data class CourseMetadata(val id: Int,
