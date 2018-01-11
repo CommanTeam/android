@@ -11,7 +11,7 @@ object CardData {
     data class CardInfo(
             val lecture_id : Int,
             val title : String,
-            val priority: Int,
-            val image_path : String
+            val image_path : String,
+            val image_priority : Int
     )
 }

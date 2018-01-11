@@ -191,7 +191,7 @@ class CourseSubActivity : AppCompatActivity() {
             // TODO: 일단 기본적인 것은 완성 혹시나 안되면 데이터 클래스나 통신 쪽을 확인해봐야 함
             fun bind(position: Int) {
                 itemView.lecture_subsection_chapterlist_chapnum_tv.text = "${chaptersInfoList[position].priority}장"
-//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].lectureCnt}강"
+//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].size}강"
                 itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
                 if (((isPurchased == 0) and chaptersInfoList[position].open) or (isPurchased == 1)) {
                     itemView.lecture_subsection_lock_layout.visibility = View.GONE
