@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.first_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.second_lecvideo_list_items.view.*
+import kotlinx.android.synthetic.main.youtube_top_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.R.id.lectureVideo_content_tv
 import org.appjam.comman.custom.CustomSeekBar
@@ -27,10 +28,7 @@ import org.appjam.comman.network.data.QuestionData
 import org.appjam.comman.network.data.VideoData
 import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.ui.quiz.QuizActivity
-import org.appjam.comman.util.ListUtils
-import org.appjam.comman.util.PrefUtils
-import org.appjam.comman.util.YoutubeTimeUtils
-import org.appjam.comman.util.setDefaultThreads
+import org.appjam.comman.util.*
 import java.util.*
 
 
@@ -51,11 +49,11 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private var nextLectureResponse: NextLectureData.NextLectureResponse? = null
     private var mPlayer: YouTubePlayer? = null
     private val timer = Timer()
-    private var timeOfPref : Int = 0
-    private lateinit var timerTask : TimerTask
+    private var timeOfPref: Int = 0
+    private lateinit var timerTask: TimerTask
 
     private var questionInfoList: List<QuestionData.QuestionInfo> = listOf()
-    private var lecOrques : Int = 0
+    private var lecOrques: Int = 0     //강의목록이면 0, 질문보기면 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,7 +84,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         video_lecture_name_tv?.text = "${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
                         video_lecture_name2_tv?.text = "${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
                     }
-                    lectureVideo_content_tv?.text = videoLectureInfo!!.info
+                    lectureVideo_content_tv?.text = videoLectureInfo!!.info //TODO 넣으면 이걸로
 //                    videoId = videoLectureInfo[0].video_id
                     practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                     land_practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
@@ -226,16 +224,28 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
             return when (viewType) {
-                ListUtils.TYPE_HEADER -> HeaderViewHolder(layoutInflater.inflate(R.layout.first_lecvideo_list_items, parent, false))
+                ListUtils.TYPE_TOP -> TopViewHolder(layoutInflater.inflate(R.layout.youtube_top_item, parent, false))
+
+                ListUtils.TYPE_HEADER -> {
+                    return if(lecOrques == 0) HeaderViewHolder(layoutInflater.inflate(R.layout.first_lecvideo_list_items, parent, false))
+                            else QuestionHeaderViewHolder(layoutInflater.inflate(R.layout.youtube_question_header_item, parent, false))
+                }
                 ListUtils.TYPE_SECOND_HEADER -> {
-                    return if (nextLectureResponse?.nextLectureOfChapter == -1) {
+                    return if ((nextLectureResponse?.nextLectureOfChapter == -1) and (lecOrques == 0)) {
                         SecondHeaderViewHolder(layoutInflater.inflate(R.layout.lastlecvideo_list_items, parent, false))
+                    } else if(lecOrques == 1){
+                        QuestionSecondViewHolder(layoutInflater.inflate(R.layout.youtube_question_second_header_item, parent, false))
                     } else {
                         SecondHeaderViewHolder(layoutInflater.inflate(R.layout.second_lecvideo_list_items, parent, false))
                     }
                 }
                 ListUtils.TYPE_FOOTER -> FooterViewHolder(layoutInflater.inflate(R.layout.quiz_result_footer, parent, false))
-                else -> ElemViewHolder(layoutInflater.inflate(R.layout.etc_lecvideo_list_items, parent, false))
+                else -> {
+                    return if(lecOrques == 0) ElemViewHolder(layoutInflater.inflate(R.layout.etc_lecvideo_list_items, parent, false))
+                            else QuestionElemViewHolder(layoutInflater.inflate(R.layout.youtube_question_elem_item, parent, false))
+                }
+
+
             }
         }
 
@@ -244,7 +254,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER -> // 리스트에서 가장 1번 값이다. 하지만 인덱스 상에서는 0번째 값이 되어야 1번째에 올 수 있기에 -1
                     (holder as SecondHeaderViewHolder).bind()
                 holder?.itemViewType == ListUtils.TYPE_ELEM -> {//리스트에서 2번째 값이다. 하지만 인덱스 상에서는 1번째 값이 되어야 2번째에 올 수 있기에 -1
-                    val elem_position = ((videoLectureInfo?.priority?: 0) + position - 2) % lectureList.size
+                    val elem_position = ((videoLectureInfo?.priority ?: 0) + position - 2) % lectureList.size
                     (holder as ElemViewHolder).bind(elem_position)
                 }
             }
@@ -253,7 +263,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
 
         override fun getItemCount(): Int {
-            return if(lecOrques == 0) (lectureList.size + 3) else ()
+            return if (lecOrques == 0) (lectureList.size + 3) else ()
         } = lectureList.size +
 
         override fun getItemViewType(position: Int): Int
@@ -268,6 +278,34 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
     }
 
+    private inner class TopViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            itemView.lectureVideo_content_tv.text = videoLectureInfo?.info
+            itemView.lecture_btn_layout.setOnClickListener {
+                itemView.lecture_btn_tv.setTextColor(SetColorUtils.get(this@YoutubePracticeActivity, R.color.primaryColor))
+                itemView.lecture_bottom_line.setBackgroundColor(SetColorUtils.get(this@YoutubePracticeActivity, R.color.primaryColor))
+                itemView.question_btn_tv.setTextColor(SetColorUtils.get(this@YoutubePracticeActivity, R.color.divideLineColor))
+                itemView.question_bottom_line.setBackgroundColor(SetColorUtils.get(this@YoutubePracticeActivity, R.color.backgroundColor))
+                lecOrques = 0
+                parent.video_lecture_list_rv?.adapter?.notifyDataSetChanged()     //TODO 맞는지 확인
+            }
+            itemView.question_btn_layout.setOnClickListener {
+                itemView.lecture_btn_tv.setTextColor(SetColorUtils.get(this@YoutubePracticeActivity, R.color.primaryColor))
+                itemView.lecture_bottom_line.setBackgroundColor(SetColorUtils.get(this@YoutubePracticeActivity, R.color.primaryColor))
+                itemView.question_btn_tv.setTextColor(SetColorUtils.get(this@YoutubePracticeActivity, R.color.divideLineColor))
+                itemView.question_bottom_line.setBackgroundColor(SetColorUtils.get(this@YoutubePracticeActivity, R.color.backgroundColor))
+                lecOrques = 1
+                parent.video_lecture_list_rv?.adapter?.notifyDataSetChanged()       //TODO 맞는지 확인
+            }
+        }
+    }
+
+    private inner class QuestionHeaderViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+
+    private inner class QuestionSecondViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+
+    private inner class QuestionElemViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+
     private inner class HeaderViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
 
     private inner class FooterViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
@@ -276,7 +314,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         fun bind() {
             if (nextLectureResponse?.nextLectureOfChapter != -1) {
                 itemView.secLecVideo_time_tv.text = YoutubeTimeUtils.formatTime(mPlayer?.durationMillis ?: 0)
-                if ((videoLectureInfo?.priority?: 0) < 10)
+                if ((videoLectureInfo?.priority ?: 0) < 10)
                     itemView.secLecVideo_title_tv.text = "0${videoLectureInfo?.priority} ${videoLectureInfo?.title}"
                 else
                     itemView.secLecVideo_title_tv.text = "${videoLectureInfo?.priority} ${videoLectureInfo?.title}"

@@ -17,12 +17,67 @@
         android:textColor="@color/pageCountTextColor"
         android:textSize="19sp" />
 
+
     <View
         android:id="@+id/divide_line"
         android:layout_width="match_parent"
-        android:layout_height="8dp"
+        android:layout_height="1dp"
         android:layout_below="@id/lectureVideo_content_tv"
         android:layout_marginTop="30dp"
-        android:background="@color/divideLineColor" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/divideLineColor"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/lecture_btn_layout"
+        android:layout_width="210dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/divide_line"
+        >
+
+        <TextView
+            android:id="@+id/lecture_btn_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강의 목록"
+            />
+        <View
+            android:id="@+id/lecture_bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/secondaryColor"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/question_btn_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/lecture_btn_layout"
+        android:layout_below="@id/divide_line"
+        >
+
+        <TextView
+            android:id="@+id/question_btn_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="질문 보기"
+            />
+
+        <View
+            android:id="@+id/question_bottom_line"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/primaryColor"
+            android:layout_alignParentBottom="true"
+            />
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>
