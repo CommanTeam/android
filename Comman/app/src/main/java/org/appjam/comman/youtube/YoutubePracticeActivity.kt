@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.first_lecvideo_list_items.view.*
-import kotlinx.android.synthetic.main.question_elem_item.view.*
 import kotlinx.android.synthetic.main.second_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.youtube_question_elem_item.view.*
 import kotlinx.android.synthetic.main.youtube_question_header_item.view.*
@@ -48,9 +47,9 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
     private val disposables = CompositeDisposable()
     private var videoId = "Rs8zSWSR5Ys"
-    private var lectureID: Int = 27        //실험중
-    private var chapterID: Int = 1
-    private var courseID: Int = 1
+    private var lectureID: Int = 35        //실험중
+    private var chapterID: Int = 23
+    private var courseID: Int = 4
     private var isComplete: Int = 0
     private var videoLectureInfo: VideoData.VideoLectureInfo? = null
     private var lectureList: List<ChapterData.LectureListInChapterData> = listOf()
@@ -335,8 +334,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private inner class QuestionElemViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         fun bind(data: QuestionData.QuestionInfo) {
             itemView.youtube_question_user_name_tv.text = data.l_question_user_nickname
-            itemView.youtube_question_date_tv.text = data.question_text
-            itemView.question_content_tv.text = data.question_text
+            itemView.youtube_question_date_tv.text = data.l_question_date
+            itemView.youtube_question_content_tv.text = data.question_text
             if (data.l_question_flag == 0) {
                 itemView.youtube_question_answer_layout.visibility = View.GONE
             } else {
@@ -427,9 +426,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
     inner class QuestionAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-            Toast.makeText(this@YoutubePracticeActivity, "w잘 되기를", Toast.LENGTH_SHORT).show()
             return when (viewType) {
-                ListUtils.TYPE_TOP -> TopViewHolder(layoutInflater.inflate(R.layout.youtube_top_item, parent, false))
+                ListUtils.TYPE_TOP -> TopViewHolder(layoutInflater.inflate(R.layout.lecture_video_top_item, parent, false))
                 ListUtils.TYPE_HEADER -> {
                     QuestionHeaderViewHolder(layoutInflater.inflate(R.layout.youtube_question_header_item, parent, false))
                 }
@@ -444,7 +442,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-            Toast.makeText(this@YoutubePracticeActivity, "bind", Toast.LENGTH_SHORT).show()
             when {
                 holder?.itemViewType == ListUtils.TYPE_TOP -> {
                     (holder as TopViewHolder).bind()
