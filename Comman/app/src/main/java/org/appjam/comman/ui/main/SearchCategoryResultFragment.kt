@@ -10,7 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.androidquery.AQuery
+import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_course_search_result.view.*
 import kotlinx.android.synthetic.main.search_result_item.view.*
@@ -47,7 +47,7 @@ class SearchCategoryResultFragment : Fragment() {
         val recyclerView = view!!.course_result_recyclerview
         recyclerView.adapter = CourseSearchResultAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.addItemDecoration(SpaceItemDecoration(context, 19, 19, 0, 0))
+        recyclerView.addItemDecoration(SpaceItemDecoration(context, 9, 9, 0, 0))
 
         if(arguments != null) {
             val categoryID = arguments.getInt("categoryID")
@@ -66,8 +66,14 @@ class SearchCategoryResultFragment : Fragment() {
     inner class ElemViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
         @SuppressLint("LongLogTag")
         fun bind(position: Int){
-            val aQuery = AQuery(context)
-            aQuery.id(itemView.course_result_img).image(coursesInfo[position].image_path)
+//            val aQuery = AQuery(context)
+//            aQuery.id(itemView.course_result_img).image(coursesInfo[position].image_path)
+            Glide.with(context)
+                    .load(coursesInfo[position].image_path)
+                    .override(129,110)
+                    .centerCrop()
+                    .crossFade()
+                    .into(itemView.course_result_img)
             itemView.course_title_tv.text = coursesInfo[position].title
             itemView.course_content_tv.text = coursesInfo[position].info
             val hit = coursesInfo[position].hit
