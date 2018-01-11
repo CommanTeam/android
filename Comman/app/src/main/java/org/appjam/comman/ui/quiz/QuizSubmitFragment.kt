@@ -24,7 +24,6 @@ class QuizSubmitFragment : Fragment() {
     private var pagePosition: Int = 0
     private var pageCount : Int = 0
     private var quizInfoList: String = ""
-    private var answerArray: QuizData.AnswerArr = QuizData.AnswerArr(mutableListOf())
     private var lecturePriority: Int = 0
     private var lectureTitle: String = ""
     private var passValue: Int = 0
@@ -37,7 +36,6 @@ class QuizSubmitFragment : Fragment() {
             quizInfoList = arguments.getString("quizInfoList")
             pagePosition = arguments.getInt("position")
             pageCount = arguments.getInt("pageCount")
-            answerArray = PrefUtils.getAnswerArr(context, pageCount)
             lectureTitle = arguments.getString("lectureTitle")
             lecturePriority = arguments.getInt("lecturePriority")
             passValue = arguments.getInt("passValue")

@@ -30,7 +30,6 @@ class QuizActivity : AppCompatActivity() {
     private var courseID: Int = 0
     private var pageCount: Int = 0
     private var pagePosition: Int = 0
-    private var answerArray: QuizData.AnswerArr = QuizData.AnswerArr(mutableListOf())
     private var lecturePriority: Int = 0
     private var lectureTitle: String = ""
     private var passValue: Int = 0
@@ -38,7 +37,6 @@ class QuizActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
-
         quiz_back_btn.setOnClickListener{
             finish()
         }
@@ -100,8 +98,6 @@ class QuizActivity : AppCompatActivity() {
                     } else {
                         val mutableList = mutableListOf<Int>()
                         for(i in 1..pageCount) { mutableList.add(-1) }
-                        answerArray.answerArr = mutableList
-                        PrefUtils.putAnswerArr(this, answerArray)
                     }
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
@@ -160,6 +156,10 @@ class QuizActivity : AppCompatActivity() {
 
         override fun getCount(): Int = pageCount
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
 

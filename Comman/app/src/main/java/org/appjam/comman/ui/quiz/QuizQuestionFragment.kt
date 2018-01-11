@@ -9,15 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.androidquery.AQuery
 import com.google.gson.Gson
+import io.realm.Realm
 import kotlinx.android.synthetic.main.choice_item.view.*
 import kotlinx.android.synthetic.main.fragment_quiz_choice.view.*
 import kotlinx.android.synthetic.main.quiz_content_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.data.QuizData
+import org.appjam.comman.realm.RQuizData
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SetColorUtils
 import org.appjam.comman.util.SpaceItemDecoration
+import kotlin.properties.Delegates
 
 /**
  * Created by RyuDongIl on 2018-01-01.
@@ -30,8 +33,8 @@ class QuizQuestionFragment : Fragment() {
     private var pagePosition: Int = 0
     private var pageCount : Int = 0
     private var quizInfoList: List<QuizData.QuizInfo> = listOf()
-    private var answerArray: QuizData.AnswerArr = QuizData.AnswerArr(mutableListOf())
     private var recycler_view : RecyclerView? = null
+    private var realm: Realm by Delegates.notNull()
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if(arguments != null) {
@@ -39,7 +42,6 @@ class QuizQuestionFragment : Fragment() {
             quizInfoList = gson.fromJson(arguments.getString("quizInfoList"), QuizData.QuizResponse::class.java).result
             pagePosition = arguments.getInt("position")
             pageCount = arguments.getInt("pageCount")
-            answerArray = PrefUtils.getAnswerArr(context, pageCount)
         }
         return inflater!!.inflate(R.layout.fragment_quiz_choice, container,false)
     }
@@ -95,7 +97,11 @@ class QuizQuestionFragment : Fragment() {
             itemView.quiz_choice_number_tv.text = "${position + 1}번"
             itemView.quiz_choice_content_tv.text =
                     quizInfoList[pagePosition].questionArr[position].questionContent
-            if(answerArray.answerArr[pagePosition] == position) {
+
+            val rQuizDataResult = realm.where(RQuizData::class.java)
+                    .equalTo("quizId", quizInfoList[pagePosition].quizID)
+                    .findAll()
+            if(rQuizDataResult[0]?.answer == position) {
                 itemView.quiz_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.primaryColor))
                 itemView.quiz_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.white))
                 itemView.quiz_choice_content_tv.setTextColor(SetColorUtils.get(context, R.color.white))
@@ -108,8 +114,15 @@ class QuizQuestionFragment : Fragment() {
                 itemView.quiz_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.primaryColor))
                 itemView.quiz_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.white))
                 itemView.quiz_choice_content_tv.setTextColor(SetColorUtils.get(context, R.color.white))
-                answerArray.answerArr[pagePosition] = position
-                PrefUtils.putAnswerArr(context, answerArray)
+                realm.executeTransaction {
+                    if (rQuizDataResult.size == 1) {
+                        rQuizDataResult[0]?.answer = position
+                    } else if (rQuizDataResult.size == 0) {
+                        val newRQuizData = realm.createObject(RQuizData::class.java)
+                        newRQuizData.quizId = quizInfoList[pagePosition].quizID
+                        newRQuizData.answer = position
+                    }
+                }
                 recycler_view?.adapter?.notifyDataSetChanged()
             }
         }
