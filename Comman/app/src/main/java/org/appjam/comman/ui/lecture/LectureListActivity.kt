@@ -19,6 +19,7 @@ import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.YoutubeTimeUtils
 import org.appjam.comman.util.setDefaultThreads
 import org.appjam.comman.youtube.YoutubePracticeActivity
 
@@ -97,7 +98,7 @@ class LectureListActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     //TODO video 시간 서버한테 받을 수 있으면 그걸로 text에 넣기
-                    itemView.lecture_list_num_tv.text = "${data.videoID}"
+                    itemView.lecture_list_num_tv.text = "${YoutubeTimeUtils.formatTime(data.playTime)}"
                 }
 
                 data.lectureType == 0 -> {
