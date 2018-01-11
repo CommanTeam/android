@@ -159,5 +159,19 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Path("lectureID") lectureID: Int
         ) : Observable<VideoData.VideoLectureResponse>
+
+        //강의ID로 질문, 답변 가져오기
+        @GET("/content/lecturequestion/{lectureID}")
+        fun getQuestionOfLecture(
+                @Header("authorization") tokenValue: String,
+                @Path("lectureID") lectureID: Int
+        ) : Observable<QuestionData.QuestionResponse>
+
+        //강의ID로 질문 DB에 삽입
+        @POST("/content/lecturequestion/insertanswer")
+        fun registerQuestion(
+                @Header("authorization") tokenValue: String,
+                @Body questionPost : QuestionData.QuestionPost
+        ) : Observable<QuestionData.RegisterQuestionResponse>
     }
 }

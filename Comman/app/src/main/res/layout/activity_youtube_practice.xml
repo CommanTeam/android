@@ -142,36 +142,11 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/lectureVideo_content_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/youtube_bottom_bar_layout"
-        android:layout_marginTop="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp"
-        android:text="라이노 위주의 툴 수업이며...블라블라블라블라..."
-        android:textSize="19sp"
-        android:textColor="@color/pageCountTextColor"
-        android:fontFamily="@font/nanum_square_regular"
-        />
-
-    <View
-        android:id="@+id/divide_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/lectureVideo_content_tv"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@color/divideLineColor"
-        />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/video_lecture_list_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/divide_line"
+        android:layout_below="@id/youtube_bottom_bar_layout"
         android:layout_marginRight="8dp">
 
     </android.support.v7.widget.RecyclerView>

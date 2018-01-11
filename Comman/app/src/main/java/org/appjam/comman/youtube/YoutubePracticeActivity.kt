@@ -251,6 +251,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
     }
 
+    private inner class TopViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
+
     private inner class HeaderViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)
 
     private inner class FooterViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView)

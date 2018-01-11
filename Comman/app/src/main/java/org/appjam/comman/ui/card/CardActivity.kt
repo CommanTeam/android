@@ -1,6 +1,7 @@
 package org.appjam.comman.ui.card
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_card.*
@@ -69,17 +71,20 @@ class CardActivity : AppCompatActivity() {
                     card_view_pager.adapter.count - 1 -> {
                         card_next_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.grayMainTextColor))
                         card_next_btn.setBackgroundResource(R.drawable.unclickable_view_pager_next_btn)
+                        card_question_btn.visibility = View.GONE
                     }
                     0 -> {
                         Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_SHORT).show()
                         card_prev_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.grayMainTextColor))
                         card_prev_btn.setBackgroundResource(R.drawable.unclickable_view_pager_prev_btn)
+                        card_question_btn.visibility = View.VISIBLE
                     }
                     else -> {
                         card_prev_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.mainTextColor))
                         card_next_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.mainTextColor))
                         card_prev_btn.setBackgroundResource(R.drawable.view_pager_prev_btn)
                         card_next_btn.setBackgroundResource(R.drawable.view_pager_next_btn)
+                        card_question_btn.visibility = View.VISIBLE
                     }
                 }
                 card_count_tv.text = "${position + 1} / $pageCount"
@@ -91,6 +96,12 @@ class CardActivity : AppCompatActivity() {
         }
         card_next_layout.setOnClickListener {
             card_view_pager.currentItem = card_view_pager.currentItem + 1
+        }
+        card_question_btn.setOnClickListener {
+            val intent = Intent(this@CardActivity, QuestionActivity::class.java)
+            intent.putExtra("lectureID", lectureID)
+            intent.putExtra("lectureTitle", lectureTitle)
+            startActivity(intent)
         }
 
         disposables.add(APIClient.apiService.getLectureCards(
@@ -106,7 +117,7 @@ class CardActivity : AppCompatActivity() {
                             current_page = card_view_pager.currentItem + 1
                         }
                 }, { failure ->
-                    Log.i(CardActivity.TAG, "on Failure ${failure.message}")
+                    Log.i(TAG, "on Failure ${failure.message}")
                 }))
     }
 

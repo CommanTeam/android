@@ -23,7 +23,7 @@ object ChapterData {
                                         val videoID : Int,
                                         val userID : String,
                                         val watchedFlag: Int,
-                                        val size: Int
+                                        val lectureCnt: Int
     )
 
 }
