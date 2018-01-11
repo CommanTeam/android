@@ -38,18 +38,11 @@
                 android:layout_below="@+id/lecture_subsection_video_title_tv">
 
                 <ImageView
-                    android:id="@+id/lecture_subsection_video_thumb"
                     android:layout_width="match_parent"
                     android:layout_height="114dp"
                     android:alpha="0.6"
-                    android:background="@drawable/lecture_subsection_video_item_bg"
-                    android:scaleType="fitXY"/>
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="114dp"
-                    android:alpha="0.3"
-                    android:background="@drawable/lecture_subsection_video_item_bg"
-                    android:scaleType="fitXY"/>
+                    android:background="@drawable/lecture_subsection_video_item_bg" />
+
                 <Button
                     android:id="@+id/lecture_subsection_video_play_btn"
                     android:layout_width="48dp"
