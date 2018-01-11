@@ -43,7 +43,9 @@ class LectureListActivity : AppCompatActivity() {
 
         lecture_list_rv.layoutManager = LinearLayoutManager(this)
         lecture_list_rv.adapter = LectureAdapter()
-
+        lectureList_back_btn.setOnClickListener{
+            finish()
+        }
         disposables.add(APIClient.apiService.getChapterInfo(
                 PrefUtils.getUserToken(this), intent.getIntExtra(ChapterData.CHAPTER_ID_KEY, 0))
                 .setDefaultThreads()

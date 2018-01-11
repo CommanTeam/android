@@ -6,6 +6,7 @@ import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import kotlinx.android.synthetic.main.activity_lecture_video.*
+import kotlinx.android.synthetic.main.activity_lecture_video1.*
 import org.appjam.comman.R
 import org.appjam.comman.youtube.YouTubeConfigs
 
@@ -47,7 +48,9 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
         land_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this)
 
-
+        lecure_video_back_btn.setOnClickListener{
+            finish()
+        }
     }
 
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider, player: YouTubePlayer, wasRestored: Boolean) {

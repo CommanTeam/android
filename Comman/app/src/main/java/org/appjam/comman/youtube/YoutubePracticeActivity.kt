@@ -68,6 +68,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_practice)
 
+        video_back_btn.setOnClickListener{
+            finish()
+        }
+
 //        lectureID = intent.getIntExtra("lectureID", 0)
 //        courseID = intent.getIntExtra("courseID", 0)
 //        chapterID = intent.getIntExtra("chapterID", 0)
@@ -99,7 +103,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
                 }))
-
+        this.
         disposables.add(APIClient.apiService.getLectureListInChapter(       //챕터의 강의리스트 정보
                 PrefUtils.getUserToken(this), chapterID)
                 .setDefaultThreads()
@@ -365,6 +369,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     startActivity(intent)
                 }
             }
+            itemView.youtube_question_item_et.setOnClickListener{
+                this.video_top2_layout.visibility=View.GONE
+            }
+
         }
     }
 
