@@ -83,10 +83,11 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     }
                     lectureVideo_content_tv?.text = videoLectureInfo!![0].info
 //                    videoId = videoLectureInfo[0].video_id
+                    video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                     practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                     land_practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                 }, { failure ->
-                    Log.i(QuizActivity.TAG, "on Failure ${failure.message}")
+                    Log.i(TAG, "on Failure ${failure.message}")
                 }))
 
         disposables.add(APIClient.apiService.getLectureListInChapter(       //챕터의 강의리스트 정보
@@ -94,9 +95,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 .setDefaultThreads()
                 .subscribe({ response ->
                     lectureList = response.result
+                    Toast.makeText(this, lectureList.size.toString(), Toast.LENGTH_SHORT).show()
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                 }, { failure ->
-                    Log.i(QuizActivity.TAG, "on Failure ${failure.message}")
+                    Log.i(TAG, "망망 on Failure ${failure.message}")
                 }))
 
         disposables.add(APIClient.apiService.getNextLectureInfo(        //다음 강의 정보 얻어오기
@@ -105,7 +107,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 .subscribe({ response ->
                     nextLectureResponse = response
                 }, { failure ->
-                    Log.i(QuizActivity.TAG, "on Failure ${failure.message}")
+                    Log.i(TAG, "on Failure ${failure.message}")
                 }))
 
         video_full_screen_btn?.setOnClickListener {

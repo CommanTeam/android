@@ -17,90 +17,79 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <!--<activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/>-->
+        <!-- <activity android:name="org.appjam.comman.ui.quiz.QuizActivity" android:theme="@style/NoActionBar"/> -->
 
         <activity
             android:name=".youtube.YoutubePracticeActivity"
             android:theme="@style/NoActionBar" />
-
-        <activity android:name=".ui.user.LoginActivity"
-            android:label="@string/app_name"
+        <activity
+            android:name=".ui.user.SplashActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <activity android:name=".ui.user.LoginActivity"
+            android:theme="@style/NoActionBar"/>
         <activity
             android:name=".ui.lecture.LectureListActivity"
             android:theme="@style/NoActionBar" />
-
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/NoActionBar" />
-
         <activity
             android:name=".ui.card.CardActivity"
-            android:theme="@style/NoActionBar"></activity>
-
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".ui.CourseSubsection.CourseSubActivity"
-            android:theme="@style/NoActionBar">
-        </activity>
-
+            android:theme="@style/NoActionBar"></activity>
         <activity
             android:name=".ui.lecture.LectureVideoActivity"
-            android:theme="@style/NoActionBar"/>
-
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".ui.quiz.QuizActivity"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"></activity>
 
-            <!--android:name=".ui.lecture.LectureVideoActivity"-->
-            <!--android:theme="@style/NoActionBar" />-->
+        <!-- android:name=".ui.lecture.LectureVideoActivity" -->
+        <!-- android:theme="@style/NoActionBar" /> -->
+
 
         <!-- 강의 설명 팝업 Activity -->
         <activity
             android:name=".ui.CourseSubsection.CourseSubPopupActivity"
-            android:theme="@style/Theme.PopUp"
-            />
-
-
-        <activity android:name="LectureVideo1Activity" />
-
+            android:theme="@style/Theme.PopUp" />
+        <activity android:name=".LectureVideo1Activity" />
 
         <!-- 퀴즈 채점 결과 Activity -->
         <activity
             android:name=".ui.quiz.QuizResultActivity"
             android:theme="@style/NoActionBar" />
 
-
         <!-- 퀴즈 해설 팝업 Activity -->
         <activity
             android:name=".ui.quiz.PopupExplainActivity"
             android:theme="@style/Theme.PopUp" />
 
-
         <!-- 강의 결제 팝업 Activity -->
 
+        <activity
+            android:name=".ui.courseNonRegist.ChargePopupActivity"
+            android:theme="@style/Theme.PopUp" />
 
-        <activity android:name=".ui.courseNonRegist.ChargePopupActivity"
-            android:theme="@style/Theme.PopUp"/>
+        <service android:name=".ui.lecture.LectureVideoService" />
 
-
-        <service android:name=".ui.lecture.LectureVideoService"
-            />
-
-        <!--등록 팝업 Activity -->
+        <!-- 등록 팝업 Activity -->
         <activity
             android:name=".ui.courseNonRegist.EnrollPopupActivity"
             android:theme="@style/Theme.PopUp" />
-        <activity android:name=".ui.courseNonRegist.CourseNonRegistActivity"
-            android:theme="@style/NoActionBar"/>
+        <activity
+            android:name=".ui.courseNonRegist.CourseNonRegistActivity"
+            android:theme="@style/NoActionBar" />
 
         <service android:name=".ui.lecture.LectureVideoService" />
+
     </application>
+
 </manifest>

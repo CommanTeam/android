@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import com.androidquery.AQuery
+import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_newalarm_request.view.*
@@ -57,9 +57,13 @@ class SearchNewCourseFragment : Fragment() {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)
           }
-            var aQuery = AQuery(context)
+//            var aQuery = AQuery(context)
             val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_IMAGE)
-            aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+//            aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+            Glide.with(context)
+                 .load(thumbnailUrl)
+                 .into(itemView.main_profile_img)
+
             itemView.main_notice_tv.text = PrefUtils.getString(context, PrefUtils.NICKNAME) + greetingInfo?.ment
 
         }
