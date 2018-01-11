@@ -19,6 +19,7 @@ import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
+import org.appjam.comman.util.YoutubeTimeUtils
 import org.appjam.comman.util.setDefaultThreads
 import org.appjam.comman.youtube.YoutubePracticeActivity
 
@@ -47,7 +48,7 @@ class LectureListActivity : AppCompatActivity() {
                 PrefUtils.getUserToken(this), intent.getIntExtra(ChapterData.CHAPTER_ID_KEY, 0))
                 .setDefaultThreads()
                 .subscribe({ response ->
-                    chapterInfo = response.data[0]
+                    chapterInfo = response.data
                     lectureList_lecture_name_tv.text = chapterInfo?.title
                     lecture_list_rv.adapter.notifyDataSetChanged()
                 }, { failure ->
@@ -97,7 +98,7 @@ class LectureListActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     //TODO video 시간 서버한테 받을 수 있으면 그걸로 text에 넣기
-                    itemView.lecture_list_num_tv.text = "${data.videoID}"
+                    itemView.lecture_list_num_tv.text = "${YoutubeTimeUtils.formatTime(data.playTime)}"
                 }
 
                 data.lectureType == 0 -> {
@@ -107,7 +108,7 @@ class LectureListActivity : AppCompatActivity() {
                         intent.putExtra("lectureID", data.lectureID)
                         startActivity(intent)
                     }
-                    itemView.lecture_list_num_tv.text = "${data.size} 페이지"
+                    itemView.lecture_list_num_tv.text = "${data.lectureCnt} 페이지"
                 }
                 data.lectureType == 1 -> {
                     itemView.setOnClickListener {
@@ -116,7 +117,7 @@ class LectureListActivity : AppCompatActivity() {
                         intent.putExtra("lectureID", data.lectureID)
                         startActivity(intent)
                     }
-                    itemView.lecture_list_num_tv.text = "${data.size} 문제"
+                    itemView.lecture_list_num_tv.text = "${data.lectureCnt} 문제"
                 }
             }
             if(data.lecturePriority < 10) {

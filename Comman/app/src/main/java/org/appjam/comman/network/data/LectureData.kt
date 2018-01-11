@@ -16,8 +16,9 @@ object LectureData {
             val file_path : String,
             val priority : Int,
             val info : String,
+            val pass_value : Int,
             val video_id : String,
-            val pass_value : Int
+            val playTime: Int
     )
 
     data class RecentLectureResponse (

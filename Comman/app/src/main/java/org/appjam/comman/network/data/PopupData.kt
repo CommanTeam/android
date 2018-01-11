@@ -5,7 +5,7 @@ package org.appjam.comman.network.data
  */
 object PopupData {
     data class PopupTitleResponse(
-            val result : List<PopupTitleInfo>
+            val result : PopupTitleInfo
     )
 
     data class PopupTitleInfo(
@@ -25,10 +25,10 @@ object PopupData {
 
     data class PopupContentInfo(
             val chapterID : Int,
-            val title : String,
             val info : String,
+            val title : String,
             val priority : Int,
             val open : Boolean,
-            val size : Int
+            val lectureCnt : Int
     )
 }
