@@ -3,7 +3,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:layout_marginLeft="19dp"
     android:layout_marginRight="19dp"
     android:layout_marginTop="1dp"
@@ -11,70 +10,14 @@
     app:sl_dy="2dp"
     app:sl_shadowColor="@color/default_shadow_color">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="13dp"
-        android:layout_marginTop="14dp">
-
-        <TextView
-            android:id="@+id/main_course_active_course_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="[Rhino] 반지 모델링하기"
-            android:textColor="@color/mainTextColor"
-            android:textSize="19sp" />
-
-        <TextView
-            android:id="@+id/main_course_active_chapters_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/main_course_active_course_tv"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/nanum_square_regular"
-            android:text="총 16단원"
-            android:textColor="@color/mainTextColor"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/main_course_active_prog_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/main_course_active_chapters_tv"
-            android:layout_marginTop="11dp"
-            android:fontFamily="@font/nanum_square_regular"
-            android:text="진도율"
-            android:textColor="@color/secondaryColor"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/main_course_active_progress_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/main_course_active_prog_tv"
-            android:layout_alignParentRight="true"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="0 %"
-            android:textColor="@color/secondaryColor"
-            android:textSize="18sp" />
-
-        <ProgressBar
-            android:id="@+id/main_course_active_progress_bar"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_below="@id/main_course_active_progress_tv"
-            android:layout_marginTop="4dp"
-            android:background="@drawable/main_active_item_progress_bar_bg"
-            android:progress="43"
-            android:progressTint="@color/secondaryColor" />
 
         <ImageView
-            android:id="@+id/main_course_active_img"
+            android:id="@+id/main_course_item_active_img"
             android:layout_width="133dp"
             android:layout_height="match_parent"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginTop="14dp"
             android:background="@drawable/frag_quiz_submitbtn_bg" />
 
         <RelativeLayout
@@ -90,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="[Rhino] 반지 모델링하기"
+                android:layout_marginLeft="140dp"
                 android:textColor="@color/mainTextColor"
                 android:textSize="19sp" />
 
@@ -101,6 +45,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/nanum_square_regular"
                 android:text="총 16단원"
+                android:layout_marginLeft="140dp"
                 android:textColor="@color/mainTextColor"
                 android:textSize="18sp" />
 
@@ -108,7 +53,8 @@
                 android:id="@+id/main_course_active_prog_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/main_course_active_chapters_tv"
+                android:layout_below="@+id/main_course_active_chapters_tv"
+                android:layout_marginLeft="140dp"
                 android:layout_marginTop="11dp"
                 android:fontFamily="@font/nanum_square_regular"
                 android:text="진도율"
@@ -119,10 +65,10 @@
                 android:id="@+id/main_course_active_progress_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/main_course_active_prog_tv"
                 android:layout_alignParentRight="true"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="0 %"
+                android:layout_marginLeft="140dp"
                 android:textColor="@color/secondaryColor"
                 android:textSize="18sp" />
 
@@ -137,5 +83,5 @@
                 android:progress="43"
                 android:progressTint="@color/secondaryColor" />
         </RelativeLayout>
-    </LinearLayout>
+
 </com.dd.ShadowLayout>

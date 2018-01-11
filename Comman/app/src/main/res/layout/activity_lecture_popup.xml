@@ -85,6 +85,7 @@
                         android:text="[Rhino] 반지 모델링하기"
                         android:lineSpacingExtra="2dip"
                         android:textColor="@color/mainTextColor"
+                        android:maxLines="2"
                         android:textSize="21sp" />
 
                     <TextView

@@ -92,6 +92,7 @@
                         android:layout_marginTop="6dp"
                         android:fontFamily="@font/nanum_square_bold"
                         android:text="02. 리볼브 하기"
+                        android:maxLines="2"
                         android:textColor="@color/mainTextColor"
                         android:textSize="19sp" />
                 </LinearLayout>
