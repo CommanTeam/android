@@ -9,8 +9,8 @@ object CoursesData {
 
     data class CourseInfo(
             val courseID : Int,
+            val imagePath: String,
             val courseTitle : String,
-            val courseImage: String,
             val chapterCnt: Int,
             val progressPercentage: Int)
 
