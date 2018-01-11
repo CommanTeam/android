@@ -4,38 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="19dp"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/fstLecVideo_list_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:text="강의 목록"
             android:textSize="19sp"
             android:fontFamily="@font/nanum_square_bold"
             android:textColor="@color/mainTextColor"
             />
 
-        <TextView
-            android:id="@+id/fstLecVideo_auto_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="자동 재생"
-            android:layout_marginRight="5dp"
-            android:fontFamily="@font/nanum_square_regular"
-            android:textColor="@color/mainTextColor"
-            android:textSize="19sp"
-            android:layout_marginLeft="175dp" />
 
         <Switch
             android:id="@+id/fstLecVideo_switch"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:id="@+id/fstLecVideo_auto_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/fstLecVideo_switch"
+            android:text="자동 재생"
+            android:layout_marginRight="5dp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:textColor="@color/mainTextColor"
+            android:textSize="19sp" />
+
+    </RelativeLayout>
 
 </LinearLayout>

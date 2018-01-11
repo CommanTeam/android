@@ -202,11 +202,12 @@ class MyCourseFragment : Fragment() {
                             .into(itemView.main_lecture_wathing_img)
                 }
 
-            } else {
-                itemView.main_lecture_wathing_layout.visibility = View.GONE
-                itemView.main_lecture_wathing_tv.visibility = View.GONE
-
             }
+//            else {
+//                itemView.main_lecture_wathing_layout.visibility = View.GONE
+//                itemView.main_lecture_wathing_tv.visibility = View.GONE
+
+      //      }
         }
     }
 

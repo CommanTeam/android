@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/lectureVideo_content_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/youtube_bottom_bar_layout"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="19dp"
+        android:fontFamily="@font/nanum_square_regular"
+        android:maxLength="50"
+        android:text="라이노 위주의 툴 수업이며...블라블라블라블라...12345678901234567890"
+        android:textColor="@color/pageCountTextColor"
+        android:textSize="19sp" />
+
+
+    <View
+        android:id="@+id/divide_line"
+        android:layout_width="match_parent"
+        android:layout_height="9dp"
+        android:layout_below="@id/lectureVideo_content_tv"
+        android:layout_marginTop="30dp"
+        android:background="@color/divideLineColor" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divide_line"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/lecture_btn_layout"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_weight="50">
+
+            <TextView
+                android:id="@+id/lecture_btn_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="강의 목록"
+                android:textColor="@color/primaryColor"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/lecture_bottom_line"
+                android:layout_width="wrap_content"
+                android:layout_height="5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/secondaryColor" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divideLineColor" />
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@color/divideLineColor" />
+
+        <RelativeLayout
+            android:id="@+id/question_btn_layout"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_below="@id/divide_line"
+            android:layout_toRightOf="@id/lecture_btn_layout"
+            android:layout_weight="50">
+
+            <TextView
+                android:id="@+id/question_btn_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="질문 보기"
+                android:textColor="@color/mainTextColor"
+                android:textSize="18sp" />
+
+            <View
+                android:id="@+id/question_bottom_line"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_alignParentBottom="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/divideLineColor" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

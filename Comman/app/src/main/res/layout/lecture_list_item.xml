@@ -49,12 +49,15 @@
 
             <TextView
                 android:id="@+id/lecture_list_name_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/lecture_list_num_tv"
                 android:layout_marginTop="7dp"
                 android:fontFamily="@font/font_nanum_square_bold"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:gravity="right"
                 android:text="dfasdfasdf"
                 android:textColor="@color/mainTextColor"
                 android:textSize="@dimen/sp_change18_21" />

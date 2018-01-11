@@ -30,8 +30,8 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/lecture_subsection_course_title_tv"
             android:layout_marginTop="12dp"
-            app:cardElevation="@dimen/shadow">
-
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="177dp"
@@ -124,7 +124,7 @@
                 <TextView
                     android:id="@+id/lecture_subsection_course_exp_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="18dp"
+                    android:layout_height="20dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginTop="14dp"
@@ -133,7 +133,7 @@
                     android:singleLine="true"
                     android:text="라이노 위주의 툴 수업과 김준회 류동일 신기용 그만 먹어 나도 배고파"
                     android:textColor="@color/mainTextColor"
-                    android:textSize="15dp" />
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:id="@+id/lecture_subsection_popup_layout"
@@ -153,8 +153,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="7dp"
                         android:fontFamily="@font/nanum_square_bold"
                         android:text="더 보기" />
 
@@ -170,25 +169,8 @@
             android:layout_height="1dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="254dp"
+            android:layout_marginBottom="9dp"
             android:background="@color/divideLineColor" />
 
-        <android.support.v7.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lecture_subsection_bar3_iv"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="26dp"
-            android:layout_marginTop="20dp"
-            app:cardElevation="@dimen/shadow">
-        <Button
-            android:id="@+id/lecture_regist_btn"
-            android:layout_width="198dp"
-            android:layout_height="60dp"
-            android:background="@drawable/frag_quiz_submitbtn_bg"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="등록하기"
-            android:textColor="@color/white"
-            android:textSize="23sp" />
-        </android.support.v7.widget.CardView>
     </RelativeLayout>
 </RelativeLayout>

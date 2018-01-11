@@ -29,6 +29,8 @@ import kotlinx.android.synthetic.main.activity_login.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.LoginData
+import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
+import org.appjam.comman.ui.courseNonRegist.CourseNonRegistActivity
 import org.appjam.comman.ui.main.MainActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
@@ -155,7 +157,8 @@ class LoginActivity : AppCompatActivity() {
                                 PrefUtils.putUserToken(this@LoginActivity, response.result.token)
                                 PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
 
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                                val intent = Intent(this@LoginActivity, CourseSubActivity::class.java)
+
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)
@@ -169,7 +172,9 @@ class LoginActivity : AppCompatActivity() {
                                 response ->
                                 PrefUtils.putUserToken(this@LoginActivity, response.result.token)
                                 PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
-                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+
+                                val intent = Intent(this@LoginActivity,CourseSubActivity::class.java)
+
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)

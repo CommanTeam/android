@@ -53,7 +53,7 @@ object APIClient {
 
         //챕터id로 챕터정보 가져오기
         @GET("/content/chapters")
-        fun getChapterInfo(@Header("authorization") token : String,
+        fun getChapterInfo(@Header("authorization") tokenValue : String,
                            @Query("chapterID") chapterID: Int) : Observable<ChapterData.InfoResponse>
 
         //강의페이지 중 강의목록
@@ -92,13 +92,15 @@ object APIClient {
                 @Query("lectureID") lectureID : Int
         ) : Observable<NextLectureData.NextLectureResponse>
 
-        //강좌별 챕터정보
-        @GET("/content/courses/")
+
+
+        //강좌id로 강좌정보 가져오기
+        @GET("/content/courses")
         fun getPopupTitleInfos(
                 @Header("authorization")tokenValue: String,
                 @Query("courseID") courseID:Int) : Observable<PopupData.PopupTitleResponse>
 
-        //강좌id로 강좌정보 가져오기
+        //강좌별 챕터정보
         @GET("/content/courses/{courseID}/chapters")
         fun getPopupContentInfos(
                 @Header("authorization")tokenValue: String,
@@ -159,5 +161,19 @@ object APIClient {
                 @Header("authorization") tokenValue: String,
                 @Path("lectureID") lectureID: Int
         ) : Observable<VideoData.VideoLectureResponse>
+
+        //강의ID로 질문, 답변 가져오기
+        @GET("/content/lecturequestion/{lectureID}")
+        fun getQuestionOfLecture(
+                @Header("authorization") tokenValue: String,
+                @Path("lectureID") lectureID: Int
+        ) : Observable<QuestionData.QuestionResponse>
+
+        //강의ID로 질문 DB에 삽입
+        @POST("/content/lecturequestion/insertanswer")
+        fun registerQuestion(
+                @Header("authorization") tokenValue: String,
+                @Body questionPost : QuestionData.QuestionPost
+        ) : Observable<QuestionData.RegisterQuestionResponse>
     }
 }

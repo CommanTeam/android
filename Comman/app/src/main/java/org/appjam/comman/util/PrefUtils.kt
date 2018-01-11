@@ -88,7 +88,7 @@ object PrefUtils {
 
     fun getInt(context: Context, key: String) : Int {
         val pref = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE)
-        return pref.getInt(key, 0)
+        return pref.getInt(key, 40)
     }
 
     fun putAnswerArr(context: Context, ansArr: QuizData.AnswerArr) {
