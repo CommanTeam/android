@@ -38,6 +38,16 @@ class CardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card)
 
+//        secondString=getIntent().getStringExtra("firstData")
+//        getText=findViewById(R.id.main2_get_text) as TextView
+//        getText!!.text=secondString
+
+        card_back_btn.setOnClickListener{
+              finish()
+        }
+        val lectureTitle = intent.getStringExtra("card_lecture_name_tv")
+        card_lecture_name_tv!!.text=lectureTitle
+
         val courseID = intent.getIntExtra("courseID",0)
         lectureID = intent.getIntExtra("lectureID", 0)
         var current_page : Int = 1

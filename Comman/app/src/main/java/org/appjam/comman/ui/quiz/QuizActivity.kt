@@ -39,6 +39,11 @@ class QuizActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
 
+        quiz_back_btn.setOnClickListener{
+            finish()
+        }
+        quiz_view_pager.adapter = QuizPagerAdapter(supportFragmentManager)
+
 //        courseID = intent.getIntExtra("courseID",0)       //TODO lectureID 테스트를 위해 10으로 고정해놨음. 나중에 해결바람
 //        lectureID = intent.getIntExtra("lectureID", 0)
         courseID = 1

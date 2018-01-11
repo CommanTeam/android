@@ -8,8 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import com.androidquery.AQuery
+import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_lecture_subsection.*
@@ -54,11 +54,17 @@ class CourseSubActivity : AppCompatActivity() {
     private var recentLectureInfo: LectureData.RecentLectureInfo? = null
     private var isPurchased: Int = 0
 
+<<<<<<< HEAD
+=======
+    var thumbID : String?=null
+    var thumbURL : String?=null
+>>>>>>> master
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
+<<<<<<< HEAD
 //
 //        chapterList = lecture_subsection_list_view
 //        chapterList!!.layoutManager = LinearLayoutManager(this)
@@ -68,6 +74,11 @@ class CourseSubActivity : AppCompatActivity() {
 //        chapterListData?.add(ChapterListData(1, "3장", "반지 모델링 하기", "총 16강"))
 //
 //        lectureSubAdapter = LectureSubAadapter()
+=======
+        sub_back_btn.setOnClickListener{
+            finish()
+        }
+>>>>>>> master
 
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)
@@ -78,7 +89,7 @@ class CourseSubActivity : AppCompatActivity() {
                 .setDefaultThreads()
                 .subscribe({ response ->
                     courseMetaData = response.result[0]
-                    card_lecture_name_tv.text = courseMetaData?.title
+                    sub_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
@@ -138,111 +149,127 @@ class CourseSubActivity : AppCompatActivity() {
 
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO : 비디오일 경우 백그라운드 설정 및 몇 가지 설정 좀 더 필요, intent 연결도 필요
+
         fun bind() {
+
+
             if (isPurchased == 0) {
                 itemView.lecture_subsection_purchase_btn.visibility = View.VISIBLE
                 itemView.lecture_subsection_purchase_btn.setOnClickListener {
                     val intent = Intent(this@CourseSubActivity, ChargePopupActivity::class.java)
                     intent.putExtra("courseID", courseMetaData?.id)
                     startActivity(intent)
+
                 }
-            } else {
-                itemView.lecture_subsection_purchase_btn.visibility = View.GONE
+//
+//            }
+
+                if (recentLectureInfo != null) {
+
+                    itemView.lecture_subsection_video_chaporder_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
+
+                    if ((recentLectureInfo!!.lecture_priority) / 10 == 0) {
+                        itemView.lecture_subsection_video_lecturename_tv.text = "0${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
+                    } else {
+                        itemView.lecture_subsection_video_lecturename_tv.text = "${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
+                    }
+
+                    if (recentLectureInfo!!.lecture_type == 0) {
+                        itemView.lecture_subsection_video_time_tv.text =
+                                "${PrefUtils.getInt(this@CourseSubActivity, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_quiz}"
+                        itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_quiz_icon)
+                        itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
+                    } else if (recentLectureInfo!!.lecture_type == 1) {
+                        itemView.lecture_subsection_video_time_tv.text =
+                                "${PrefUtils.getInt(this@CourseSubActivity, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_picture}"
+                        itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_picture_icon)
+                        itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
+                    } else {
+                        itemView.lecture_subsection_video_time_tv.text =
+                                "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(this@CourseSubActivity, PrefUtils.DURATION_TIME))}"
+                        itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_video_icon)
+                        itemView.lecture_subsection_watching_progress_bar.visibility = View.VISIBLE
+                    }
+
+
+                }
+//                else {
+//                    itemView.lecture_subsection_popup_layout.visibility=View.GONE
+//                    itemView.lecture_subsection_video_layout.visibility=View.GONE
+//
+//                }
+
             }
 
-            if (recentLectureInfo != null) {
-                itemView.lecture_subsection_video_chaporder_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
+            thumbID="BUM8Qe6fdRk"
+            thumbURL="https://img.youtube.com/vi/"+thumbID+"/sddefault.jpg"
+            Glide.with(applicationContext)
+                    .load(thumbURL)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .fitCenter()
+                    //.centerCrop() 더 꽉차게 나옴
+                    .error(R.mipmap.ic_launcher)
+                    .into(itemView.lecture_subsection_video_thumb)
+            }
 
-                if ((recentLectureInfo!!.lecture_priority) / 10 == 0) {
-                    itemView.lecture_subsection_video_lecturename_tv.text = "0${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
+    }
+        inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            // TODO: 일단 기본적인 것은 완성 혹시나 안되면 데이터 클래스나 통신 쪽을 확인해봐야 함
+            fun bind(position: Int) {
+                itemView.lecture_subsection_chapterlist_chapnum_tv.text = "${chaptersInfoList[position].priority}장"
+//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].lectureCnt}강"
+                itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
+                if (((isPurchased == 0) and chaptersInfoList[position].open) or (isPurchased == 1)) {
+                    itemView.lecture_subsection_lock_layout.visibility = View.GONE
+                    itemView.setOnClickListener {
+                        val intent = Intent(this@CourseSubActivity, LectureListActivity::class.java)
+                        intent.putExtra("chapterID", chaptersInfoList[position].chapterID)
+                        startActivity(intent)
+                    }
+                }
+            }
+        }
+
+        inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+        inner class LectureSubAadapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+            override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
+                return if (viewType == ListUtils.TYPE_HEADER) {
+                    val view: View = layoutInflater.inflate(R.layout.lecture_subsection_regist_item, parent, false)
+                    HeaderViewHolder(view)
+                } else if (viewType == ListUtils.TYPE_SECOND_HEADER) {
+                    val view: View = layoutInflater.inflate(R.layout.lecture_subsection_video_item, parent, false)
+                    SecondHeaderViewHolder(view)
+                } else if (viewType == ListUtils.TYPE_ELEM) {
+                    val view: View = layoutInflater.inflate(R.layout.lecture_subsection_chapterlist_item, parent, false)
+                    ElemViewHolder(view)
                 } else {
-                    itemView.lecture_subsection_video_lecturename_tv.text = "${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
+                    val view: View = layoutInflater.inflate(R.layout.lecture_list_footer, parent, false)
+                    FooterViewHolder(view)
                 }
+            }
 
-                if (recentLectureInfo!!.lecture_type == 0) {
-                    itemView.lecture_subsection_video_time_tv.text =
-                            "${PrefUtils.getInt(this@CourseSubActivity, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_quiz}"
-                    itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_quiz_icon)
-                    itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
-                } else if (recentLectureInfo!!.lecture_type == 1) {
-                    itemView.lecture_subsection_video_time_tv.text =
-                            "${PrefUtils.getInt(this@CourseSubActivity, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_picture}"
-                    itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_picture_icon)
-                    itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
-                } else {
-                    itemView.lecture_subsection_video_time_tv.text =
-                            "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(this@CourseSubActivity, PrefUtils.DURATION_TIME))}"
-                    itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_video_icon)
-                    itemView.lecture_subsection_watching_progress_bar.visibility = View.VISIBLE
-                }
+            override fun getItemCount() = chaptersInfoList.size + 3
 
-            } else {
-                itemView.lecture_subsection_video_title_tv.visibility = View.GONE
-                //itemView.lecture_subsection_video_play_layout.visibility = View.GONE
-                val frameLayout = itemView.lecture_subsection_video_play_layout as FrameLayout
-                frameLayout.visibility = View.GONE
+            override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+                if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
+                    (holder as ElemViewHolder).bind(position - 2)
+                } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
+                    (holder as HeaderViewHolder).bind()
+                } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
+                    (holder as SecondHeaderViewHolder).bind()
+
+                } else
+                    holder as FooterViewHolder
+            }
+
+            override fun getItemViewType(position: Int): Int
+                    = when (position) {
+                0 -> ListUtils.TYPE_HEADER
+                1 -> ListUtils.TYPE_SECOND_HEADER
+                (itemCount - 1) -> ListUtils.TYPE_FOOTER
+                else -> ListUtils.TYPE_ELEM
             }
         }
     }
-
-
-    inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // TODO: 일단 기본적인 것은 완성 혹시나 안되면 데이터 클래스나 통신 쪽을 확인해봐야 함
-        fun bind(position: Int) {
-            itemView.lecture_subsection_chapterlist_chapnum_tv.text = "${chaptersInfoList[position].priority}장"
-//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].size}강"
-            itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
-            if (((isPurchased == 0) and chaptersInfoList[position].open) or (isPurchased == 1)) {
-                itemView.lecture_subsection_lock_layout.visibility = View.GONE
-                itemView.setOnClickListener {
-                    val intent = Intent(this@CourseSubActivity, LectureListActivity::class.java)
-                    intent.putExtra("chapterID", chaptersInfoList[position].chapterID)
-                    startActivity(intent)
-                }
-            }
-        }
-    }
-
-    inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-
-    inner class LectureSubAadapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-            return if (viewType == ListUtils.TYPE_HEADER) {
-                val view: View = layoutInflater.inflate(R.layout.lecture_subsection_regist_item, parent, false)
-                HeaderViewHolder(view)
-            } else if (viewType == ListUtils.TYPE_SECOND_HEADER) {
-                val view: View = layoutInflater.inflate(R.layout.lecture_subsection_video_item, parent, false)
-                SecondHeaderViewHolder(view)
-            } else if (viewType == ListUtils.TYPE_ELEM) {
-                val view: View = layoutInflater.inflate(R.layout.lecture_subsection_chapterlist_item, parent, false)
-                ElemViewHolder(view)
-            } else {
-                val view: View = layoutInflater.inflate(R.layout.lecture_list_footer, parent, false)
-                FooterViewHolder(view)
-            }
-        }
-
-        override fun getItemCount() = chaptersInfoList.size + 3
-
-        override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-            if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
-                (holder as ElemViewHolder).bind(position - 2)
-            } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
-                (holder as HeaderViewHolder).bind()
-            } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
-                (holder as SecondHeaderViewHolder).bind()
-            } else
-                holder as FooterViewHolder
-        }
-
-        override fun getItemViewType(position: Int): Int
-                = when (position) {
-            0 -> ListUtils.TYPE_HEADER
-            1 -> ListUtils.TYPE_SECOND_HEADER
-            (itemCount - 1) -> ListUtils.TYPE_FOOTER
-            else -> ListUtils.TYPE_ELEM
-        }
-    }
-}
-

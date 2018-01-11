@@ -19,14 +19,12 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.PopupData
 import org.appjam.comman.ui.CourseSubsection.CourseSubPopupActivity
+import org.appjam.comman.ui.courseNonRegist.EnrollPopupActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 
 
-/**
- * Created by KSY on 2018-01-04.
- */
 class CourseNonRegistActivity : AppCompatActivity() {
 
     companion object {
@@ -42,6 +40,10 @@ class CourseNonRegistActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
+        sub_back_btn.setOnClickListener{
+            finish()
+        }
+
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAdapter()
@@ -53,7 +55,7 @@ class CourseNonRegistActivity : AppCompatActivity() {
                 .setDefaultThreads()
                 .subscribe({ response ->
                     courseMetaData = response.result[0]
-                    card_lecture_name_tv.text = courseMetaData?.title
+                    sub_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
@@ -104,7 +106,7 @@ class CourseNonRegistActivity : AppCompatActivity() {
         // TODO: Implement more detail view binding
         fun bind(position: Int) {
             itemView.lecture_subsection_chapterlist_chapnum_tv.text = "${chaptersInfoList[position].priority}장"
-//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].size}강"
+//            itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].lectureCnt}강"
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
         }
     }

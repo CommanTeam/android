@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -8,7 +9,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
 import com.bumptech.glide.Glide
+=======
+import android.view.inputmethod.InputMethodManager
+import com.androidquery.AQuery
+>>>>>>> master
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_newalarm_request.view.*
@@ -51,7 +57,15 @@ class SearchNewCourseFragment : Fragment() {
 
     inner class MyCourseAlarmViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind() {
+<<<<<<< HEAD
 //            var aQuery = AQuery(context)
+=======
+            itemView.setOnClickListener {
+                val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+          }
+            var aQuery = AQuery(context)
+>>>>>>> master
             val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_IMAGE)
 //            aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
 
@@ -62,6 +76,7 @@ class SearchNewCourseFragment : Fragment() {
                     .crossFade()
                     .into(itemView.main_profile_img)
             itemView.main_notice_tv.text = PrefUtils.getString(context, PrefUtils.NICKNAME) + greetingInfo?.ment
+
         }
     }
 
@@ -75,6 +90,7 @@ class SearchNewCourseFragment : Fragment() {
             else if (holder?.itemViewType == ListUtils.TYPE_ELEM) {
                 (holder as CourseResistRequestViewHolder)
             }
+
         }
 
         override fun getItemCount(): Int = 2
@@ -91,6 +107,7 @@ class SearchNewCourseFragment : Fragment() {
                 mainView.new_course_request_btn.setOnClickListener {
                     (activity as MainActivity).main_content_view_pager.currentItem += 1
                 }
+
                 return CourseResistRequestViewHolder(mainView)
             }
         }

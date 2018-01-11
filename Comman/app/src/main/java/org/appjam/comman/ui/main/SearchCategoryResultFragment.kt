@@ -47,7 +47,7 @@ class SearchCategoryResultFragment : Fragment() {
         val recyclerView = view!!.course_result_recyclerview
         recyclerView.adapter = CourseSearchResultAdapter()
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.addItemDecoration(SpaceItemDecoration(context, 19, 19, 0, 0))
+        recyclerView.addItemDecoration(SpaceItemDecoration(context, 9, 9, 0, 0))
 
         if(arguments != null) {
             val categoryID = arguments.getInt("categoryID")
@@ -70,7 +70,13 @@ class SearchCategoryResultFragment : Fragment() {
 //            aQuery.id(itemView.course_result_img).image(coursesInfo[position].image_path)
             Glide.with(context)
                     .load(coursesInfo[position].image_path)
+<<<<<<< HEAD
 //                    .override(129,110)
+=======
+                    .override(129,110)
+                    .centerCrop()
+                    .crossFade()
+>>>>>>> master
                     .into(itemView.course_result_img)
             itemView.course_title_tv.text = coursesInfo[position].title
             itemView.course_content_tv.text = coursesInfo[position].info

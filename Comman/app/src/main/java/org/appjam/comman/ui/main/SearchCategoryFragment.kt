@@ -37,7 +37,7 @@ class SearchCategoryFragment : Fragment() {
         val recyclerView = view.main_searchCategory_rv
         recyclerView.adapter = CategoryAdapter()
         recyclerView.layoutManager = GridLayoutManager(context,2)
-        recyclerView.addItemDecoration(SpaceItemDecoration(context, 3))
+        recyclerView.addItemDecoration(SpaceItemDecoration(context, 2))
         (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                         override fun getSpanSize(position: Int): Int
                                 = if ((recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_HEADER) or
@@ -101,6 +101,7 @@ class SearchCategoryFragment : Fragment() {
             itemView.setOnClickListener {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+
                 val bundle = Bundle()
                 bundle.putInt("categoryID", categoryInfoList[position].categoryID)
                 (parentFragment as SearchFragment).ReplaceFragment(SearchCategoryResultFragment(), bundle, "searchResult")
@@ -114,6 +115,7 @@ class SearchCategoryFragment : Fragment() {
             itemView.setOnClickListener {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)
+
             }
         }
     }

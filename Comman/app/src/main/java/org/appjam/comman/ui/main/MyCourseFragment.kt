@@ -55,7 +55,6 @@ class MyCourseFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = MyLectureAdapter()
 
-
         disposables.add(APIClient.apiService.getGreetingInfo(PrefUtils.getUserToken(context))
                 .setDefaultThreads()
                 .subscribe({
@@ -121,7 +120,7 @@ class MyCourseFragment : Fragment() {
             itemView.main_course_active_progress_bar.progress = progressPercentage
             itemView.main_course_active_progress_tv.text = resources.getString(R.string.msg_format_progress_percentage, progressPercentage)
 
-            itemView.setOnClickListener {
+         itemView.setOnClickListener {
                 val intent = Intent(context, CourseSubActivity::class.java)
                 intent.putExtra("courseID", courseInfo.courseID)
                 startActivity(intent)
