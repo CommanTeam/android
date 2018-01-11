@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/question_question_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/question_user_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="김준회"
+            />
+
+        <TextView
+            android:id="@+id/question_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018.01.07"
+            />
+
+        <TextView
+            android:id="@+id/question_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제가 강의를 보다가 잘 안되는 부분이 있음"
+            />
+
+        <TextView
+            android:id="@+id/question_answer_regist_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="답글 달기"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/question_answer_regist_tv"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:background="@color/divideLineColor"
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/question_answer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/question_question_layout"
+        android:background="@color/backgroundColor">
+
+        <ImageView
+            android:id="@+id/answer_arrow_img"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/question_answer_arrow"
+            />
+
+        <TextView
+            android:id="@+id/answer_user_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="박명선"
+            />
+
+        <TextView
+            android:id="@+id/answer_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2018.01.18"
+            />
+
+        <TextView
+            android:id="@+id/answer_content_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이런걸 해보는건 어떤가요?"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/answer_content_tv"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="19dp"
+            android:layout_marginRight="19dp"
+            android:background="@color/divideLineColor"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
