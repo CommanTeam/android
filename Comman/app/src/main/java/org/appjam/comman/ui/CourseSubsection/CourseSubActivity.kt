@@ -56,7 +56,7 @@ class CourseSubActivity : AppCompatActivity() {
                 PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID", 0))  //defaultValue 0넣는게 맞을까?
                 .setDefaultThreads()
                 .subscribe({ response ->
-                    courseMetaData = response.result[0]
+                    courseMetaData = response.result
                     sub_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->

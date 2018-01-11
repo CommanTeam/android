@@ -16,7 +16,7 @@
         />
 
     <EditText
-        android:id="@+id/question_item_et"
+        android:id="@+id/youtube_question_item_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/question_item_regist_btn"
@@ -30,7 +30,7 @@
         />
 
     <Button
-        android:id="@+id/question_item_regist_btn"
+        android:id="@+id/youtube_question_item_regist_btn"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
         android:background="@color/primaryColor"

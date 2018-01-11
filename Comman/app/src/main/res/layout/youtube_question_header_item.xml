@@ -17,7 +17,7 @@
         />
 
     <TextView
-        android:id="@+id/question_item_cnt_tv"
+        android:id="@+id/youtube_question_item_cnt_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"

@@ -47,7 +47,7 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="강의 목록"
-                android:textColor="@color/primaryColor"
+                android:textColor="@color/mainTextColor"
                 android:textSize="18sp" />
 
             <View
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="5dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/secondaryColor" />
+                />
 
             <View
                 android:layout_width="wrap_content"
@@ -88,14 +88,16 @@
                 android:layout_centerVertical="true"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="질문 보기"
-                android:textColor="@color/mainTextColor"
+                android:textColor="@color/primaryColor"
                 android:textSize="18sp" />
 
             <View
                 android:id="@+id/question_bottom_line"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_alignParentBottom="true" />
+                android:layout_alignParentBottom="true"
+                android:background="@color/secondaryColor"
+                />
 
             <View
                 android:layout_width="match_parent"
