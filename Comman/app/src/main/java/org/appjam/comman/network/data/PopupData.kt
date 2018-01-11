@@ -25,10 +25,10 @@ object PopupData {
 
     data class PopupContentInfo(
             val chapterID : Int,
-            val info : String,
             val title : String,
+            val info : String,
             val priority : Int,
             val open : Boolean,
-            val lectureCnt: Int
+            val size : Int
     )
 }
