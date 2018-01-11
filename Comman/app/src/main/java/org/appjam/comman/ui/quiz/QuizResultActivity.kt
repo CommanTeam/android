@@ -15,12 +15,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_quiz_result.*
 import kotlinx.android.synthetic.main.quiz_result_header_items.view.*
 import kotlinx.android.synthetic.main.quiz_result_items.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.QuizData
+import org.appjam.comman.realm.RQuizData
 import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.ui.courseNonRegist.ChargePopupActivity
@@ -29,6 +31,7 @@ import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 import org.appjam.comman.youtube.YoutubePracticeActivity
+import kotlin.properties.Delegates
 
 class QuizResultActivity : AppCompatActivity() {
 
@@ -37,7 +40,6 @@ class QuizResultActivity : AppCompatActivity() {
     }
 
     private var quizInfoList: List<QuizData.QuizInfo> = listOf()
-    private var answerArray: QuizData.AnswerArr = QuizData.AnswerArr(mutableListOf())
     private var answerCount : Int = 0
     private var lecturePriority: Int = 0
     private var lectureTitle: String = ""
@@ -45,17 +47,18 @@ class QuizResultActivity : AppCompatActivity() {
     private var lectureID : Int = 0
     private var courseID : Int = 0
     private val disposables = CompositeDisposable()
+    private var realm: Realm by Delegates.notNull()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz_result)
+        realm = Realm.getDefaultInstance()
 
         quizResult_back_btn.setOnClickListener{
             finish()
         }
         val gson = Gson()
         quizInfoList = gson.fromJson(intent.getStringExtra("quizInfoList"), QuizData.QuizResponse::class.java).result
-        answerArray = PrefUtils.getAnswerArr(this, quizInfoList.size)
         lectureTitle = intent.getStringExtra("lectureTitle")
         lecturePriority = intent.getIntExtra("lecturePriority", 0)
         passValue = intent.getIntExtra("passValue", 0)
@@ -64,7 +67,8 @@ class QuizResultActivity : AppCompatActivity() {
 
         var i = 0
         for (quiz in quizInfoList) {
-            if(quiz.questionArr[answerArray.answerArr[i]].answerFlag == 1) {
+            val rQuizData = realm.where(RQuizData::class.java).equalTo("quizId", quiz.quizID).findFirst()
+            if(quiz.questionArr[rQuizData?.answer ?: 0].answerFlag == 1) {
                 answerCount++
             }
             i++
@@ -79,8 +83,6 @@ class QuizResultActivity : AppCompatActivity() {
         quizResult_prev_layout.setOnClickListener {
             val mutableList = mutableListOf<Int>()
             for(i in 1..(quizInfoList.size+1)) { mutableList.add(-1) }
-            answerArray.answerArr = mutableList
-            PrefUtils.putAnswerArr(this, answerArray)
             PrefUtils.putLectureOfCoursePosition(this, 0, courseID)
             val intent = Intent(this, QuizActivity::class.java)
             intent.getIntExtra("lectureID", lectureID)
@@ -156,7 +158,8 @@ class QuizResultActivity : AppCompatActivity() {
             } else {
                 itemView.quizResult_list_tv.text = "Q. ${position+1}"
             }
-            if(quizInfoList[position].questionArr[answerArray.answerArr[position]].answerFlag == 1) {
+            val rQuizData = realm.where(RQuizData::class.java).equalTo("quizId", quizInfoList[position].quizID).findFirst()
+            if(quizInfoList[position].questionArr[rQuizData?.answer?: 0].answerFlag == 1) {
                 itemView.quizResult_list_img.setImageResource(R.drawable.quiz_correct_mark)
             } else {
                 itemView.quizResult_list_img.setImageResource(R.drawable.quiz_wrong_mark)
@@ -165,7 +168,7 @@ class QuizResultActivity : AppCompatActivity() {
                 val intent = Intent(this@QuizResultActivity, PopupExplainActivity::class.java)
                 val gson = Gson()
                 intent.putExtra("quizInfo", gson.toJson(quizInfoList[position]))
-                intent.putExtra("quizCount", answerArray.answerArr.size)
+                intent.putExtra("quizCount", quizInfoList.size)
                 startActivity(intent)
             }
         }
@@ -209,6 +212,7 @@ class QuizResultActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         disposables.clear()
+        realm.close()
         super.onDestroy()
     }
 }
