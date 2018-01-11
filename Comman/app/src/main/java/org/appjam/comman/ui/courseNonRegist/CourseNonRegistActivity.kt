@@ -14,6 +14,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_subsection.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_course_item.view.*
+import kotlinx.android.synthetic.main.lecture_subsection_regist_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
@@ -80,11 +81,11 @@ class CourseNonRegistActivity : AppCompatActivity() {
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             val aQuery = AQuery(this@CourseNonRegistActivity)
-            aQuery.id(itemView.lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
-            itemView.lecture_subsection_course_name_tv.text = courseMetaData?.title
-            itemView.lecture_subsection_instructor_name_tv.text = courseMetaData?.name
-            itemView.lecture_subsection_course_exp_tv.text = courseMetaData?.info
-            itemView.lecture_subsection_popup_layout.setOnClickListener {
+            aQuery.id(itemView.Regist_lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
+            itemView.Regist_lecture_subsection_course_name_tv.text = courseMetaData?.title
+            itemView.Regist_lecture_subsection_instructor_name_tv.text = courseMetaData?.name
+            itemView.Regist_lecture_subsection_course_exp_tv.text = courseMetaData?.info
+            itemView.Regist_lecture_subsection_popup_layout.setOnClickListener {
                 val intent = Intent(this@CourseNonRegistActivity, CourseSubPopupActivity::class.java)
                 intent.putExtra("courseID", courseMetaData?.id)
                 startActivity(intent)

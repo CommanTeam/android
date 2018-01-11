@@ -38,7 +38,7 @@
             android:background="@drawable/lecture_subsection_course_item_bg">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/lecture_subsection_course_profile_iv"
+                android:id="@+id/Regist_lecture_subsection_course_profile_iv"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginLeft="15dp"
@@ -67,7 +67,7 @@
                         android:textSize="21sp" />
 
                     <TextView
-                        android:id="@+id/lecture_subsection_course_name_tv"
+                        android:id="@+id/Regist_lecture_subsection_course_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -94,7 +94,7 @@
                         android:textSize="21sp" />
 
                     <TextView
-                        android:id="@+id/lecture_subsection_instructor_name_tv"
+                        android:id="@+id/Regist_lecture_subsection_instructor_name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
@@ -122,7 +122,7 @@
                     android:background="@color/divideLineColor" />
 
                 <TextView
-                    android:id="@+id/lecture_subsection_course_exp_tv"
+                    android:id="@+id/Regist_lecture_subsection_course_exp_tv"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginLeft="15dp"
@@ -136,7 +136,7 @@
                     android:textSize="18sp" />
 
                 <LinearLayout
-                    android:id="@+id/lecture_subsection_popup_layout"
+                    android:id="@+id/Regist_lecture_subsection_popup_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">

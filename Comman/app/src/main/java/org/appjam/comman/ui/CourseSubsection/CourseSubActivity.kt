@@ -174,9 +174,9 @@ class CourseSubActivity : AppCompatActivity() {
 //                }
 
             }
-
             thumbID="BUM8Qe6fdRk"
             thumbURL="https://img.youtube.com/vi/"+thumbID+"/sddefault.jpg"
+
             Glide.with(applicationContext)
                     .load(thumbURL)
                     .placeholder(R.mipmap.ic_launcher)

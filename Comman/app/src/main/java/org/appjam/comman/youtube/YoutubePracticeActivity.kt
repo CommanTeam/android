@@ -303,7 +303,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         startActivity(intent)
                     }
                     //TODO video 시간 서버한테 받을 수 있으면 그걸로 text에 넣기
-                    itemView.etcLecVideo_time_tv.text = "${data.videoID}"
+                    itemView.etcLecVideo_time_tv.text = "${data.playTime}"
                 }
                 data.lectureType == 0 -> {
                     itemView.setOnClickListener {

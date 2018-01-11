@@ -121,15 +121,19 @@
                         android:background="@color/divideLineColor" />
 
                     <TextView
-                        android:id="@+id/lecture_subsection_course_popup_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
+                        android:id="@+id/lecture_subsection_course_exp_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="14dp"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="라이노 위주의 툴 수업과 김준회 류동일 신기용 그만 먹어 나도 배고파"
+                        android:textColor="@color/mainTextColor"
+                        android:textSize="18sp" />
 
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginTop="6dp"
-                        android:fontFamily="@font/nanum_square_bold"
-                        android:text="더 보기" />
 
                     <LinearLayout
                         android:id="@+id/lecture_subsection_popup_layout"
