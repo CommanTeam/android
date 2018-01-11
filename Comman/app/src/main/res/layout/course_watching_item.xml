@@ -31,6 +31,7 @@
         android:background="@drawable/main_lecture_watching_bg">
 
         <RelativeLayout
+            android:id="@+id/main_lecture_watching_back"
             android:layout_width="match_parent"
             android:layout_height="135dp"
             android:background="@drawable/main_lecture_image_bg">
