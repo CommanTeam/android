@@ -90,9 +90,11 @@
         <activity android:name=".ui.courseNonRegist.ChargePopupActivity"
             android:theme="@style/Theme.PopUp"/>
 
+        <service android:name=".ui.lecture.LectureVideoService" />
 
-        <service android:name=".ui.lecture.LectureVideoService"
-            />
+
+
+        <service android:name=".ui.lecture.LectureVideoService" />
 
         <!--등록 팝업 Activity -->
         <activity

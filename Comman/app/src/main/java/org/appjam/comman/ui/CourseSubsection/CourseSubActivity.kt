@@ -37,22 +37,48 @@ class CourseSubActivity : AppCompatActivity() {
         private val TAG = "CourseSubActivity"
     }
 
+    private var chapterList : RecyclerView?=null
+    private var chapterListData : ArrayList<ChapterListData>?=arrayListOf()
+    private var lectureSubAdapter : LectureSubAadapter? = null
+
+    data class ChapterListData(
+            val id: Int,
+            val number: String,
+            val content: String,
+            val totalNumber: String
+    )
+
     private var courseMetaData: CoursesData.CourseMetadata? = null
     private val disposables = CompositeDisposable()
     private var chaptersInfoList: List<PopupData.PopupContentInfo> = listOf()
     private var recentLectureInfo: LectureData.RecentLectureInfo? = null
     private var isPurchased: Int = 0
 
+<<<<<<< HEAD
+=======
     var thumbID : String?=null
     var thumbURL : String?=null
+>>>>>>> master
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
+<<<<<<< HEAD
+//
+//        chapterList = lecture_subsection_list_view
+//        chapterList!!.layoutManager = LinearLayoutManager(this)
+//
+//        chapterListData?.add(ChapterListData(1, "1장", "반지 모델링 하기", "총 16강"))
+//        chapterListData?.add(ChapterListData(2, "2장", "반지 모델링 하기", "총 16강"))
+//        chapterListData?.add(ChapterListData(1, "3장", "반지 모델링 하기", "총 16강"))
+//
+//        lectureSubAdapter = LectureSubAadapter()
+=======
         sub_back_btn.setOnClickListener{
             finish()
         }
+>>>>>>> master
 
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)

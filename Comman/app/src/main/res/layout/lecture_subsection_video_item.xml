@@ -131,9 +131,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/lecture_subsection_video_play_layout"
             android:layout_marginTop="42dp"
-            android:layout_marginBottom="8dp"
-            app:cardElevation="3dp">
-
+            app:cardElevation="@dimen/shadow">
             <Button
                 android:id="@+id/lecture_subsection_purchase_btn"
                 android:layout_width="93dp"

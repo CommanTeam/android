@@ -70,9 +70,13 @@ class SearchCategoryResultFragment : Fragment() {
 //            aQuery.id(itemView.course_result_img).image(coursesInfo[position].image_path)
             Glide.with(context)
                     .load(coursesInfo[position].image_path)
+<<<<<<< HEAD
+//                    .override(129,110)
+=======
                     .override(129,110)
                     .centerCrop()
                     .crossFade()
+>>>>>>> master
                     .into(itemView.course_result_img)
             itemView.course_title_tv.text = coursesInfo[position].title
             itemView.course_content_tv.text = coursesInfo[position].info

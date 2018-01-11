@@ -18,10 +18,16 @@ object ChapterData {
 
     data class LectureListInChapterData(val lectureID : Int,
                                         val lecturePriority: Int,
+                                        val chapterID : Int,
                                         val lectureTitle: String,
                                         val lectureType : Int,
+<<<<<<< HEAD
+                                        val videoID : Int,
+                                        val userID : String,
+=======
                                         val chapterID : Int,
                                         val playTime : Int,
+>>>>>>> master
                                         val watchedFlag: Int,
                                         val size: Int
     )
