@@ -131,17 +131,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/lecture_subsection_video_play_layout"
             android:layout_marginTop="42dp"
-<<<<<<< HEAD
             app:cardElevation="@dimen/shadow">
-            <Button
-                android:id="@+id/lecture_subsection_purchase_btn"
-                android:layout_width="93dp"
-                android:layout_height="23dp"
-
-=======
-            android:layout_marginBottom="8dp"
-            app:cardElevation="3dp">
-
             <Button
                 android:id="@+id/lecture_subsection_purchase_btn"
                 android:layout_width="93dp"
@@ -149,7 +139,6 @@
                 android:layout_alignBottom="@+id/lecture_subsection_chapterlist_title_tv"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
->>>>>>> master
                 android:background="@drawable/frag_quiz_submitbtn_bg"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="강좌 구매"
