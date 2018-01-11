@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_enroll_popup.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
-import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
+import org.appjam.comman.ui.main.MainActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 
@@ -43,11 +43,10 @@ class EnrollPopupActivity : AppCompatActivity() {
                     PrefUtils.getUserToken(this@EnrollPopupActivity), CoursesData.RegisterPost(courseID))
                     .setDefaultThreads()
                     .subscribe({ response ->
-                        if(response.message == "강좌 등록 성공") {
-                            val intent = Intent(this@EnrollPopupActivity, CourseSubActivity::class.java)
+                            val intent = Intent(this@EnrollPopupActivity, MainActivity::class.java)
                             intent.putExtra("courseID", courseID)
                             startActivity(intent)
-                        }
+
                     }, { failure ->
                         Log.i(TAG, "on Failure ${failure.message}")
                     }))

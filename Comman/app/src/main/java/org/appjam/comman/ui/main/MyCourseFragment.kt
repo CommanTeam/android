@@ -155,11 +155,12 @@ class MyCourseFragment : Fragment() {
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
                 }
 
-            } else {
-                itemView.main_lecture_wathing_layout.visibility = View.GONE
-                itemView.main_lecture_wathing_tv.visibility = View.GONE
-
             }
+//            else {
+//                itemView.main_lecture_wathing_layout.visibility = View.GONE
+//                itemView.main_lecture_wathing_tv.visibility = View.GONE
+
+      //      }
         }
     }
 
