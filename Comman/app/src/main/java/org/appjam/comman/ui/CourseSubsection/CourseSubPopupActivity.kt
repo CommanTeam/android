@@ -46,7 +46,7 @@ class CourseSubPopupActivity : AppCompatActivity(), AppBarLayout.OnOffsetChanged
 
         disposables.add(APIClient.apiService.getPopupTitleInfos(PrefUtils.getUserToken(this), intent.getIntExtra("courseID",0)).setDefaultThreads()
                 .subscribe({response ->
-                    val popupTitleInfo = response.result[0]
+                    val popupTitleInfo = response.result
                     lecturePopup_title_tv.text = popupTitleInfo.title
                     lecturePopup_name_tv.text = popupTitleInfo.name
                 },{failure ->
