@@ -19,16 +19,13 @@
         android:background="@color/primaryColor"
         >
 
-        <TextView
-            android:id="@+id/main_lecture_name_tv"
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="컴만"
-            android:textSize="21sp"
-            android:textColor="#ffffff"
-            android:fontFamily="@font/nanum_square_extra_bold"
-            />
+            android:src="@drawable/comman_logo"/>
     </RelativeLayout>
     </android.support.v7.widget.CardView>
 

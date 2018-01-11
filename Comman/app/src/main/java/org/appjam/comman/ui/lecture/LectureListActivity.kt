@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.chapter_explanation_item.view.*
@@ -77,15 +78,43 @@ class LectureListActivity : AppCompatActivity() {
         fun bind(data: ChapterData.LectureListInChapterData) {
             if (data.watchedFlag == 0) {
                 when {
-                    data.lectureType == 0 -> itemView.lecture_list_img.setImageResource(R.drawable.quiz_icon)
-                    data.lectureType == 1 -> itemView.lecture_list_img.setImageResource(R.drawable.picture_icon)
-                    else -> itemView.lecture_list_img.setImageResource(R.drawable.video_icon)
+//                    data.lectureType == 0 -> itemView.lecture_list_img.setImageResource(R.drawable.quiz_icon)
+                    data.lectureType == 0 ->
+                                            Glide.with(this@LectureListActivity)
+                                                    .load(R.drawable.quiz_icon)
+                                                    .into(itemView.lecture_list_img)
+
+//                    data.lectureType == 1 -> itemView.lecture_list_img.setImageResource(R.drawable.picture_icon)
+                    data.lectureType == 1 ->
+                                            Glide.with(this@LectureListActivity)
+                                                     .load(R.drawable.picture_icon)
+                                                     .into(itemView.lecture_list_img)
+
+//                    else -> itemView.lecture_list_img.setImageResource(R.drawable.video_icon)
+                    else ->
+                            Glide.with(this@LectureListActivity)
+                                    .load(R.drawable.video_icon)
+                                    .into(itemView.lecture_list_img)
                 }
             } else {
                 when {
-                    data.lectureType == 0 -> itemView.lecture_list_img.setImageResource(R.drawable.completed_quiz_icon)
-                    data.lectureType == 1 -> itemView.lecture_list_img.setImageResource(R.drawable.completed_pictures_icon)
-                    else -> itemView.lecture_list_img.setImageResource(R.drawable.completed_video_icon)
+//                    data.lectureType == 0 -> itemView.lecture_list_img.setImageResource(R.drawable.completed_quiz_icon)
+                    data.lectureType == 0 ->
+                                            Glide.with(this@LectureListActivity)
+                                                     .load(R.drawable.completed_quiz_icon)
+                                                     .into(itemView.lecture_list_img)
+
+//                    data.lectureType == 1 -> itemView.lecture_list_img.setImageResource(R.drawable.completed_pictures_icon)
+                    data.lectureType == 1 ->
+                                            Glide.with(this@LectureListActivity)
+                                                      .load(R.drawable.completed_pictures_icon)
+                                                      .into(itemView.lecture_list_img)
+
+//                    else -> itemView.lecture_list_img.setImageResource(R.drawable.completed_video_icon)
+                    else ->
+                            Glide.with(this@LectureListActivity)
+                                    .load(R.drawable.completed_video_icon)
+                                    .into(itemView.lecture_list_img)
                 }
             }
             when {
