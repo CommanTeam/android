@@ -2,7 +2,6 @@ package org.appjam.comman.custom
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.widget.ImageView
@@ -43,7 +42,6 @@ class CustomSeekBar : RelativeLayout {
                 thumb?.apply {
                     val nextLaoutParams = layoutParams as RelativeLayout.LayoutParams
                     val leftMargin = this@CustomSeekBar.width * value / max
-                    Log.i(TAG, " left margin : $leftMargin")
                     nextLaoutParams.leftMargin = (leftMargin - width / 2)
                     layoutParams = nextLaoutParams
                     this@CustomSeekBar.invalidate()

@@ -14,6 +14,7 @@ import org.appjam.comman.youtube.YoutubePracticeActivity
  */
 object ListUtils {
 
+    const val TYPE_TOP = 4
     const val TYPE_ELEM = 0
     const val TYPE_HEADER = 1
     const val TYPE_FOOTER = 2

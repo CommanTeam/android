@@ -5,14 +5,14 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/question_question_layout"
+        android:id="@+id/youtube_question_question_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/question_user_name_tv"
+            android:id="@+id/youtube_question_user_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="28dp"
@@ -23,11 +23,11 @@
             />
 
         <TextView
-            android:id="@+id/question_date_tv"
+            android:id="@+id/youtube_question_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2018.01.07"
-            android:layout_toRightOf="@id/question_user_name_tv"
+            android:layout_toRightOf="@id/youtube_question_user_name_tv"
             android:layout_marginLeft="7dp"
             android:layout_marginTop="0.5dp"
             android:fontFamily="@font/nanum_square_regular"
@@ -36,13 +36,13 @@
             />
 
         <TextView
-            android:id="@+id/question_content_tv"
+            android:id="@+id/youtube_question_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="28dp"
             android:layout_marginRight="28dp"
             android:layout_marginTop="12dp"
-            android:layout_below="@id/question_user_name_tv"
+            android:layout_below="@id/youtube_question_user_name_tv"
             android:text="제가 강의를 보다가 잘 안되는 부분이 있음ㅂㅈㄷㅂㅈㄷㅂㄷㅂㄷㅂㅈㄷㅂㄷㅂ"
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="17sp"
@@ -51,10 +51,10 @@
             />
 
         <TextView
-            android:id="@+id/question_answer_regist_tv"
+            android:id="@+id/youtube_question_answer_regist_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/question_content_tv"
+            android:layout_below="@id/youtube_question_content_tv"
             android:layout_marginLeft="28dp"
             android:text="답글 달기"
             android:fontFamily="@font/nanum_square_regular"
@@ -66,7 +66,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/question_answer_regist_tv"
+            android:layout_below="@id/youtube_question_answer_regist_tv"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:background="@color/divideLineColor"
@@ -76,14 +76,14 @@
 
 
     <RelativeLayout
-        android:id="@+id/question_answer_layout"
+        android:id="@+id/youtube_question_answer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/question_question_layout"
+        android:layout_below="@+id/youtube_question_question_layout"
         android:background="@color/backgroundColor">
 
         <ImageView
-            android:id="@+id/answer_arrow_img"
+            android:id="@+id/youtube_answer_arrow_img"
             android:layout_width="23dp"
             android:layout_height="17dp"
             android:layout_marginTop="16dp"
@@ -93,8 +93,8 @@
             />
 
         <TextView
-            android:id="@+id/answer_user_name_tv"
-            android:layout_toRightOf="@id/answer_arrow_img"
+            android:id="@+id/youtube_answer_user_name_tv"
+            android:layout_toRightOf="@id/youtube_answer_arrow_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -106,22 +106,22 @@
             />
 
         <TextView
-            android:id="@+id/answer_date_tv"
+            android:id="@+id/youtube_answer_date_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
-            android:layout_toRightOf="@id/answer_user_name_tv"
+            android:layout_toRightOf="@id/youtube_answer_user_name_tv"
             android:text="2018.01.18"
             android:fontFamily="@font/nanum_square_regular"
             android:textSize="17sp"
             />
 
         <TextView
-            android:id="@+id/answer_content_tv"
+            android:id="@+id/youtube_answer_content_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="이런걸 해보는건 어떤가요?dadasdadadadasdasdasasasdasdasdasdasdasda"
-            android:layout_below="@id/answer_user_name_tv"
+            android:layout_below="@id/youtube_answer_user_name_tv"
             android:layout_marginTop="12dp"
             android:layout_marginLeft="65dp"
             android:layout_marginRight="28dp"
@@ -133,7 +133,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/answer_content_tv"
+            android:layout_below="@id/youtube_answer_content_tv"
             android:layout_marginTop="18dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"

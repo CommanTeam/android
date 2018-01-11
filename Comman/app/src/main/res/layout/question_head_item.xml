@@ -41,23 +41,45 @@
         android:src="@drawable/question_popup_close_btn"
         />
 
-    <EditText
-        android:id="@+id/question_item_et"
-        android:layout_width="326dp"
-        android:layout_height="30dp"
-        android:layout_below="@id/question_item_cnt_tv"
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_below="@+id/question_item_cnt_tv"
+        android:layout_toLeftOf="@+id/question_item_regist_btn"
         android:layout_marginTop="12dp"
         android:layout_marginLeft="19dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/white"
+        />
+
+    <EditText
+        android:id="@+id/question_item_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/question_item_cnt_tv"
+        android:layout_toLeftOf="@+id/question_item_regist_btn"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="9dp"
+        android:hint="검색어를 입력해주세요."
+        android:fontFamily="@font/nanum_square_regular"
+        android:backgroundTint="@color/white"
+        android:textSize="17sp"
         />
 
     <Button
         android:id="@+id/question_item_regist_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/question_item_cnt_tv"
+        android:layout_height="35dp"
+        android:layout_below="@+id/question_item_cnt_tv"
+        android:background="@color/primaryColor"
         android:layout_alignParentRight="true"
+        android:layout_marginRight="19dp"
         android:layout_marginTop="12dp"
         android:text="등록"
+        android:fontFamily="@font/nanum_square_bold"
+        android:textColor="@color/white"
+        android:textSize="17sp"
         />
 
 </RelativeLayout>
