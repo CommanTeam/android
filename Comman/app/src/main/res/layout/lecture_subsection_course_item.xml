@@ -4,14 +4,14 @@
     android:id="@+id/lecture_subsection_course_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/backgroundColor">
+    android:background="@color/backgroundColor"
+    android:paddingLeft="19dp"
+    android:paddingRight="19dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="19dp"
-        android:layout_marginRight="19dp">
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/lecture_subsection_course_title_tv"
@@ -26,144 +26,143 @@
         <android.support.v7.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/lecture_subsection_course_title_tv"
             android:layout_marginTop="12dp"
-            app:cardElevation="@dimen/shadow">
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="177dp"
-            android:background="@drawable/lecture_subsection_course_item_bg">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/lecture_subsection_course_profile_iv"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="23dp"
-                android:src="@mipmap/ic_launcher" />
-
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="177dp"
+                android:background="@drawable/lecture_subsection_course_item_bg">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/lecture_subsection_course_profile_iv"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="23dp"
+                    android:src="@mipmap/ic_launcher" />
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="91dp"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_bold"
-                        android:text="강좌"
-                        android:textColor="@color/grayMainTextColor"
-                        android:textSize="21sp" />
+                        android:layout_marginLeft="91dp"
+                        android:layout_marginTop="20dp"
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/lecture_subsection_course_name_tv"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_bold"
+                            android:text="강좌"
+                            android:textColor="@color/grayMainTextColor"
+                            android:textSize="21sp" />
+
+                        <TextView
+                            android:id="@+id/lecture_subsection_course_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/nanum_square_bold"
+                            android:text="[Rhino] 반지 모델링하기"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="21sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/nanum_square_bold"
-                        android:text="[Rhino] 반지 모델링하기"
-                        android:textColor="@color/mainTextColor"
-                        android:textSize="21sp" />
+                        android:layout_below="@+id/lecture_subsection_course_name_tv"
+                        android:layout_marginLeft="91dp"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_square_bold"
+                            android:text="강사"
+                            android:textColor="@color/grayMainTextColor"
+                            android:textSize="21sp" />
+
+                        <TextView
+                            android:id="@+id/lecture_subsection_instructor_name_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="8dp"
+                            android:fontFamily="@font/nanum_square_bold"
+                            android:text="박명선"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="21sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/lecture_subsection_course_name_tv"
-                    android:layout_marginLeft="91dp"
-                    android:layout_marginTop="14dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_square_bold"
-                        android:text="강사"
-                        android:textColor="@color/grayMainTextColor"
-                        android:textSize="21sp" />
-
-                    <TextView
-                        android:id="@+id/lecture_subsection_instructor_name_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:fontFamily="@font/nanum_square_bold"
-                        android:text="박명선"
-                        android:textColor="@color/mainTextColor"
-                        android:textSize="21sp" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lecture_subsection_course_popup_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/lecture_subsection_bar_iv"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="98dp"
-                    android:background="@color/divideLineColor" />
-
-                <TextView
-                    android:id="@+id/lecture_subsection_course_exp_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="14dp"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="라이노 위주의 툴 수업과 김준회 류동일 신기용 그만 먹어 나도 배고파"
-                    android:textColor="@color/mainTextColor"
-                    android:textSize="15dp" />
-
-                <LinearLayout
-                    android:id="@+id/lecture_subsection_popup_layout"
+                    android:id="@+id/lecture_subsection_course_popup_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/lecture_subsection_bar2_iv"
+                        android:id="@+id/lecture_subsection_bar_iv"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_marginTop="9dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="98dp"
                         android:background="@color/divideLineColor" />
 
                     <TextView
-                        android:id="@+id/lecture_subsection_course_popup_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginTop="6dp"
-                        android:fontFamily="@font/nanum_square_bold"
-                        android:text="더 보기" />
+                        android:id="@+id/lecture_subsection_course_exp_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginTop="14dp"
+                        android:fontFamily="@font/nanum_square_regular"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="라이노 위주의 툴 수업과 김준회 류동일 신기용 그만 먹어 나도 배고파"
+                        android:textColor="@color/mainTextColor"
+                        android:textSize="18dp" />
+
+                    <LinearLayout
+                        android:id="@+id/lecture_subsection_popup_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/lecture_subsection_bar2_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/divideLineColor" />
+
+                        <TextView
+                            android:id="@+id/lecture_subsection_course_popup_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="9dp"
+                            android:fontFamily="@font/nanum_square_bold"
+                            android:text="더 보기" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
-
-        </RelativeLayout>
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
+
         <ImageView
             android:id="@+id/lecture_subsection_bar3_iv"
             android:layout_width="match_parent"
@@ -180,15 +179,16 @@
             android:layout_marginBottom="26dp"
             android:layout_marginTop="20dp"
             app:cardElevation="@dimen/shadow">
-        <Button
-            android:id="@+id/lecture_regist_btn"
-            android:layout_width="198dp"
-            android:layout_height="60dp"
-            android:background="@drawable/frag_quiz_submitbtn_bg"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="등록하기"
-            android:textColor="@color/white"
-            android:textSize="23sp" />
+
+            <Button
+                android:id="@+id/lecture_regist_btn"
+                android:layout_width="198dp"
+                android:layout_height="60dp"
+                android:background="@drawable/frag_quiz_submitbtn_bg"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="등록하기"
+                android:textColor="@color/white"
+                android:textSize="23sp" />
         </android.support.v7.widget.CardView>
     </RelativeLayout>
 </RelativeLayout>
