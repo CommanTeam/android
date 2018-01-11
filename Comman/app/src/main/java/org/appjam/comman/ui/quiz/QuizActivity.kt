@@ -43,7 +43,7 @@ class QuizActivity : AppCompatActivity() {
         quiz_view_pager.adapter = QuizPagerAdapter(supportFragmentManager)
 
 //        courseID = intent.getIntExtra("courseID",0)       //TODO lectureID 테스트를 위해 10으로 고정해놨음. 나중에 해결바람
-//        lectureID = intent.getIntExtra("lectureID", 0)
+        lectureID = intent.getIntExtra("lectureID", 0)
         courseID = 1
 
         PrefUtils.putCurrentLectureID(this, lectureID)
@@ -88,7 +88,9 @@ class QuizActivity : AppCompatActivity() {
                 .setDefaultThreads()
                 .subscribe({ response ->
                     quizInfoList = response
+                    Log.i(TAG, "Response : ${response}")
                     pageCount = response.result.size + 1
+                    Log.i(TAG, "question size: $pageCount")
                     quiz_view_pager.adapter = QuizPagerAdapter(supportFragmentManager)
                     if(lectureID == PrefUtils.getRecentLectureOfCourseID(this, courseID)) { //최근 강좌의 강의면 처리해줘야 할 것
                         if(pageCount - 1 == PrefUtils.getRecentLectureOfCoursePosition(this, courseID))
