@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.category_information_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_search_category.view.*
@@ -105,6 +106,7 @@ class SearchCategoryFragment : Fragment() {
                 val bundle = Bundle()
                 bundle.putInt("categoryID", categoryInfoList[position].categoryID)
                 (parentFragment as SearchFragment).ReplaceFragment(SearchCategoryResultFragment(), bundle, "searchResult")
+
             }
         }
     }
