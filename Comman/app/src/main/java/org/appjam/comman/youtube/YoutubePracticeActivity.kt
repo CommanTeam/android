@@ -18,10 +18,12 @@ import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.first_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.second_lecvideo_list_items.view.*
 import org.appjam.comman.R
+import org.appjam.comman.R.id.lectureVideo_content_tv
 import org.appjam.comman.custom.CustomSeekBar
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.ChapterData
 import org.appjam.comman.network.data.NextLectureData
+import org.appjam.comman.network.data.QuestionData
 import org.appjam.comman.network.data.VideoData
 import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.ui.quiz.QuizActivity
@@ -51,6 +53,9 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private val timer = Timer()
     private var timeOfPref : Int = 0
     private lateinit var timerTask : TimerTask
+
+    private var questionInfoList: List<QuestionData.QuestionInfo> = listOf()
+    private var lecOrques : Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,6 +109,15 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 .setDefaultThreads()
                 .subscribe({ response ->
                     nextLectureResponse = response
+                }, { failure ->
+                    Log.i(QuizActivity.TAG, "on Failure ${failure.message}")
+                }))
+
+        disposables.add(APIClient.apiService.getQuestionOfLecture(
+                PrefUtils.getUserToken(this@YoutubePracticeActivity), lectureID)
+                .setDefaultThreads()
+                .subscribe({ response ->
+                    questionInfoList = response.result
                 }, { failure ->
                     Log.i(QuizActivity.TAG, "on Failure ${failure.message}")
                 }))
@@ -238,12 +252,15 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         }
 
 
-        override fun getItemCount(): Int = lectureList.size + 2
+        override fun getItemCount(): Int {
+            return if(lecOrques == 0) (lectureList.size + 3) else ()
+        } = lectureList.size +
 
         override fun getItemViewType(position: Int): Int
                 = when (position) {
-            0 -> ListUtils.TYPE_HEADER // 가장 첫번째
-            1 -> ListUtils.TYPE_SECOND_HEADER // 두번째
+            0 -> ListUtils.TYPE_TOP
+            1 -> ListUtils.TYPE_HEADER // 가장 첫번째
+            2 -> ListUtils.TYPE_SECOND_HEADER // 두번째
             (itemCount - 1) -> ListUtils.TYPE_FOOTER    //마지막, 마진을 주기 위해
             else -> ListUtils.TYPE_ELEM // 여러개 사용할 때
         }
