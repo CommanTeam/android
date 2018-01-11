@@ -51,6 +51,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_below="@+id/card_top_layout">
+
+    <Button
+        android:id="@+id/card_question_btn"
+        android:layout_width="79dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginLeft="19dp"
+        android:background="@drawable/frag_quiz_submitbtn_bg"
+        android:text="질문하기"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        />
+
     <TextView
         android:id="@+id/card_count_tv"
         android:layout_width="82dp"

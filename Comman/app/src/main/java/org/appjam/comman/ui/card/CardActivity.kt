@@ -1,6 +1,7 @@
 package org.appjam.comman.ui.card
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -8,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_card.*
@@ -33,6 +35,7 @@ class CardActivity : AppCompatActivity() {
     private var cardInfolist : List<CardData.CardInfo> = listOf()
     private var lectureID: Int = 0
     private var pageCount: Int = 0
+    private var lectureTitle: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +48,13 @@ class CardActivity : AppCompatActivity() {
         card_back_btn.setOnClickListener{
               finish()
         }
-        val lectureTitle = intent.getStringExtra("card_lecture_name_tv")
-        card_lecture_name_tv!!.text=lectureTitle
+        lectureTitle = intent.getStringExtra("card_lecture_name_tv")
+        card_lecture_name_tv!!.text = lectureTitle
 
         val courseID = intent.getIntExtra("courseID",0)
         lectureID = intent.getIntExtra("lectureID", 0)
         var current_page : Int = 1
+        lectureID = 38
 
         PrefUtils.putCurrentLectureID(this, lectureID)
         PrefUtils.putLectureOfCourseID(this, lectureID, courseID)
@@ -69,17 +73,19 @@ class CardActivity : AppCompatActivity() {
                     card_view_pager.adapter.count - 1 -> {
                         card_next_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.grayMainTextColor))
                         card_next_btn.setBackgroundResource(R.drawable.unclickable_view_pager_next_btn)
+                        card_question_btn.visibility = View.VISIBLE
                     }
                     0 -> {
-                        Toast.makeText(applicationContext, position.toString(), Toast.LENGTH_SHORT).show()
                         card_prev_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.grayMainTextColor))
                         card_prev_btn.setBackgroundResource(R.drawable.unclickable_view_pager_prev_btn)
+                        card_question_btn.visibility = View.GONE
                     }
                     else -> {
                         card_prev_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.mainTextColor))
                         card_next_tv.setTextColor(SetColorUtils.get(this@CardActivity, R.color.mainTextColor))
                         card_prev_btn.setBackgroundResource(R.drawable.view_pager_prev_btn)
                         card_next_btn.setBackgroundResource(R.drawable.view_pager_next_btn)
+                        card_question_btn.visibility = View.GONE
                     }
                 }
                 card_count_tv.text = "${position + 1} / $pageCount"
@@ -92,6 +98,12 @@ class CardActivity : AppCompatActivity() {
         card_next_layout.setOnClickListener {
             card_view_pager.currentItem = card_view_pager.currentItem + 1
         }
+        card_question_btn.setOnClickListener {
+            val intent = Intent(this@CardActivity, QuestionActivity::class.java)
+            intent.putExtra("lectureID", lectureID)
+            intent.putExtra("lectureTitle", "실험성공")
+            startActivity(intent)
+        }
 
         disposables.add(APIClient.apiService.getLectureCards(
                 PrefUtils.getUserToken(this), lectureID)
@@ -101,8 +113,9 @@ class CardActivity : AppCompatActivity() {
                         pageCount = cardInfolist.size + 1
                         card_count_tv.text = "$current_page / $pageCount"
                         card_view_pager.adapter = CardPagerAdapter(supportFragmentManager)
-                        if(lectureID == PrefUtils.getRecentLectureOfCourseID(this, courseID)) { //이 코드가 disposable 안에 들어갈지는 고민
+                        if(lectureID == PrefUtils.getRecentLectureOfCourseID(this, courseID)) {
                             card_view_pager.currentItem = PrefUtils.getRecentLectureOfCoursePosition(this, courseID)
+                            if(card_view_pager.currentItem == )
                             current_page = card_view_pager.currentItem + 1
                         }
                 }, { failure ->
