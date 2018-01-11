@@ -8,12 +8,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Base64
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import com.androidquery.AQuery
 import com.kakao.auth.ISessionCallback
@@ -55,18 +55,14 @@ class LoginActivity : AppCompatActivity() {
             return netInfo != null && netInfo.isConnectedOrConnecting
         }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         aQuery = AQuery(this)
 
-        login_kakaoLogin_btn.visibility = View.GONE
-
-        val handler = Handler()
-        handler.postDelayed({
-            login_kakaoLogin_btn.visibility = View.VISIBLE
-        }, 2000)
-
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         //AUTHORIZATION_FAILED: invalid android_key_hash or ios_bundle_id or web_site_url 해결하기 위해 코드 추가
         try {
@@ -94,12 +90,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            if(isConnected) {
-                false
-            }
-            else{
-                true
-            }
+            !isConnected
         }
 
         if(Session.getCurrentSession().isOpened){

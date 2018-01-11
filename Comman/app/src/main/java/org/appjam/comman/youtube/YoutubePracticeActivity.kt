@@ -98,6 +98,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         video_lecture_name2_tv?.text = "${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
                     }
 //                    videoId = videoLectureInfo[0].video_id
+                    video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                     practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                     land_practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                 }, { failure ->
@@ -109,9 +110,14 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 .setDefaultThreads()
                 .subscribe({ response ->
                     lectureList = response.result
+                    Toast.makeText(this, lectureList.size.toString(), Toast.LENGTH_SHORT).show()
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                 }, { failure ->
+
+                    Log.i(TAG, "망망 on Failure ${failure.message}")
+
                     Log.i(TAG, "on Failure ${failure.message}")
+
                 }))
 
         disposables.add(APIClient.apiService.getNextLectureInfo(        //다음 강의 정보 얻어오기
@@ -121,6 +127,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     nextLectureResponse = response
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
+
                 }))
 
         disposables.add(APIClient.apiService.getQuestionOfLecture(
@@ -131,6 +138,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
+
                 }))
 
 

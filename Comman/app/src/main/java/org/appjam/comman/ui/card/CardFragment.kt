@@ -5,8 +5,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.androidquery.AQuery
+import com.bumptech.glide.Glide
+import kotlinx.android.synthetic.main.fragment_card_first.*
 import org.appjam.comman.R
 
 /**
@@ -20,9 +21,14 @@ class CardFragment : Fragment(){
         val v = inflater!!.inflate(R.layout.fragment_card_first, container, false)
 
         if(arguments != null) {
-            aQuery = AQuery(context)
+//            aQuery = AQuery(context)
             val img_url = arguments.getString("image_url")
-            aQuery!!.id(v.findViewById<ImageView>(R.id.frag_card_img)).image(img_url)
+//            aQuery!!.id(v.findViewById<ImageView>(R.id.frag_card_img)).image(img_url)
+
+            Glide.with(context)
+                    .load(img_url)
+                    .centerCrop()
+                    .into(frag_card_img)
         }
         return v
     }
