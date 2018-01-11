@@ -126,16 +126,16 @@
             android:layout_below="@+id/lecture_subsection_video_play_layout"
             android:layout_marginTop="42dp"
             app:cardElevation="@dimen/shadow">
-        <Button
-            android:id="@+id/lecture_subsection_purchase_btn"
-            android:layout_width="93dp"
-            android:layout_height="23dp"
+            <Button
+                android:id="@+id/lecture_subsection_purchase_btn"
+                android:layout_width="93dp"
+                android:layout_height="23dp"
 
-            android:background="@drawable/frag_quiz_submitbtn_bg"
-            android:fontFamily="@font/nanum_square_bold"
-            android:text="강좌 구매"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+                android:background="@drawable/frag_quiz_submitbtn_bg"
+                android:fontFamily="@font/nanum_square_bold"
+                android:text="강좌 구매"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
         </android.support.v7.widget.CardView>
     </RelativeLayout>
 

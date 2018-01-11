@@ -16,6 +16,7 @@ import android.util.Base64
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.WindowManager
 import android.widget.Toast
 import com.androidquery.AQuery
 import com.bumptech.glide.Glide
@@ -49,6 +50,7 @@ class LoginActivity : AppCompatActivity() {
     }
     private var callback: SessionCallback? = null
     private val disposables = CompositeDisposable()
+    // val images = ArrayList<Int>
 
     //카카오톡 프로필 사진은 이미지 url 형태로 제공하는데 해당 라이브러리를 사용하면 url 을 ImageView id만 매핑시켜 주면 한줄의 코드로 매우 편리하게 적용가능합니다.
     var aQuery : AQuery? = null
@@ -64,21 +66,25 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+
+        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN)
         aQuery = AQuery(this)
 
-        login_kakaoLogin_btn.visibility = View.GONE
-
-        var splash_gif = GlideDrawableImageViewTarget(splash_gif)
+        var splash_gif = GlideDrawableImageViewTarget(login_splash_gif)
         Glide.with(this)
-                .load(R.raw.splash)
+                .load(R.drawable.nw_splash)
+                .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .crossFade()
                 .into(splash_gif)
-
         val handler = Handler()
         handler.postDelayed({
             login_kakaoLogin_btn.visibility = View.VISIBLE
-        }, 2000)
+            login_splash_gif.visibility = View.INVISIBLE
+            login_splash_img.visibility = View.VISIBLE
+        }, 4500)
+
 
 
         //AUTHORIZATION_FAILED: invalid android_key_hash or ios_bundle_id or web_site_url 해결하기 위해 코드 추가
@@ -172,7 +178,7 @@ class LoginActivity : AppCompatActivity() {
                                 PrefUtils.putUserToken(this@LoginActivity, response.result.token)
                                 PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
 
-                                val intent = Intent(this@LoginActivity, YoutubePracticeActivity::class.java)
+                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)

@@ -6,14 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".ui.user.LoginActivity"
     android:background="@color/primaryColor"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingRight="50dp"
+    android:paddingLeft="40dp">
 
-
+    <!--<pl.droidsonroids.gif.GifTextView-->
+        <!--android:id="@+id/login_splash_gif"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="640dp"-->
+        <!--android:background="@drawable/nw_splash" />-->
     <ImageView
-        android:layout_centerInParent="true"
-        android:id="@+id/splash_gif"
-        android:layout_width="330dp"
-        android:layout_height="640dp" />
+        android:id="@+id/login_splash_gif"
+        android:layout_width="match_parent"
+        android:layout_height="630dp"/>
+    <ImageView
+        android:id="@+id/login_splash_img"
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:background="@drawable/splash_stop"
+        android:visibility="invisible" />
 
 
     <com.kakao.usermgmt.LoginButton
@@ -22,9 +33,10 @@
         android:layout_height="70dp"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:layout_alignBottom="@+id/splash_gif"
-        android:layout_marginTop="524dp"
-        android:layout_marginBottom="48dp"></com.kakao.usermgmt.LoginButton>
+        android:layout_alignBottom="@+id/login_splash_gif"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:visibility="invisible"/>
 
 
 </RelativeLayout>
