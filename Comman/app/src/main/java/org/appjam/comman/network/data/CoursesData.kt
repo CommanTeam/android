@@ -14,7 +14,7 @@ object CoursesData {
             val chapterCnt: Int,
             val progressPercentage: Int)
 
-    data class CourseMetaResponse(val result: List<CourseMetadata>)
+    data class CourseMetaResponse(val result: CourseMetadata)
 
     data class CourseMetadata(val id: Int,
                               val supplier_id: Int,
