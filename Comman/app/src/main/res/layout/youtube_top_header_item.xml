@@ -42,8 +42,12 @@
                 android:text="강의 목록"
                 />
             <View
+                android:id="@+id/lecture_click_line"
                 android:layout_width="match_parent"
-                android:layout_height=""
+                android:layout_height="5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/secondaryColor"
+                />
 
         </RelativeLayout>
 
@@ -58,7 +62,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="강의 목록"
+                android:text="질문하기"
+                />
+            <View
+                android:id="@+id/question_click_line"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
                 />
 
         </RelativeLayout>
