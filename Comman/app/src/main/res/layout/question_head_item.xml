@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/backgroundColor"
+    >
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="12dp"
+        android:text="질문"
+        android:textSize="18sp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+
+    <TextView
+        android:id="@+id/question_item_cnt_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/question"
+        android:text="0개"
+        android:textSize="18sp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_regular"
+        />
+
+    <ImageView
+        android:id="@+id/question_item_finish_img"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="19dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/question_popup_close_btn"
+        />
+
+    <EditText
+        android:id="@+id/question_item_et"
+        android:layout_width="326dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/question_item_cnt_tv"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="19dp"
+        />
+
+    <Button
+        android:id="@+id/question_item_regist_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/question_item_cnt_tv"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp"
+        android:text="등록"
+        />
+
+</RelativeLayout>
