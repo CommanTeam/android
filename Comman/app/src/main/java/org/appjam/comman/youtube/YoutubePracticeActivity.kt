@@ -16,7 +16,6 @@ import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_card.*
 import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
@@ -116,8 +115,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     Toast.makeText(this, lectureList.size.toString(), Toast.LENGTH_SHORT).show()
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                 }, { failure ->
-
-                    Log.i(TAG, "망망 on Failure ${failure.message}")
 
                     Log.i(TAG, "on Failure ${failure.message}")
 

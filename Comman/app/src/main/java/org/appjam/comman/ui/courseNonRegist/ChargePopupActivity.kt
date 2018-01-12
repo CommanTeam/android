@@ -40,8 +40,8 @@ class ChargePopupActivity : AppCompatActivity() {
 
         //닫기 버튼 클릭시 팝업 종료
         charge_close_btn.setOnClickListener{
+            Log.i(TAG, "charge_close_btn : on click")
             finish()
-
         }
         charge_ok_btn.setOnClickListener {
 
