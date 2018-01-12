@@ -71,7 +71,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         video_back_btn.setOnClickListener{
             finish()
         }
-
         
 //        lectureID = intent.getIntExtra("lectureID", 0)
 //        courseID = intent.getIntExtra("courseID", 0)
@@ -307,6 +306,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 if (lecOrques == 1) {
                     lecOrques = 0
                     video_lecture_list_rv?.adapter = LectureVideoAdapter()
+                    video_top2_layout?.visibility=View.VISIBLE
                 }
             }
             itemView.question_btn_layout.setOnClickListener {
@@ -316,7 +316,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     video_top2_layout?.visibility=View.GONE
                 }
             }
-            
+
+
         }
     }
 
