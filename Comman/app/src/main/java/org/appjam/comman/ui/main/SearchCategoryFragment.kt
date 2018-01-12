@@ -39,7 +39,7 @@ class SearchCategoryFragment : Fragment() {
         val recyclerView = view.main_searchCategory_rv
         recyclerView.adapter = CategoryAdapter()
         recyclerView.layoutManager = GridLayoutManager(context,2)
-        recyclerView.addItemDecoration(SpaceItemDecoration(context,7))
+        recyclerView.addItemDecoration(SpaceItemDecoration(context,2))
         (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                         override fun getSpanSize(position: Int): Int
                                 = if ((recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_HEADER) or
@@ -97,12 +97,11 @@ class SearchCategoryFragment : Fragment() {
 
             itemView.categoryTitle_tv.text = categoryInfoList[position].categoryName
             var categoryContent = ""
-            for (title in categoryInfoList[position].title) {
-                categoryContent += (title + ", ")
-                if(categoryInfoList[position].title == null){
-                    categoryContent += ("asdasd")
-                }
+            val titles = categoryInfoList[position].title
+            for (index in 0 until titles.size - 1) {
+                categoryContent += "${titles[index]},"
             }
+
             itemView.categoryContent_tv.text = categoryContent
 
             itemView.setOnClickListener {
