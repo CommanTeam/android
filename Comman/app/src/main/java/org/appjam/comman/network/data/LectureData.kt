@@ -44,6 +44,16 @@ object LectureData {
     data class FinishLecture(
             val message : String
     )
+
+    data class LecturePreviewResponse (
+            val result : LecturePreviewInfo
+    )
+
+    data class LecturePreviewInfo (
+            val video_id : String,
+            val lecture_title : String,
+            val lecture_priority : Int
+    )
 }
 
 

@@ -140,7 +140,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     }
                     videoId = videoLectureInfo!!.video_id
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
-                    practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
+                    preview_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                     land_practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
@@ -194,17 +194,17 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         youtube_small_view_btn?.setOnClickListener {
             timer.cancel()
             this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-            practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
+            preview_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         }
 
-        practice_lectureVideo_youtube_playerView?.setOnClickListener {
+        preview_lectureVideo_youtube_playerView?.setOnClickListener {
             val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.windowToken, 0)
             video_top_layout?.visibility = View.VISIBLE
             video_top2_layout?.visibility=View.VISIBLE
         }
 
-        youtube_bottom_bar_layout?.setOnClickListener {
+        preview_youtube_bottom_bar_layout?.setOnClickListener {
             val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.windowToken, 0)
             video_top_layout?.visibility = View.VISIBLE
@@ -245,10 +245,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     runOnUiThread {
                         val current_time = YoutubeTimeUtils.formatTime(mPlayer!!.currentTimeMillis)
                         val duration_time = YoutubeTimeUtils.formatTime(mPlayer!!.durationMillis)
-                        youtube_current_time_tv.text = "$current_time / $duration_time"
-                        youtube_progress_bar.progress = mPlayer!!.currentTimeMillis
+                        preview_youtube_current_time_tv.text = "$current_time / $duration_time"
+                        preview_youtube_progress_bar.progress = mPlayer!!.currentTimeMillis
                         PrefUtils.putYoutubeCurrentTimeInCourse(this@YoutubePracticeActivity, mPlayer!!.currentTimeMillis, courseID)
-                        youtube_progress_bar.setSeekBarListener(object : CustomSeekBar.CustomSeekBarListener {
+                        preview_youtube_progress_bar.setSeekBarListener(object : CustomSeekBar.CustomSeekBarListener {
                             override fun onThumbDragged(progress: Int) {
                                 mPlayer!!.seekToMillis(progress)
                             }
@@ -283,7 +283,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
         this.mPlayer = player
         player!!.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS)
-        youtube_playing_btn.setOnClickListener {
+        preview_youtube_playing_btn.setOnClickListener {
             this.mPlayer?.play()
         }
         youtube_pause_btn.setOnClickListener {
@@ -295,8 +295,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             override fun onLoading() {}
 
             override fun onVideoStarted() {
-                youtube_progress_bar.max = this@YoutubePracticeActivity.mPlayer!!.durationMillis
-                youtube_progress_bar.progress = this@YoutubePracticeActivity.mPlayer!!.currentTimeMillis
+                preview_youtube_progress_bar.max = this@YoutubePracticeActivity.mPlayer!!.durationMillis
+                preview_youtube_progress_bar.progress = this@YoutubePracticeActivity.mPlayer!!.currentTimeMillis
 
             }
 

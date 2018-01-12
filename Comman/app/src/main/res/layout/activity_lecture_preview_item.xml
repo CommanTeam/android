@@ -5,13 +5,106 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgroundColor">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/divideLineColor"
+        />
+
+    <TextView
+        android:id="@+id/lecture_preview_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="19dp"
+        android:text="강의 미리보기"
+        android:textSize="21sp"
+        android:textColor="@color/mainTextColor"
+        android:fontFamily="@font/nanum_square_bold"
+        />
+
     
+    <RelativeLayout
+        android:id="@+id/preview_youtube_player_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lecture_preview_tv"
+        android:layout_marginTop="14dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        >
+
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:id="@+id/preview_lectureVideo_youtube_playerView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+        </com.google.android.youtube.player.YouTubePlayerView>
+
+        <RelativeLayout
+            android:id="@+id/preview_youtube_bottom_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/preview_lectureVideo_youtube_playerView"
+            android:background="#525252">
+
+            <org.appjam.comman.custom.CustomSeekBar
+                android:id="@+id/preview_youtube_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:layout_marginTop="2dp" />
+
+            <Button
+                android:id="@+id/preview_youtube_playing_btn"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:minHeight="34dp"
+                android:layout_below="@id/preview_youtube_progress_bar"
+                android:layout_marginBottom="13dp"
+                android:layout_marginLeft="19dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/video_new_play_btn" />
+
+
+            <TextView
+                android:id="@+id/preview_youtube_current_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/preview_youtube_progress_bar"
+                android:layout_marginRight="19dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:text="00 : 00 / 00 : 00"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/youtube_lecture_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/preview_youtube_bottom_bar_layout"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:text="01. 필렛 넣기"
+            android:textSize="19sp"
+            android:textColor="@color/mainTextColor"
+            android:fontFamily="@font/nanum_square_bold"
+            />
+
+
+    </RelativeLayout>
 
 
     <ImageView
         android:id="@+id/lecture_regist_bar_iv"
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_below="@id/preview_youtube_player_layout"
         android:layout_marginTop="1dp"
         android:layout_marginLeft="19dp"
         android:layout_marginRight="19dp"
@@ -22,6 +115,7 @@
         android:id="@+id/lecture_subsection_preview_chapterlist_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/lecture_regist_bar_iv"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="19dp"
@@ -33,6 +127,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/lecture_regist_bar_iv"
         android:layout_alignParentRight="true"
         android:layout_marginRight="19dp"
         android:layout_marginTop="42dp"
