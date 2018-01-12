@@ -60,7 +60,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private val timer = Timer()
     private var timeOfPref: Int = 0
     private lateinit var timerTask: TimerTask
-    var click : Int=0
     val adapter : Adapter? = null
 
     private var questionInfoList: MutableList<QuestionData.QuestionInfo> = mutableListOf()
@@ -107,7 +106,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
                 }))
-        this.
+
         disposables.add(APIClient.apiService.getLectureListInChapter(       //챕터의 강의리스트 정보
                 PrefUtils.getUserToken(this), chapterID)
                 .setDefaultThreads()
@@ -382,9 +381,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     startActivity(intent)
                 }
             }
-            itemView.youtube_question_item_et.setOnClickListener{
-                click=1
-            }
+
 
         }
     }
