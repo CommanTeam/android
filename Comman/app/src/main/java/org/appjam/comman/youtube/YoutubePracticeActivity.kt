@@ -36,6 +36,7 @@ import org.appjam.comman.network.data.NextLectureData
 import org.appjam.comman.network.data.QuestionData
 import org.appjam.comman.network.data.VideoData
 import org.appjam.comman.ui.card.CardActivity
+import org.appjam.comman.ui.lecture.LectureListActivity
 import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
@@ -77,6 +78,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
         video_back_btn?.setOnClickListener {
             timer.cancel()
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", chapterID)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
             finish()
         }
 
@@ -515,6 +520,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         val intent = Intent(this@YoutubePracticeActivity, QuizActivity::class.java)
                         intent.putExtra("courseID", courseID)
                         intent.putExtra("lectureID", data.lectureID)
+                        intent.putExtra("lectureID", chapterID)
                         startActivity(intent)
                     }
                     itemView.etcLecVideo_time_tv.text = "${data.lectureCnt} 페이지"
@@ -524,6 +530,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         val intent = Intent(this@YoutubePracticeActivity, CardActivity::class.java)
                         intent.putExtra("courseID", courseID)
                         intent.putExtra("lectureID", data.lectureID)
+                        intent.putExtra("lectureID", chapterID)
                         startActivity(intent)
                     }
                     itemView.etcLecVideo_time_tv.text = "${data.lectureCnt} 문제"

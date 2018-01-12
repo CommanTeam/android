@@ -108,6 +108,8 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         setContentView(R.layout.activity_lecture_subsection)
 
         sub_back_btn.setOnClickListener {
+            timer.cancel()
+            mPlayer?.release()
             finish()
         }
 
@@ -172,6 +174,7 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     }
 
     override fun onBackPressed() {
+        timer.cancel()
         mPlayer?.release()
         super.onBackPressed()
     }
@@ -193,13 +196,13 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             itemView.regist_lecture_subsection_instructor_name_tv.text = courseMetaData?.name
             itemView.regist_lecture_subsection_course_exp_tv.text = courseMetaData?.info
             itemView.regist_lecture_subsection_popup_layout.setOnClickListener {
-                mPlayer?.release()
+                timer.cancel()
                 val intent = Intent(this@CourseNonRegistActivity, CourseSubPopupActivity::class.java)
                 intent.putExtra("courseID", courseMetaData?.id)
                 startActivity(intent)
             }
             itemView.regist_lecture_regist_btn.setOnClickListener {
-                mPlayer?.release()
+                timer.cancel()
                 val intent = Intent(this@CourseNonRegistActivity, EnrollPopupActivity::class.java)
                 intent.putExtra("courseID", courseMetaData?.id)
                 startActivity(intent)
@@ -218,7 +221,7 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             itemView.preview_lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this@CourseNonRegistActivity)
 
             itemView.lecture_subsection_preview_purchase_btn.setOnClickListener {
-                mPlayer?.release()
+                timer.cancel()
                 val intent = Intent(this@CourseNonRegistActivity, ChargePopupActivity::class.java)
                 intent.putExtra("courseID", courseMetaData?.id)
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
