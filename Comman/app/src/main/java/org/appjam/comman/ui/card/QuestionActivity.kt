@@ -28,7 +28,7 @@ class QuestionActivity : AppCompatActivity() {
     private val disposables = CompositeDisposable()
     private var questionInfoList: MutableList<QuestionData.QuestionInfo> = mutableListOf()
     private var lectureID: Int = 0
-    private var lectureTitle : String = ""
+    private var lectureTitle: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,7 +88,7 @@ class QuestionActivity : AppCompatActivity() {
         override fun getItemCount(): Int = questionInfoList.size + 2
 
         override fun getItemViewType(position: Int): Int {
-            return if (position == itemCount - 1 ) ListUtils.TYPE_FOOTER
+            return if (position == itemCount - 1) ListUtils.TYPE_FOOTER
             else if (position == 0) ListUtils.TYPE_HEADER
             else ListUtils.TYPE_ELEM
         }
@@ -113,7 +113,7 @@ class QuestionActivity : AppCompatActivity() {
                                 questionInfoList.add(0, QuestionData.QuestionInfo(1, PrefUtils.getString(this@QuestionActivity, PrefUtils.NICKNAME)
                                         , 1, response.result.question_text, response.result.question_date, response.result.flag
                                         , 0, 1, "", "", ""))
-                                parent.question_qna_rv.adapter.notifyDataSetChanged()
+                                question_qna_rv.adapter.notifyDataSetChanged()
                             }, { failure ->
                                 Log.i(TAG, "on Failure ${failure.message}")
                             }))
@@ -123,12 +123,11 @@ class QuestionActivity : AppCompatActivity() {
     }
 
     inner class ElemViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        fun bind(data : QuestionData.QuestionInfo) {
-            Toast.makeText(this@QuestionActivity, "여기까지~", Toast.LENGTH_SHORT).show()
+        fun bind(data: QuestionData.QuestionInfo) {
             itemView.question_user_name_tv.text = data.l_question_user_nickname
             itemView.question_date_tv.text = data.l_question_date
             itemView.question_content_tv.text = data.question_text
-            if(data.l_question_flag == 0) {
+            if (data.l_question_flag == 0) {
                 itemView.question_answer_layout.visibility = View.GONE
             } else {
                 itemView.question_answer_layout.visibility = View.VISIBLE

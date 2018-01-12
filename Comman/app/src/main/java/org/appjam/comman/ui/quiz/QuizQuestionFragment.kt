@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -96,10 +97,10 @@ class QuizQuestionFragment : Fragment() {
 
         override fun getItemViewType(position: Int): Int
                 = when (position) {
-                    0 -> ListUtils.TYPE_HEADER
-                    itemCount - 1 -> ListUtils.TYPE_FOOTER
-                    else -> ListUtils.TYPE_ELEM
-                }
+            0 -> ListUtils.TYPE_HEADER
+            itemCount - 1 -> ListUtils.TYPE_FOOTER
+            else -> ListUtils.TYPE_ELEM
+        }
     }
 
 
@@ -112,9 +113,9 @@ class QuizQuestionFragment : Fragment() {
                     quizInfoList[pagePosition].questionArr[position].questionContent
 
             if(selectedList[position]) {
-                    itemView.quiz_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.primaryColor))
-                    itemView.quiz_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.white))
-                    itemView.quiz_choice_content_tv.setTextColor(SetColorUtils.get(context, R.color.white))
+                itemView.quiz_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.primaryColor))
+                itemView.quiz_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.white))
+                itemView.quiz_choice_content_tv.setTextColor(SetColorUtils.get(context, R.color.white))
             } else {
                 itemView.quiz_choice_layout.setBackgroundColor(SetColorUtils.get(context, R.color.white))
                 itemView.quiz_choice_number_tv.setTextColor(SetColorUtils.get(context, R.color.mainTextColor))
@@ -154,6 +155,7 @@ class QuizQuestionFragment : Fragment() {
             }
             itemView.quiz_count_btn.text = "${pagePosition + 1} / $pageCount"
             itemView.quiz_question_tv.text = quizInfoList[pagePosition].quizTitle
+            Log.i(TAG, "quizTitle : ${quizInfoList[pagePosition].quizTitle}")
             if(quizInfoList[pagePosition].quizImage == "") {
                 itemView.quiz_question_img.visibility = View.GONE
             } else {
@@ -167,10 +169,3 @@ class QuizQuestionFragment : Fragment() {
     inner class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
 }
-
-
-
-
-
-
-

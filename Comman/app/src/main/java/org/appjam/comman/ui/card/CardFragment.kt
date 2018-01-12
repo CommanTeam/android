@@ -28,10 +28,8 @@ class CardFragment : Fragment() {
 
             Glide.with(context)
                     .load(img_url)
-                    .centerCrop()
                     .into(v.frag_card_img)
         }
         return v
     }
 }
-
