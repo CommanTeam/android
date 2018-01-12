@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_preview_item.view.*
@@ -48,7 +47,6 @@ class CourseNonRegistActivity : AppCompatActivity() {
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAdapter()
 
-        Toast.makeText(this, intent.getIntExtra("courseID", 0).toString(), Toast.LENGTH_SHORT).show()
 
         disposables.add(APIClient.apiService.getCourseMetaInfo(
                 PrefUtils.getUserToken(this@CourseNonRegistActivity), intent.getIntExtra("courseID", 0))  //defaultValue 0넣는게 맞을까?

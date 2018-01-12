@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_question.*
 import kotlinx.android.synthetic.main.question_elem_item.view.*
@@ -103,7 +102,7 @@ class QuestionActivity : AppCompatActivity() {
             }
             itemView.question_item_regist_btn.setOnClickListener {
                 if (itemView.question_item_et.text.isEmpty()) {
-                    Toast.makeText(this@QuestionActivity, "질문을 작성해주세요.", Toast.LENGTH_LONG).show()
+
                 } else {
                     disposables.add(APIClient.apiService.registerQuestion(
                             PrefUtils.getUserToken(this@QuestionActivity),
