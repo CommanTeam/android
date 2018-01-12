@@ -11,6 +11,7 @@ import android.util.Base64
 import android.util.Log
 import com.kakao.auth.*
 import com.kakao.util.helper.Utility.getPackageInfo
+import io.realm.Realm
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
@@ -51,6 +52,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         KakaoSDK.init(KakaoSDKAdapter())
+        Realm.init(this)
         Log.e("Key Hash : ", getKeyHash(this))
     }
 
