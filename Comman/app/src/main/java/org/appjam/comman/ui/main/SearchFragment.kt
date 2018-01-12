@@ -24,8 +24,8 @@ import org.appjam.comman.util.setDefaultThreads
 
 
 
- /* Created by junhoe on 2017. 12. 31..
- */
+/* Created by junhoe on 2017. 12. 31..
+*/
 class SearchFragment : Fragment(), View.OnClickListener {
     companion object {
 
@@ -57,7 +57,7 @@ class SearchFragment : Fragment(), View.OnClickListener {
 
         if (!main_search_et.isActivated)
             fragmentTransaction.add(R.id.main_searchCategory_layout, SearchCategoryFragment())
-            fragmentTransaction.commit()
+        fragmentTransaction.commit()
     }
 
     inner class editTextWather : TextWatcher {
