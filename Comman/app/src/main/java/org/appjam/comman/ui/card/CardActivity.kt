@@ -17,6 +17,7 @@ import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CardData
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.LectureData
+import org.appjam.comman.ui.lecture.LectureListActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SetColorUtils
 import org.appjam.comman.util.setDefaultThreads
@@ -38,6 +39,7 @@ class CardActivity : AppCompatActivity() {
     private var courseID: Int = 0
     private var pageCount: Int = 0
     private var lectureTitle: String = ""
+    private var chapterID : Int=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,8 +49,15 @@ class CardActivity : AppCompatActivity() {
 //        getText=findViewById(R.id.main2_get_text) as TextView
 //        getText!!.text=secondString
 
+        chapterID=intent.getIntExtra("chapterID",0)
+
         card_back_btn.setOnClickListener {
-              finish()
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", chapterID)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+
         }
 
 

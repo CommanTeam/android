@@ -135,6 +135,7 @@ class LectureListActivity : AppCompatActivity() {
                     itemView.setOnClickListener {
                         val intent = Intent(this@LectureListActivity, QuizActivity::class.java)
                         intent.putExtra("courseID", chapterInfo?.course_id)
+                        intent.putExtra("chapterID",chapterInfo?.id)
                         intent.putExtra("lectureID", data.lectureID)
                         startActivity(intent)
                     }
@@ -144,6 +145,7 @@ class LectureListActivity : AppCompatActivity() {
                     itemView.setOnClickListener {
                         val intent = Intent(this@LectureListActivity, CardActivity::class.java)
                         intent.putExtra("courseID", chapterInfo?.course_id)
+                        intent.putExtra("chapterID",chapterInfo?.id)
                         intent.putExtra("lectureID", data.lectureID)
                         startActivity(intent)
                     }

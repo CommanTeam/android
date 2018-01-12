@@ -27,6 +27,7 @@ import org.appjam.comman.realm.RQuizData
 import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
 import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.ui.courseNonRegist.ChargePopupActivity
+import org.appjam.comman.ui.lecture.LectureListActivity
 import org.appjam.comman.ui.main.MyCourseFragment
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
@@ -49,6 +50,7 @@ class QuizResultActivity : AppCompatActivity() {
     private var courseID : Int = 0
     private val disposables = CompositeDisposable()
     private var realm: Realm by Delegates.notNull()
+    private var chapterID : Int=0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +58,11 @@ class QuizResultActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
 
         quizResult_back_btn.setOnClickListener{
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", intent.getIntExtra("chapterID", 0))
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
             finish()
         }
         val gson = Gson()
@@ -65,6 +72,7 @@ class QuizResultActivity : AppCompatActivity() {
         passValue = intent.getIntExtra("passValue", 0)
         lectureID = intent.getIntExtra("lectureID", 0)
         courseID = intent.getIntExtra("courseID", 0)
+        chapterID=intent.getIntExtra("chapterID",0)
 
         for ((i, quiz) in quizInfoList.withIndex()) {
             val rQuizData = realm.where(RQuizData::class.java).equalTo("quizId", quiz.quizID).findFirst()
