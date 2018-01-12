@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_preview_item.view.*
@@ -47,8 +46,6 @@ class CourseNonRegistActivity : AppCompatActivity() {
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAdapter()
-
-        Toast.makeText(this, intent.getIntExtra("courseID", 0).toString(), Toast.LENGTH_SHORT).show()
 
         disposables.add(APIClient.apiService.getCourseMetaInfo(
                 PrefUtils.getUserToken(this@CourseNonRegistActivity), intent.getIntExtra("courseID", 0))  //defaultValue 0넣는게 맞을까?
@@ -104,7 +101,13 @@ class CourseNonRegistActivity : AppCompatActivity() {
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO 맛보기 강좌 넣을때 여기다가 추가
         fun bind() {
-            itemView.lecture_subsection_preview_purchase_btn.visibility = View.GONE
+            itemView.lecture_subsection_preview_purchase_btn.setOnClickListener {
+                val intent = Intent(this@CourseNonRegistActivity, ChargePopupActivity::class.java)
+                intent.putExtra("courseID", intent.getIntExtra("courseID", 0))
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 
@@ -151,7 +154,7 @@ class CourseNonRegistActivity : AppCompatActivity() {
             } else if (holder?.itemViewType == ListUtils.TYPE_HEADER) {
                 (holder as HeaderViewHolder).bind()
             } else if (holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER) {
-                (holder as SecondHeaderViewHolder)
+                (holder as SecondHeaderViewHolder).bind()
             } else
                 holder as FooterViewHolder
         }

@@ -121,6 +121,7 @@ class CourseSubActivity : AppCompatActivity() {
             itemView.lecture_subsection_popup_layout.setOnClickListener {
                 val intent = Intent(applicationContext, CourseSubPopupActivity::class.java)
                 intent.putExtra("courseID", courseMetaData?.id)
+                intent.putExtra("courseInfo", courseMetaData?.info)
                 startActivity(intent)
             }
         }

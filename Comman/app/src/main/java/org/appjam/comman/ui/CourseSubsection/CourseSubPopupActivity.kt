@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.lecture_popup_items.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.PopupData
+import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PopupItemDecoration
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
@@ -122,19 +123,38 @@ class CourseSubPopupActivity : AppCompatActivity(), AppBarLayout.OnOffsetChanged
             itemView.lecturePopup_lecContent_tv.text = data.info
         }
     }
+
+    private inner class HeaderViewHolder(itemView : View?) : RecyclerView.ViewHolder(itemView) {
+        fun bind() {
+            itemView.lecturePopup_lecTitle_tv.visibility = View.GONE
+            itemView.lecturePopup_lecContent_tv.text = intent.getStringExtra("courseInfo")
+        }
+    }
     /***
      * 어댑터는 데이터와 화면 출력을 이어주는 객체입니다 여기서는 QuizResultData에 넣은 데이터들을 ViewHolder로 연결하기 위해 쓰였습니다 **/
     private inner class LecturePopupAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int):RecyclerView.ViewHolder {
-            return LecturePopupElemViewHolder(layoutInflater.inflate(R.layout.lecture_popup_items,parent,false))
+            return when(viewType) {
+                ListUtils.TYPE_HEADER -> HeaderViewHolder(layoutInflater.inflate(R.layout.lecture_popup_items,parent,false))
+                else -> LecturePopupElemViewHolder(layoutInflater.inflate(R.layout.lecture_popup_items,parent,false))
+            }
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-            (holder as LecturePopupElemViewHolder).bind(popupContentInfoList[position] )
+            if(holder?.itemViewType == ListUtils.TYPE_HEADER)
+                (holder as HeaderViewHolder).bind()
+            else
+                (holder as LecturePopupElemViewHolder).bind(popupContentInfoList[position-1])
         }
 
-        override fun getItemCount() = popupContentInfoList.size
+        override fun getItemCount() = popupContentInfoList.size + 1
+
+        override fun getItemViewType(position: Int): Int
+        = when (position) {
+            0 -> ListUtils.TYPE_HEADER
+            else -> ListUtils.TYPE_ELEM
+        }
     }
 
     override fun onDestroy() {

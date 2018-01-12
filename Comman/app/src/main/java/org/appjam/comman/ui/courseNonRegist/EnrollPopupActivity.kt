@@ -30,10 +30,6 @@ class EnrollPopupActivity : AppCompatActivity() {
         enroll_close_btn.setOnClickListener{
             finish()
         }
-        //등록하기 버튼 클릭시 팝업 종료
-        enroll_ok_btn.setOnClickListener{
-            finish()
-        }
 
         //등록하기 버튼 클릭시 등록된 페이지(CourseSubAcitivity)로 이동
         enroll_ok_btn.setOnClickListener{

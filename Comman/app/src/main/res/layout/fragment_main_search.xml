@@ -54,17 +54,8 @@
                 android:layout_marginLeft="15dp"
                 android:background="@drawable/search_icon" />
 
-            <ImageView
-                android:id="@+id/main_cancel_btn"
-                android:layout_width="56dp"
-                android:layout_height="35dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:fontFamily="@font/nanum_square_bold"
-                android:text="취소"
-                android:textColor="@color/white"/>
             <Button
+                android:id="@+id/main_cancel_btn"
                 android:layout_width="51dp"
                 android:layout_height="27dp"
                 android:layout_alignParentRight="true"
