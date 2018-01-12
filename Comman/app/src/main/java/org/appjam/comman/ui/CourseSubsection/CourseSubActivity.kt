@@ -129,7 +129,7 @@ class CourseSubActivity : AppCompatActivity() {
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             if (recentLectureInfo != null) {
-                itemView.course_lecture_watching_back.visibility = View.VISIBLE
+                itemView.course_lecture_wathing_layout.visibility = View.VISIBLE
                 itemView.course_lecture_wathing_tv.visibility = View.VISIBLE
 
                 itemView.course_course_wathing_chapter_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"

@@ -104,16 +104,7 @@ class CourseNonRegistActivity : AppCompatActivity() {
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO 맛보기 강좌 넣을때 여기다가 추가
         fun bind() {
-            if (isPurchased == 0) {
-                itemView.lecture_subsection_preview_purchase_btn.visibility = View.VISIBLE
-                itemView.lecture_subsection_preview_purchase_btn.setOnClickListener {
-                    val intent = Intent(this@CourseNonRegistActivity, ChargePopupActivity::class.java)
-                    intent.putExtra("courseID", courseMetaData?.id)
-                    startActivity(intent)
-                }
-            } else {
-                itemView.lecture_subsection_preview_purchase_btn.visibility = View.GONE
-            }
+            itemView.lecture_subsection_preview_purchase_btn.visibility = View.GONE
         }
     }
 
