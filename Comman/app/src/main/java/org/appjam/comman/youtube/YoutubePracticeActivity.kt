@@ -39,7 +39,6 @@ import org.appjam.comman.network.data.NextLectureData
 import org.appjam.comman.network.data.QuestionData
 import org.appjam.comman.network.data.VideoData
 import org.appjam.comman.ui.card.CardActivity
-import org.appjam.comman.ui.lecture.LectureVideoService
 import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
@@ -222,11 +221,15 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 } else {
                     val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
                     intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                    timer.cancel()
+                    mPlayer?.release()
                     startService(intent)
                 }
             } else {
                 val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
                 intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                timer.cancel()
+                mPlayer?.release()
                 startService(intent)
             }
 
