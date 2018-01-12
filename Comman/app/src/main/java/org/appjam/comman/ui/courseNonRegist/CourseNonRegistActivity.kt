@@ -87,9 +87,7 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         }
     }
 
-    override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-        Toast.makeText(this, "동영상을 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
-
+    override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?){
 
     }
 

@@ -15,10 +15,8 @@ import kotlinx.android.synthetic.main.activity_quiz.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.QuizData
-<<<<<<< HEAD
-=======
+
 import org.appjam.comman.ui.lecture.LectureListActivity
->>>>>>> commit_solution
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SetColorUtils
 import org.appjam.comman.util.setDefaultThreads
