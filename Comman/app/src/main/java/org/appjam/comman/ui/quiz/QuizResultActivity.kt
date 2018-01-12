@@ -24,15 +24,11 @@ import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.QuizData
 import org.appjam.comman.realm.RQuizData
-import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
-import org.appjam.comman.ui.card.CardActivity
-import org.appjam.comman.ui.courseNonRegist.ChargePopupActivity
 import org.appjam.comman.ui.lecture.LectureListActivity
 import org.appjam.comman.ui.main.MyCourseFragment
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
-import org.appjam.comman.youtube.YoutubePracticeActivity
 import kotlin.properties.Delegates
 
 class QuizResultActivity : AppCompatActivity() {
@@ -109,39 +105,8 @@ class QuizResultActivity : AppCompatActivity() {
                     PrefUtils.getUserToken(this), lectureID)
                     .setDefaultThreads()
                     .subscribe({ response ->
-                        Log.i(TAG, "response : $response")
-                        if(response.nextLectureOfCourse.purchaseFlag == 0) {   //구매해야되는 경우
-                            val intent = Intent(this@QuizResultActivity, ChargePopupActivity::class.java)
-                            intent.putExtra("courseID", courseID)
-                            startActivity(intent)
-                            return@subscribe
-                        }
-                        if(response.nextLectureOfCourse.lectureID == -1) {
-                            val intent = Intent(this, CourseSubActivity::class.java)
-                            intent.putExtra("courseID", courseID)
-                            startActivity(intent)
-                        }
-
-                        when {
-                            response.nextLectureOfCourse.lectureType == 0 -> {
-                                val intent = Intent(this, QuizActivity::class.java)
-                                intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
-                                intent.putExtra("courseID", courseID)
-                                startActivity(intent)
-                            }
-                            response.nextLectureOfCourse.lectureType == 1 -> {
-                                val intent = Intent(this, CardActivity::class.java)
-                                intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
-                                intent.putExtra("courseID", courseID)
-                                startActivity(intent)
-                            }
-                            else -> {
-                                val intent = Intent(this, YoutubePracticeActivity::class.java)
-                                intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
-                                intent.putExtra("courseID", courseID)
-                                startActivity(intent)
-                            }
-                        }
+                        val intent = ListUtils.linkToNextLecture(this@QuizResultActivity, response, courseID)
+                        startActivity(intent)
                     }, {
                         failure -> Log.i(MyCourseFragment.TAG, "on Failure ${failure.message}")
                     }))

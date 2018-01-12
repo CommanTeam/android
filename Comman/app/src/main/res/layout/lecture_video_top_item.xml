@@ -7,7 +7,7 @@
         android:id="@+id/lectureVideo_content_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/preview_youtube_bottom_bar_layout"
+        android:layout_below="@id/youtube_bottom_bar_layout"
         android:layout_marginLeft="19dp"
         android:layout_marginRight="19dp"
         android:layout_marginTop="19dp"

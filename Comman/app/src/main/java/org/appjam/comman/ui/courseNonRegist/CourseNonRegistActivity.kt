@@ -12,9 +12,9 @@ import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_lecture_preview_item.*
 import kotlinx.android.synthetic.main.activity_lecture_preview_item.view.*
 import kotlinx.android.synthetic.main.activity_lecture_subsection.*
-import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_regist_item.view.*
 import org.appjam.comman.R
@@ -207,9 +207,9 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         fun bind() {
             videoId = lecturePreviewInfo?.video_id?:""
             if ((lecturePreviewInfo?.lecture_priority ?: 0) < 10) {
-                itemView.youtube_lecture_name_tv.text = "0${lecturePreviewInfo?.lecture_priority}. ${lecturePreviewInfo?.lecture_title}"
+                itemView.preview_youtube_lecture_name_tv.text = "0${lecturePreviewInfo?.lecture_priority}. ${lecturePreviewInfo?.lecture_title}"
             } else {
-                itemView.youtube_lecture_name_tv.text = "${lecturePreviewInfo?.lecture_priority}. ${lecturePreviewInfo?.lecture_title}"
+                itemView.preview_youtube_lecture_name_tv.text = "${lecturePreviewInfo?.lecture_priority}. ${lecturePreviewInfo?.lecture_title}"
             }
             itemView.preview_lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this@CourseNonRegistActivity)
 

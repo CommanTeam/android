@@ -7,13 +7,11 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
 import android.view.inputmethod.InputMethodManager
 import android.widget.Adapter
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -45,37 +43,7 @@ import org.appjam.comman.util.setDefaultThreads
 import java.util.*
 
 
-class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener, AppBarLayout.OnOffsetChangedListener {
-    override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
-        val maxScroll = lecture_list_rv?.scrollState
-        val percentage = Math.abs(verticalOffset) / maxScroll!!.toFloat()
-        handleAlphaOnContainer(percentage)
-    }
-
-    private fun handleAlphaOnContainer(percentage: Float) {
-        if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
-            if (this.requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
-                if (isContainerVisible) {
-                    startAlphaAnimation(video_top_layout, 200, View.INVISIBLE)
-                    startAlphaAnimation(video_top2_layout, 200, View.INVISIBLE)
-                    isContainerVisible = false
-                } else {
-                    startAlphaAnimation(video_top_layout, 200, View.VISIBLE)
-                    startAlphaAnimation(video_top2_layout, 200, View.VISIBLE)
-                    isContainerVisible = true
-                }
-            }
-        }
-    }
-
-    private fun startAlphaAnimation(v: View, duration: Long, visibility: Int) {
-        val alphaAnimation = if (visibility == View.VISIBLE) AlphaAnimation(0f, 1f) else AlphaAnimation(1f, 0f)
-        alphaAnimation.duration = duration
-        alphaAnimation.fillAfter = true
-        v.startAnimation(alphaAnimation)
-    }
-
-    private var isContainerVisible = true
+class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
 
     companion object {
         const val TAG = "YoutubePracticeActivity"
@@ -99,17 +67,42 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
     private var questionInfoList: MutableList<QuestionData.QuestionInfo> = mutableListOf()
     private var lecOrques: Int = 0     //강의목록이면 0, 질문보기면 1
+    private var playOrpause : Int = 0   //play이면 0, pause이면 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_practice)
 
-        appBarLayout?.addOnOffsetChangedListener(this)
-
         video_back_btn?.setOnClickListener {
             timer.cancel()
             finish()
+        }
+
+        youtube_training_btn?.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (!Settings.canDrawOverlays(this)) {
+                    val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                            Uri.parse("package:" + packageName))
+                    startActivityForResult(intent, 1234)
+                } else {
+                    val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
+                    intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                    intent.putExtra("courseID", courseID)
+                    intent.putExtra("chapterID", chapterID)
+                    intent.putExtra("lectureID", lectureID)
+                    timer.cancel()
+                    mPlayer?.release()
+                    startService(intent)
+                }
+            } else {
+                val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
+                intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                timer.cancel()
+                mPlayer?.release()
+                startService(intent)
+            }
+
         }
 
         lectureID = intent.getIntExtra("lectureID", 0)
@@ -139,7 +132,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     }
                     videoId = videoLectureInfo!!.video_id
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
-                    preview_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
+                    lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                     land_practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
@@ -193,17 +186,17 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         youtube_small_view_btn?.setOnClickListener {
             timer.cancel()
             this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-            preview_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
+            lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         }
 
-        preview_lectureVideo_youtube_playerView?.setOnClickListener {
+        lectureVideo_youtube_playerView?.setOnClickListener {
             val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.windowToken, 0)
             video_top_layout?.visibility = View.VISIBLE
             video_top2_layout?.visibility=View.VISIBLE
         }
 
-        preview_youtube_bottom_bar_layout?.setOnClickListener {
+        youtube_bottom_bar_layout?.setOnClickListener {
             val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.windowToken, 0)
             video_top_layout?.visibility = View.VISIBLE
@@ -244,10 +237,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     runOnUiThread {
                         val current_time = YoutubeTimeUtils.formatTime(mPlayer!!.currentTimeMillis)
                         val duration_time = YoutubeTimeUtils.formatTime(mPlayer!!.durationMillis)
-                        preview_youtube_current_time_tv.text = "$current_time / $duration_time"
-                        preview_youtube_progress_bar.progress = mPlayer!!.currentTimeMillis
+                        youtube_current_time_tv.text = "$current_time / $duration_time"
+                        youtube_progress_bar.progress = mPlayer!!.currentTimeMillis
                         PrefUtils.putYoutubeCurrentTimeInCourse(this@YoutubePracticeActivity, mPlayer!!.currentTimeMillis, courseID)
-                        preview_youtube_progress_bar.setSeekBarListener(object : CustomSeekBar.CustomSeekBarListener {
+                        youtube_progress_bar.setSeekBarListener(object : CustomSeekBar.CustomSeekBarListener {
                             override fun onThumbDragged(progress: Int) {
                                 mPlayer!!.seekToMillis(progress)
                             }
@@ -281,20 +274,26 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
         this.mPlayer = player
         player!!.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS)
-        preview_youtube_playing_btn.setOnClickListener {
-            this.mPlayer?.play()
+        youtube_playing_btn.setOnClickListener {
+            if(playOrpause == 0) {
+                this.mPlayer?.pause()
+                youtube_playing_btn.setBackgroundResource(R.drawable.video_new_pause_btn)
+                playOrpause = 1
+            } else {
+                this.mPlayer?.play()
+                youtube_playing_btn.setBackgroundResource(R.drawable.video_new_play_btn)
+                playOrpause = 0
+            }
         }
-        youtube_pause_btn.setOnClickListener {
-            this.mPlayer?.pause()
-        }
+
         this.mPlayer!!.setPlayerStateChangeListener(object : YouTubePlayer.PlayerStateChangeListener {
             override fun onAdStarted() {}
 
             override fun onLoading() {}
 
             override fun onVideoStarted() {
-                preview_youtube_progress_bar.max = this@YoutubePracticeActivity.mPlayer!!.durationMillis
-                preview_youtube_progress_bar.progress = this@YoutubePracticeActivity.mPlayer!!.currentTimeMillis
+                youtube_progress_bar.max = this@YoutubePracticeActivity.mPlayer!!.durationMillis
+                youtube_progress_bar.progress = this@YoutubePracticeActivity.mPlayer!!.currentTimeMillis
 
             }
 
@@ -409,13 +408,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             itemView.youtube_question_item_et.setOnClickListener {
                 video_top_layout?.visibility = View.GONE
                 video_top2_layout?.visibility=View.GONE
-            }
-
-            if(!itemView.youtube_question_item_et.isActivated) {
-                val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(itemView.youtube_question_item_et.windowToken, 0)
-                video_top_layout?.visibility = View.VISIBLE
-                video_top2_layout?.visibility=View.VISIBLE
             }
 
             itemView.youtube_question_item_regist_btn.setOnClickListener {

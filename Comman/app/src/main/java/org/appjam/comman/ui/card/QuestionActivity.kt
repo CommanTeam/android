@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.card
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -7,6 +8,11 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+<<<<<<< HEAD
+=======
+import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
+>>>>>>> commit_solution
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_question.*
 import kotlinx.android.synthetic.main.question_elem_item.view.*
@@ -112,6 +118,9 @@ class QuestionActivity : AppCompatActivity() {
                                 questionInfoList.add(0, QuestionData.QuestionInfo(1, PrefUtils.getString(this@QuestionActivity, PrefUtils.NICKNAME)
                                         , 1, response.result.question_text, response.result.question_date, response.result.flag
                                         , 0, 1, "", "", ""))
+                                itemView.question_item_et.text = null
+                                val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                imm.hideSoftInputFromWindow(itemView.question_item_et.windowToken, 0)
                                 question_qna_rv.adapter.notifyDataSetChanged()
                             }, { failure ->
                                 Log.i(TAG, "on Failure ${failure.message}")
