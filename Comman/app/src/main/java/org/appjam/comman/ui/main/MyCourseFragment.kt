@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.course_active_item.view.*
-import kotlinx.android.synthetic.main.course_watching_item.*
 import kotlinx.android.synthetic.main.course_watching_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
 import kotlinx.android.synthetic.main.main_notice_item.view.*
@@ -23,10 +22,13 @@ import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.GreetingData
 import org.appjam.comman.network.data.LectureData
 import org.appjam.comman.ui.CourseSubsection.CourseSubActivity
+import org.appjam.comman.ui.card.CardActivity
+import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.YoutubeTimeUtils
 import org.appjam.comman.util.setDefaultThreads
+import org.appjam.comman.youtube.YoutubePracticeActivity
 
 /**
  * Created by RyuDongIl on 2018-01-02.
@@ -134,10 +136,11 @@ class MyCourseFragment : Fragment() {
     }
 
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // TODO : 비디오일 경우 백그라운드 설정 및 몇 가지 설정 좀 더 필요, intent 연결도 필요
         fun bind() {
-            val rootView = main_lecture_watching_back
             if(recentLectureInfo != null) {
+                itemView.main_lecture_wathing_layout.visibility = View.VISIBLE
+                itemView.main_lecture_wathing_tv.visibility = View.VISIBLE
+
                 itemView.main_course_wathing_chapter_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
 
                 if((recentLectureInfo!!.lecture_priority)/10==0) {
@@ -148,46 +151,67 @@ class MyCourseFragment : Fragment() {
                 }
 
                 if(recentLectureInfo!!.lecture_type == 0) {
+                    itemView.lecture_subsection_video_thumb.visibility = View.GONE
                     itemView.main_lecture_watching_progress_tv.text =
-                            "${PrefUtils.getInt(context, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_quiz}"
-//                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_quiz_icon)
-                    Glide.with(context)
-                            .load(R.drawable.home_quiz_icon)
-                            .centerCrop()
-                            .into(itemView.main_lecture_wathing_img)
-
+                            "${PrefUtils.getRecentLectureOfCoursePosition(context, recentLectureInfo!!.course_ID)+1} / ${recentLectureInfo!!.cnt_lecture_quiz+1}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_quiz_icon)
                     Glide.with(context)
                             .load(R.drawable.home_quiz_default_image)
-                            .into(itemView.main_watching_full_background_img)
-
-
-                } else if(recentLectureInfo!!.lecture_type == 1) {
-                    itemView.main_lecture_watching_progress_tv.text =
-                            "${PrefUtils.getInt(context, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_picture}"
-//                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
-                    Glide.with(context)
-                            .load(R.drawable.home_picture_icon)
                             .centerCrop()
-                            .into(itemView.main_lecture_wathing_img)
-
+                            .into(itemView.main_watching_full_background_img)
+                    itemView.main_lecture_watching_progress_bar.visibility = View.GONE
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
+                        val intent = Intent(context, QuizActivity::class.java)
+                        intent.putExtra("courseID", recentLectureInfo!!.course_ID)
+                        intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
+                        startActivity(intent)
+                    }
+                } else if(recentLectureInfo!!.lecture_type == 1) {
+                    itemView.lecture_subsection_video_thumb.visibility = View.GONE
+                    itemView.main_lecture_watching_progress_tv.text =
+                            "${PrefUtils.getRecentLectureOfCoursePosition(context, recentLectureInfo!!.course_ID)+1} / ${recentLectureInfo!!.cnt_lecture_picture+1}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
                     Glide.with(context)
                             .load(R.drawable.home_picture_default_image)
                             .centerCrop()
                             .into(itemView.main_watching_full_background_img)
+                    itemView.main_lecture_watching_progress_bar.visibility = View.GONE
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
+                        val intent = Intent(context, CardActivity::class.java)
+                        intent.putExtra("courseID", recentLectureInfo!!.course_ID)
+                        intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
+                        startActivity(intent)
+                    }
                 } else {
+                    itemView.lecture_subsection_video_thumb.visibility = View.VISIBLE
                     itemView.main_lecture_watching_progress_tv.text =
-                            "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
-//                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
+                            "${YoutubeTimeUtils.formatTime(recentLectureInfo!!.playTime)}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
+
+                    val thumbURL = "https://img.youtube.com/vi/${recentLectureInfo!!.lecture_video_id}/sddefault.jpg"
+
                     Glide.with(context)
-                            .load(R.drawable.home_video_icon)
+                            .load(thumbURL)
+                            .placeholder(R.mipmap.ic_launcher)
+                            .fitCenter()
                             .centerCrop()
-                            .into(itemView.main_lecture_wathing_img)
+                            .error(R.mipmap.ic_launcher)
+                            .into(itemView.main_watching_full_background_img)
+                    itemView.main_lecture_watching_progress_bar.visibility = View.VISIBLE
+                    itemView.main_lecture_watching_progress_bar.progress =
+                            (PrefUtils.getYoutubeCurrentTimeInCourse(context, recentLectureInfo!!.course_ID) * 100 / recentLectureInfo!!.playTime)
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
+                        val intent = Intent(context, YoutubePracticeActivity::class.java)
+                        intent.putExtra("courseID", recentLectureInfo!!.course_ID)
+                        intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
+                        intent.putExtra("chapterID", recentLectureInfo!!.chapter_ID)
+                        startActivity(intent)
+                    }
                 }
 
-            } else {
+            } else {        //시청하던 강의 없을 경우 숨기기
                 itemView.main_lecture_wathing_layout.visibility = View.GONE
                 itemView.main_lecture_wathing_tv.visibility = View.GONE
-
             }
         }
     }

@@ -47,7 +47,9 @@ class SearchFragment : Fragment(), View.OnClickListener {
         main_cancel_btn.visibility=View.INVISIBLE
 
         main_cancel_btn.setOnClickListener {
-            main_search_et.setText(null)
+            main_search_et.text = null
+            val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(main_search_et.windowToken, 0)
         }
         val fragmentTransaction = childFragmentManager.beginTransaction()
 
@@ -62,22 +64,27 @@ class SearchFragment : Fragment(), View.OnClickListener {
 
     inner class editTextWather : TextWatcher {
         override fun afterTextChanged(p0: Editable?) {
-            disposables.add(APIClient.apiService.getSearchedCourses(
-                    PrefUtils.getUserToken(context), SearchedCoursesData.SearchedCoursesPost(p0.toString()))
-                    .setDefaultThreads()
-                    .subscribe({ response ->
-                        courseInfoList = response
-                        val gson = Gson()
-                        bundle.putString("ans", gson.toJson(courseInfoList))
-                        ReplaceFragment(SearchCourseListFragment(), bundle, "search")
-                        if(TextUtils.isEmpty(main_search_et.text)){
-                            main_cancel_btn.visibility=View.INVISIBLE
-                        }
-                        else
-                            main_cancel_btn.visibility=View.VISIBLE
-                    }, { failure ->
-                        Log.i(TAG, "on Failure ${failure.message}")
-                    }))
+            if(p0.isNullOrEmpty()) {
+                ReplaceFragment(SearchCategoryFragment(), bundle, "search")
+                main_cancel_btn.visibility = View.INVISIBLE
+            } else {
+                disposables.add(APIClient.apiService.getSearchedCourses(
+                        PrefUtils.getUserToken(context), SearchedCoursesData.SearchedCoursesPost(p0.toString()))
+                        .setDefaultThreads()
+                        .subscribe({ response ->
+                            courseInfoList = response
+                            val gson = Gson()
+                            bundle.putString("ans", gson.toJson(courseInfoList))
+                            ReplaceFragment(SearchCourseListFragment(), bundle, "search")
+                            if (TextUtils.isEmpty(main_search_et.text)) {
+                                main_cancel_btn.visibility = View.INVISIBLE
+                            } else
+                                main_cancel_btn.visibility = View.VISIBLE
+                        }, { failure ->
+                            Log.i(TAG, "on Failure ${failure.message}")
+                        }))
+            }
+
         }
 
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
