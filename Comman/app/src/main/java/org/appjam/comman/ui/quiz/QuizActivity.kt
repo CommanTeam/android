@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_quiz.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.QuizData
+
 import org.appjam.comman.ui.lecture.LectureListActivity
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SetColorUtils
@@ -44,7 +45,14 @@ class QuizActivity : AppCompatActivity() {
 
         chapterID = intent.getIntExtra("chapterID", 0)
 
+        quiz_back_btn_ex.setOnClickListener {
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", chapterID)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
 
+            finish()
+        }
         quiz_back_btn.setOnClickListener{
             val intent = Intent(this, LectureListActivity::class.java)
             intent.putExtra("chapterID", chapterID)
@@ -176,5 +184,3 @@ class QuizActivity : AppCompatActivity() {
         super.onDestroy()
     }
 }
-
-

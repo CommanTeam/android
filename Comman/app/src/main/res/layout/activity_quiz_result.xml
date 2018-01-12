@@ -15,13 +15,18 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         app:cardElevation="13dp">
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/quizResult_top_layout"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:orientation="horizontal"
             android:background="@color/primaryColor">
 
+            <RelativeLayout
+                android:id="@+id/quizResult_btn_ex"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                >
+            </RelativeLayout>
             <Button
                 android:id="@+id/quizResult_back_btn"
                 android:layout_marginLeft="19dp"
@@ -29,13 +34,15 @@
                 android:layout_width="13dp"
                 android:layout_height="19dp"
                 android:background="@drawable/title_back_btn"
-                android:layout_gravity="center_vertical"/>
+                android:layout_centerVertical="true"
+                />
 
             <TextView
                 android:id="@+id/quizResult_lecture_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/quizResult_back_btn"
                 android:layout_marginLeft="33dp"
                 android:layout_marginRight="19dp"
                 android:text="강의명"
@@ -43,7 +50,7 @@
                 android:textSize="21sp"
                 android:textColor="#ffffff"
                 />
-        </LinearLayout>
+        </RelativeLayout>
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/quizResult_result_list"

@@ -44,6 +44,7 @@ class LectureListActivity : AppCompatActivity() {
 
         lecture_list_rv.layoutManager = LinearLayoutManager(this)
         lecture_list_rv.adapter = LectureAdapter()
+        lectureList_back_btn_ex.setOnClickListener { finish() }
         lectureList_back_btn.setOnClickListener{
             finish()
         }

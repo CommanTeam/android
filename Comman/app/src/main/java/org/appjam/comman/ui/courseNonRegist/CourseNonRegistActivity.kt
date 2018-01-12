@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -88,9 +87,7 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         }
     }
 
-    override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-        Toast.makeText(this, "동영상을 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
-
+    override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?){
 
     }
 
@@ -107,6 +104,10 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
+
+        sub_back_btn_ex.setOnClickListener{
+            finish()
+        }
         sub_back_btn.setOnClickListener {
             timer.cancel()
             mPlayer?.release()
@@ -117,7 +118,6 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAdapter()
 
-        Toast.makeText(this, intent.getIntExtra("courseID", 0).toString(), Toast.LENGTH_SHORT).show()
 
         disposables.add(APIClient.apiService.getCourseMetaInfo(
                 PrefUtils.getUserToken(this@CourseNonRegistActivity), intent.getIntExtra("courseID", 0))  //defaultValue 0넣는게 맞을까?

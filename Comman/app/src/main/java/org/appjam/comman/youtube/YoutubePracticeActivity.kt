@@ -14,7 +14,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Adapter
-import android.widget.Toast
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -75,6 +74,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_practice)
 
+        video_back_btn_ex.setOnClickListener {
+            timer.cancel()
+            finish()
+        }
         video_back_btn?.setOnClickListener {
             timer.cancel()
             val intent = Intent(this, LectureListActivity::class.java)
@@ -274,7 +277,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-        Toast.makeText(this, "동영상을 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
     }
 
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
@@ -418,7 +420,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
             itemView.youtube_question_item_regist_btn.setOnClickListener {
                 if (itemView.youtube_question_item_et.text.isEmpty()) {
-                    Toast.makeText(this@YoutubePracticeActivity, "질문을 작성해주세요.", Toast.LENGTH_LONG).show()
                 } else {
                     disposables.add(APIClient.apiService.registerQuestion(
                             PrefUtils.getUserToken(this@YoutubePracticeActivity), QuestionData.QuestionPost(lectureID, itemView.youtube_question_item_et.text.toString()))

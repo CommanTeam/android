@@ -105,7 +105,7 @@ class QuestionActivity : AppCompatActivity() {
             }
             itemView.question_item_regist_btn.setOnClickListener {
                 if (itemView.question_item_et.text.isEmpty()) {
-                    Toast.makeText(this@QuestionActivity, "질문을 작성해주세요.", Toast.LENGTH_LONG).show()
+
                 } else {
                     disposables.add(APIClient.apiService.registerQuestion(
                             PrefUtils.getUserToken(this@QuestionActivity),

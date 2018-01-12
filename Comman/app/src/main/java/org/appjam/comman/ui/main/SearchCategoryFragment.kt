@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.category_information_item.view.*
@@ -118,7 +117,6 @@ class SearchCategoryFragment : Fragment() {
                     .error(R.mipmap.ic_launcher)
                     .into(itemView.category_img)
 
-            Toast.makeText(context, categoryInfoList[position].categoryImg,Toast.LENGTH_SHORT).show()
 
 
         }

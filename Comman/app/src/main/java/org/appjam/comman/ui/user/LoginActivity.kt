@@ -14,7 +14,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
 import com.androidquery.AQuery
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
@@ -86,7 +85,6 @@ class LoginActivity : AppCompatActivity() {
         login_kakaoLogin_btn.setOnTouchListener { v : View, event : MotionEvent ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 if (!isConnected) {
-                    Toast.makeText(this@LoginActivity, "인터넷 연결을 확인해주세요", Toast.LENGTH_SHORT).show()
                 }
             }
 

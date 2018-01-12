@@ -49,7 +49,15 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
         land_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this)
 
-        lecure_video_back_btn.setOnClickListener{
+        lecture_video_back_btn_ex.setOnClickListener {
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", intent.getIntExtra("chapterID", 1))
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
+            finish()
+        }
+        lecture_video_back_btn.setOnClickListener{
             val intent = Intent(this, LectureListActivity::class.java)
             intent.putExtra("chapterID", intent.getIntExtra("chapterID", 1))
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -74,7 +82,6 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
     override fun onResume() {
         super.onResume()
 //        player?.loadVideo(videoId, PrefUtils.getInt(this, PrefUtils.CURRENT_TIME))
-        Toast.makeText(this@LectureVideoActivity, "onResume() 호출", Toast.LENGTH_SHORT).show()
     }
 
     override fun onSaveInstanceState(p0: Bundle?) {
