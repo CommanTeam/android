@@ -7,15 +7,20 @@
     android:background="@color/backgroundColor"
     android:orientation="vertical"
     tools:context="org.appjam.comman.LectureVideo1Activity">
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/lecture_video_top_layout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:orientation="horizontal"
         android:background="@color/primaryColor">
-        <Button
+        <ImageView
             android:id="@+id/lecure_video_back_btn"
-            android:layout_gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="19dp"
+            android:layout_width="20dp"
+            android:layout_height="28dp"
+            />
+        <Button
+            android:layout_centerVertical="true"
             android:layout_marginLeft="19dp"
             android:background="@drawable/title_back_btn"
             android:layout_width="13dp"
@@ -23,6 +28,8 @@
             android:backgroundTint="#ffffff"/>
         <TextView
             android:id="@+id/lecture_video_tv"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/lecure_video_back_btn"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="33dp"
             android:layout_marginRight="19dp"
@@ -32,7 +39,7 @@
             android:fontFamily="@font/nanum_square_bold"
             android:textSize="21sp"
             android:textColor="#ffffff"/>
-    </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,10 +48,8 @@
             android:id="@+id/lec_title_tv"
             android:layout_width="282dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="21dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="19dp"
-            android:layout_marginRight="19dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="01. 필렛 넣기"
             android:textColor="@color/mainTextColor"
