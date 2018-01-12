@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_course_search_result.view.*
@@ -77,7 +76,7 @@ class SearchCategoryResultFragment : Fragment() {
 
             itemView.course_title_tv.text = coursesInfo[position].title
             itemView.course_content_tv.text = coursesInfo[position].info
-            Toast.makeText(context,coursesInfo[3].title, Toast.LENGTH_SHORT).show()
+
             val hit = coursesInfo[position].hit
             itemView.course_people_tv.text = "$hit 명이 수강중입니다."
 

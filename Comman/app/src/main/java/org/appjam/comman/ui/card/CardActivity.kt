@@ -47,11 +47,10 @@ class CardActivity : AppCompatActivity() {
 //        getText=findViewById(R.id.main2_get_text) as TextView
 //        getText!!.text=secondString
 
-        card_back_btn.setOnClickListener{
+        card_back_btn.setOnClickListener {
               finish()
         }
-//        lectureTitle = intent.getStringExtra("card_lecture_name_tv")
-        card_lecture_name_tv!!.text = lectureTitle
+
 
         courseID = intent.getIntExtra("courseID",0)
         lectureID = intent.getIntExtra("lectureID", 0)
@@ -106,7 +105,7 @@ class CardActivity : AppCompatActivity() {
         card_question_btn.setOnClickListener {
             val intent = Intent(this@CardActivity, QuestionActivity::class.java)
             intent.putExtra("lectureID", lectureID)
-            intent.putExtra("lectureTitle", "실험성공")
+            intent.putExtra("lectureTitle", lectureTitle)
             startActivity(intent)
         }
 
@@ -119,6 +118,7 @@ class CardActivity : AppCompatActivity() {
                         card_lecture_name_tv.text = "0${response.data.priority}. ${response.data.title}"
                     else
                         card_lecture_name_tv.text = "${response.data.priority}. ${response.data.title}"
+                    lectureTitle = card_lecture_name_tv.text.toString()
 
                 }, { failure ->
                     Log.i(CardActivity.TAG, "on Failure ${failure.message}")

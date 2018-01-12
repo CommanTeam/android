@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.first_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.second_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.youtube_question_elem_item.view.*
 import kotlinx.android.synthetic.main.youtube_question_header_item.view.*
-import kotlinx.android.synthetic.main.youtube_question_second_header_item.view.*
 import kotlinx.android.synthetic.main.youtube_top_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.custom.CustomSeekBar
@@ -320,11 +319,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private inner class QuestionHeaderViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             itemView.youtube_question_item_cnt_tv.text = "${questionInfoList.size}개"
-        }
-    }
-
-    private inner class QuestionSecondViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
-        fun bind() {
             itemView.youtube_question_item_regist_btn.setOnClickListener {
                 if (itemView.youtube_question_item_et.text.isEmpty()) {
                     Toast.makeText(this@YoutubePracticeActivity, "질문을 작성해주세요.", Toast.LENGTH_LONG).show()
@@ -449,9 +443,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 ListUtils.TYPE_HEADER -> {
                     QuestionHeaderViewHolder(layoutInflater.inflate(R.layout.youtube_question_header_item, parent, false))
                 }
-                ListUtils.TYPE_SECOND_HEADER -> {
-                    QuestionSecondViewHolder(layoutInflater.inflate(R.layout.youtube_question_second_header_item, parent, false))
-                }
                 ListUtils.TYPE_FOOTER -> FooterViewHolder(layoutInflater.inflate(R.layout.quiz_result_footer, parent, false))
                 else -> {
                     QuestionElemViewHolder(layoutInflater.inflate(R.layout.youtube_question_elem_item, parent, false))
@@ -466,22 +457,18 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 } holder?.itemViewType == ListUtils.TYPE_HEADER -> {
                     (holder as QuestionHeaderViewHolder).bind()
                 }
-                holder?.itemViewType == ListUtils.TYPE_SECOND_HEADER -> {
-                    (holder as QuestionSecondViewHolder).bind()
-                }
                 holder?.itemViewType == ListUtils.TYPE_ELEM -> {
-                    (holder as QuestionElemViewHolder).bind(questionInfoList[position - 3])
+                    (holder as QuestionElemViewHolder).bind(questionInfoList[position - 2])
                 }
             }
         }
 
-        override fun getItemCount(): Int = (questionInfoList.size + 4)
+        override fun getItemCount(): Int = (questionInfoList.size + 3)
 
         override fun getItemViewType(position: Int): Int
                 = when (position) {
             0 -> ListUtils.TYPE_TOP
             1 -> ListUtils.TYPE_HEADER // 가장 첫번째
-            2 -> ListUtils.TYPE_SECOND_HEADER // 두번째
             (itemCount - 1) -> ListUtils.TYPE_FOOTER    //마지막, 마진을 주기 위해
             else -> ListUtils.TYPE_ELEM // 여러개 사용할 때
         }

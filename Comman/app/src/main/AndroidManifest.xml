@@ -93,7 +93,8 @@
 
         <service android:name=".ui.lecture.LectureVideoService" />
 
-        <activity android:name=".ui.card.QuestionActivity"></activity>
+        <activity android:name=".ui.card.QuestionActivity"
+            android:theme="@style/NoActionBar"></activity>
 
     </application>
 
