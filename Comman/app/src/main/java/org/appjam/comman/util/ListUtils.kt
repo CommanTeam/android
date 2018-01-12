@@ -35,17 +35,20 @@ object ListUtils {
         if(nextLectureResponse?.nextLectureOfCourse?.lectureType == 0) {
             val intent = Intent(context, QuizActivity::class.java)
             intent.putExtra("lectureID", nextLectureResponse.nextLectureOfCourse.lectureID)
+            intent.putExtra("chapterID", nextLectureResponse.nextLectureOfCourse.nextChapterID)
             intent.putExtra("courseID", courseID)
             return intent
         } else if(nextLectureResponse?.nextLectureOfCourse?.lectureType == 1) {
             val intent = Intent(context, CardActivity::class.java)
             intent.putExtra("lectureID", nextLectureResponse.nextLectureOfCourse.lectureID)
+            intent.putExtra("chapterID", nextLectureResponse.nextLectureOfCourse.nextChapterID)
             intent.putExtra("courseID", courseID)
             return intent
         } else {
             val intent = Intent(context, YoutubePracticeActivity::class.java)
             intent.putExtra("lectureID", nextLectureResponse?.nextLectureOfCourse?.lectureID)
-            intent.putExtra("courseID", courseID)       //TODO nextLectureResponse에 챕터id추가되면 수정 필요
+            intent.putExtra("chapterID", nextLectureResponse?.nextLectureOfCourse?.nextChapterID)
+            intent.putExtra("courseID", courseID)
             return intent
         }
     }
