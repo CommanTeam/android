@@ -62,7 +62,7 @@
         android:layout_marginLeft="19dp"
         app:layoutManager="LinearLayoutManager"
         android:layout_above="@+id/quizResult_bottom_layout"
-        android:layout_below="@+id/quizResult_top_layout"
+        android:layout_below="@+id/card_top_layout"
         android:background="@color/backgroundColor">
     </android.support.v7.widget.RecyclerView>
 

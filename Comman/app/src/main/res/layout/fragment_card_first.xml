@@ -8,6 +8,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
+            android:scaleType="fitXY"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:background="@color/lineColor"/>

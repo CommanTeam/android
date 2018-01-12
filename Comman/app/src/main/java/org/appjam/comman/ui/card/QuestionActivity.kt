@@ -124,7 +124,6 @@ class QuestionActivity : AppCompatActivity() {
 
     inner class ElemViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         fun bind(data : QuestionData.QuestionInfo) {
-            Toast.makeText(this@QuestionActivity, "여기까지~", Toast.LENGTH_SHORT).show()
             itemView.question_user_name_tv.text = data.l_question_user_nickname
             itemView.question_date_tv.text = data.l_question_date
             itemView.question_content_tv.text = data.question_text
