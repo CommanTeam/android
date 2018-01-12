@@ -78,7 +78,8 @@
                     android:gravity="end"
                     android:text="[Rhino] 반지 모델링하기"
                     android:textColor="@color/mainTextColor"
-                    android:textSize="19sp" />
+                    android:textSize="19sp"
+                    android:maxLines="2"/>
             </LinearLayout>
 
             <LinearLayout

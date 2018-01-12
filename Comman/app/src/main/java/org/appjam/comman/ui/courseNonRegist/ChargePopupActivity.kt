@@ -44,6 +44,7 @@ class ChargePopupActivity : AppCompatActivity() {
 
         }
         charge_ok_btn.setOnClickListener {
+
             disposables.add(APIClient.apiService.purchaseCourse(
                     PrefUtils.getUserToken(this), intent.getIntExtra("courseID", 1))
                     .setDefaultThreads()
@@ -56,6 +57,7 @@ class ChargePopupActivity : AppCompatActivity() {
                     }, {
                         failure -> Log.i(TAG, "on Failure ${failure.message}")
                     }))
+            finish()
         }
     }
 

@@ -22,9 +22,11 @@ object ChapterData {
                                         val lecturePriority: Int,
                                         val lectureTitle: String,
                                         val lectureType : Int,
-                                        val chapterID: Int,
+                                        val chapterID : Int,
+                                        val videoID : String,
                                         val playTime : Int,
                                         val watchedFlag: Int,
+                                        val size: Int,
                                         val lectureCnt: Int
 
     )

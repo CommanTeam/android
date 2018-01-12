@@ -9,10 +9,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.androidquery.AQuery
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.course_active_item.view.*
+import kotlinx.android.synthetic.main.course_watching_item.*
 import kotlinx.android.synthetic.main.course_watching_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_my_lecture.view.*
 import kotlinx.android.synthetic.main.main_notice_item.view.*
@@ -112,7 +113,10 @@ class MyCourseFragment : Fragment() {
 
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(courseInfo: CoursesData.CourseInfo) {
-            itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
+//            itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
+            Glide.with(context)
+                    .load(R.drawable.additional_explanation_btn)
+                    .into(itemView.main_course_active_img)
             itemView.main_course_active_course_tv.text = courseInfo.courseTitle
             itemView.main_course_active_chapters_tv.text = resources.getString(R.string.msg_format_chapter_count, courseInfo.chapterCnt)
 
@@ -131,6 +135,7 @@ class MyCourseFragment : Fragment() {
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO : 비디오일 경우 백그라운드 설정 및 몇 가지 설정 좀 더 필요, intent 연결도 필요
         fun bind() {
+            val rootView = main_lecture_watching_back
             if(recentLectureInfo != null) {
                 itemView.main_course_wathing_chapter_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
 
@@ -144,15 +149,38 @@ class MyCourseFragment : Fragment() {
                 if(recentLectureInfo!!.lecture_type == 0) {
                     itemView.main_lecture_watching_progress_tv.text =
                             "${PrefUtils.getInt(context, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_quiz}"
-                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_quiz_icon)
+//                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_quiz_icon)
+                    Glide.with(context)
+                            .load(R.drawable.home_quiz_icon)
+                            .centerCrop()
+                            .into(itemView.main_lecture_wathing_img)
+
+                    Glide.with(context)
+                            .load(R.drawable.home_quiz_default_image)
+                            .into(itemView.main_watching_full_background_img)
+
+
                 } else if(recentLectureInfo!!.lecture_type == 1) {
                     itemView.main_lecture_watching_progress_tv.text =
                             "${PrefUtils.getInt(context, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_picture}"
-                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
+//                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
+                    Glide.with(context)
+                            .load(R.drawable.home_picture_icon)
+                            .centerCrop()
+                            .into(itemView.main_lecture_wathing_img)
+
+                    Glide.with(context)
+                            .load(R.drawable.home_picture_default_image)
+                            .centerCrop()
+                            .into(itemView.main_watching_full_background_img)
                 } else {
                     itemView.main_lecture_watching_progress_tv.text =
                             "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
-                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
+//                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
+                    Glide.with(context)
+                            .load(R.drawable.home_video_icon)
+                            .centerCrop()
+                            .into(itemView.main_lecture_wathing_img)
                 }
 
             }
@@ -166,9 +194,14 @@ class MyCourseFragment : Fragment() {
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
-            var aQuery = AQuery(context)
+//            var aQuery = AQuery(context)
             val thumbnailUrl = PrefUtils.getString(context, PrefUtils.USER_IMAGE)
-            aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+//            aQuery.id(itemView.main_profile_img).image(thumbnailUrl)
+            Glide.with(context)
+                    .load(thumbnailUrl)
+                    .centerCrop()
+                    .into(itemView.main_profile_img)
+
             itemView.main_notice_tv.text = PrefUtils.getString(context, PrefUtils.NICKNAME)+ greetingInfo?.ment
         }
     }

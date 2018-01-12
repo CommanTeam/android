@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.androidquery.AQuery
+import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_preview_item.view.*
 import kotlinx.android.synthetic.main.activity_lecture_subsection.*
@@ -79,8 +79,11 @@ class CourseNonRegistActivity : AppCompatActivity() {
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
-            val aQuery = AQuery(this@CourseNonRegistActivity)
-            aQuery.id(itemView.regist_lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
+            Log.i(TAG, "meta data : ${courseMetaData?.supplier_thumbnail}")
+            Log.i(TAG, "itemview : ${itemView.regist_lecture_subsection_course_profile_iv}")
+            Glide.with(this@CourseNonRegistActivity)
+                    .load(courseMetaData?.supplier_thumbnail)
+                    .into(itemView.regist_lecture_subsection_course_profile_iv)
 
             itemView.regist_lecture_subsection_course_name_tv.text = courseMetaData?.title
             itemView.regist_lecture_subsection_instructor_name_tv.text = courseMetaData?.name

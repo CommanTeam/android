@@ -13,6 +13,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import io.realm.Realm
@@ -158,11 +159,19 @@ class QuizResultActivity : AppCompatActivity() {
             } else {
                 itemView.quizResult_list_tv.text = "Q. ${position+1}"
             }
+
             val rQuizData = realm.where(RQuizData::class.java).equalTo("quizId", quizInfoList[position].quizID).findFirst()
             if(quizInfoList[position].questionArr[rQuizData?.answer?: 0].answerFlag == 1) {
-                itemView.quizResult_list_img.setImageResource(R.drawable.quiz_correct_mark)
+                Glide.with(this@QuizResultActivity)
+                        .load(R.drawable.quiz_correct_mark)
+                        .centerCrop()
+                        .into(itemView.quizResult_list_img)
             } else {
-                itemView.quizResult_list_img.setImageResource(R.drawable.quiz_wrong_mark)
+//                itemView.quizResult_list_img.setImageResource(R.drawable.quiz_wrong_mark)
+                Glide.with(this@QuizResultActivity)
+                        .load(R.drawable.quiz_wrong_mark)
+                        .centerCrop()
+                        .into(itemView.quizResult_list_img)
             }
             itemView.setOnClickListener {
                 val intent = Intent(this@QuizResultActivity, PopupExplainActivity::class.java)

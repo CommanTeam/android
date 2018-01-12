@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import com.androidquery.AQuery
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_list.*
@@ -47,7 +46,9 @@ class CourseSubActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lecture_subsection)
         sub_back_btn.setOnClickListener{
             finish()
+
         }
+
         val recycler_view = lecture_subsection_list_view
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = LectureSubAadapter()
@@ -93,6 +94,7 @@ class CourseSubActivity : AppCompatActivity() {
                         Log.i(LectureListActivity.TAG, "on Failure ${failure.message}")
                     }))
         }
+
     }
 
     override fun onDestroy() {
@@ -102,8 +104,13 @@ class CourseSubActivity : AppCompatActivity() {
 
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
-            val aQuery = AQuery(this@CourseSubActivity)
-            aQuery.id(itemView.lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
+//            val aQuery = AQuery(this@CourseSubActivity)
+//            aQuery.id(itemView.lecture_subsection_course_profile_iv).image(courseMetaData?.supplier_thumbnail)
+
+            Glide.with(this@CourseSubActivity)
+                    .load(courseMetaData?.supplier_thumbnail)
+                    .centerCrop()
+                    .into(itemView.lecture_subsection_course_profile_iv)
             itemView.lecture_subsection_course_name_tv.text = courseMetaData?.title
             itemView.lecture_subsection_instructor_name_tv.text = courseMetaData?.name
             itemView.lecture_subsection_course_exp_tv.text = courseMetaData?.info
@@ -147,10 +154,10 @@ class CourseSubActivity : AppCompatActivity() {
 
             }
             else {
-
                 itemView.lecture_subsection_video_title_tv.visibility = View.GONE
                 itemView.lecture_subsection_video_play_layout.visibility = View.GONE
             }
+
             var thumbID : String?=null
             var thumbURL : String?=null
 
@@ -164,8 +171,8 @@ class CourseSubActivity : AppCompatActivity() {
                     .centerCrop()
                     .error(R.mipmap.ic_launcher)
                     .into(itemView.lecture_subsection_video_thumb)
-
         }
+
     }
 
 

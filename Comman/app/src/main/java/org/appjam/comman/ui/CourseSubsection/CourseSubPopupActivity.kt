@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_charge_popup.*
 import kotlinx.android.synthetic.main.activity_lecture_popup.*
 import kotlinx.android.synthetic.main.lecture_popup_items.view.*
 import org.appjam.comman.R
@@ -48,6 +47,7 @@ class CourseSubPopupActivity : AppCompatActivity(), AppBarLayout.OnOffsetChanged
                 .subscribe({response ->
                     val popupTitleInfo = response.result
                     lecturePopup_title_tv.text = popupTitleInfo.title
+                    toolbarTextView.text = popupTitleInfo.title
                     lecturePopup_name_tv.text = popupTitleInfo.name
                 },{failure ->
                     Log.i("CourseSubPopupActivity","on Failure, Message : ${failure.message}")
@@ -60,7 +60,8 @@ class CourseSubPopupActivity : AppCompatActivity(), AppBarLayout.OnOffsetChanged
                 },{failure ->
                     Log.i("CourseSubPopupActivity","on Failure, Message : ${failure.message}")
                 }))
-        charge_ok_btn.setOnClickListener {
+
+        lecture_popup_close_btn.setOnClickListener {
             finish()
         }
     }

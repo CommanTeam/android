@@ -1,3 +1,5 @@
+@file:Suppress("PLUGIN_WARNING")
+
 package org.appjam.comman.youtube
 
 import android.content.Intent
@@ -14,6 +16,7 @@ import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_card.*
 import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
@@ -58,7 +61,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private val timer = Timer()
     private var timeOfPref: Int = 0
     private lateinit var timerTask: TimerTask
-
     val adapter : Adapter? = null
 
     private var questionInfoList: MutableList<QuestionData.QuestionInfo> = mutableListOf()
@@ -68,6 +70,11 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_practice)
 
+        video_back_btn.setOnClickListener{
+            finish()
+        }
+
+        
 //        lectureID = intent.getIntExtra("lectureID", 0)
 //        courseID = intent.getIntExtra("courseID", 0)
 //        chapterID = intent.getIntExtra("chapterID", 0)
@@ -94,6 +101,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         video_lecture_name2_tv?.text = "${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
                     }
 //                    videoId = videoLectureInfo[0].video_id
+                    video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                     practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                     land_practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                 }, { failure ->
@@ -105,9 +113,14 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 .setDefaultThreads()
                 .subscribe({ response ->
                     lectureList = response.result
+                    Toast.makeText(this, lectureList.size.toString(), Toast.LENGTH_SHORT).show()
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                 }, { failure ->
+
+                    Log.i(TAG, "망망 on Failure ${failure.message}")
+
                     Log.i(TAG, "on Failure ${failure.message}")
+
                 }))
 
         disposables.add(APIClient.apiService.getNextLectureInfo(        //다음 강의 정보 얻어오기
@@ -117,6 +130,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     nextLectureResponse = response
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
+
                 }))
 
         disposables.add(APIClient.apiService.getQuestionOfLecture(
@@ -127,6 +141,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                 }, { failure ->
                     Log.i(TAG, "on Failure ${failure.message}")
+
                 }))
 
 
@@ -141,6 +156,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         }
+
+
 
         timerTask = object : TimerTask() {
             override fun run() {
@@ -176,7 +193,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 }
             }
         }
-
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
@@ -252,6 +268,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
 
             }
+
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -365,6 +382,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     startActivity(intent)
                 }
             }
+
+
         }
     }
 
