@@ -171,8 +171,6 @@ class CourseSubActivity : AppCompatActivity() {
                     .centerCrop()
                     .error(R.mipmap.ic_launcher)
                     .into(itemView.lecture_subsection_video_thumb)
-
-
         }
 
     }
