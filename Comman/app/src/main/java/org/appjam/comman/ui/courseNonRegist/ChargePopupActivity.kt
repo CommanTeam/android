@@ -1,6 +1,7 @@
 package org.appjam.comman.ui.courseNonRegist
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -44,8 +45,9 @@ class ChargePopupActivity : AppCompatActivity() {
             Log.i(TAG, "charge_close_btn : on click")
             finish()
             val intent = Intent(this, CourseSubActivity::class.java)
-            intent.putExtra("courseID", intent.getIntExtra("courseID", 0))
-            intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
+            intent.putExtra("courseID", intent.getIntExtra("courseID", 1))
+            intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
+
             startActivity(intent)
         }
         charge_ok_btn.setOnClickListener {

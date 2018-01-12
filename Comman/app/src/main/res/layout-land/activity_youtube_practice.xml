@@ -8,30 +8,30 @@
         android:id="@+id/land_practice_lectureVideo_youtube_playerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/youtube_bottom_bar_layout">
+        android:layout_above="@+id/preview_youtube_bottom_bar_layout">
 
 
     </com.google.android.youtube.player.YouTubePlayerView>
 
     <RelativeLayout
-        android:id="@+id/youtube_bottom_bar_layout"
+        android:id="@+id/preview_youtube_bottom_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#525252">
 
         <org.appjam.comman.custom.CustomSeekBar
-            android:id="@+id/youtube_progress_bar"
+            android:id="@+id/preview_youtube_progress_bar"
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:layout_marginTop="2dp"
             />
 
         <Button
-            android:id="@+id/youtube_playing_btn"
+            android:id="@+id/preview_youtube_playing_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_below="@id/youtube_progress_bar"
+            android:layout_below="@id/preview_youtube_progress_bar"
             android:layout_marginLeft="19dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="13dp"
@@ -42,8 +42,8 @@
             android:id="@+id/youtube_pause_btn"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_below="@id/youtube_progress_bar"
-            android:layout_toRightOf="@+id/youtube_playing_btn"
+            android:layout_below="@id/preview_youtube_progress_bar"
+            android:layout_toRightOf="@+id/preview_youtube_playing_btn"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="6dp"
             android:layout_marginBottom="13dp"
@@ -51,10 +51,10 @@
             />
 
         <TextView
-            android:id="@+id/youtube_current_time_tv"
+            android:id="@+id/preview_youtube_current_time_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/youtube_progress_bar"
+            android:layout_below="@id/preview_youtube_progress_bar"
             android:layout_toRightOf="@+id/youtube_pause_btn"
             android:layout_marginTop="11dp"
             android:layout_marginLeft="19dp"
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginTop="9dp"
-            android:layout_below="@id/youtube_progress_bar"
+            android:layout_below="@id/preview_youtube_progress_bar"
             android:layout_toLeftOf="@+id/youtube_small_view_btn"
             android:layout_marginRight="13dp"
             android:layout_marginBottom="13dp"
@@ -84,7 +84,7 @@
             android:id="@+id/youtube_small_view_btn"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
-            android:layout_below="@id/youtube_progress_bar"
+            android:layout_below="@id/preview_youtube_progress_bar"
             android:layout_marginTop="9dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="19sp"

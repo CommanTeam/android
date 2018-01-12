@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.lecture
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -48,7 +49,16 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
         land_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this)
 
+<<<<<<< HEAD
         lecture_video_back_btn.setOnClickListener{
+=======
+        lecure_video_back_btn.setOnClickListener{
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", intent.getIntExtra("chapterID", 1))
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
+>>>>>>> commit_solution
             finish()
         }
     }
