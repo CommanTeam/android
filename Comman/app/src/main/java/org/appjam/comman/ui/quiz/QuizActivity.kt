@@ -1,5 +1,3 @@
-package org.appjam.comman.ui.quiz
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -14,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_quiz.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.QuizData
+import org.appjam.comman.ui.quiz.QuizQuestionFragment
+import org.appjam.comman.ui.quiz.QuizSubmitFragment
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SetColorUtils
 import org.appjam.comman.util.setDefaultThreads
