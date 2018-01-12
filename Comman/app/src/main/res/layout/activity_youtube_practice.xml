@@ -110,6 +110,7 @@
             android:id="@+id/youtube_playing_btn"
             android:layout_width="34dp"
             android:layout_height="34dp"
+            android:minHeight="34dp"
             android:layout_below="@id/youtube_progress_bar"
             android:layout_marginBottom="13dp"
             android:layout_marginLeft="19dp"
