@@ -213,8 +213,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
 
 
-
-
         timerTask = object : TimerTask() {
             override fun run() {
                 if (mPlayer?.isPlaying == true) {
@@ -248,6 +246,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 }
             }
         }
+
     }
 
 
