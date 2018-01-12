@@ -115,7 +115,7 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
         <TextView
-            android:id="@+id/lecture_subsection_preview_chapterlist_title_tv"
+            android:id="@+id/lecture_subsection_chapterlist_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lecture_subsection_video_play_layout"
@@ -125,5 +125,19 @@
             android:text="단원 목록"
             android:textColor="@color/mainTextColor"
             android:textSize="21sp" />
+
+
+        <Button
+            android:id="@+id/lecture_subsection_purchase_btn"
+            android:layout_width="93dp"
+            android:layout_height="28dp"
+            android:layout_alignBottom="@+id/lecture_subsection_chapterlist_title_tv"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/frag_quiz_submitbtn_bg"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="강좌 구매"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
     </RelativeLayout>
 </RelativeLayout>

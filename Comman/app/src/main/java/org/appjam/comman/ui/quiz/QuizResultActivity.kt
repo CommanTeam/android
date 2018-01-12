@@ -236,8 +236,3 @@ class QuizResultActivity : AppCompatActivity() {
         super.onDestroy()
     }
 }
-
-
-
-
-

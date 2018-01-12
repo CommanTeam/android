@@ -39,7 +39,7 @@
         app:cardElevation="3dp">
 
         <Button
-            android:id="@+id/lecture_subsection_purchase_btn"
+            android:id="@+id/lecture_subsection_preview_purchase_btn"
             android:layout_width="93dp"
             android:layout_height="28dp"
             android:layout_alignBottom="@+id/lecture_subsection_preview_chapterlist_title_tv"
