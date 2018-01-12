@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.first_lecvideo_list_items.view.*
-import kotlinx.android.synthetic.main.question_head_item.view.*
 import kotlinx.android.synthetic.main.second_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.youtube_question_elem_item.view.*
 import kotlinx.android.synthetic.main.youtube_question_header_item.view.*
@@ -433,7 +432,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                                 video_top_layout?.visibility = View.VISIBLE
                                 video_top2_layout?.visibility=View.VISIBLE
                                 lecture_list_rv?.adapter?.notifyDataSetChanged()
-                                itemView.question_item_et.text = null
+                                itemView.youtube_question_item_et.text = null
                             }, { failure ->
                                 Log.i(TAG, "on Failure ${failure.message}")
                             }))
@@ -520,7 +519,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         val intent = Intent(this@YoutubePracticeActivity, QuizActivity::class.java)
                         intent.putExtra("courseID", courseID)
                         intent.putExtra("lectureID", data.lectureID)
-                        intent.putExtra("lectureID", chapterID)
+                        intent.putExtra("chapterID", chapterID)
                         startActivity(intent)
                     }
                     itemView.etcLecVideo_time_tv.text = "${data.lectureCnt} 페이지"
@@ -530,7 +529,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         val intent = Intent(this@YoutubePracticeActivity, CardActivity::class.java)
                         intent.putExtra("courseID", courseID)
                         intent.putExtra("lectureID", data.lectureID)
-                        intent.putExtra("lectureID", chapterID)
+                        intent.putExtra("chapterID", chapterID)
                         startActivity(intent)
                     }
                     itemView.etcLecVideo_time_tv.text = "${data.lectureCnt} 문제"

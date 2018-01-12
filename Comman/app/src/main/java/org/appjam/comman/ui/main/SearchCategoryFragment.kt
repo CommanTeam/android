@@ -31,7 +31,6 @@ class SearchCategoryFragment : Fragment() {
     private var categoryInfoList : List<CategoryData.CategoryInfo> = listOf()
     private val disposables = CompositeDisposable()
 
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?)
          = inflater?.inflate(R.layout.fragment_main_search_category, container, false)
 
