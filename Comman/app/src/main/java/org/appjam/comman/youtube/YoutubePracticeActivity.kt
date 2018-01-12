@@ -1,3 +1,5 @@
+@file:Suppress("PLUGIN_WARNING")
+
 package org.appjam.comman.youtube
 
 import android.content.Intent
@@ -59,7 +61,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private val timer = Timer()
     private var timeOfPref: Int = 0
     private lateinit var timerTask: TimerTask
-
     val adapter : Adapter? = null
 
     private var questionInfoList: MutableList<QuestionData.QuestionInfo> = mutableListOf()
@@ -69,6 +70,11 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_practice)
 
+        video_back_btn.setOnClickListener{
+            finish()
+        }
+
+        
 //        lectureID = intent.getIntExtra("lectureID", 0)
 //        courseID = intent.getIntExtra("courseID", 0)
 //        chapterID = intent.getIntExtra("chapterID", 0)
@@ -151,6 +157,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         }
 
+
+
         timerTask = object : TimerTask() {
             override fun run() {
                 if (mPlayer?.isPlaying == true) {
@@ -185,7 +193,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 }
             }
         }
-
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
@@ -261,6 +268,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
 
             }
+
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -374,6 +382,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     startActivity(intent)
                 }
             }
+
+
         }
     }
 

@@ -73,6 +73,7 @@
                         android:layout_marginLeft="8dp"
                         android:fontFamily="@font/nanum_square_bold"
                         android:text="[Rhino] 반지 모델링하기"
+                        android:maxLines="2"
                         android:textColor="@color/mainTextColor"
                         android:textSize="21sp" />
                 </LinearLayout>

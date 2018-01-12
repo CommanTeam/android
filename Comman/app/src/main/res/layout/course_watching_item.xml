@@ -97,6 +97,7 @@
             android:id="@+id/main_course_wathing_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="2"
             android:text="[Rhino] 반지 모델링하기"
             android:textSize="21sp"
             android:textColor="@color/mainTextColor"
