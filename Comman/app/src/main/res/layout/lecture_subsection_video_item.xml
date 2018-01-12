@@ -44,7 +44,13 @@
                     android:layout_height="114dp"
                     android:background="@drawable/lecture_subsection_video_item_bg"
                     android:scaleType="fitXY"/>
-
+                <ImageView
+                    android:id="@+id/lecture_subsection_video_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="114dp"
+                    android:background="@drawable/lecture_subsection_video_item_bg"
+                   android:alpha="0.6"
+                    />
                 <Button
                     android:id="@+id/lecture_subsection_video_play_btn"
                     android:layout_width="48dp"
