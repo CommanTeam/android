@@ -1,14 +1,18 @@
 
 package org.appjam.comman.youtube
 
+import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.inputmethod.InputMethodManager
 import android.widget.Adapter
 import android.widget.Toast
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -19,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.first_lecvideo_list_items.view.*
+import kotlinx.android.synthetic.main.question_head_item.*
 import kotlinx.android.synthetic.main.second_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.youtube_question_elem_item.view.*
 import kotlinx.android.synthetic.main.youtube_question_header_item.view.*
@@ -39,10 +44,41 @@ import org.appjam.comman.util.setDefaultThreads
 import java.util.*
 
 
-class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
+class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener, AppBarLayout.OnOffsetChangedListener {
+    override fun onOffsetChanged(appBarLayout: AppBarLayout?, verticalOffset: Int) {
+        val maxScroll = lecture_list_rv?.scrollState
+        val percentage = Math.abs(verticalOffset) / maxScroll!!.toFloat()
+        handleAlphaOnContainer(percentage)
+    }
+
+    private fun handleAlphaOnContainer(percentage: Float) {
+        if (percentage >= PERCENTAGE_TO_HIDE_TITLE_DETAILS) {
+            if (this.requestedOrientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+                if (isContainerVisible) {
+                    startAlphaAnimation(video_top_layout, 200, View.INVISIBLE)
+                    startAlphaAnimation(video_top2_layout, 200, View.INVISIBLE)
+                    isContainerVisible = false
+                } else {
+                    startAlphaAnimation(video_top_layout, 200, View.VISIBLE)
+                    startAlphaAnimation(video_top2_layout, 200, View.VISIBLE)
+                    isContainerVisible = true
+                }
+            }
+        }
+    }
+
+    private fun startAlphaAnimation(v: View, duration: Long, visibility: Int) {
+        val alphaAnimation = if (visibility == View.VISIBLE) AlphaAnimation(0f, 1f) else AlphaAnimation(1f, 0f)
+        alphaAnimation.duration = duration
+        alphaAnimation.fillAfter = true
+        v.startAnimation(alphaAnimation)
+    }
+
+    private var isContainerVisible = true
 
     companion object {
         const val TAG = "YoutubePracticeActivity"
+        const val PERCENTAGE_TO_HIDE_TITLE_DETAILS = 0.3f
     }
 
     private val disposables = CompositeDisposable()
@@ -63,11 +99,14 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private var questionInfoList: MutableList<QuestionData.QuestionInfo> = mutableListOf()
     private var lecOrques: Int = 0     //강의목록이면 0, 질문보기면 1
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_practice)
 
-        video_back_btn.setOnClickListener{
+        appBarLayout?.addOnOffsetChangedListener(this)
+
+        video_back_btn?.setOnClickListener {
             timer.cancel()
             finish()
         }
@@ -139,6 +178,12 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
                 }))
 
+        if(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.isActivated == false) {
+            Toast.makeText(this, "포커스 풀림", Toast.LENGTH_SHORT).show()
+            video_top_layout?.visibility = View.VISIBLE
+            video_top2_layout?.visibility=View.VISIBLE
+        }
+
 
         video_full_screen_btn?.setOnClickListener {
             timer.cancel()
@@ -152,6 +197,22 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         }
 
+        practice_lectureVideo_youtube_playerView?.setOnClickListener {
+            val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.windowToken, 0)
+            video_top_layout?.visibility = View.VISIBLE
+            video_top2_layout?.visibility=View.VISIBLE
+        }
+
+        youtube_bottom_bar_layout?.setOnClickListener {
+            val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.windowToken, 0)
+            video_top_layout?.visibility = View.VISIBLE
+            video_top2_layout?.visibility=View.VISIBLE
+        }
+
+
+
 
 
         timerTask = object : TimerTask() {
@@ -163,7 +224,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         youtube_current_time_tv.text = "$current_time / $duration_time"
                         youtube_progress_bar.progress = mPlayer!!.currentTimeMillis
                         PrefUtils.putYoutubeCurrentTimeInCourse(this@YoutubePracticeActivity, mPlayer!!.currentTimeMillis, courseID)
-                        Log.i(TAG, PrefUtils.getInt(this@YoutubePracticeActivity, PrefUtils.CURRENT_TIME).toString())
                         youtube_progress_bar.setSeekBarListener(object : CustomSeekBar.CustomSeekBarListener {
                             override fun onThumbDragged(progress: Int) {
                                 mPlayer!!.seekToMillis(progress)
@@ -190,12 +250,14 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         }
     }
 
+
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
         Toast.makeText(this, "동영상을 불러오는데 실패했습니다.", Toast.LENGTH_SHORT).show()
     }
 
     override fun onInitializationSuccess(provider: YouTubePlayer.Provider?, player: YouTubePlayer?, wasRestored: Boolean) {
         this.mPlayer = player
+        player!!.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS)
         youtube_playing_btn.setOnClickListener {
             this.mPlayer?.play()
         }
@@ -305,14 +367,12 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 if (lecOrques == 1) {
                     lecOrques = 0
                     video_lecture_list_rv?.adapter = LectureVideoAdapter()
-                    video_top2_layout?.visibility=View.VISIBLE
                 }
             }
             itemView.question_btn_layout.setOnClickListener {
                 if (lecOrques == 0) {
                     lecOrques = 1
                     video_lecture_list_rv?.adapter = QuestionAdapter()
-                    video_top2_layout?.visibility=View.GONE
                 }
             }
 
@@ -323,6 +383,18 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     private inner class QuestionHeaderViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             itemView.youtube_question_item_cnt_tv.text = "${questionInfoList.size}개"
+            itemView.youtube_question_item_et.setOnClickListener {
+                video_top_layout?.visibility = View.GONE
+                video_top2_layout?.visibility=View.GONE
+            }
+
+            if(!itemView.youtube_question_item_et.isActivated) {
+                val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(itemView.youtube_question_item_et.windowToken, 0)
+                video_top_layout?.visibility = View.VISIBLE
+                video_top2_layout?.visibility=View.VISIBLE
+            }
+
             itemView.youtube_question_item_regist_btn.setOnClickListener {
                 if (itemView.youtube_question_item_et.text.isEmpty()) {
                     Toast.makeText(this@YoutubePracticeActivity, "질문을 작성해주세요.", Toast.LENGTH_LONG).show()
@@ -334,7 +406,12 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                                 questionInfoList.add(0, QuestionData.QuestionInfo(1, PrefUtils.getString(this@YoutubePracticeActivity, PrefUtils.NICKNAME)
                                         , 1, response.result.question_text, response.result.question_date, response.result.flag
                                         , 0, 1, "", "", ""))
-                                parent.lecture_list_rv?.adapter?.notifyDataSetChanged()
+                                val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                                imm.hideSoftInputFromWindow(itemView.youtube_question_item_et.windowToken, 0)
+                                video_top_layout?.visibility = View.VISIBLE
+                                video_top2_layout?.visibility=View.VISIBLE
+                                lecture_list_rv?.adapter?.notifyDataSetChanged()
+                                question_item_et.text = null
                             }, { failure ->
                                 Log.i(TAG, "on Failure ${failure.message}")
                             }))
@@ -479,6 +556,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
     }
 
     override fun onBackPressed() {
+        video_top_layout?.visibility = View.VISIBLE
+        video_top2_layout?.visibility=View.VISIBLE
         timer.cancel()
         super.onBackPressed()
     }
