@@ -8,7 +8,7 @@
     android:background="@color/backgroundColor">
 
     <TextView
-        android:id="@+id/main_lecture_wathing_tv"
+        android:id="@+id/course_lecture_wathing_tv"
         android:layout_marginTop="35dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,10 +18,10 @@
         android:fontFamily="@font/nanum_square_bold"
         />
 <android.support.v7.widget.CardView
-    android:id="@+id/main_lecture_wathing_layout"
+    android:id="@+id/course_lecture_wathing_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@id/main_lecture_wathing_tv"
+    android:layout_below="@id/course_lecture_wathing_tv"
     android:layout_marginTop="16dp"
     app:cardElevation="@dimen/shadow">
     <LinearLayout
@@ -31,27 +31,27 @@
         android:background="@drawable/main_lecture_watching_bg">
 
         <RelativeLayout
-            android:id="@+id/main_lecture_watching_back"
+            android:id="@+id/course_lecture_watching_back"
             android:layout_width="match_parent"
             android:layout_height="135dp"
             android:background="@drawable/main_lecture_image_bg">
 
             <ImageView
-                android:id="@+id/main_watching_full_background_img"
+                android:id="@+id/course_watching_full_background_img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 />
 
             <ImageView
-                android:id="@+id/lecture_subsection_video_thumb"
+                android:id="@+id/course_subsection_video_thumb"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/lecture_subsection_video_item_bg"
                 android:alpha="0.6" />
 
             <ImageView
-                android:id="@+id/main_lecture_wathing_img"
+                android:id="@+id/course_lecture_wathing_img"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_centerHorizontal="true"
@@ -59,7 +59,7 @@
                 android:background="@drawable/home_quiz_icon" />
 
             <TextView
-                android:id="@+id/main_lecture_watching_progress_tv"
+                android:id="@+id/course_lecture_watching_progress_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -73,7 +73,7 @@
                 />
 
             <android.support.v4.widget.ContentLoadingProgressBar
-                android:id="@+id/main_lecture_watching_progress_bar"
+                android:id="@+id/course_lecture_watching_progress_bar"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="6dp"
@@ -90,7 +90,7 @@
             android:layout_marginTop="19dp"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="13dp"
-            android:id="@+id/main_course_wathing_chapter_tv"
+            android:id="@+id/course_course_wathing_chapter_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="무슨 강좌 > 01 챕터"
@@ -103,7 +103,7 @@
             android:layout_marginTop="6dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:id="@+id/main_course_wathing_title_tv"
+            android:id="@+id/course_course_wathing_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="2"
@@ -116,7 +116,7 @@
     </LinearLayout>
 </android.support.v7.widget.CardView>
     <TextView
-        android:layout_below="@id/main_lecture_wathing_layout"
+        android:layout_below="@id/course_lecture_wathing_layout"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="8dp"
         android:layout_width="wrap_content"

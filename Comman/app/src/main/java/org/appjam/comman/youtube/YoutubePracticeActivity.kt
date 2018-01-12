@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.first_lecvideo_list_items.view.*
-import kotlinx.android.synthetic.main.question_head_item.*
+import kotlinx.android.synthetic.main.question_head_item.view.*
 import kotlinx.android.synthetic.main.second_lecvideo_list_items.view.*
 import kotlinx.android.synthetic.main.youtube_question_elem_item.view.*
 import kotlinx.android.synthetic.main.youtube_question_header_item.view.*
@@ -149,7 +149,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 .setDefaultThreads()
                 .subscribe({ response ->
                     lectureList = response.result
-                    Toast.makeText(this, lectureList.size.toString(), Toast.LENGTH_SHORT).show()
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                 }, { failure ->
 
@@ -179,7 +178,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 }))
 
         if(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.isActivated == false) {
-            Toast.makeText(this, "포커스 풀림", Toast.LENGTH_SHORT).show()
             video_top_layout?.visibility = View.VISIBLE
             video_top2_layout?.visibility=View.VISIBLE
         }
@@ -410,7 +408,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                                 video_top_layout?.visibility = View.VISIBLE
                                 video_top2_layout?.visibility=View.VISIBLE
                                 lecture_list_rv?.adapter?.notifyDataSetChanged()
-                                question_item_et.text = null
+                                itemView.question_item_et.text = null
                             }, { failure ->
                                 Log.i(TAG, "on Failure ${failure.message}")
                             }))
@@ -488,7 +486,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         intent.putExtra("chapterID", chapterID)
                         startActivity(intent)
                     }
-                    //TODO video 시간 서버한테 받을 수 있으면 그걸로 text에 넣기
 
         itemView.etcLecVideo_time_tv.text = "${YoutubeTimeUtils.formatTime(data.playTime)}"
 
