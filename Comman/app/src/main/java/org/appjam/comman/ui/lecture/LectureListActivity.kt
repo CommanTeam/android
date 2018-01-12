@@ -66,7 +66,6 @@ class LectureListActivity : AppCompatActivity() {
                 }, { failure ->
                     Log.i(TAG, "on Failure, Message: ${failure.message}")
                 }))
-
     }
 
     inner class ChapterExpViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
