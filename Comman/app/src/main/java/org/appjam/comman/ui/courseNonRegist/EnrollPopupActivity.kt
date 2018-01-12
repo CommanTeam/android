@@ -45,7 +45,7 @@ class EnrollPopupActivity : AppCompatActivity() {
                     .subscribe({ response ->
                             val intent = Intent(this@EnrollPopupActivity, MainActivity::class.java)
                             intent.putExtra("courseID", courseID)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                             startActivity(intent)
 
                     }, { failure ->
