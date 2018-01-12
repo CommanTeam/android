@@ -127,8 +127,18 @@
             android:textSize="21sp" />
 
 
-        <Button
+        <ImageView
             android:id="@+id/lecture_subsection_purchase_btn"
+            android:layout_width="98dp"
+            android:layout_height="32dp"
+            android:layout_alignBottom="@+id/lecture_subsection_chapterlist_title_tv"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/nanum_square_bold"
+            android:text="강좌 구매"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+        <Button
             android:layout_width="93dp"
             android:layout_height="28dp"
             android:layout_alignBottom="@+id/lecture_subsection_chapterlist_title_tv"
