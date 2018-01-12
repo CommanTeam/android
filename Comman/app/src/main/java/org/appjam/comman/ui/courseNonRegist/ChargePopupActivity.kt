@@ -1,6 +1,7 @@
 package org.appjam.comman.ui.courseNonRegist
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
@@ -42,6 +43,10 @@ class ChargePopupActivity : AppCompatActivity() {
         charge_close_btn.setOnClickListener{
             Log.i(TAG, "charge_close_btn : on click")
             finish()
+            val intent = Intent(this, CourseSubActivity::class.java)
+            intent.putExtra("courseID", intent.getIntExtra("courseID", 0))
+            intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(intent)
         }
         charge_ok_btn.setOnClickListener {
 
@@ -52,6 +57,7 @@ class ChargePopupActivity : AppCompatActivity() {
                         if(response.message == "구매 성공") {
                             val intent = Intent(this, CourseSubActivity::class.java)
                             intent.putExtra("courseID", intent.getIntExtra("courseID", 1))
+                            intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
                             startActivity(intent)       // TODO 토스트 띄울 건지 어떠 액션을 취할 건지 고민
                         }
                     }, {

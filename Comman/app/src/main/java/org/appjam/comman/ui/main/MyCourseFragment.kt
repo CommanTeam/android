@@ -1,6 +1,7 @@
 package org.appjam.comman.ui.main
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -130,6 +131,7 @@ class MyCourseFragment : Fragment() {
          itemView.setOnClickListener {
                 val intent = Intent(context, CourseSubActivity::class.java)
                 intent.putExtra("courseID", courseInfo.courseID)
+                intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
             }
         }
@@ -164,6 +166,7 @@ class MyCourseFragment : Fragment() {
                         val intent = Intent(context, QuizActivity::class.java)
                         intent.putExtra("courseID", recentLectureInfo!!.course_ID)
                         intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
+                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
                     }
                 } else if(recentLectureInfo!!.lecture_type == 1) {
@@ -180,6 +183,7 @@ class MyCourseFragment : Fragment() {
                         val intent = Intent(context, CardActivity::class.java)
                         intent.putExtra("courseID", recentLectureInfo!!.course_ID)
                         intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
+                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
                     }
                 } else {
@@ -205,6 +209,7 @@ class MyCourseFragment : Fragment() {
                         intent.putExtra("courseID", recentLectureInfo!!.course_ID)
                         intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
                         intent.putExtra("chapterID", recentLectureInfo!!.chapter_ID)
+                        intent.addFlags(FLAG_ACTIVITY_CLEAR_TOP)
                         startActivity(intent)
                     }
                 }

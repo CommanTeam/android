@@ -209,7 +209,9 @@ class CourseSubActivity : AppCompatActivity() {
                 itemView.course_subsection_purchase_btn.setOnClickListener {
                     val intent = Intent(this@CourseSubActivity, ChargePopupActivity::class.java)
                     intent.putExtra("courseID", recentLectureInfo?.course_ID)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(intent)
+                    finish()
                 }
             } else {
                 itemView.course_subsection_purchase_btn.visibility = View.GONE
