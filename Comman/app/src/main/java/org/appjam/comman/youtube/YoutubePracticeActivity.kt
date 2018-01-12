@@ -217,7 +217,8 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             override fun onLoaded(p0: String?) {}
 
             override fun onVideoEnded() {
-                if (video_lecture_list_rv?.getChildAt(0)?.fstLecVideo_switch?.isChecked == true) {
+                PrefUtils.putYoutubeCurrentTimeInCourse(this@YoutubePracticeActivity, 0, courseID)
+                if (video_lecture_list_rv?.getChildAt(1)?.fstLecVideo_switch?.isChecked == true) {
                     val intent = ListUtils.linkToNextLecture(this@YoutubePracticeActivity, nextLectureResponse, courseID)
                     startActivity(intent)
                 }

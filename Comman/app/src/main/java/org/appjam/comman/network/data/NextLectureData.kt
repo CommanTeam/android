@@ -12,6 +12,7 @@ object NextLectureData {
     data class NextLectureInfo(
             val lectureID : Int,
             val lectureType : Int,
-            val purchaseFlag : Int
+            val purchaseFlag : Int,
+            val nextChapterID : Int
     )
 }
