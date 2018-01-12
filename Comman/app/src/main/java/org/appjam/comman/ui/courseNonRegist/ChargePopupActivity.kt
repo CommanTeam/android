@@ -52,6 +52,7 @@ class ChargePopupActivity : AppCompatActivity() {
                         if(response.message == "구매 성공") {
                             val intent = Intent(this, CourseSubActivity::class.java)
                             intent.putExtra("courseID", intent.getIntExtra("courseID", 1))
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                             startActivity(intent)       // TODO 토스트 띄울 건지 어떠 액션을 취할 건지 고민
                         }
                     }, {
