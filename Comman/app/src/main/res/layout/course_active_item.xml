@@ -14,7 +14,7 @@
         android:id="@+id/main_course_active_img"
         android:layout_width="133dp"
         android:layout_height="match_parent"
-        android:background="@drawable/frag_quiz_submitbtn_bg" />
+        android:background="@drawable/my_course_img_bg" />
 
     <RelativeLayout
         android:layout_width="match_parent"
