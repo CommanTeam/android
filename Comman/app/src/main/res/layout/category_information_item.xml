@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/backgroundColor">
 
 
     <android.support.v7.widget.CardView
-        android:layout_width="182dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/shadow"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -22,7 +22,7 @@
             <ImageView
                 android:id="@+id/category_img"
                 android:layout_width="match_parent"
-                android:layout_height="57dp"/>
+                android:layout_height="60dp"/>
 
             <TextView
                 android:id="@+id/categoryTitle_tv"
