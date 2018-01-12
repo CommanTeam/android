@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_card.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CardData
+import org.appjam.comman.network.data.CoursesData
+import org.appjam.comman.network.data.LectureData
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.SetColorUtils
 import org.appjam.comman.util.setDefaultThreads
@@ -33,6 +35,7 @@ class CardActivity : AppCompatActivity() {
     private val disposables = CompositeDisposable()
     private var cardInfoList: List<CardData.CardInfo> = listOf()
     private var lectureID: Int = 0
+    private var courseID: Int = 0
     private var pageCount: Int = 0
     private var lectureTitle: String = ""
 
@@ -49,7 +52,7 @@ class CardActivity : AppCompatActivity() {
         }
 
 
-        val courseID = intent.getIntExtra("courseID",0)
+        courseID = intent.getIntExtra("courseID",0)
         lectureID = intent.getIntExtra("lectureID", 0)
         var current_page : Int = 1
 
@@ -151,7 +154,8 @@ class CardActivity : AppCompatActivity() {
             } else {
                 val cardLastFragment = CardLastFragment()
                 val bundle = Bundle()
-                bundle.putInt("lectureID", lectureID)
+                bundle.putInt(CoursesData.COURSE_ID_KEY,courseID)
+                bundle.putInt(LectureData.LECTURE_ID_KEY, lectureID)
                 cardLastFragment.arguments = bundle
                 cardLastFragment
             }

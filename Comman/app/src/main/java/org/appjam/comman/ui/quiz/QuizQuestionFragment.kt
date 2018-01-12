@@ -50,8 +50,10 @@ class QuizQuestionFragment : Fragment() {
             val rQuizDataResult = realm.where(RQuizData::class.java)
                     .equalTo("quizId", quizInfoList[pagePosition].quizID)
                     .findAll()
-            if (rQuizDataResult.size == 1) {
-                selectedList[rQuizDataResult[0]?.answer ?: 0] = true
+            if (rQuizDataResult.size == 1 && rQuizDataResult[0]?.answer != null) {
+                rQuizDataResult[0]?.answer?.let {
+                    answer -> selectedList[answer] = true
+                }
             }
         }
         return inflater!!.inflate(R.layout.fragment_quiz_choice, container,false)

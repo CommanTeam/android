@@ -150,8 +150,7 @@
                 app:sl_dy="2dp"
                 app:sl_shadowColor="@color/default_shadow_color"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                >
+                android:layout_marginRight="20dp">
             <Button
                 android:layout_width="96dp"
                 android:layout_height="36dp"
