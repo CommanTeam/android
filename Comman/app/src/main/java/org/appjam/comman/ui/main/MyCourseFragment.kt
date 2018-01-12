@@ -115,7 +115,8 @@ class MyCourseFragment : Fragment() {
         fun bind(courseInfo: CoursesData.CourseInfo) {
 //            itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
             Glide.with(context)
-                    .load(R.drawable.additional_explanation_btn)
+                    .load(courseInfo.imagePath)
+                    .centerCrop()
                     .into(itemView.main_course_active_img)
             itemView.main_course_active_course_tv.text = courseInfo.courseTitle
             itemView.main_course_active_chapters_tv.text = resources.getString(R.string.msg_format_chapter_count, courseInfo.chapterCnt)
@@ -183,12 +184,11 @@ class MyCourseFragment : Fragment() {
                             .into(itemView.main_lecture_wathing_img)
                 }
 
-            }
-//            else {
-//                itemView.main_lecture_wathing_layout.visibility = View.GONE
-//                itemView.main_lecture_wathing_tv.visibility = View.GONE
+            } else {
+                itemView.main_lecture_wathing_layout.visibility = View.GONE
+                itemView.main_lecture_wathing_tv.visibility = View.GONE
 
-      //      }
+            }
         }
     }
 
