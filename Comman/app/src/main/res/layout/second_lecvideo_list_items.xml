@@ -4,21 +4,23 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginRight="19dp"
-    android:layout_marginLeft="19dp">
+    android:paddingLeft="19dp"
+    android:paddingRight="19dp"
+    android:background="@color/backgroundColor">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardElevation="@dimen/shadow"
-        android:layout_marginBottom="12dp">
-    <LinearLayout
+        app:cardElevation="5dp"
+        android:background="@color/backgroundColor"
         android:layout_marginBottom="12dp"
         android:layout_marginTop="6dp"
+        >
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primaryColor"
-        android:elevation="2dp">
+        >
 
         <ImageView
             android:id="@+id/secLecVideo_img"
