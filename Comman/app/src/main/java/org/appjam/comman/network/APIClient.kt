@@ -170,7 +170,7 @@ object APIClient {
         ) : Observable<QuestionData.QuestionResponse>
 
         //강의ID로 질문 DB에 삽입
-        @POST("/content/lecturequestion/insertanswer")
+        @POST("/content/lecturequestion/insertquestion")
         fun registerQuestion(
                 @Header("authorization") tokenValue: String,
                 @Body questionPost : QuestionData.QuestionPost
