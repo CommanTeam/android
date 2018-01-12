@@ -1,7 +1,6 @@
 package org.appjam.comman.ui.main
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -10,11 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.GlideDrawable
-import com.bumptech.glide.request.animation.GlideAnimation
-import com.bumptech.glide.request.target.ViewTarget
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.course_active_item.view.*
@@ -121,7 +116,7 @@ class MyCourseFragment : Fragment() {
 //            itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
             Glide.with(context)
                     .load(R.drawable.additional_explanation_btn)
-                    .into(itemView.main_course_item_active_img)
+                    .into(itemView.main_course_active_img)
             itemView.main_course_active_course_tv.text = courseInfo.courseTitle
             itemView.main_course_active_chapters_tv.text = resources.getString(R.string.msg_format_chapter_count, courseInfo.chapterCnt)
 
@@ -162,14 +157,7 @@ class MyCourseFragment : Fragment() {
 
                     Glide.with(context)
                             .load(R.drawable.home_quiz_default_image)
-                            .into(object : ViewTarget<RelativeLayout, GlideDrawable>(rootView) {
-                                override fun onResourceReady(resource: GlideDrawable?, glideAnimation: GlideAnimation<in GlideDrawable>?) {
-                                    val myView = this.view
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                        myView.background = resource
-                                    }
-                                }
-                            })
+                            .into(itemView.main_watching_full_background_img)
 
 
                 } else if(recentLectureInfo!!.lecture_type == 1) {
@@ -184,14 +172,7 @@ class MyCourseFragment : Fragment() {
                     Glide.with(context)
                             .load(R.drawable.home_picture_default_image)
                             .centerCrop()
-                            .into(object : ViewTarget<RelativeLayout, GlideDrawable>(rootView) {
-                                override fun onResourceReady(resource: GlideDrawable?, glideAnimation: GlideAnimation<in GlideDrawable>?) {
-                                    val myView = this.view
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                        myView.background = resource
-                                    }
-                                }
-                            })
+                            .into(itemView.main_watching_full_background_img)
                 } else {
                     itemView.main_lecture_watching_progress_tv.text =
                             "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
