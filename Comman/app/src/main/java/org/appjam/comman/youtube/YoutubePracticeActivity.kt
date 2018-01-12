@@ -16,7 +16,6 @@ import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_card.*
 import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_youtube_practice.*
 import kotlinx.android.synthetic.main.etc_lecvideo_list_items.view.*
@@ -315,8 +314,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 if (lecOrques == 0) {
                     lecOrques = 1
                     video_lecture_list_rv?.adapter = QuestionAdapter()
+                    video_top2_layout?.visibility=View.GONE
                 }
             }
+            
         }
     }
 
