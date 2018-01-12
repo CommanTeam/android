@@ -8,11 +8,8 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-<<<<<<< HEAD
-=======
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
->>>>>>> commit_solution
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_question.*
 import kotlinx.android.synthetic.main.question_elem_item.view.*

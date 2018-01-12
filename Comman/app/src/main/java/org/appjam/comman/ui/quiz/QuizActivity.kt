@@ -45,7 +45,14 @@ class QuizActivity : AppCompatActivity() {
 
         chapterID = intent.getIntExtra("chapterID", 0)
 
+        quiz_back_btn_ex.setOnClickListener {
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", chapterID)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
 
+            finish()
+        }
         quiz_back_btn.setOnClickListener{
             val intent = Intent(this, LectureListActivity::class.java)
             intent.putExtra("chapterID", chapterID)

@@ -104,6 +104,10 @@ class CourseNonRegistActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
 
+
+        sub_back_btn_ex.setOnClickListener{
+            finish()
+        }
         sub_back_btn.setOnClickListener {
             finish()
         }

@@ -13,7 +13,7 @@
         android:layout_height="55dp"
         android:background="@color/primaryColor">
         <RelativeLayout
-            android:id="@+id/lecture_video_back_ex"
+            android:id="@+id/lecture_video_back_btn_ex"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             >

@@ -49,6 +49,14 @@ class LectureVideoActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedL
         land_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         lectureVideo_youtube_playerView.initialize(YouTubeConfigs.API_KEY, this)
 
+        lecture_video_back_btn_ex.setOnClickListener {
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", intent.getIntExtra("chapterID", 1))
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
+            finish()
+        }
         lecture_video_back_btn.setOnClickListener{
             val intent = Intent(this, LectureListActivity::class.java)
             intent.putExtra("chapterID", intent.getIntExtra("chapterID", 1))

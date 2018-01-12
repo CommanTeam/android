@@ -53,6 +53,14 @@ class QuizResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_quiz_result)
         realm = Realm.getDefaultInstance()
 
+        quizResult_btn_ex.setOnClickListener {
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", intent.getIntExtra("chapterID", 0))
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+
+            finish()
+        }
         quizResult_back_btn.setOnClickListener{
             val intent = Intent(this, LectureListActivity::class.java)
             intent.putExtra("chapterID", intent.getIntExtra("chapterID", 0))

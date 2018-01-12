@@ -74,6 +74,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_youtube_practice)
 
+        video_back_btn_ex.setOnClickListener {
+            timer.cancel()
+            finish()
+        }
         video_back_btn?.setOnClickListener {
             timer.cancel()
             finish()

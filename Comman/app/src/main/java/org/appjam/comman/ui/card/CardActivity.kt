@@ -51,13 +51,20 @@ class CardActivity : AppCompatActivity() {
 
         chapterID=intent.getIntExtra("chapterID",0)
 
+        card_back_btn_ex.setOnClickListener{
+            val intent = Intent(this, LectureListActivity::class.java)
+            intent.putExtra("chapterID", chapterID)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+        }
+
         card_back_btn.setOnClickListener {
             val intent = Intent(this, LectureListActivity::class.java)
             intent.putExtra("chapterID", chapterID)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
             finish()
-
         }
 
 
