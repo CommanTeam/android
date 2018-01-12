@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.category_information_item.view.*
 import kotlinx.android.synthetic.main.fragment_main_search_category.view.*
@@ -38,7 +39,7 @@ class SearchCategoryFragment : Fragment() {
         val recyclerView = view.main_searchCategory_rv
         recyclerView.adapter = CategoryAdapter()
         recyclerView.layoutManager = GridLayoutManager(context,2)
-        recyclerView.addItemDecoration(SpaceItemDecoration(context, 2))
+        recyclerView.addItemDecoration(SpaceItemDecoration(context,7))
         (recyclerView.layoutManager as GridLayoutManager).spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                         override fun getSpanSize(position: Int): Int
                                 = if ((recyclerView.adapter.getItemViewType(position) == ListUtils.TYPE_HEADER) or
@@ -93,12 +94,17 @@ class SearchCategoryFragment : Fragment() {
     inner class ElemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // TODO: Implement more detail view binding
         fun bind(position: Int) {
+
             itemView.categoryTitle_tv.text = categoryInfoList[position].categoryName
             var categoryContent = ""
             for (title in categoryInfoList[position].title) {
                 categoryContent += (title + ", ")
+                if(categoryInfoList[position].title == null){
+                    categoryContent += ("asdasd")
+                }
             }
             itemView.categoryContent_tv.text = categoryContent
+
             itemView.setOnClickListener {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)
@@ -108,6 +114,15 @@ class SearchCategoryFragment : Fragment() {
                 (parentFragment as SearchFragment).ReplaceFragment(SearchCategoryResultFragment(), bundle, "searchResult")
 
             }
+            Glide.with(context)
+                    .load(categoryInfoList[position].categoryImg)
+                    .centerCrop()
+                    .error(R.mipmap.ic_launcher)
+                    .into(itemView.category_img)
+
+            Toast.makeText(context, categoryInfoList[position].categoryImg,Toast.LENGTH_SHORT).show()
+
+
         }
     }
     inner class FootViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
