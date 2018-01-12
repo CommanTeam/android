@@ -53,7 +53,8 @@
             android:theme="@style/NoActionBar" />
         <activity
             android:name=".ui.quiz.QuizActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:theme="@style/NoActionBar"></activity>
 
         <!-- android:name=".ui.lecture.LectureVideoActivity" -->
         <!-- android:theme="@style/NoActionBar" /> -->
@@ -81,7 +82,8 @@
             android:name=".ui.courseNonRegist.ChargePopupActivity"
             android:theme="@style/Theme.PopUp" />
 
-        <service android:name=".ui.lecture.LectureVideoService" />
+        <service android:name=".ui.lecture.LectureVideoService"
+            android:theme="@style/NoActionBar"/>
 
         <!-- 등록 팝업 Activity -->
         <activity

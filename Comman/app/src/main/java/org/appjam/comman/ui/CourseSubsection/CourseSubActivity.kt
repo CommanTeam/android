@@ -140,16 +140,31 @@ class CourseSubActivity : AppCompatActivity() {
                             "${PrefUtils.getInt(this@CourseSubActivity, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_quiz}"
                     itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_quiz_icon)
                     itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
+                    itemView.lecture_subsection_video_thumb.visibility=View.GONE
                 } else if (recentLectureInfo!!.lecture_type == 1) {
                     itemView.lecture_subsection_video_time_tv.text =
                             "${PrefUtils.getInt(this@CourseSubActivity, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_picture}"
                     itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_picture_icon)
                     itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
+                    itemView.lecture_subsection_video_thumb.visibility=View.GONE
                 } else {
                     itemView.lecture_subsection_video_time_tv.text =
                             "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(this@CourseSubActivity, PrefUtils.DURATION_TIME))}"
                     itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_video_icon)
                     itemView.lecture_subsection_watching_progress_bar.visibility = View.VISIBLE
+                    var thumbID : String?=null
+                    var thumbURL : String?=null
+
+                    thumbID="BUM8Qe6fdRk"
+                    thumbURL="https://img.youtube.com/vi/"+thumbID+"/sddefault.jpg"
+
+                    Glide.with(applicationContext)
+                            .load(thumbURL)
+                            .placeholder(R.mipmap.ic_launcher)
+                            .fitCenter()
+                            .centerCrop()
+                            .error(R.mipmap.ic_launcher)
+                            .into(itemView.lecture_subsection_video_thumb)
                 }
 
             }
@@ -158,19 +173,7 @@ class CourseSubActivity : AppCompatActivity() {
                 itemView.lecture_subsection_video_play_layout.visibility = View.GONE
             }
 
-            var thumbID : String?=null
-            var thumbURL : String?=null
 
-            thumbID="BUM8Qe6fdRk"
-            thumbURL="https://img.youtube.com/vi/"+thumbID+"/sddefault.jpg"
-
-            Glide.with(applicationContext)
-                    .load(thumbURL)
-                    .placeholder(R.mipmap.ic_launcher)
-                    .fitCenter()
-                    .centerCrop()
-                    .error(R.mipmap.ic_launcher)
-                    .into(itemView.lecture_subsection_video_thumb)
         }
 
     }
@@ -183,7 +186,7 @@ class CourseSubActivity : AppCompatActivity() {
             itemView.lecture_subsection_chapterlist_totalnum_tv.text = "총 ${chaptersInfoList[position].lectureCnt}강"
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
             if (((isPurchased == 0) and chaptersInfoList[position].open) or (isPurchased == 1)) {
-                itemView.lecture_subsection_lock_layout.visibility = View.GONE
+               itemView.lecture_subsection_lock_layout.visibility = View.GONE
                itemView.setOnClickListener {
                     val intent = Intent(this@CourseSubActivity, LectureListActivity::class.java)
                     intent.putExtra("chapterID", chaptersInfoList[position].chapterID)

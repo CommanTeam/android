@@ -151,7 +151,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             this.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
         }
-
+        
 
 
         timerTask = object : TimerTask() {
@@ -188,6 +188,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 }
             }
         }
+
     }
 
     override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {

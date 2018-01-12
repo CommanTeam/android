@@ -28,6 +28,7 @@
             android:id="@+id/fstLecVideo_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="14dp"
             android:layout_alignParentRight="true"/>
 
         <TextView
@@ -37,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@id/fstLecVideo_switch"
             android:text="자동 재생"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="6dp"
             android:fontFamily="@font/nanum_square_regular"
             android:textColor="@color/mainTextColor"
             android:textSize="19sp" />
