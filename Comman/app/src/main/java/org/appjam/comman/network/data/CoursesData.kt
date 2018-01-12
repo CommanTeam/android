@@ -5,6 +5,7 @@ package org.appjam.comman.network.data
  */
 object CoursesData {
 
+    const val COURSE_ID_KEY = "courseID"
     data class CoursesResponse(val result : List<CourseInfo>)
 
     data class CourseInfo(
