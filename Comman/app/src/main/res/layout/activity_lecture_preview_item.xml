@@ -5,6 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgroundColor">
 
+    
+
+
     <ImageView
         android:id="@+id/lecture_regist_bar_iv"
         android:layout_width="match_parent"
