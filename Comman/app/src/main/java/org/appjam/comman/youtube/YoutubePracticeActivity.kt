@@ -1,4 +1,3 @@
-@file:Suppress("PLUGIN_WARNING")
 
 package org.appjam.comman.youtube
 
@@ -305,14 +304,18 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 if (lecOrques == 1) {
                     lecOrques = 0
                     video_lecture_list_rv?.adapter = LectureVideoAdapter()
+                    video_top2_layout?.visibility=View.VISIBLE
                 }
             }
             itemView.question_btn_layout.setOnClickListener {
                 if (lecOrques == 0) {
                     lecOrques = 1
                     video_lecture_list_rv?.adapter = QuestionAdapter()
+                    video_top2_layout?.visibility=View.GONE
                 }
             }
+
+
         }
     }
 

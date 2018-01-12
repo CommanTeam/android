@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="19dp"
+    android:layout_marginRight="19dp">
     <LinearLayout
         android:background="@color/white"
         android:layout_width="match_parent"
@@ -14,8 +16,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="33dp"
-            android:layout_marginLeft="99dp"
-            android:layout_marginRight="99dp"
             android:layout_marginTop="33dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="다음 단원으로 넘어가기"
