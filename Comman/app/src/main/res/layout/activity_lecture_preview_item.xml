@@ -19,7 +19,6 @@
         android:id="@+id/lecture_subsection_preview_chapterlist_title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lecture_subsection_video_play_layout"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="19dp"
@@ -44,7 +43,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="19dp"
-        android:layout_below="@+id/lecture_subsection_video_play_layout"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="8dp"
         app:cardElevation="3dp">
