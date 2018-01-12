@@ -1,5 +1,6 @@
 package org.appjam.comman.ui.card
 
+import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -17,6 +18,8 @@ import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.setDefaultThreads
 import org.appjam.comman.youtube.YoutubePracticeActivity
+
+
 
 /**
  * Created by KSY on 2018-01-01.
@@ -59,6 +62,7 @@ class CardLastFragment : Fragment() {
         if (arguments != null) {
             view.card_next_lecture_btn.setOnClickListener {
                 val intent = ListUtils.linkToNextLecture(context, nextLectureResponse, arguments.getInt(CoursesData.COURSE_ID_KEY))
+                intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
                 startActivity(intent)
             }
         }
