@@ -66,13 +66,11 @@ class QuizResultActivity : AppCompatActivity() {
         lectureID = intent.getIntExtra("lectureID", 0)
         courseID = intent.getIntExtra("courseID", 0)
 
-        var i = 0
-        for (quiz in quizInfoList) {
+        for ((i, quiz) in quizInfoList.withIndex()) {
             val rQuizData = realm.where(RQuizData::class.java).equalTo("quizId", quiz.quizID).findFirst()
             if(quiz.questionArr[rQuizData?.answer ?: 0].answerFlag == 1) {
                 answerCount++
             }
-            i++
         }
 
         if(lecturePriority < 10) {
@@ -86,8 +84,15 @@ class QuizResultActivity : AppCompatActivity() {
             for(i in 1..(quizInfoList.size+1)) { mutableList.add(-1) }
             PrefUtils.putLectureOfCoursePosition(this, 0, courseID)
             val intent = Intent(this, QuizActivity::class.java)
-            intent.getIntExtra("lectureID", lectureID)
-            intent.getIntExtra("courseID", courseID)
+            intent.putExtra("lectureID", lectureID)
+            intent.putExtra("courseID", courseID)
+            quizInfoList.forEach {
+                quizInfo ->
+                val rQuizData = realm.where(RQuizData::class.java).equalTo("quizId", quizInfo.quizID).findFirst()
+                realm.executeTransaction {
+                    rQuizData?.answer = null
+                }
+            }
             startActivity(intent)
         }
 
@@ -96,10 +101,12 @@ class QuizResultActivity : AppCompatActivity() {
                     PrefUtils.getUserToken(this), lectureID)
                     .setDefaultThreads()
                     .subscribe({ response ->
+                        Log.i(TAG, "response : $response")
                         if(response.nextLectureOfCourse.purchaseFlag == 0) {   //구매해야되는 경우
                             val intent = Intent(this@QuizResultActivity, ChargePopupActivity::class.java)
                             intent.putExtra("courseID", courseID)
                             startActivity(intent)
+                            return@subscribe
                         }
                         if(response.nextLectureOfCourse.lectureID == -1) {
                             val intent = Intent(this, CourseSubActivity::class.java)
@@ -107,21 +114,25 @@ class QuizResultActivity : AppCompatActivity() {
                             startActivity(intent)
                         }
 
-                        if(response.nextLectureOfCourse.lectureType == 0) {
-                            val intent = Intent(this, QuizActivity::class.java)
-                            intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
-                            intent.putExtra("courseID", courseID)
-                            startActivity(intent)
-                        } else if(response.nextLectureOfCourse.lectureType == 1) {
-                            val intent = Intent(this, CardActivity::class.java)
-                            intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
-                            intent.putExtra("courseID", courseID)
-                            startActivity(intent)
-                        } else {
-                            val intent = Intent(this, YoutubePracticeActivity::class.java)
-                            intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
-                            intent.putExtra("courseID", courseID)
-                            startActivity(intent)
+                        when {
+                            response.nextLectureOfCourse.lectureType == 0 -> {
+                                val intent = Intent(this, QuizActivity::class.java)
+                                intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
+                                intent.putExtra("courseID", courseID)
+                                startActivity(intent)
+                            }
+                            response.nextLectureOfCourse.lectureType == 1 -> {
+                                val intent = Intent(this, CardActivity::class.java)
+                                intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
+                                intent.putExtra("courseID", courseID)
+                                startActivity(intent)
+                            }
+                            else -> {
+                                val intent = Intent(this, YoutubePracticeActivity::class.java)
+                                intent.putExtra("lectureID", response.nextLectureOfCourse.lectureID)
+                                intent.putExtra("courseID", courseID)
+                                startActivity(intent)
+                            }
                         }
                     }, {
                         failure -> Log.i(MyCourseFragment.TAG, "on Failure ${failure.message}")
@@ -198,13 +209,13 @@ class QuizResultActivity : AppCompatActivity() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-            return if(viewType == ListUtils.TYPE_HEADER) {
-                HeaderViewHolder(layoutInflater.inflate(R.layout.quiz_result_header_items, parent, false))
-            } else if(viewType == ListUtils.TYPE_ELEM) {
-                val view : View = layoutInflater.inflate(R.layout.quiz_result_items, parent, false)
-                ElemViewHolder(view)
-            } else {
-                FooterViewHolder(layoutInflater.inflate(R.layout.quiz_result_footer, parent, false))
+            return when (viewType) {
+                ListUtils.TYPE_HEADER -> HeaderViewHolder(layoutInflater.inflate(R.layout.quiz_result_header_items, parent, false))
+                ListUtils.TYPE_ELEM -> {
+                    val view : View = layoutInflater.inflate(R.layout.quiz_result_items, parent, false)
+                    ElemViewHolder(view)
+                }
+                else -> FooterViewHolder(layoutInflater.inflate(R.layout.quiz_result_footer, parent, false))
             }
         }
 

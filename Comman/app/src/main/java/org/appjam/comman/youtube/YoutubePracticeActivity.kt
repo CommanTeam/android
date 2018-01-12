@@ -69,10 +69,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
         setContentView(R.layout.activity_youtube_practice)
 
         video_back_btn.setOnClickListener{
+            timer.cancel()
             finish()
         }
 
-        
 //        lectureID = intent.getIntExtra("lectureID", 0)
 //        courseID = intent.getIntExtra("courseID", 0)
 //        chapterID = intent.getIntExtra("chapterID", 0)
@@ -114,8 +114,6 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                     Toast.makeText(this, lectureList.size.toString(), Toast.LENGTH_SHORT).show()
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                 }, { failure ->
-
-                    Log.i(TAG, "망망 on Failure ${failure.message}")
 
                     Log.i(TAG, "on Failure ${failure.message}")
 
@@ -474,7 +472,10 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             (itemCount - 1) -> ListUtils.TYPE_FOOTER    //마지막, 마진을 주기 위해
             else -> ListUtils.TYPE_ELEM // 여러개 사용할 때
         }
-
     }
 
+    override fun onBackPressed() {
+        timer.cancel()
+        super.onBackPressed()
+    }
 }
