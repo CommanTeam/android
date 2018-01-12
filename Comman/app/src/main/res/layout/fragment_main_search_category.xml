@@ -8,8 +8,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/main_searchCategory_rv"
         android:background="@color/backgroundColor"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
