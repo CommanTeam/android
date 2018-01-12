@@ -52,7 +52,8 @@
                 android:layout_marginRight="18dp"
                 android:fontFamily="@font/nanum_square_bold"
                 android:text="01 필렛 넣기"
-                android:textAlignment="viewEnd"
+                android:gravity="end"
+                android:maxLines="2"
                 android:textColor="@color/white"
                 android:textSize="21sp" />
 

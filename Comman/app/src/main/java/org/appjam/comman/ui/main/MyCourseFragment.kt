@@ -121,7 +121,7 @@ class MyCourseFragment : Fragment() {
 //            itemView.main_course_active_img.setImageResource(R.drawable.additional_explanation_btn)
             Glide.with(context)
                     .load(R.drawable.additional_explanation_btn)
-                    .into(itemView.main_course_active_img)
+                    .into(itemView.main_course_item_active_img)
             itemView.main_course_active_course_tv.text = courseInfo.courseTitle
             itemView.main_course_active_chapters_tv.text = resources.getString(R.string.msg_format_chapter_count, courseInfo.chapterCnt)
 

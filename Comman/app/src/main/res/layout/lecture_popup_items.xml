@@ -23,6 +23,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:layout_marginLeft="10dp"
+        android:maxLines="2"
         android:fontFamily="@font/nanum_square_regular"
         android:textColor="@color/pageCountTextColor"
         android:textSize="18sp"
