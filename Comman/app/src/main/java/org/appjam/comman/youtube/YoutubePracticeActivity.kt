@@ -4,7 +4,10 @@ package org.appjam.comman.youtube
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.support.design.widget.AppBarLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -207,6 +210,32 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             imm.hideSoftInputFromWindow(video_lecture_list_rv?.getChildAt(1)?.youtube_question_item_et?.windowToken, 0)
             video_top_layout?.visibility = View.VISIBLE
             video_top2_layout?.visibility=View.VISIBLE
+        }
+
+        floating_layout?.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (!Settings.canDrawOverlays(this)) {
+                    val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                            Uri.parse("package:" + packageName))
+                    startActivityForResult(intent, 1234)
+                } else {
+                    val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
+                    intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                    intent.putExtra("courseID", courseID)
+                    intent.putExtra("chapterID", chapterID)
+                    intent.putExtra("lectureID", lectureID)
+                    timer.cancel()
+                    mPlayer?.release()
+                    startService(intent)
+                }
+            } else {
+                val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
+                intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                timer.cancel()
+                mPlayer?.release()
+                startService(intent)
+            }
+
         }
 
 

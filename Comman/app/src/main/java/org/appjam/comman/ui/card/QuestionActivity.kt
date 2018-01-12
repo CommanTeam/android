@@ -113,7 +113,7 @@ class QuestionActivity : AppCompatActivity() {
                                 questionInfoList.add(0, QuestionData.QuestionInfo(1, PrefUtils.getString(this@QuestionActivity, PrefUtils.NICKNAME)
                                         , 1, response.result.question_text, response.result.question_date, response.result.flag
                                         , 0, 1, "", "", ""))
-                                parent.question_qna_rv.adapter.notifyDataSetChanged()
+                                question_qna_rv.adapter.notifyDataSetChanged()
                             }, { failure ->
                                 Log.i(TAG, "on Failure ${failure.message}")
                             }))
@@ -124,7 +124,6 @@ class QuestionActivity : AppCompatActivity() {
 
     inner class ElemViewHolder(itemView: View?) : RecyclerView.ViewHolder(itemView) {
         fun bind(data : QuestionData.QuestionInfo) {
-            Toast.makeText(this@QuestionActivity, "여기까지~", Toast.LENGTH_SHORT).show()
             itemView.question_user_name_tv.text = data.l_question_user_nickname
             itemView.question_date_tv.text = data.l_question_date
             itemView.question_content_tv.text = data.question_text

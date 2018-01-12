@@ -32,7 +32,6 @@
         android:layout_width="98dp"
         android:layout_height="33dp"
         android:layout_marginRight="19dp"
-        android:layout_below="@+id/lecture_subsection_video_play_layout"
         android:layout_marginTop="42dp"
         android:layout_marginBottom="8dp"
         android:layout_alignParentEnd="true"

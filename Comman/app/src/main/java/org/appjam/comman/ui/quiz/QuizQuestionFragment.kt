@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -154,6 +155,7 @@ class QuizQuestionFragment : Fragment() {
             }
             itemView.quiz_count_btn.text = "${pagePosition + 1} / $pageCount"
             itemView.quiz_question_tv.text = quizInfoList[pagePosition].quizTitle
+            Log.i(TAG, "quizTitle : ${quizInfoList[pagePosition].quizTitle}")
             if(quizInfoList[pagePosition].quizImage == "") {
                 itemView.quiz_question_img.visibility = View.GONE
             } else {

@@ -8,10 +8,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import android.widget.Toast
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,14 +30,12 @@ class MainActivity : AppCompatActivity() {
     private val bundle = Bundle()
     private val disposables = CompositeDisposable()
     private var courseResponse: CoursesData.CoursesResponse? = null
-    private var onItemClick : View.OnClickListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         main_layout.setOnClickListener {
-            Toast.makeText(this, "layout 눌림", Toast.LENGTH_SHORT).show()
             val hide = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             hide.hideSoftInputFromWindow(main_layout.windowToken, 0)
         }

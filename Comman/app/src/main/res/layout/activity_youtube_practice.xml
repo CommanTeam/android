@@ -64,6 +64,7 @@
             android:maxLines="2"
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
+            android:maxWidth="300dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="01. 필렛 넣기"
             android:textColor="@color/mainTextColor"
@@ -161,5 +162,33 @@
         android:layout_below="@+id/youtube_bottom_bar_layout">
 
     </android.support.v7.widget.RecyclerView>
+
+    <RelativeLayout
+        android:id="@+id/floating_layout"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="44dp"
+        android:layout_marginRight="42dp"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/youtube_floating_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@color/primaryColor"
+            />
+
+        <ImageView
+            android:id="@+id/floating_exercising_img"
+            android:layout_width="16dp"
+            android:layout_height="19dp"
+            android:src="@drawable/floating_exercising_btn"
+            android:layout_marginTop="21dp"
+            android:layout_marginLeft="23dp"
+            />
+
+    </RelativeLayout>
 
 </RelativeLayout>
