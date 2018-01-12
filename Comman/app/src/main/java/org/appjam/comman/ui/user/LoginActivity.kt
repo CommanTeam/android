@@ -156,7 +156,6 @@ class LoginActivity : AppCompatActivity() {
                                 PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
 
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)
@@ -172,7 +171,6 @@ class LoginActivity : AppCompatActivity() {
                                 PrefUtils.putUserInfo(this@LoginActivity, response.result.user)
 
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                 startActivity(intent)
