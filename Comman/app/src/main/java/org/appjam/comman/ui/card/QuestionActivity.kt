@@ -113,7 +113,7 @@ class QuestionActivity : AppCompatActivity() {
                                 questionInfoList.add(0, QuestionData.QuestionInfo(1, PrefUtils.getString(this@QuestionActivity, PrefUtils.NICKNAME)
                                         , 1, response.result.question_text, response.result.question_date, response.result.flag
                                         , 0, 1, "", "", ""))
-                                parent.question_qna_rv.adapter.notifyDataSetChanged()
+                                question_qna_rv.adapter.notifyDataSetChanged()
                             }, { failure ->
                                 Log.i(TAG, "on Failure ${failure.message}")
                             }))

@@ -64,6 +64,7 @@
             android:maxLines="2"
             android:layout_marginLeft="19dp"
             android:layout_marginRight="19dp"
+            android:maxWidth="300dp"
             android:fontFamily="@font/nanum_square_bold"
             android:text="01. 필렛 넣기"
             android:textColor="@color/mainTextColor"

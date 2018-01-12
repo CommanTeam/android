@@ -221,6 +221,9 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                 } else {
                     val intent = Intent(this@YoutubePracticeActivity, LectureVideoService::class.java)
                     intent.putExtra(YouTubeConfigs.VIDEO_ID, videoId)
+                    intent.putExtra("courseID", courseID)
+                    intent.putExtra("chapterID", chapterID)
+                    intent.putExtra("lectureID", lectureID)
                     timer.cancel()
                     mPlayer?.release()
                     startService(intent)
