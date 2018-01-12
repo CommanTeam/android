@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
+import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_popup.*
 import kotlinx.android.synthetic.main.lecture_popup_items.view.*
@@ -49,6 +50,10 @@ class CourseSubPopupActivity : AppCompatActivity(), AppBarLayout.OnOffsetChanged
                     lecturePopup_title_tv.text = popupTitleInfo.title
                     toolbarTextView.text = popupTitleInfo.title
                     lecturePopup_name_tv.text = popupTitleInfo.name
+                    Glide.with(this@CourseSubPopupActivity)
+                            .load(popupTitleInfo.supplier_thumbnail)
+                            .centerCrop()
+                            .into(lecturePopup_img)
                 },{failure ->
                     Log.i("CourseSubPopupActivity","on Failure, Message : ${failure.message}")
                 }))

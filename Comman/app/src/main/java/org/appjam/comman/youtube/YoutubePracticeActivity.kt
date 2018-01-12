@@ -83,9 +83,9 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
 
     private val disposables = CompositeDisposable()
     private var videoId = "Rs8zSWSR5Ys"
-    private var lectureID: Int = 35        //실험중
-    private var chapterID: Int = 23
-    private var courseID: Int = 4
+    private var lectureID: Int = 0
+    private var chapterID: Int = 0
+    private var courseID: Int = 0
     private var isComplete: Int = 0
     private var videoLectureInfo: VideoData.VideoLectureInfo? = null
     private var lectureList: List<ChapterData.LectureListInChapterData> = listOf()
@@ -111,9 +111,9 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
             finish()
         }
 
-//        lectureID = intent.getIntExtra("lectureID", 0)
-//        courseID = intent.getIntExtra("courseID", 0)
-//        chapterID = intent.getIntExtra("chapterID", 0)
+        lectureID = intent.getIntExtra("lectureID", 0)
+        courseID = intent.getIntExtra("courseID", 0)
+        chapterID = intent.getIntExtra("chapterID", 0)
         if (lectureID != PrefUtils.getRecentLectureOfCourseID(this, courseID)) {
             PrefUtils.putYoutubeCurrentTimeInCourse(this, 0, courseID)
         }
@@ -136,7 +136,7 @@ class YoutubePracticeActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializ
                         video_lecture_name_tv?.text = "${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
                         video_lecture_name2_tv?.text = "${videoLectureInfo!!.priority}. ${videoLectureInfo!!.title}"
                     }
-//                    videoId = videoLectureInfo[0].video_id
+                    videoId = videoLectureInfo!!.video_id
                     video_lecture_list_rv?.adapter?.notifyDataSetChanged()
                     practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)
                     land_practice_lectureVideo_youtube_playerView?.initialize(YouTubeConfigs.API_KEY, this)

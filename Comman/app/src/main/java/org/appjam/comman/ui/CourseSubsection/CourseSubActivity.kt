@@ -12,19 +12,22 @@ import com.bumptech.glide.Glide
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_lecture_list.*
 import kotlinx.android.synthetic.main.activity_lecture_subsection.*
+import kotlinx.android.synthetic.main.course_watching_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_chapterlist_item.view.*
 import kotlinx.android.synthetic.main.lecture_subsection_course_item.view.*
-import kotlinx.android.synthetic.main.lecture_subsection_video_item.view.*
 import org.appjam.comman.R
 import org.appjam.comman.network.APIClient
 import org.appjam.comman.network.data.CoursesData
 import org.appjam.comman.network.data.LectureData
 import org.appjam.comman.network.data.PopupData
+import org.appjam.comman.ui.card.CardActivity
 import org.appjam.comman.ui.lecture.LectureListActivity
+import org.appjam.comman.ui.quiz.QuizActivity
 import org.appjam.comman.util.ListUtils
 import org.appjam.comman.util.PrefUtils
 import org.appjam.comman.util.YoutubeTimeUtils
 import org.appjam.comman.util.setDefaultThreads
+import org.appjam.comman.youtube.YoutubePracticeActivity
 
 /**
  * Created by KSY on 2018-01-03.
@@ -44,7 +47,7 @@ class CourseSubActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lecture_subsection)
-        sub_back_btn.setOnClickListener{
+        sub_back_btn.setOnClickListener {
             finish()
 
         }
@@ -57,7 +60,7 @@ class CourseSubActivity : AppCompatActivity() {
                 PrefUtils.getUserToken(this@CourseSubActivity), intent.getIntExtra("courseID", 0))  //defaultValue 0넣는게 맞을까?
                 .setDefaultThreads()
                 .subscribe({ response ->
-                    courseMetaData =  response.result
+                    courseMetaData = response.result
                     sub_lecture_name_tv.text = courseMetaData?.title
                     recycler_view.adapter.notifyDataSetChanged()
                 }, { failure ->
@@ -123,54 +126,83 @@ class CourseSubActivity : AppCompatActivity() {
     }
 
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // TODO : 비디오일 경우 백그라운드 설정 및 몇 가지 설정 좀 더 필요, intent 연결도 필요
         fun bind() {
-
             if (recentLectureInfo != null) {
-                itemView.lecture_subsection_video_chaporder_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
+                itemView.main_lecture_wathing_layout.visibility = View.VISIBLE
+                itemView.main_lecture_wathing_tv.visibility = View.VISIBLE
+
+                itemView.main_course_wathing_chapter_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
 
                 if ((recentLectureInfo!!.lecture_priority) / 10 == 0) {
-                    itemView.lecture_subsection_video_lecturename_tv.text = "0${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
+                    itemView.main_course_wathing_title_tv.text = "0${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
                 } else {
-                    itemView.lecture_subsection_video_lecturename_tv.text = "${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
+                    itemView.main_course_wathing_title_tv.text = "${recentLectureInfo!!.lecture_priority}. ${recentLectureInfo!!.lecture_title}"
                 }
 
                 if (recentLectureInfo!!.lecture_type == 0) {
-                    itemView.lecture_subsection_video_time_tv.text =
-                            "${PrefUtils.getInt(this@CourseSubActivity, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_quiz}"
-                    itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_quiz_icon)
-                    itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
+                    itemView.lecture_subsection_video_thumb.visibility = View.GONE
+                    itemView.main_lecture_watching_progress_tv.text =
+                            "${PrefUtils.getRecentLectureOfCoursePosition(this@CourseSubActivity, recentLectureInfo!!.course_ID)+1} / ${recentLectureInfo!!.cnt_lecture_quiz+1}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_quiz_icon)
+                    Glide.with(this@CourseSubActivity)
+                            .load(R.drawable.home_quiz_default_image)
+                            .centerCrop()
+                            .into(itemView.main_watching_full_background_img)
+                    itemView.main_lecture_watching_progress_bar.visibility = View.GONE
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
+                        val intent = Intent(this@CourseSubActivity, QuizActivity::class.java)
+                        intent.putExtra("courseID", recentLectureInfo!!.course_ID)
+                        intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(this@CourseSubActivity, recentLectureInfo!!.course_ID))
+                        startActivity(intent)
+                    }
                 } else if (recentLectureInfo!!.lecture_type == 1) {
-                    itemView.lecture_subsection_video_time_tv.text =
-                            "${PrefUtils.getInt(this@CourseSubActivity, PrefUtils.POSITION)} / ${recentLectureInfo!!.cnt_lecture_picture}"
-                    itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_picture_icon)
-                    itemView.lecture_subsection_watching_progress_bar.visibility = View.GONE
+                    itemView.lecture_subsection_video_thumb.visibility = View.GONE
+                    itemView.main_lecture_watching_progress_tv.text =
+                            "${PrefUtils.getRecentLectureOfCoursePosition(this@CourseSubActivity, recentLectureInfo!!.course_ID)+1} / ${recentLectureInfo!!.cnt_lecture_picture+1}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
+                    Glide.with(this@CourseSubActivity)
+                            .load(R.drawable.home_picture_default_image)
+                            .centerCrop()
+                            .into(itemView.main_watching_full_background_img)
+                    itemView.main_lecture_watching_progress_bar.visibility = View.GONE
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
+                        val intent = Intent(this@CourseSubActivity, CardActivity::class.java)
+                        intent.putExtra("courseID", recentLectureInfo!!.course_ID)
+                        intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(this@CourseSubActivity, recentLectureInfo!!.course_ID))
+                        startActivity(intent)
+                    }
                 } else {
-                    itemView.lecture_subsection_video_time_tv.text =
-                            "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(this@CourseSubActivity, PrefUtils.DURATION_TIME))}"
-                    itemView.lecture_subsection_video_play_btn.setBackgroundResource(R.drawable.home_video_icon)
-                    itemView.lecture_subsection_watching_progress_bar.visibility = View.VISIBLE
+                    itemView.lecture_subsection_video_thumb.visibility = View.VISIBLE
+                    itemView.main_lecture_watching_progress_tv.text =
+                            "${YoutubeTimeUtils.formatTime(recentLectureInfo!!.playTime)}"
+                    itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
+
+                    val thumbURL = "https://img.youtube.com/vi/${recentLectureInfo!!.lecture_video_id}/sddefault.jpg"
+
+                    Glide.with(this@CourseSubActivity)
+                            .load(thumbURL)
+                            .placeholder(R.mipmap.ic_launcher)
+                            .fitCenter()
+                            .centerCrop()
+                            .error(R.mipmap.ic_launcher)
+                            .into(itemView.main_watching_full_background_img)
+                    itemView.main_lecture_watching_progress_bar.visibility = View.VISIBLE
+                    itemView.main_lecture_watching_progress_bar.progress =
+                            (PrefUtils.getYoutubeCurrentTimeInCourse(this@CourseSubActivity, recentLectureInfo!!.course_ID) * 100 / recentLectureInfo!!.playTime)
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
+                        val intent = Intent(this@CourseSubActivity, YoutubePracticeActivity::class.java)
+                        intent.putExtra("courseID", recentLectureInfo!!.course_ID)
+                        intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(this@CourseSubActivity, recentLectureInfo!!.course_ID))
+                        intent.putExtra("chapterID", recentLectureInfo!!.chapter_ID)
+                        startActivity(intent)
+                    }
                 }
 
+            } else {        //시청하던 강의 없을 경우 숨기기
+                itemView.main_lecture_wathing_layout.visibility = View.GONE
+                itemView.main_lecture_wathing_tv.visibility = View.GONE
             }
-            else {
-                itemView.lecture_subsection_video_title_tv.visibility = View.GONE
-                itemView.lecture_subsection_video_play_layout.visibility = View.GONE
-            }
 
-            var thumbID : String?=null
-            var thumbURL : String?=null
-
-            thumbID="BUM8Qe6fdRk"
-            thumbURL="https://img.youtube.com/vi/"+thumbID+"/sddefault.jpg"
-
-            Glide.with(applicationContext)
-                    .load(thumbURL)
-                    .placeholder(R.mipmap.ic_launcher)
-                    .fitCenter()
-                    .centerCrop()
-                    .error(R.mipmap.ic_launcher)
-                    .into(itemView.lecture_subsection_video_thumb)
         }
 
     }
@@ -184,7 +216,7 @@ class CourseSubActivity : AppCompatActivity() {
             itemView.lecture_subsection_chapterlist_chapname_tv.text = chaptersInfoList[position].title
             if (((isPurchased == 0) and chaptersInfoList[position].open) or (isPurchased == 1)) {
                 itemView.lecture_subsection_lock_layout.visibility = View.GONE
-               itemView.setOnClickListener {
+                itemView.setOnClickListener {
                     val intent = Intent(this@CourseSubActivity, LectureListActivity::class.java)
                     intent.putExtra("chapterID", chaptersInfoList[position].chapterID)
                     startActivity(intent)
@@ -206,7 +238,7 @@ class CourseSubActivity : AppCompatActivity() {
                     HeaderViewHolder(view)
                 }
                 ListUtils.TYPE_SECOND_HEADER -> {
-                    val view: View = layoutInflater.inflate(R.layout.lecture_subsection_video_item, parent, false)
+                    val view: View = layoutInflater.inflate(R.layout.course_watching_item, parent, false)
                     SecondHeaderViewHolder(view)
                 }
 
@@ -220,6 +252,7 @@ class CourseSubActivity : AppCompatActivity() {
                 }
             }
         }
+
         override fun getItemCount() = chaptersInfoList.size + 3
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {

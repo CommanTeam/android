@@ -138,6 +138,9 @@ class MyCourseFragment : Fragment() {
     inner class SecondHeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind() {
             if(recentLectureInfo != null) {
+                itemView.main_lecture_wathing_layout.visibility = View.VISIBLE
+                itemView.main_lecture_wathing_tv.visibility = View.VISIBLE
+
                 itemView.main_course_wathing_chapter_tv.text = "${recentLectureInfo!!.course_title} > ${recentLectureInfo!!.chapter_priority}장"
 
                 if((recentLectureInfo!!.lecture_priority)/10==0) {
@@ -148,40 +151,39 @@ class MyCourseFragment : Fragment() {
                 }
 
                 if(recentLectureInfo!!.lecture_type == 0) {
+                    itemView.lecture_subsection_video_thumb.visibility = View.GONE
                     itemView.main_lecture_watching_progress_tv.text =
-                            "${PrefUtils.getRecentLectureOfCoursePosition(context, recentLectureInfo!!.course_ID)} / ${recentLectureInfo!!.cnt_lecture_quiz}"
+                            "${PrefUtils.getRecentLectureOfCoursePosition(context, recentLectureInfo!!.course_ID)+1} / ${recentLectureInfo!!.cnt_lecture_quiz+1}"
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_quiz_icon)
                     Glide.with(context)
                             .load(R.drawable.home_quiz_default_image)
                             .centerCrop()
                             .into(itemView.main_watching_full_background_img)
                     itemView.main_lecture_watching_progress_bar.visibility = View.GONE
-                    itemView.main_lecture_watching_progress_bar.progress =
-                            PrefUtils.getRecentLectureOfCoursePosition(context, recentLectureInfo!!.course_ID) / recentLectureInfo!!.cnt_lecture_quiz * 100
-                    itemView.setOnClickListener {
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
                         val intent = Intent(context, QuizActivity::class.java)
                         intent.putExtra("courseID", recentLectureInfo!!.course_ID)
                         intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
                         startActivity(intent)
                     }
                 } else if(recentLectureInfo!!.lecture_type == 1) {
+                    itemView.lecture_subsection_video_thumb.visibility = View.GONE
                     itemView.main_lecture_watching_progress_tv.text =
-                            "${PrefUtils.getRecentLectureOfCoursePosition(context, recentLectureInfo!!.course_ID)} / ${recentLectureInfo!!.cnt_lecture_picture}"
+                            "${PrefUtils.getRecentLectureOfCoursePosition(context, recentLectureInfo!!.course_ID)+1} / ${recentLectureInfo!!.cnt_lecture_picture+1}"
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_picture_icon)
                     Glide.with(context)
                             .load(R.drawable.home_picture_default_image)
                             .centerCrop()
                             .into(itemView.main_watching_full_background_img)
                     itemView.main_lecture_watching_progress_bar.visibility = View.GONE
-                    itemView.main_lecture_watching_progress_bar.progress =
-                            PrefUtils.getRecentLectureOfCoursePosition(context, recentLectureInfo!!.course_ID) / recentLectureInfo!!.cnt_lecture_picture * 100
-                    itemView.setOnClickListener {
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
                         val intent = Intent(context, CardActivity::class.java)
                         intent.putExtra("courseID", recentLectureInfo!!.course_ID)
                         intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
                         startActivity(intent)
                     }
                 } else {
+                    itemView.lecture_subsection_video_thumb.visibility = View.VISIBLE
                     itemView.main_lecture_watching_progress_tv.text =
                             "${YoutubeTimeUtils.formatTime(recentLectureInfo!!.playTime)}"
                     itemView.main_lecture_wathing_img.setBackgroundResource(R.drawable.home_video_icon)
@@ -190,12 +192,15 @@ class MyCourseFragment : Fragment() {
 
                     Glide.with(context)
                             .load(thumbURL)
+                            .placeholder(R.mipmap.ic_launcher)
+                            .fitCenter()
                             .centerCrop()
-                            .into(itemView.main_lecture_wathing_img)
+                            .error(R.mipmap.ic_launcher)
+                            .into(itemView.main_watching_full_background_img)
                     itemView.main_lecture_watching_progress_bar.visibility = View.VISIBLE
                     itemView.main_lecture_watching_progress_bar.progress =
-                            PrefUtils.getYoutubeCurrentTimeInCourse(context, recentLectureInfo!!.course_ID) / recentLectureInfo!!.playTime * 100
-                    itemView.setOnClickListener {
+                            (PrefUtils.getYoutubeCurrentTimeInCourse(context, recentLectureInfo!!.course_ID) * 100 / recentLectureInfo!!.playTime)
+                    itemView.main_lecture_wathing_layout.setOnClickListener {
                         val intent = Intent(context, YoutubePracticeActivity::class.java)
                         intent.putExtra("courseID", recentLectureInfo!!.course_ID)
                         intent.putExtra("lectureID", PrefUtils.getRecentLectureOfCourseID(context, recentLectureInfo!!.course_ID))
