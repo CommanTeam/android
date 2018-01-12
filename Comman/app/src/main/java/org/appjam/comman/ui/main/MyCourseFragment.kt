@@ -184,14 +184,7 @@ class MyCourseFragment : Fragment() {
                     Glide.with(context)
                             .load(R.drawable.home_picture_default_image)
                             .centerCrop()
-                            .into(object : ViewTarget<RelativeLayout, GlideDrawable>(rootView) {
-                                override fun onResourceReady(resource: GlideDrawable?, glideAnimation: GlideAnimation<in GlideDrawable>?) {
-                                    val myView = this.view
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                                        myView.background = resource
-                                    }
-                                }
-                            })
+                            .into(itemView.main_watching_full_background_img)
                 } else {
                     itemView.main_lecture_watching_progress_tv.text =
                             "${YoutubeTimeUtils.formatTime(PrefUtils.getInt(context, PrefUtils.DURATION_TIME))}"
