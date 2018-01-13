@@ -75,7 +75,7 @@ class SearchFragment : Fragment(), View.OnClickListener {
                             courseInfoList = response
                             val gson = Gson()
                             bundle.putString("ans", gson.toJson(courseInfoList))
-                            AddFragment(SearchCourseListFragment(), bundle, "search")
+                            ReplaceFragment(SearchCourseListFragment(), bundle, "search")
                             if (TextUtils.isEmpty(main_search_et.text)) {
                                 main_cancel_btn.visibility = View.INVISIBLE
                             } else
@@ -119,6 +119,7 @@ class SearchFragment : Fragment(), View.OnClickListener {
         transaction.commit()
     }
 
+
     fun ReplaceFragment(fragment: Fragment, bundle: Bundle, tag: String) {
         val fm = childFragmentManager
         val transaction = fm.beginTransaction()
@@ -129,8 +130,6 @@ class SearchFragment : Fragment(), View.OnClickListener {
         transaction.commit()
 
     }
-
-    override fun ba
 
     override fun onDestroyView() {
         disposables.clear()

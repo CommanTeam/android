@@ -12,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.gson.Gson
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_course_search_result.view.*
@@ -85,6 +87,12 @@ class SearchCourseListFragment : Fragment() {
             itemView.course_content_tv.text = courseInfoList[position].info
             val hit = courseInfoList[position].hit
             itemView.course_people_tv.text = "$hit 명이 수강중입니다"
+            Glide.with(context)
+                    .load(courseInfoList[position].image_path)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .centerCrop()
+                    .into(itemView.course_result_img)
+
             itemView.setOnClickListener {
                 val hide = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 hide.hideSoftInputFromWindow(itemView.windowToken, 0)

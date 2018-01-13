@@ -140,4 +140,26 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+//    interface onKeyBackPressedListener {
+//        fun onBack()
+//    }
+//    private var mOnKeyBackPressedListener : onKeyBackPressedListener? = null
+//
+//    fun setOnKeyBackPressedListener(listener : onKeyBackPressedListener?) {
+//        mOnKeyBackPressedListener = listener
+//    }
+//
+//
+//    override fun onBackPressed() {
+//        if(mOnKeyBackPressedListener != null) {
+//            mOnKeyBackPressedListener!!.onBack()
+//        } else {
+//            super.onBackPressed()
+//        }
+//
+//    }
+
+
+
+
 }
